@@ -1,23 +1,22 @@
 <template>
-  <div class="container flex">      
-    <div class="flex flex-column mx-auto">
-      <div v-for="p in podcasts" 
-      class="flex flex-row"
+  <div class="container flex flex-wrap justify-around align-middle">      
+    <div v-for="p in podcasts" 
+      class="flex-column max-w-sm overflow-hidden"
       :key="p.id">
-      
-      <h3 class="m-2 text-xl font-bond"> 
-        {{ p.name }} 
-      </h3>
-      
-
-      <div v-for="item in p.items.slice(0, 8)" 
-        class="flex"
-        :key="item.id">
-        {{ item.title }}
-      </div>
-    </div>
-    </div>
     
+      <div class="flex-1 m-2 text-xl font-bond text-red-700"> 
+        {{ p.name }} 
+        <span class="text-sm text-teal-500"> ({{p.base_url}}) </span>
+      </div>
+      
+      <ul class="flex-column m-2 pt-2">
+        <li v-for="item in p.items.slice(0, 8)" 
+          class="text-base truncate underline"
+          :key="item.id">
+          <a :href="item.item_url">{{ item.title }}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
