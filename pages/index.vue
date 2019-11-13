@@ -1,15 +1,15 @@
 <template>
-  <div class="container flex flex-wrap justify-around align-middle">      
+  <div class="flex flex-wrap max-w-6xl justify-around mx-auto my-3">      
     <div v-for="p in podcasts" 
-      class="flex-column max-w-sm overflow-hidden"
+      class="flex-col max-w-sm overflow-hidden"
       :key="p.id">
     
-      <div class="flex-1 m-2 text-xl font-bond text-red-700"> 
+      <div class="flex-1 m-2 text-xl font-bond text-red-700 h-10"> 
         {{ p.name }} 
-        <span class="text-sm text-teal-500"> ({{p.base_url}}) </span>
+        <span class="text-sm text-teal-500 cursor-pointer"> ({{p.base_url}}) </span>
       </div>
       
-      <ul class="flex-column m-2 pt-2">
+      <ul class="flex-col m-2 pt-2">
         <li v-for="item in p.items.slice(0, 8)" 
           class="text-base truncate underline"
           :key="item.id">
