@@ -1,25 +1,32 @@
 <template>
-  <div class="flex flex-wrap max-w-6xl mx-auto">      
+  <div class="flex flex-wrap max-w-6xl mx-auto mt-2">      
     <div v-for="p in podcasts" 
       class="flex-col flex-auto max-w-sm overflow-hidden"
       :key="p.id">
     
-      <div class="m-2 text-xl font-bond text-red-700"> 
+      <div class="m-2 leading-tight text-xl font-extrabond text-red-700"> 
         {{ p.name }} 
-        <br>
-        <span class="text-sm text-teal-500 cursor-pointer"> 
+        <span class="text-xs text-teal-600 cursor-pointer"> 
           <a :href="p.base_url">
-            ( {{p.base_url}} )
+            ({{p.base_url}})
           </a>   
         </span>
       </div>
       
       <ul class="m-2 py-2">
         <li v-for="item in p.items.results" 
-          class="w-auto text-base truncate underline"
-          :key="item.id"
-          v-tooltip.top="item.description">
-          <a :href="item.item_url">{{ item.title }}</a>
+          class="w-auto text-base truncate border-b"
+          :key="item.id">
+          <div class="truncate" 
+                v-if="item.description.length === 0">
+            <a :href="item.item_url">{{ item.title }}</a>
+          </div>
+          <div class="truncate" v-else>
+            <a :href="item.item_url" 
+              v-tooltip.top="item.description">
+              {{ item.title }}
+            </a>
+          </div>
         </li>
       </ul>
     </div>

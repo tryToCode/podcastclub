@@ -1,5 +1,5 @@
 <template>
-    <footer class='w-full text-center border-t border-grey p-4 pin-b bg-gray-100'>
+    <footer class='w-full text-center border-t border-grey p-3 pin-b bg-gray-100'>
         <div class="container mx-auto">
             <span>
                 <a href="#">About</a>
