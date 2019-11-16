@@ -8,10 +8,6 @@
         <span>•</span>
         <a class="text-sm text-black px-2" href="#">API Dokumentation</a>
         <span>•</span>
-        <a class="text-sm text-black px-2" href="#">Hacker News</a>
-        <span>•</span>
-        <a class="text-sm text-black px-2" href="#">Fork/Contribute</a>
-        <span>•</span>
-        <a class="text-sm text-black px-2" href="#">Coole Apps</a>
+        <a class="text-sm text-black px-2" href="#">Contact</a>
     </div>
 </template>

@@ -43,7 +43,7 @@
 
         <div class="flex flex-wrap items-center">
             <span class="p-2">19.302.956 results ( 0.008 seconds )</span>
-            <span class="fas fa-share-alt"></span>
+            <font-awesome-icon :icon="['fas', 'share-alt']"/>
         </div>
     </div>
 </template>
