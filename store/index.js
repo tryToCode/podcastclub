@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const state = () => ({
-    podcasts: []
+    items: []
 })
 
 export const mutations = {
@@ -10,7 +10,7 @@ export const mutations = {
     },
 
     setItems(state, items) {
-        state.items.push(items)
+        state.items = items
     }
 }
 
@@ -26,17 +26,13 @@ export const actions = {
         }
     },
 
-    async loadItems({commit, state}) {
-        var pc = state.podcasts
-        pc.forEach(element => {
-            axios
-                .get('http://127.0.0.1:8000/podcasts/' + element.id + '/items')
-                .then(response => {
-                    commit('setItems', response.data)
-                })
-                .catch(error => {
-                    console(error)
-                })
-        });
+    async loadItems({commit}) {
+        axios.get('http://127.0.0.1:8000/rssItems.json')
+        .then(response => {
+            commit('setItems', response.data.results)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }

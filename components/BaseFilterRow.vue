@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-5xl flex flex-wrap justify-around bg-gray-100 mx-auto">
-        <div class="flex flex-wrap py-1 justify-start">
-            <div class="mb-6 md:mb-0 flex">
+        <div class="flex flex-wrap py-1 justify-start text-sm">
+            <div class="items-center mb-6 md:mb-0 flex">
                 <label class="block tracking-wide text-gray-700 py-2" for="grid-state">
                 Search Podcasts
                 </label>
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap items-center">
+        <div class="flex flex-wrap items-center text-sm">
             <span class="p-2">19.302.956 results ( 0.008 seconds )</span>
             <font-awesome-icon :icon="['fas', 'share-alt']"/>
         </div>

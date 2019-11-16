@@ -29,23 +29,16 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
-  data() {
-    return {
-      items: []
-    }
+  created() {
+    this.$store.dispatch('loadItems')
   },
 
-  created() {
-    console.log('created hook')
-    axios.get('http://127.0.0.1:8000/rssItems.json')
-    .then(response => {
-      this.items = response.data.results
-    })
-    .catch(error => {
-      console.log(error)
+  computed: {
+    ...mapState({
+      items: 'items'
     })
   }
 }
