@@ -11,14 +11,12 @@
 import BaseNavbar from '@/components/BaseNavbar.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
 import BaseInfo from '@/components/BaseInfo.vue'
-import BaseFilterRow from '@/components/BaseFilterRow.vue'
 
 export default {
   components: {
     BaseNavbar,
     BaseFooter,
     BaseInfo,
-    BaseFilterRow
   }  
 }
 </script>

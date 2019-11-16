@@ -1,5 +1,7 @@
 <template>
   <div>
+    <BaseFilterRow
+      @loadItemsOfCategory="categoryChangeHandler" />
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto"
       v-for="item in items"
       :key="item.id">
@@ -30,8 +32,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import BaseFilterRow from '@/components/BaseFilterRow.vue'
 
 export default {
+  components: {
+    BaseFilterRow
+  },
+
   created() {
     this.$store.dispatch('loadItems')
   },
@@ -40,6 +47,12 @@ export default {
     ...mapState({
       items: 'items'
     })
+  },
+
+  methods: {
+    categoryChangeHandler(value) {
+      this.$store.dispatch('loadItemsOnCategory', value)
+    }
   }
 }
 </script>

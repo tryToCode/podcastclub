@@ -34,5 +34,15 @@ export const actions = {
         .catch(error => {
             console.log(error)
         })
+    },
+
+    async loadItemsOnCategory({commit}, value) {
+        axios.get('http://127.0.0.1:8000/rssItems?category=' + value)
+        .then(response => {
+            commit('setItems', response.data.results)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }
