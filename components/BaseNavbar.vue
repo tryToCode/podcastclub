@@ -1,28 +1,27 @@
 <template>
-    <nav class="flex items-center justify-between flex-wrap bg-teal-600 p-4">
-        <div class="flex items-center flex-shrink-0 text-white mx-10">
-            <span class="font-semibold font-mono text-2xl tracking-tight">Podcasts Zone</span>
-        </div>
-        <div class="block lg:hidden">
-            <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-            </button>
-        </div>
-        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <div class="text-sm lg:flex-grow">
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4">
-                IT
-            </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4">
-                Entrepreneurship
-            </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4">
-                Finance
-            </a>
-            </div>
-            <div>
-            <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+    <nav class="max-w-5xl flex justify-center flex-wrap bg-red-400 h-16 mx-auto">
+        <div class="flex flex-wrap p-1">
+            <div class="flex pl-6 items-center">
+                <font-awesome-icon :icon="['fas', 'podcast']"/>
+                <a class="pl-2 tracking-wide text-xl" href="#">
+                    Podcasts Zone
+                </a>
             </div>
         </div>
+        
+        <div class="flex flex-wrap py-2 px-4 items-center lg:w-3/4 justify-around">
+            <div class="w-3xl shadow flex xl:w-2/3 items-center relative">
+                <input class="w-full rounded py-3 px-8" type="text" placeholder="Search Stories by title, url or author">
+                <span class="absolute w-auto flex justify-start items-center text-grey px-3">
+                    <font-awesome-icon :icon="['fas', 'search']"/>
+                </span>
+            </div>
+            <div class="flex items-center">
+                <font-awesome-icon :icon="['fas', 'cog']"/>
+                <a class="p-1 pr-6 tracking-wide text-xl" href="#">
+                    Setting
+                </a>
+            </div>
+        </div>            
     </nav>
 </template>

@@ -1,13 +1,17 @@
 <template>
-    <footer class='w-full text-center border-t border-grey p-3 pin-b bg-gray-100'>
-        <div class="container mx-auto">
-            <span>
-                <a href="#">About</a>
-                |
-                <a href="#">Contact</a>    
-                |
-                <a href="#">Copyright &copy; 2019 podcastsZone.com</a>
-            </span> 
-        </div>     
-    </footer>
+    <div class="max-w-5xl flex big-white mx-auto p-4 justify-center my-3">
+        <a class="text-sm text-black px-2" href="#">About</a>
+        <span>•</span>
+        <a class="text-sm text-black px-2" href="#">Setting</a>
+        <span>•</span>
+        <a class="text-sm text-black px-2" href="#">Help</a>
+        <span>•</span>
+        <a class="text-sm text-black px-2" href="#">API Dokumentation</a>
+        <span>•</span>
+        <a class="text-sm text-black px-2" href="#">Hacker News</a>
+        <span>•</span>
+        <a class="text-sm text-black px-2" href="#">Fork/Contribute</a>
+        <span>•</span>
+        <a class="text-sm text-black px-2" href="#">Coole Apps</a>
+    </div>
 </template>
