@@ -14,7 +14,7 @@
       </div>
       
       <ul class="m-2 py-2">
-        <li v-for="item in p.items.results" 
+        <li v-for="item in p.items" 
           class="w-auto text-base truncate border-b"
           :key="item.id">
           <div class="truncate" 
@@ -23,9 +23,17 @@
           </div>
           <div class="truncate" v-else>
             <a :href="item.item_url" 
-              v-tooltip.top="item.description">
+              v-tooltip.top="item.desciption">
               {{ item.title }}
             </a>
+            <div ref="tooltipRef" class="hidden tooltip-content">
+              <div class="">
+                <strong>{{item.title}}</strong>
+              </div>
+              <div class="text-xs">
+                {{item.description}}
+              </div>
+            </div>
           </div>
         </li>
       </ul>
