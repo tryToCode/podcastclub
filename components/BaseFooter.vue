@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-5xl flex big-white mx-auto p-4 justify-center my-3">
+    <div class="max-w-5xl flex big-white mx-auto p-4 justify-center my-3 items-center">
         <a class="text-sm text-black px-2" href="#">About</a>
         <span>•</span>
         <a class="text-sm text-black px-2" href="#">Setting</a>

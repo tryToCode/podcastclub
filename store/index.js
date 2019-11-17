@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 export const state = () => ({
-    items: []
+    items: [],
+    itemsCount: Number,
+    time: String
 })
 
 export const mutations = {
@@ -11,6 +13,14 @@ export const mutations = {
 
     setItems(state, items) {
         state.items = items
+    },
+
+    setItemsCount(state, count) {
+        state.itemsCount = count
+    },
+
+    setTimer(state, time) {
+        state.time = time
     }
 }
 
@@ -27,9 +37,14 @@ export const actions = {
     },
 
     async loadItems({commit}) {
+        var start = Date.now();
         axios.get('http://127.0.0.1:8000/rssItems.json')
         .then(response => {
+            var s = (Date.now() - start) / 1000
+            commit('setTimer', s)
+            console.log(response)
             commit('setItems', response.data.results)
+            commit('setItemsCount', response.data.count)
         })
         .catch(error => {
             console.log(error)
@@ -39,7 +54,9 @@ export const actions = {
     async loadItemsOnCategory({commit}, value) {
         axios.get('http://127.0.0.1:8000/rssItems?category=' + value)
         .then(response => {
+            console.log(response)
             commit('setItems', response.data.results)
+            commit('setItemsCount', response.data.count)
         })
         .catch(error => {
             console.log(error)

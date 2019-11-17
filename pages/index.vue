@@ -1,15 +1,17 @@
 <template>
   <div>
     <BaseFilterRow
+      :count="count"
+      :timeSpend="time"
       @loadItemsOfCategory="categoryChangeHandler" />
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto"
       v-for="item in items"
       :key="item.id">
       <div class="overflow-hidden">
           <div class="px-6">
-              <span class="font-semibold text-sm">{{item.title}}</span>
+              <span class="font-bold text-base">{{item.title}}</span>
               <span class="text-gray-500 text-base">
-                  {{item.item_url}}
+                  ({{item.item_url}})
               </span>
           </div>
           <div class="px-6">
@@ -45,7 +47,9 @@ export default {
 
   computed: {
     ...mapState({
-      items: 'items'
+      items: 'items',
+      count: 'itemsCount',
+      time: 'time'
     })
   },
 
