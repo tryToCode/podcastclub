@@ -4,7 +4,7 @@
             <div class="items-center mb-6 md:mb-0 flex">
                 <label class="block tracking-wide text-gray-700 py-2" 
                     for="grid-state">
-                Search Podcasts
+                Search Episodes
                 </label>
             </div>
             <div class="pl-2 mb-6 md:mb-0 flex items-center">
@@ -13,21 +13,21 @@
                 of
                 </label>
                 <div class="relative">
-                    <select class="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-1 px-2 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                    <select class="block appearance-none bg-gray-200 
+                            border border-gray-200 text-gray-700 py-1 
+                            px-2 pr-8 rounded leading-tight focus:outline-none 
+                            focus:bg-white focus:border-gray-500" 
                         id="grid-state"
+                        name="catType"
                         @change="onChange($event)"
-                        v-model="queryKey">
-                        <option value="IT">IT</option>
-                        <option value="Entrepreneurship">Entrepreneurship</option>
-                        <option value="Finance">Finance</option>
+                        v-model="catSelected">
+                        <option v-for="cat in categoryType" 
+                            :value="cat.name" 
+                            :key="cat.id">
+                            {{ cat.name }}
+                        </option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                    </div>
+                    <BaseDownArrow />
                 </div>
             </div>
             <div class="px-2 mb-6 md:mb-0 flex items-center">
@@ -36,21 +36,20 @@
                 for
                 </label>
                 <div class="relative">
-                    <select class="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-1 px-2 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                        <option value="">All time</option>
-                        <option value="Last 24">Last 24</option>
-                        <option value="Past Week">Past Week</option>
-                        <option value="Past Month">Past Month</option>
-                        <option value="Past Year">Past Year</option>
-                        <option value="Custom Range">Custum Range</option>
+                    <select class="block appearance-none bg-gray-200 
+                            border border-gray-200 text-gray-700 py-1 
+                            px-2 pr-8 rounded leading-tight focus:outline-none 
+                            focus:bg-white focus:border-gray-500" 
+                        id="grid-state"
+                        name="dateType"
+                        v-model="dateSelected">
+                        <option v-for="date in dateType" 
+                            :value="date.name" 
+                            :key="date.id">
+                            {{ date.name }}
+                        </option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                    </div>
+                    <BaseDownArrow />
                 </div>
             </div>
         </div>
@@ -63,16 +62,41 @@
 </template>
 
 <script>
+import BaseDownArrow from './BaseDownArrow.vue'
+
 export default {
+    data() {
+        return {
+            catSelected: 'IT',
+            categoryType: [
+                {name: 'IT', id: 1},
+                {name: 'Entrepreneurship', id: 2},
+                {name: 'Finance', id: 3}
+            ],
+            dateSelected: 'All Time',
+            dateType: [
+                {name: 'All Time', id: 1},
+                {name: 'Last 24', id: 2},
+                {name: 'Past Week', id: 3},
+                {name: 'Past Month', id: 4},
+                {name: 'Past Year', id: 5},
+                {name: 'Custom Range', id: 6}
+            ]
+        }
+    },
+
+    components: {
+        BaseDownArrow
+    },
+
     props: [
-        'queryKey',
         'count',
         'timeSpend'
     ],
 
     methods: {
         onChange:function(event) {
-            this.$emit('loadItemsOfCategory', this.queryKey)
+            this.$emit('loadItemsOfCategory', this.catType)
         }
     }
 }

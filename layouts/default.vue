@@ -1,7 +1,6 @@
 <template>
   <div>
     <BaseNavbar />
-    <BaseFilterRow />
     <nuxt />
     <BaseFooter />
   </div>
