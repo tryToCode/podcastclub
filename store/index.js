@@ -3,7 +3,7 @@ import axios from 'axios'
 export const state = () => ({
     items: [],
     itemsCount: Number,
-    time: String,
+    time: Number,
     pageCount: Number
 })
 
@@ -41,27 +41,15 @@ export const actions = {
         }
     },
 
-    async loadItems({commit}) {
+    async loadItems({commit}, url) {
         var start = Date.now();
-        axios.get('http://127.0.0.1:8000/rssItems.json')
+        axios.get(url)
         .then(response => {
             var s = (Date.now() - start) / 1000
             commit('setTimer', s)
             commit('setItems', response.data.results)
             commit('setItemsCount', response.data.count)
             commit('setPageCount', Math.ceil(response.data.count / 20))
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    },
-
-    async loadItemsOnCategory({commit}, value) {
-        axios.get('http://127.0.0.1:8000/rssItems?category=' + value)
-        .then(response => {
-            console.log(response)
-            commit('setItems', response.data.results)
-            commit('setItemsCount', response.data.count)
         })
         .catch(error => {
             console.log(error)

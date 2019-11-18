@@ -3,7 +3,8 @@
     <BaseFilterRow 
       :itemsCount="itemsCount" 
       :timeSpend="time"
-      @loadItemsOfCategory="categoryChangeHandler" />
+      @onCategoryChange="categoryChangeHandler"
+      @onDateChange="dateChangeHandler" />
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto">
       <BaseItemRow 
         v-for="item in items"
@@ -28,7 +29,8 @@ import BasePagination from '@/components/BasePagination.vue'
 export default {
   data() {
     return {
-      currentPage: 1
+      currentPage: 1,
+      loadItemBaseUrl: 'http://127.0.0.1:8000/rssItems'
     }
   },
 
@@ -39,7 +41,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('loadItems')
+    this.$store.dispatch('loadItems', this.loadItemBaseUrl)
   },
 
   computed: {
@@ -52,8 +54,26 @@ export default {
   },
 
   methods: {
-    categoryChangeHandler(value) {
-      this.$store.dispatch('loadItemsOnCategory', value)
+    async categoryChangeHandler(value) {
+      var baseUrl = new URL(this.loadItemBaseUrl) 
+      if (value === 'All' && baseUrl.searchParams.has("category")) {
+        baseUrl.searchParams.delete("category")
+      } else {
+        baseUrl.searchParams.set("category", value)
+      }
+      this.loadItemBaseUrl = baseUrl.toString()
+      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
+    },
+
+    async dateChangeHandler(value) {
+      var baseUrl = new URL(this.loadItemBaseUrl)
+      if (value === "All Time" && baseUrl.searchParams.has("date")) {
+        baseUrl.searchParams.delete("date")
+      } else {
+        baseUrl.searchParams.set("date", value)
+      }
+      this.loadItemBaseUrl = baseUrl.toString()
+      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
     },
 
     async pageChangeHandle(value) {
@@ -68,10 +88,10 @@ export default {
               this.currentPage = value
               break
       }
-      var stories = this.pageNumber2Items[this.currentPage]
-      if (stories === undefined)
-        this.$store.dispatch('loadStoriesOnPageClick', this.currentPage)
-      this.stories = this.pageNumber2Items[this.currentPage]
+      var baseUrl = new URL(this.loadItemBaseUrl)
+      baseUrl.searchParams.set("page", this.currentPage)
+      this.loadItemBaseUrl = baseUrl.toString()
+      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
     }
   }
 }

@@ -43,7 +43,8 @@
                         id="grid-state"
                         name="dateType"
                         v-model="dateSelected">
-                        <option v-for="date in dateType" 
+                        <option v-for="date in dateType"
+                            @change="onDateChange($event)"
                             :value="date.name" 
                             :key="date.id">
                             {{ date.name }}
@@ -67,8 +68,9 @@ import BaseDownArrow from './BaseDownArrow.vue'
 export default {
     data() {
         return {
-            catSelected: 'IT',
+            catSelected: 'All',
             categoryType: [
+                {name: 'All', id: 0},
                 {name: 'IT', id: 1},
                 {name: 'Entrepreneurship', id: 2},
                 {name: 'Finance', id: 3}
@@ -94,26 +96,18 @@ export default {
             required: true
         },
         timeSpend: {
-            type: String,
+            type: Number,
             required: true
         }
     },
 
     methods: {
-        onCategoryChange: function(event) {
-            var queryKey = 0
-            switch(event.target.value) {
-                case 'IT':
-                    queryKey = 1
-                    break
-                case 'Entrepreneurship':
-                    queryKey = 2
-                    break
-                case 'Finance':
-                    queryKey = 3
-                    break
-            }                
-            this.$emit('loadItemsOfCategory', queryKey)
+        onCategoryChange: function(event) {                
+            this.$emit('onCategoryChange', event.target.value)
+        },
+
+        onDateChange: function(event) {                
+            this.$emit('onDateChange', event.target.value)
         }
     }
 }
