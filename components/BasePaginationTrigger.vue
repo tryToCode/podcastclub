@@ -1,5 +1,5 @@
 <template>
-    <span class="border px-2 py-1 rounded text-gray-500 cursor-pointer hover:text-red-500"
+    <span class="border px-2 rounded text-gray-500 cursor-pointer hover:text-red-500"
         @click="onClick">
         {{ pageNumber }}
     </span>

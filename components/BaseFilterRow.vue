@@ -30,7 +30,7 @@
                     <BaseDownArrow />
                 </div>
             </div>
-            <div class="px-2 mb-6 md:mb-0 flex items-center">
+            <div class="mb-6 md:mb-0 flex items-center">
                 <label class="block tracking-wide text-gray-700 p-2" 
                     for="grid-state">
                 for
@@ -79,8 +79,7 @@ export default {
                 {name: 'Last 24', id: 2},
                 {name: 'Past Week', id: 3},
                 {name: 'Past Month', id: 4},
-                {name: 'Past Year', id: 5},
-                {name: 'Custom Range', id: 6}
+                {name: 'Past Year', id: 5}
             ]
         }
     },

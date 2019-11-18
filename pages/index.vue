@@ -1,17 +1,20 @@
 <template>
   <div>
-    <BaseFilterRow :itemsCount="itemsCount" :timeSpend="time"
+    <BaseFilterRow 
+      :itemsCount="itemsCount" 
+      :timeSpend="time"
       @loadItemsOfCategory="categoryChangeHandler" />
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto">
-      <BaseItemRow :items="items" />
+      <BaseItemRow 
+        v-for="item in items"
+        :key="item.id"
+        :item="item" />
       <BasePagination 
-        class="pagination"
         :currentPage="currentPage"
         :pageCount="Number(pageCount)"
         @nextPage="pageChangeHandle('next')"
         @previousPage="pageChangeHandle('previous')"
-        @loadPage="pageChangeHandle"
-      />
+        @loadPage="pageChangeHandle" />
     </div>
   </div>
 </template>

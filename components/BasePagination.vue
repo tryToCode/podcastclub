@@ -1,10 +1,11 @@
 <template>
-    <div class="flex justify-center items-center my-3">
+    <div class="flex justify-center items-center my-4">
         <BaseButton
+            class="mr-1"
             :disabled="isPreviousButtonDisabled"
             @click.native="previousPage"
         >
-            <font-awesome-icon :icon="['fas', 'arrow-left']"/>
+            ←
         </BaseButton>
         <BasePaginationTrigger 
             v-for="paginationTrigger in paginationTriggers"
@@ -18,10 +19,11 @@
             @loadPage="onLoadPage"
         />
         <BaseButton
+            class="ml-1"
             :disabled="isNextButtonDisabled"
             @click.native="nextPage"
         >
-            <font-awesome-icon :icon="['fas', 'arrow-right']"/>
+            →
         </BaseButton>
     </div>
     
