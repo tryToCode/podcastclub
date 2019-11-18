@@ -3,7 +3,8 @@ import axios from 'axios'
 export const state = () => ({
     items: [],
     itemsCount: Number,
-    time: String
+    time: String,
+    pageCount: Number
 })
 
 export const mutations = {
@@ -21,6 +22,10 @@ export const mutations = {
 
     setTimer(state, time) {
         state.time = time
+    },
+
+    setPageCount(state, count) {
+        state.pageCount = count
     }
 }
 
@@ -44,6 +49,7 @@ export const actions = {
             commit('setTimer', s)
             commit('setItems', response.data.results)
             commit('setItemsCount', response.data.count)
+            commit('setPageCount', Math.ceil(response.data.count / 20))
         })
         .catch(error => {
             console.log(error)

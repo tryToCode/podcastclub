@@ -7,6 +7,14 @@
       :key="item.id">
       <BaseItemRow :item="item" />
     </div>
+    <BasePagination 
+        class="pagination"
+        :currentPage="currentPage"
+        :pageCount="Number(pageCount)"
+        @nextPage="pageChangeHandle('next')"
+        @previousPage="pageChangeHandle('previous')"
+        @loadPage="pageChangeHandle"
+    />
   </div>
 </template>
 
@@ -14,11 +22,19 @@
 import { mapState } from 'vuex'
 import BaseFilterRow from '@/components/BaseFilterRow.vue'
 import BaseItemRow from '@/components/BaseItemRow.vue'
+import BasePagination from '@/components/BasePagination.vue'
 
 export default {
+  data() {
+    return {
+      currentPage: 1
+    }
+  },
+
   components: {
     BaseFilterRow,
-    BaseItemRow
+    BaseItemRow,
+    BasePagination
   },
 
   created() {
@@ -29,13 +45,32 @@ export default {
     ...mapState({
       items: 'items',
       count: 'itemsCount',
-      time: 'time'
+      time: 'time',
+      pageCount: 'pageCount'
     })
   },
 
   methods: {
     categoryChangeHandler(value) {
       this.$store.dispatch('loadItemsOnCategory', value)
+    },
+
+    async pageChangeHandle(value) {
+      switch(value) {
+          case 'next':
+              this.currentPage += 1
+              break
+          case 'previous':
+              this.currentPage -= 1
+              break
+          default:
+              this.currentPage = value
+              break
+      }
+      var stories = this.pageNumber2Items[this.currentPage]
+      if (stories === undefined)
+        this.$store.dispatch('loadStoriesOnPageClick', this.currentPage)
+      this.stories = this.pageNumber2Items[this.currentPage]
     }
   }
 }
