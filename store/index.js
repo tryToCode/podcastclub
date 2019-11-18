@@ -42,7 +42,6 @@ export const actions = {
         .then(response => {
             var s = (Date.now() - start) / 1000
             commit('setTimer', s)
-            console.log(response)
             commit('setItems', response.data.results)
             commit('setItemsCount', response.data.count)
         })

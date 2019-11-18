@@ -19,7 +19,7 @@
                             focus:bg-white focus:border-gray-500" 
                         id="grid-state"
                         name="catType"
-                        @change="onChange($event)"
+                        @change="onCategoryChange($event)"
                         v-model="catSelected">
                         <option v-for="cat in categoryType" 
                             :value="cat.name" 
@@ -95,8 +95,20 @@ export default {
     ],
 
     methods: {
-        onChange:function(event) {
-            this.$emit('loadItemsOfCategory', this.catType)
+        onCategoryChange: function(event) {
+            var queryKey = 0
+            switch(event.target.value) {
+                case 'IT':
+                    queryKey = 1
+                    break
+                case 'Entrepreneurship':
+                    queryKey = 2
+                    break
+                case 'Finance':
+                    queryKey = 3
+                    break
+            }                
+            this.$emit('loadItemsOfCategory', queryKey)
         }
     }
 }
