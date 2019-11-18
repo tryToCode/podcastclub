@@ -55,7 +55,7 @@
         </div>
 
         <div class="flex flex-wrap items-center text-sm">
-            <span class="p-2">{{count}} results ( {{timeSpend}} seconds )</span>
+            <span class="p-2">{{itemsCount}} results ( {{timeSpend}} seconds )</span>
             <font-awesome-icon :icon="['fas', 'share-alt']"/>
         </div>
     </div>
@@ -89,10 +89,16 @@ export default {
         BaseDownArrow
     },
 
-    props: [
-        'count',
-        'timeSpend'
-    ],
+    props: {
+        itemsCount: {
+            type: Number,
+            required: true
+        },
+        timeSpend: {
+            type: String,
+            required: true
+        }
+    },
 
     methods: {
         onCategoryChange: function(event) {

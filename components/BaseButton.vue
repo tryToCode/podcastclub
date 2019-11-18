@@ -1,5 +1,6 @@
 <template>
-    <button :disabled="disabled" class="btn">
+    <button :disabled="disabled" 
+        class="border-solid border-2 px-2 py-1 rounded hover:text-red-500">
         <slot />
     </button>
 </template>
@@ -14,19 +15,3 @@ export default {
     }
 }
 </script>
-
-<style>
-    .btn {
-        text-decoration: none;
-        border: 2px solid #FF0000;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        background-color: white;
-        cursor: pointer;
-    }
-    .btn:hover {
-        background-color: #FF0000;
-        color: white;
-    }
-</style>

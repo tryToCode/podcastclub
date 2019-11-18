@@ -1,20 +1,18 @@
 <template>
   <div>
-    <BaseFilterRow :count="count" :timeSpend="time"
+    <BaseFilterRow :itemsCount="itemsCount" :timeSpend="time"
       @loadItemsOfCategory="categoryChangeHandler" />
-    <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto"
-      v-for="item in items"
-      :key="item.id">
-      <BaseItemRow :item="item" />
-    </div>
-    <BasePagination 
+    <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto">
+      <BaseItemRow :items="items" />
+      <BasePagination 
         class="pagination"
         :currentPage="currentPage"
         :pageCount="Number(pageCount)"
         @nextPage="pageChangeHandle('next')"
         @previousPage="pageChangeHandle('previous')"
         @loadPage="pageChangeHandle"
-    />
+      />
+    </div>
   </div>
 </template>
 
@@ -44,7 +42,7 @@ export default {
   computed: {
     ...mapState({
       items: 'items',
-      count: 'itemsCount',
+      itemsCount: 'itemsCount',
       time: 'time',
       pageCount: 'pageCount'
     })

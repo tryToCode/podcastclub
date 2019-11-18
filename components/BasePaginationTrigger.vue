@@ -1,5 +1,5 @@
 <template>
-    <span class="base-pagination-trigger"
+    <span class="border px-2 py-1 rounded text-gray-500 cursor-pointer hover:text-red-500"
         @click="onClick">
         {{ pageNumber }}
     </span>
@@ -20,13 +20,3 @@ export default {
     }
 }
 </script>
-
-<style>
-    .base-pagination-trigger {
-        cursor: pointer;
-        transition: all 300ms ease;
-    }
-    .base-pagination-trigger:hover {
-        color: #FF0000;
-    }
-</style>

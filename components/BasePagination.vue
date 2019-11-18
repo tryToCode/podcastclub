@@ -1,27 +1,27 @@
 <template>
-    <div class="base-pagination">
+    <div class="flex justify-center items-center my-3">
         <BaseButton
             :disabled="isPreviousButtonDisabled"
             @click.native="previousPage"
         >
-            ←
+            <font-awesome-icon :icon="['fas', 'arrow-left']"/>
         </BaseButton>
         <BasePaginationTrigger 
             v-for="paginationTrigger in paginationTriggers"
             :class="{
-                'pagination-trigger-current': 
+                'text-red-500 border-red-500': 
                 paginationTrigger === currentPage
             }"
             :key="paginationTrigger"
             :pageNumber="paginationTrigger"
-            class="pagination-trigger"
+            class="flex mx-1"
             @loadPage="onLoadPage"
         />
         <BaseButton
             :disabled="isNextButtonDisabled"
             @click.native="nextPage"
         >
-            →
+            <font-awesome-icon :icon="['fas', 'arrow-right']"/>
         </BaseButton>
     </div>
     
@@ -105,21 +105,3 @@ export default {
     }
 }
 </script>
-
-<style>
-    .base-pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px;
-    }
-    .pagination-trigger {
-        display: flex;
-        margin: 0 17px;
-        font-size: 16px;
-        font-weight: 600;
-    }
-    .pagination-trigger-current {
-        color: #FF0000
-    }
-</style>
