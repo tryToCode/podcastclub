@@ -1,7 +1,7 @@
 <template>
-    <div class="overflow-hidden">
+    <div class="overflow-hidden py-1">
         <div class="px-6">
-            <a class="font-semibold text-base"
+            <a class="font-medium text-base"
                 :href="item.item_url"
                 v-tooltip.top="item.description">
             {{item.title}}

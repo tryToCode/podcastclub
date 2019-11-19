@@ -1,10 +1,9 @@
 <template>
   <div>
     <BaseFilterRow 
-      :itemsCount="itemsCount" 
-      :timeSpend="time"
-      @onCategoryChange="categoryChangeHandler"
-      @onDateChange="dateChangeHandler" />
+      :itemsCount="Number(itemsCount)" 
+      :timeSpend="Number(time)"
+      @onFilterChange="filterChangeHandler"/>
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto">
       <BaseItemRow 
         v-for="item in items"
@@ -54,24 +53,14 @@ export default {
   },
 
   methods: {
-    async categoryChangeHandler(value) {
+    async filterChangeHandler(value, filterSection) {
       var baseUrl = new URL(this.loadItemBaseUrl) 
-      if (value === 'All' && baseUrl.searchParams.has("category")) {
-        baseUrl.searchParams.delete("category")
-      } else {
-        baseUrl.searchParams.set("category", value)
-      }
-      this.loadItemBaseUrl = baseUrl.toString()
-      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
-    },
-
-    async dateChangeHandler(value) {
-      var baseUrl = new URL(this.loadItemBaseUrl)
-      if (value === "All Time" && baseUrl.searchParams.has("date")) {
-        baseUrl.searchParams.delete("date")
-      } else {
-        baseUrl.searchParams.set("date", value)
-      }
+      if (value === 'All' || value === "All Time") {
+        if (baseUrl.searchParams.has(filterSection))
+            baseUrl.searchParams.delete(filterSection)
+      } 
+      else
+        baseUrl.searchParams.set(filterSection, value)
       this.loadItemBaseUrl = baseUrl.toString()
       this.$store.dispatch("loadItems", this.loadItemBaseUrl)
     },

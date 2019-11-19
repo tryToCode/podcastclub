@@ -17,9 +17,8 @@
                             border border-gray-200 text-gray-700 py-1 
                             px-2 pr-8 rounded leading-tight focus:outline-none 
                             focus:bg-white focus:border-gray-500" 
-                        id="grid-state"
                         name="catType"
-                        @change="onCategoryChange($event)"
+                        @change="onFilterChange($event, 'category')"
                         v-model="catSelected">
                         <option v-for="cat in categoryType" 
                             :value="cat.name" 
@@ -40,11 +39,10 @@
                             border border-gray-200 text-gray-700 py-1 
                             px-2 pr-8 rounded leading-tight focus:outline-none 
                             focus:bg-white focus:border-gray-500" 
-                        id="grid-state"
                         name="dateType"
+                        @change="onFilterChange($event, 'date')"
                         v-model="dateSelected">
                         <option v-for="date in dateType"
-                            @change="onDateChange($event)"
                             :value="date.name" 
                             :key="date.id">
                             {{ date.name }}
@@ -102,12 +100,8 @@ export default {
     },
 
     methods: {
-        onCategoryChange: function(event) {                
-            this.$emit('onCategoryChange', event.target.value)
-        },
-
-        onDateChange: function(event) {                
-            this.$emit('onDateChange', event.target.value)
+        onFilterChange: function(event, filterSection) {                
+            this.$emit('onFilterChange', event.target.value, filterSection)
         }
     }
 }

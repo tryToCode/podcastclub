@@ -1,5 +1,5 @@
 <template>
-    <nav class="max-w-5xl flex flex-wrap bg-teal-500 h-16 mx-auto">
+    <nav class="max-w-5xl flex flex-wrap bg-red-400 h-16 mx-auto">
         <div class="flex flex-wrap p-1">
             <div class="flex pl-6 items-center">
                 <font-awesome-icon :icon="['fas', 'podcast']"/>
