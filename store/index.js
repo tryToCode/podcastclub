@@ -4,7 +4,8 @@ export const state = () => ({
     items: [],
     itemsCount: Number,
     time: Number,
-    pageCount: Number
+    pageCount: Number,
+    podcasts: []
 })
 
 export const mutations = {
@@ -33,8 +34,7 @@ export const actions = {
     async loadPodcasts({commit}) {
         try {
             var podcasts = await axios
-                    .get('http://127.0.0.1:8000/podcasts.json')
-            console.log(podcasts.data.length)
+                    .get('http://127.0.0.1:8000/podcasts')
             commit('setPodcasts', podcasts.data.results)
         } catch(error) {
             console.log(error)

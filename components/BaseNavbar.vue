@@ -11,9 +11,9 @@
         
         <div class="flex flex-wrap py-2 px-4 items-center lg:w-3/4 justify-around">
             <div class="w-3xl shadow flex xl:w-2/3 items-center relative">
-                <input class="w-full rounded py-3 px-8" type="text" 
+                <input class="w-full rounded py-3 pl-12 font-medium" type="text" 
                     placeholder="Search Episode by title, url or author">
-                <span class="absolute w-auto flex justify-start items-center text-grey px-3">
+                <span class="absolute w-auto flex justify-start items-center text-grey px-4">
                     <font-awesome-icon :icon="['fas', 'search']"/>
                 </span>
             </div>
