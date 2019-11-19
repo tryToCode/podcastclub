@@ -3,9 +3,10 @@
         <div class="flex flex-wrap p-1">
             <div class="flex pl-6 items-center">
                 <font-awesome-icon :icon="['fas', 'podcast']"/>
-                <a class="pl-2 tracking-wide text-xl" href="#">
+                <nuxt-link class="pl-2 tracking-wide text-xl"
+                    to="/">
                     Podcasts Zone
-                </a>
+                </nuxt-link>
             </div>
         </div>
         
