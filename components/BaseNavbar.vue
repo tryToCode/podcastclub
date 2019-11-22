@@ -5,7 +5,7 @@
                 <font-awesome-icon :icon="['fas', 'podcast']"/>
                 <nuxt-link class="pl-2 tracking-wide text-xl"
                     to="/">
-                    Podcasts Zone
+                    Podcasts Club
                 </nuxt-link>
             </div>
         </div>

@@ -4,8 +4,8 @@
             <h1 class="text-3xl font-semibold">Get in Touch</h1>
         </div>
         <form class="w-full">
-            <div class="flex flex-col mb-2">
-                <label class="block text-gray-500 font-semibold mb-1 md:mb-0 py-2" 
+            <div class="flex flex-col mb-1">
+                <label class="block text-gray-500 font-semibold mb-1 md:mb-0 py-1" 
                     for="inline-name">
                     Name
                 </label>
@@ -16,8 +16,8 @@
                     type="text" 
                     placeholder="Enter your name">
             </div>
-            <div class="flex flex-col mb-2">
-                <label class="block text-gray-500 font-semibold mb-1 md:mb-0 py-2" 
+            <div class="flex flex-col mb-1">
+                <label class="block text-gray-500 font-semibold mb-1 md:mb-0 py-1" 
                     for="inline-email">
                     Email
                 </label>
@@ -28,8 +28,8 @@
                     type="text" 
                     placeholder="Enter your Email">
             </div>
-            <div class="flex flex-col mb-6">
-                <label class="block text-gray-500 font-semibold mb-1 md:mb-0 py-2" 
+            <div class="flex flex-col mb-1">
+                <label class="block text-gray-500 font-semibold mb-1 md:mb-0 py-1" 
                     for="inline-email">
                     Message
                 </label>
@@ -63,6 +63,14 @@
 
 <script>
 export default {
-
+    head () {
+        return {
+            title: "Contact",
+            meta: [
+            { name: 'contact', 
+              content: 'Podcast club contact page get in touch' }
+            ]
+        }
+    }
 }
 </script>

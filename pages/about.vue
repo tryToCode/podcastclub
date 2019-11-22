@@ -1,9 +1,9 @@
 <template>
   <div class="max-w-3xl flex flex-col mx-auto justify-center px-4 py-2">
       <div class="my-2">
-          <h1 class="text-2xl">About Podcasts Zone</h1>
+          <h1 class="text-2xl">About Podcasts Club</h1>
           <p class="pt-2">
-            Podcasts Zone is constantly updated podcast aggregator inspired from 
+            Podcasts Club is a weekly updated podcast aggregator inspired from 
             <a class="border-b-2" href="https://alltop.com">Alltop.com</a>  
             <br>
             We focus on the topics IT, Entrepreneurship and Finance.
@@ -32,7 +32,16 @@
 <script>
 import { mapState } from 'vuex'
 
-export default {   
+export default {
+    head () {
+        return {
+            title: "About",
+            meta: [
+                { name: 'description', content: 'Podcast club about page' }
+            ]
+        }
+    },
+
     created() {
         this.$store.dispatch('loadPodcasts')
     },

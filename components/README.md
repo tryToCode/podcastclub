@@ -5,3 +5,8 @@
 The components directory contains your Vue.js Components.
 
 _Nuxt.js doesn't supercharge these components._
+
+Credits
+
+https://css-tricks.com/creating-a-reusable-pagination-component-in-vue/
+Pagination Component 

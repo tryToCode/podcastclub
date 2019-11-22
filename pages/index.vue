@@ -26,10 +26,20 @@ import BaseItemRow from '@/components/BaseItemRow.vue'
 import BasePagination from '@/components/BasePagination.vue'
 
 export default {
+  head () {
+    return {
+      title: "Podcast Club",
+      meta: [
+      { name: 'Podcast club', 
+        content: 'Podcast club home index' }
+      ]
+    }
+  },
+
   data() {
     return {
       currentPage: 1,
-      loadItemBaseUrl: 'http://127.0.0.1:8000/rssItems'
+      loadItemBaseUrl: 'http://127.0.0.1:8000/api/rssItems'
     }
   },
 
