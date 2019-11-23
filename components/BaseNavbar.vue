@@ -15,6 +15,7 @@
                 <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-8 md:pl-12
                      font-base md:font-medium justify-center flex" 
                     type="text" 
+                    v-model="searchInput"
                     placeholder="Search Episode by title, url or author"
                     @input="onInputChange($event)">
                 <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-4">
@@ -33,6 +34,12 @@
 
 <script>
 export default {
+    data() {
+        return {
+            searchInput: ''
+        }
+    },
+
     methods: {
         onInputChange: function(event) {
             this.$emit('onInputChange', event.target.value)

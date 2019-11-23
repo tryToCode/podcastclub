@@ -1,13 +1,15 @@
 <template>
   <div>
     <BaseNavbar
-      v-model="searchInput"
       @onInputChange="inputChangeHandle" />
+
     <BaseFilterRow 
       :itemsCount="Number(itemsCount)" 
       :timeSpend="Number(time)"
       @onFilterChange="filterChangeHandle"/>
-    <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto justify-center items-center h-auto">
+
+    <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
+          justify-center items-center h-auto">
       <div v-if="items.length !== 0">
         <BaseItemRow 
           v-for="item in items"
@@ -20,15 +22,11 @@
           @previousPage="pageChangeHandle('previous')"
           @loadPage="pageChangeHandle" />
       </div>
-      <div v-else
-        class="my-32 sm:my-32 md:my-40">
-        <p class="">No Items found for 
-          <span class="font-semibold">{{searchInput}}</span>
-        </p>
-        <nuxt-link to="/help"
-          class="border-b-2">
-          Help
-        </nuxt-link>
+      
+      <div v-else>
+        <BaseNoItems
+         :baseUrl="loadItemBaseUrl"
+         :key="loadItemBaseUrl"/>
       </div>
     </div>
   </div>
@@ -40,6 +38,7 @@ import BaseNavbar from '@/components/BaseNavbar.vue'
 import BaseFilterRow from '@/components/BaseFilterRow.vue'
 import BaseItemRow from '@/components/BaseItemRow.vue'
 import BasePagination from '@/components/BasePagination.vue'
+import BaseNoItems from '@/components/BaseNoItems.vue'
 
 export default {
   head () {
@@ -56,7 +55,6 @@ export default {
     return {
       currentPage: 1,
       loadItemBaseUrl: 'http://127.0.0.1:8000/api/rssItems',
-      searchInput: ''
     }
   },
 
@@ -64,7 +62,8 @@ export default {
     BaseNavbar,
     BaseFilterRow,
     BaseItemRow,
-    BasePagination
+    BasePagination,
+    BaseNoItems
   },
 
   created() {
@@ -82,7 +81,6 @@ export default {
 
   methods: {
     async inputChangeHandle(value) {
-      this.searchInput = value
       var baseUrl = new URL(this.loadItemBaseUrl)
       if (value === '' && baseUrl.searchParams.has('search')) {
         baseUrl.searchParams.delete('search')
