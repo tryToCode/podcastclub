@@ -28,7 +28,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/tooltipDirective.js'
+    '~/plugins/tooltipDirective.js',
+    '~/plugins/ga.js'
   ],
   /*
   ** Nuxt.js dev-modules
