@@ -1,19 +1,16 @@
 <template>
   <div>
-    <BaseNavbar />
     <nuxt />
     <BaseFooter />
   </div>
 </template>
 
 <script>
-import BaseNavbar from '@/components/BaseNavbar.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
 import BaseInfo from '@/components/BaseInfo.vue'
 
 export default {
   components: {
-    BaseNavbar,
     BaseFooter,
     BaseInfo,
   }  

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <BaseNavbar
+      @onInputChange="inputChangeHandler" />
     <BaseFilterRow 
       :itemsCount="Number(itemsCount)" 
       :timeSpend="Number(time)"
@@ -21,6 +23,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import BaseNavbar from '@/components/BaseNavbar.vue'
 import BaseFilterRow from '@/components/BaseFilterRow.vue'
 import BaseItemRow from '@/components/BaseItemRow.vue'
 import BasePagination from '@/components/BasePagination.vue'
@@ -44,6 +47,7 @@ export default {
   },
 
   components: {
+    BaseNavbar,
     BaseFilterRow,
     BaseItemRow,
     BasePagination
@@ -63,8 +67,19 @@ export default {
   },
 
   methods: {
+    async inputChangeHandler(value) {
+      var baseUrl = new URL(this.loadItemBaseUrl)
+      if (value === '' && baseUrl.searchParams.has('search')) {
+        baseUrl.searchParams.delete('search')
+      }
+      else
+        baseUrl.searchParams.set('search', value)
+      this.loadItemBaseUrl = baseUrl.toString()
+      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
+    },
+
     async filterChangeHandler(value, filterSection) {
-      var baseUrl = new URL(this.loadItemBaseUrl) 
+      var baseUrl = new URL(this.loadItemBaseUrl)
       if (value === 'All' || value === "All Time") {
         if (baseUrl.searchParams.has(filterSection))
             baseUrl.searchParams.delete(filterSection)
