@@ -6,7 +6,7 @@
                 v-tooltip.top="item.description">
             {{item.title}}
             </a>
-            <span class="text-gray-500 text-sm">
+            <span class="hidden md:inline text-gray-500 text-sm">
                 ({{item.item_url}})
             </span>
         </div>
@@ -24,7 +24,7 @@
             {{$moment(item.pub_date).fromNow()}}
             </span>
             <div v-if="item.episode_number !== null"
-                class="inline-block">
+                class="hidden md:inline-block">
                 <span class="text-gray-500">|</span>
                 <span class="inline-block px-1">
                     #{{item.episode_number}}

@@ -1,21 +1,21 @@
 <template>
-    <div class="max-w-5xl flex flex-wrap justify-around bg-gray-100 mx-auto">
-        <div class="flex flex-wrap py-1 justify-start text-sm">
-            <div class="items-center mb-6 md:mb-0 flex">
-                <label class="block tracking-wide text-gray-700 py-2" 
+    <div class="max-w-5xl flex flex-wrap justify-around bg-gray-100 mx-auto py-2">
+        <div class="flex flex-wrap items-center text-sm">
+            <div class="">
+                <label class="hidden md:block tracking-wide text-gray-700" 
                     for="grid-state">
                 Search Episodes
                 </label>
             </div>
-            <div class="pl-2 mb-6 md:mb-0 flex items-center">
-                <label class="block tracking-wide text-gray-700 py-2 pr-2" 
+            <div class="ml-2 flex flex-wrap items-center">
+                <label class="hidden md:block md:pr-2 tracking-wide text-gray-700" 
                     for="grid-state">
                 of
                 </label>
-                <div class="relative">
+                <div class="relative mx-2 md:mx-0">
                     <select class="block appearance-none bg-gray-200 
                             border border-gray-200 text-gray-700 py-1 
-                            px-2 pr-8 rounded leading-tight focus:outline-none 
+                            px-1 pr-1 px-2 md:pr-8 rounded leading-tight focus:outline-none 
                             focus:bg-white focus:border-gray-500" 
                         name="catType"
                         @change="onFilterChange($event, 'category')"
@@ -29,15 +29,15 @@
                     <BaseDownArrow />
                 </div>
             </div>
-            <div class="mb-6 md:mb-0 flex items-center">
-                <label class="block tracking-wide text-gray-700 p-2" 
+            <div class="flex flex-wrap items-center">
+                <label class="hidden md:block md:px-2 tracking-wide text-gray-700" 
                     for="grid-state">
                 for
                 </label>
                 <div class="relative">
                     <select class="block appearance-none bg-gray-200 
-                            border border-gray-200 text-gray-700 py-1 
-                            px-2 pr-8 rounded leading-tight focus:outline-none 
+                            border border-gray-200 text-gray-700 
+                            px-1 py-1 md:px-2 md:pr-8 rounded leading-tight focus:outline-none 
                             focus:bg-white focus:border-gray-500" 
                         name="dateType"
                         @change="onFilterChange($event, 'date')"
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap items-center text-sm">
+        <div class="hidden md:flex flex-wrap items-center text-sm">
             <span class="p-2">{{itemsCount}} results ( {{timeSpend}} seconds )</span>
             <font-awesome-icon :icon="['fas', 'share-alt']"/>
         </div>

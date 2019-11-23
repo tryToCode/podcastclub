@@ -1,7 +1,7 @@
 <template>
-    <nav class="max-w-5xl flex flex-wrap bg-red-400 h-16 mx-auto">
-        <div class="flex flex-wrap p-1">
-            <div class="flex pl-6 items-center">
+    <nav class="max-w-5xl flex flex-nowrap bg-red-400 h-auto mx-auto">
+        <div class="flex p-1">
+            <div class="flex pl-4 items-center">
                 <font-awesome-icon :icon="['fas', 'podcast']"/>
                 <nuxt-link class="pl-2 tracking-wide text-xl"
                     to="/">
@@ -10,20 +10,19 @@
             </div>
         </div>
         
-        <div class="flex flex-wrap py-2 px-4 items-center lg:w-3/4 justify-around">
-            <div class="w-3xl shadow flex xl:w-2/3 items-center relative">
-                <input class="w-full rounded py-3 pl-12 font-medium" 
+        <div class="flex min-w-0 w-40 pb-2 md:py-2 pl-4 items-center md:justify-around">
+            <div class="flex items-center relative">
+                <input class="flex-grow py-1 rounded md:py-3 pl-8 md:pl-12 font-base md:font-medium" 
                     type="text" 
                     placeholder="Search Episode by title, url or author"
-                    v-model="searchKey"
                     @input="onInputChange($event)">
-                <span class="absolute w-auto flex justify-start items-center text-grey px-4">
+                <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-4">
                     <font-awesome-icon :icon="['fas', 'search']"/>
                 </span>
             </div>
-            <div class="flex items-center">
+            <div class="hidden lg:flex items-center">
                 <font-awesome-icon :icon="['fas', 'cog']"/>
-                <a class="p-1 pr-6 tracking-wide text-xl" href="#">
+                <a class="px-1 md:pr-6 tracking-wide text-xl" href="#">
                     Setting
                 </a>
             </div>
@@ -33,16 +32,9 @@
 
 <script>
 export default {
-    data() {
-        return {
-            searchKey: ''
-        }
-    },
-
     methods: {
         onInputChange: function(event) {
             this.$emit('onInputChange', event.target.value)
-            console.log(event.target.value)
         }
     }
 }

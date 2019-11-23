@@ -1,22 +1,35 @@
 <template>
   <div>
     <BaseNavbar
-      @onInputChange="inputChangeHandler" />
+      v-model="searchInput"
+      @onInputChange="inputChangeHandle" />
     <BaseFilterRow 
       :itemsCount="Number(itemsCount)" 
       :timeSpend="Number(time)"
-      @onFilterChange="filterChangeHandler"/>
-    <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto">
-      <BaseItemRow 
-        v-for="item in items"
-        :key="item.id"
-        :item="item" />
-      <BasePagination 
-        :currentPage="currentPage"
-        :pageCount="Number(pageCount)"
-        @nextPage="pageChangeHandle('next')"
-        @previousPage="pageChangeHandle('previous')"
-        @loadPage="pageChangeHandle" />
+      @onFilterChange="filterChangeHandle"/>
+    <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto justify-center items-center h-auto">
+      <div v-if="items.length !== 0">
+        <BaseItemRow 
+          v-for="item in items"
+          :key="item.id"
+          :item="item" />
+        <BasePagination 
+          :currentPage="currentPage"
+          :pageCount="Number(pageCount)"
+          @nextPage="pageChangeHandle('next')"
+          @previousPage="pageChangeHandle('previous')"
+          @loadPage="pageChangeHandle" />
+      </div>
+      <div v-else
+        class="my-32 sm:my-32 md:my-40">
+        <p class="">No Items found for 
+          <span class="font-semibold">{{searchInput}}</span>
+        </p>
+        <nuxt-link to="/help"
+          class="border-b-2">
+          Help
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +55,8 @@ export default {
   data() {
     return {
       currentPage: 1,
-      loadItemBaseUrl: 'http://127.0.0.1:8000/api/rssItems'
+      loadItemBaseUrl: 'http://127.0.0.1:8000/api/rssItems',
+      searchInput: ''
     }
   },
 
@@ -67,7 +81,8 @@ export default {
   },
 
   methods: {
-    async inputChangeHandler(value) {
+    async inputChangeHandle(value) {
+      this.searchInput = value
       var baseUrl = new URL(this.loadItemBaseUrl)
       if (value === '' && baseUrl.searchParams.has('search')) {
         baseUrl.searchParams.delete('search')
@@ -78,7 +93,7 @@ export default {
       this.$store.dispatch("loadItems", this.loadItemBaseUrl)
     },
 
-    async filterChangeHandler(value, filterSection) {
+    async filterChangeHandle(value, filterSection) {
       var baseUrl = new URL(this.loadItemBaseUrl)
       if (value === 'All' || value === "All Time") {
         if (baseUrl.searchParams.has(filterSection))
