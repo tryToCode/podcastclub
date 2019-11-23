@@ -11,7 +11,7 @@
             </span>
         </div>
         <div class="px-6 text-sm font-semibold text-gray-500">
-            <a class="inline-block px-1 "
+            <a class="inline-block pr-1 "
                 :href="'https://' + item.creator.base_url">
             {{item.creator.name}}
             </a>

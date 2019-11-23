@@ -1,18 +1,19 @@
 <template>
-    <nav class="max-w-5xl flex flex-nowrap bg-red-400 h-auto mx-auto">
+    <nav class="max-w-5xl flex-col flex md:flex-row flex-nowrap bg-red-400 h-auto mx-auto">
         <div class="flex p-1">
             <div class="flex pl-4 items-center">
                 <font-awesome-icon :icon="['fas', 'podcast']"/>
                 <nuxt-link class="pl-2 tracking-wide text-xl"
                     to="/">
-                    Podcasts Club
+                    Podcast Club
                 </nuxt-link>
             </div>
         </div>
         
-        <div class="flex min-w-0 w-40 pb-2 md:py-2 pl-4 items-center md:justify-around">
-            <div class="flex items-center relative">
-                <input class="flex-grow py-1 rounded md:py-3 pl-8 md:pl-12 font-base md:font-medium" 
+        <div class="flex flex-1 pb-2 px-3 md:py-2 items-center md:justify-end">
+            <div class="flex flex-1 px-2 items-center relative">
+                <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-8 md:pl-12
+                     font-base md:font-medium justify-center flex" 
                     type="text" 
                     placeholder="Search Episode by title, url or author"
                     @input="onInputChange($event)">

@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-5xl flex flex-wrap justify-around bg-gray-100 mx-auto py-2">
+    <div class="max-w-5xl flex flex-wrap md:justify-around bg-gray-100 mx-auto py-2">
         <div class="flex flex-wrap items-center text-sm">
             <div class="">
                 <label class="hidden md:block tracking-wide text-gray-700" 
