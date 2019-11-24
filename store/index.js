@@ -34,7 +34,7 @@ export const actions = {
     async loadPodcasts({commit}) {
         try {
             var podcasts = await axios
-                    .get('http://127.0.0.1:8000/api/podcasts')
+                    .get('http://fathomless-beyond-28426.herokuapp.com/api/podcasts')
             commit('setPodcasts', podcasts.data.results)
         } catch(error) {
             console.log(error)

@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      loadItemBaseUrl: 'http://127.0.0.1:8000/api/rssItems',
+      loadItemBaseUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems',
     }
   },
 
