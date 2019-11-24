@@ -23,14 +23,15 @@ export default {
   ** Global CSS
   */
   css: [
-    '@fortawesome/fontawesome/styles.css',
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     {src: '~/plugins/tooltipDirective.js', mode: 'client'},
-    {src: '~/plugins/ga.js', mode: 'client'}
+    {src: '~/plugins/ga.js', mode: 'client'},
+    {src: '~/plugins/fontawesome.js', mode: 'client'}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -43,22 +44,7 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    [
-      'nuxt-fontawesome', {
-        imports: [
-         {
-           set: '@fortawesome/free-solid-svg-icons',
-           icons: ['fas']
-         },
-         {
-           set:'@fortawesome/free-brands-svg-icons',
-           icons: ['fab']
-         }
-       ]
-      }
-    ]
-  ],
+  modules: [],
   /*
   ** Build configuration
   */
