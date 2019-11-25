@@ -23,14 +23,13 @@ export default {
   ** Global CSS
   */
   css: [
-    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~/plugins/tooltipDirective.js'},
-    {src: '~/plugins/ga.js', mode: 'client'}
+    {src: '~/plugins/ga.js', mode: 'client'},
+    {src: '~/plugins/vueTippy.js'}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -38,7 +37,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/moment',
+    '@nuxtjs/moment'
   ],
   /*
   ** Nuxt.js modules

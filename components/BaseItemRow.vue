@@ -3,7 +3,8 @@
         <div class="px-6">
             <a class="font-medium text-base"
                 :href="item.item_url"
-                v-tooltip.top="item.description">
+                :content="item.description"
+                v-tippy="{ placement : 'top',  arrow: true }">
             {{item.title}}
             </a>
             <span class="hidden md:inline text-gray-500 text-sm">
