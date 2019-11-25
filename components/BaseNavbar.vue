@@ -12,13 +12,13 @@
         
         <div class="flex flex-1 pb-2 px-3 md:py-2 items-center md:justify-end">
             <div class="flex flex-1 px-2 items-center relative">
-                <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-8 md:pl-12
+                <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-10
                      font-base md:font-medium justify-center flex" 
                     type="text" 
                     v-model="searchInput"
                     placeholder="Search Episode by title, url or author"
                     @input="onInputChange($event)">
-                <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-4">
+                <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-2">
                     <img src="https://img.icons8.com/ios-glyphs/24/000000/search.png">
                 </span>
             </div>
