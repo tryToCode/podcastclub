@@ -2,7 +2,7 @@
     <nav class="max-w-5xl flex-col flex md:flex-row flex-nowrap bg-red-400 h-auto mx-auto">
         <div class="flex p-1">
             <div class="flex pl-4 items-center">
-                <font-awesome-icon :icon="['fas', 'podcast']" size="lg" />
+                <img src="https://img.icons8.com/ios-glyphs/50/000000/podcast.png">
                 <nuxt-link class="pl-2 tracking-wide text-xl"
                     to="/">
                     Podcast Club
@@ -19,11 +19,11 @@
                     placeholder="Search Episode by title, url or author"
                     @input="onInputChange($event)">
                 <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-4">
-                    <font-awesome-icon :icon="['fas', 'search']" fixed-width />
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/search.png">
                 </span>
             </div>
             <div class="hidden lg:flex items-center">
-                <font-awesome-icon :icon="['fas', 'cog']" size="lg" />
+                <img src="https://img.icons8.com/material-rounded/24/000000/settings.png">
                 <a class="px-1 md:pr-6 tracking-wide text-xl" href="#">
                     Setting
                 </a>

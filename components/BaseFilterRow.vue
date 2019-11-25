@@ -55,7 +55,6 @@
 
         <div class="hidden md:flex flex-wrap items-center text-sm">
             <span class="p-2">{{itemsCount}} results ( {{timeSpend}} seconds )</span>
-            <font-awesome-icon :icon="['fas', 'share-alt']"/>
         </div>
     </div>
 </template>

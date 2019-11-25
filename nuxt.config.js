@@ -30,8 +30,7 @@ export default {
   */
   plugins: [
     {src: '~/plugins/tooltipDirective.js'},
-    {src: '~/plugins/ga.js', mode: 'client'},
-    {src: '~/plugins/fontawesome.js'}
+    {src: '~/plugins/ga.js', mode: 'client'}
   ],
   /*
   ** Nuxt.js dev-modules
