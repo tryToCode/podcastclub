@@ -4,7 +4,7 @@
             <a class="font-medium text-base"
                 :href="item.item_url"
                 :content="item.description"
-                v-tippy="{ placement : 'top',  arrow: true }">
+                v-tippy="{ placement : 'top', arrow: true, theme: 'light', size: 'large' }">
             {{item.title}}
             </a>
             <span class="hidden md:inline text-gray-500 text-sm">
