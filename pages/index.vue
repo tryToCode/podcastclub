@@ -70,7 +70,7 @@ export default {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
       this.$store.dispatch('loadItems', this.loadItemBaseUrl)
-      setTimeout(() => this.$nuxt.$loading.finish(), 600)
+      .then(() => this.$nuxt.$loading.finish())
     })
   },
 

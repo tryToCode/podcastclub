@@ -59,21 +59,5 @@ export const actions = {
         .catch(error => {
             console.log(error)
         })
-    },
-
-    startLoading({ commit }) {
-        if (process.browser) {
-            this.$nuxt.$loading.start();
-        }
-        console.log('start loading...')
-        commit('setLoading', true);
-    },
-
-    finishLoading({ commit }) {
-        if (process.browser) {
-            this.$nuxt.$loading.finish();
-        }
-        console.log('finish loading...')
-        commit('setLoading', false);
     }
 }

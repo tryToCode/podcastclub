@@ -57,7 +57,7 @@ export default {
         this.$nextTick(() => {
             this.$nuxt.$loading.start()
             this.$store.dispatch('loadPodcasts')
-            setTimeout(() => this.$nuxt.$loading.finish(), 700)
+            .then(() => this.$nuxt.$loading.finish())
         })
     },
 
