@@ -70,8 +70,8 @@ export default {
         return {
             title: "Contact",
             meta: [
-            { name: 'contact', 
-              content: 'Podcast club contact page get in touch' }
+            { name: 'description', 
+              content: 'Podcast club contact page contact us get in touch' }
             ]
         }
     }

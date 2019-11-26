@@ -41,6 +41,8 @@
 import { mapState } from 'vuex'
 
 export default {
+    scrollToTop: true,
+
     head () {
         return {
             title: "About",
@@ -51,8 +53,12 @@ export default {
         }
     },
 
-    created() {
-        this.$store.dispatch('loadPodcasts')
+    mounted() {
+        this.$nextTick(() => {
+            this.$nuxt.$loading.start()
+            this.$store.dispatch('loadPodcasts')
+            setTimeout(() => this.$nuxt.$loading.finish(), 700)
+        })
     },
 
     computed: {

@@ -5,7 +5,8 @@ export const state = () => ({
     itemsCount: Number,
     time: Number,
     pageCount: Number,
-    podcasts: []
+    podcasts: [],
+    loading: Boolean
 })
 
 export const mutations = {
@@ -27,6 +28,10 @@ export const mutations = {
 
     setPageCount(state, count) {
         state.pageCount = count
+    },
+
+    setLoading(state, loading) {
+        state.loading = loading
     }
 }
 
@@ -54,5 +59,21 @@ export const actions = {
         .catch(error => {
             console.log(error)
         })
+    },
+
+    startLoading({ commit }) {
+        if (process.browser) {
+            this.$nuxt.$loading.start();
+        }
+        console.log('start loading...')
+        commit('setLoading', true);
+    },
+
+    finishLoading({ commit }) {
+        if (process.browser) {
+            this.$nuxt.$loading.finish();
+        }
+        console.log('finish loading...')
+        commit('setLoading', false);
     }
 }

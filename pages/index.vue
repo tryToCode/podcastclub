@@ -66,8 +66,12 @@ export default {
     BaseNoItems
   },
 
-  created() {
-    this.$store.dispatch('loadItems', this.loadItemBaseUrl)
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      this.$store.dispatch('loadItems', this.loadItemBaseUrl)
+      setTimeout(() => this.$nuxt.$loading.finish(), 600)
+    })
   },
 
   computed: {
