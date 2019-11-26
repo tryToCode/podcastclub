@@ -9,7 +9,7 @@
       @onFilterChange="filterChangeHandle"/>
 
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
-          justify-center items-center h-auto">
+          justify-center">
       <div v-if="items.length !== 0">
         <BaseItemRow 
           v-for="item in items"
@@ -23,7 +23,7 @@
           @loadPage="pageChangeHandle" />
       </div>
       
-      <div v-else>
+      <div v-else class="items-center">
         <BaseNoItems
          :baseUrl="loadItemBaseUrl"
          :key="loadItemBaseUrl"/>

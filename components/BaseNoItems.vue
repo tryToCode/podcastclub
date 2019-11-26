@@ -1,6 +1,6 @@
 <template>
-  <div class="my-32 sm:my-32 md:my-40">
-    No Items found
+  <div class="my-32 sm:my-32 md:my-40 flex flex-col items-center">
+    <p>No Items found</p> 
     <p v-if="categoryInput.length !== 0">
         of the category <span class="font-semibold">{{categoryInput}}</span>
     </p>

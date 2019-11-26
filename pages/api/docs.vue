@@ -5,7 +5,7 @@
             <p class="text-base m-2">
                 Podcast Club consumes data from the 
                 <a class="border-b-2" href="https://github.com/tryToCode/podcast-api">
-                podcast backend Api</a> which is build with the
+                Podcast backend Api</a> which is build with the
                 <a class="border-b-2" href="https://www.django-rest-framework.org/">Django Rest API</a>.
                 The backend Api contains mainly 2 Resources as described below and currently only support
                 HTTP GET method. 
@@ -18,11 +18,11 @@
             <h1 class="text-2xl font-medium m-2">Resources</h1>
             <p>
                 <span class="text-green-400 m-2">api/rssItems</span>
-                <span class="">3412 items</span>
+                <span class="">{{Number(itemsCount)}} items</span>
             </p>
             <p>
                 <span class="text-green-400 m-2">api/podcasts</span>
-                <span class="">16 podcasts</span>
+                <span class="">{{podcasts.length}} podcasts</span>
             </p>
         </div>
         <div class="flex flex-col m-2">
@@ -109,14 +109,19 @@ export default {
         }
     },
 
-    created() {
-        this.$store.dispatch('loadItems', 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems')
-        this.$store.dispatch('loadPodcasts')
+    mounted() {
+        this.$nextTick(() => {
+            this.$nuxt.$loading.start()
+            this.$store.dispatch('loadItems', 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems')
+            this.$store.dispatch('loadPodcasts')
+            .then(() => this.$nuxt.$loading.finish())
+        })
     },
 
     computed: {
         ...mapState({
             items: 'items',
+            itemsCount: 'itemsCount',
             podcasts: 'podcasts'
         })
     }

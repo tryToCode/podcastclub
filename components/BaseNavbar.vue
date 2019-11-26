@@ -16,7 +16,7 @@
                      font-base md:font-medium justify-center flex" 
                     type="text" 
                     v-model="searchInput"
-                    placeholder="Search Episode by title, url or author"
+                    placeholder="Search Episode by title, url or podcast"
                     @input="onInputChange($event)">
                 <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-2">
                     <img src="https://img.icons8.com/ios-glyphs/24/000000/search.png">

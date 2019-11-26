@@ -14,8 +14,6 @@
         <span>•</span>
         <a class="text-sm text-black px-2" href="#">Setting</a>
         <span>•</span>
-        <a class="text-sm text-black px-2" href="#">Help</a>
-        <span>•</span>
         <nuxt-link class="text-sm text-black px-2"
             to="/api/docs">API Dokumentation
         </nuxt-link>
