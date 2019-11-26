@@ -45,8 +45,8 @@ export default {
     return {
       title: "Podcast Club",
       meta: [
-      { name: 'Podcast club', 
-        content: 'Podcast club home index' }
+      { name: 'description', 
+        content: 'Podcast club home index page, a weekly updated podcast aggregator' }
       ]
     }
   },

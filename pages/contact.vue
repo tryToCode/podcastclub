@@ -1,7 +1,12 @@
 <template>
     <div class="max-w-3xl flex flex-col mx-auto justify-center px-4 py-2">
-        <div class="flex items-center justify-between my-2">
-            <h1 class="text-3xl font-semibold">Get in Touch</h1>
+        <div class="flex flex-col items-center justify-between my-2">
+            <h1 class="text-3xl font-semibold my-1">Contact Page</h1>
+            <p>
+                Thanks for visiting Podcast Club. If you have any comments or 
+                suggestions of podcasts in terms of IT, Entrepreneurship or Finance,
+                please use the form below.
+            </p>
         </div>
         <form class="w-full">
             <div class="flex flex-col mb-1">
@@ -40,8 +45,6 @@
                     placeholder="Enter your Message here.">
                 </textarea>    
             </div>
-
-            
             <div class="md:flex mb-6">
                 <label class="block text-gray-500 font-bold">
                     <input class="mr-2 leading-tight" type="checkbox">
@@ -51,7 +54,7 @@
                 </label>
             </div>
             <div class="md:flex md:items-center">
-                <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline 
+                <button class="shadow bg-gray-500 hover:bg-purple-400 focus:shadow-outline 
                     focus:outline-none text-white font-bold py-2 px-4 rounded" 
                     type="button">
                     Send Mail

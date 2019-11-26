@@ -8,14 +8,18 @@
             to="/about">About
         </nuxt-link>
         <span>•</span>
+        <nuxt-link class="text-sm text-black px-2"
+            to="/contact">Contact
+        </nuxt-link>
+        <span>•</span>
         <a class="text-sm text-black px-2" href="#">Setting</a>
         <span>•</span>
         <a class="text-sm text-black px-2" href="#">Help</a>
         <span>•</span>
-        <a class="text-sm text-black px-2" href="#">API Dokumentation</a>
-        <span>•</span>
         <nuxt-link class="text-sm text-black px-2"
-            to="/contact">Contact
+            to="/api/docs">API Dokumentation
         </nuxt-link>
+        <span>•</span>
+        <a class="text-sm text-black px-2" href="#">Contribute/Fork</a>
     </div>
 </template>

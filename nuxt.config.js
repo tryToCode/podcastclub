@@ -29,7 +29,8 @@ export default {
   */
   plugins: [
     {src: '~/plugins/ga.js', mode: 'client'},
-    {src: '~/plugins/vueTippy.js'}
+    {src: '~/plugins/vueTippy.js'},
+    {src: '~/plugins/jsonFormatter.js', mode: 'client'}
   ],
   /*
   ** Nuxt.js dev-modules
