@@ -31,7 +31,6 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~/plugins/ga.js', mode: 'client'},
     {src: '~/plugins/vueTippy.js'},
     {src: '~/plugins/jsonFormatter.js', mode: 'client'}
   ],
@@ -41,7 +40,10 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    '@nuxtjs/google-analytics', {
+      id: 'UA-153093382-1'
+    }
   ],
   /*
   ** Nuxt.js modules
