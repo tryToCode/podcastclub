@@ -3,7 +3,7 @@
       <div class="my-2">
           <h1 class="text-2xl">Welcome to Podcast Club</h1>
           <p class="pt-2">
-            Podcast Club is a weekly updated podcast aggregator inspired from 
+            Podcast Club is a daily updated podcast aggregator inspired from 
             <a class="border-b-2" href="https://alltop.com">Alltop.com</a>  
             <br>
             We focus on the topics IT, Entrepreneurship and Finance.
