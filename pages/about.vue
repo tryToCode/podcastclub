@@ -16,7 +16,8 @@
           <h1 class="text-2xl">How it works</h1>
           <p class="pt-2">
             Podcast Club consumes Data from the 
-            <a class="border-b-2" href="https://github.com/tryToCode/podcast-api">Podcast API</a> which is build 
+            <a class="border-b-2" href="https://github.com/tryToCode/podcast-api/tree/layout-v2">Podcast API</a> 
+            which is built 
             with the <a class="border-b-2" href="https://www.django-rest-framework.org/">Django Rest API</a>.  
           </p>
       </div>
@@ -32,7 +33,10 @@
           </div>
       </div>
       <div class="my-2">
-          <p class="font-semibold">You host a podcast and want to be on the list, let us know. </p>
+        <p class="font-semibold">
+            You host a podcast and want to be on the list, let us 
+            <nuxt-link to="/contact" class="border-b-2">know</nuxt-link>. 
+        </p>
       </div>
   </div>
 </template>
@@ -41,8 +45,6 @@
 import { mapState } from 'vuex'
 
 export default {
-    scrollToTop: true,
-
     head () {
         return {
             title: "About",

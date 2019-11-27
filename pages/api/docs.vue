@@ -5,9 +5,9 @@
             <p class="text-base m-2">
                 Podcast Club consumes data from the 
                 <a class="border-b-2" href="https://github.com/tryToCode/podcast-api">
-                Podcast backend Api</a> which is build with the
+                Podcast backend Api</a> which is built with the
                 <a class="border-b-2" href="https://www.django-rest-framework.org/">Django Rest API</a>.
-                The backend Api contains mainly 2 Resources as described below and currently only support
+                The backend Api contains mainly 2 Resources as described below and currently only supports
                 HTTP GET method. 
             </p>
             <p class="m-2">
@@ -112,7 +112,8 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.$nuxt.$loading.start()
-            this.$store.dispatch('loadItems', 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems')
+            this.$store.dispatch('loadItems', 
+                'http://fathomless-beyond-28426.herokuapp.com/api/rssItems')
             this.$store.dispatch('loadPodcasts')
             .then(() => this.$nuxt.$loading.finish())
         })

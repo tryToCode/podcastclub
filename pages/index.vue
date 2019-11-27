@@ -10,24 +10,29 @@
 
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
           justify-center">
-      <div v-if="items.length !== 0">
-        <BaseItemRow 
-          v-for="item in items"
-          :key="item.id"
-          :item="item" />
-        <BasePagination 
-          :currentPage="currentPage"
-          :pageCount="Number(pageCount)"
-          @nextPage="pageChangeHandle('next')"
-          @previousPage="pageChangeHandle('previous')"
-          @loadPage="pageChangeHandle" />
+      <div v-if="loading">
+        <p>Loading...</p>
       </div>
+      <div v-else>
+        <div v-if="items.length !== 0">
+          <BaseItemRow 
+            v-for="item in items"
+            :key="item.id"
+            :item="item" />
+          <BasePagination 
+            :currentPage="currentPage"
+            :pageCount="Number(pageCount)"
+            @nextPage="pageChangeHandle('next')"
+            @previousPage="pageChangeHandle('previous')"
+            @loadPage="pageChangeHandle" />
+        </div>
       
-      <div v-else class="items-center">
-        <BaseNoItems
-         :baseUrl="loadItemBaseUrl"
-         :key="loadItemBaseUrl"/>
-      </div>
+        <div v-else>
+          <BaseNoItems
+          :baseUrl="loadItemBaseUrl"
+          :key="loadItemBaseUrl"/>
+        </div>
+      </div>     
     </div>
   </div>
 </template>

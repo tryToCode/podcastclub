@@ -18,6 +18,8 @@
             to="/api/docs">API Dokumentation
         </nuxt-link>
         <span>•</span>
-        <a class="text-sm text-black px-2" href="#">Contribute/Fork</a>
+        <a class="text-sm text-black px-2" href="https://github.com/tryToCode/podcastclub/tree/layout-v2">
+            Contribute/Fork
+        </a>
     </div>
 </template>

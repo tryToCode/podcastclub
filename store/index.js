@@ -47,17 +47,17 @@ export const actions = {
     },
 
     async loadItems({commit}, url) {
-        var start = Date.now();
-        axios.get(url)
-        .then(response => {
+        try {
+            var start = Date.now();
+            var items = await axios.get(url)
             var s = (Date.now() - start) / 1000
             commit('setTimer', s)
-            commit('setItems', response.data.results)
-            commit('setItemsCount', response.data.count)
-            commit('setPageCount', Math.ceil(response.data.count / 20))
-        })
-        .catch(error => {
+            commit('setItems', items.data.results)
+            commit('setItemsCount', items.data.count)
+            commit('setPageCount', Math.ceil(items.data.count / 20))
+        }
+        catch(error) {
             console.log(error)
-        })
+        }
     }
 }
