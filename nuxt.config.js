@@ -41,9 +41,7 @@ export default {
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/moment',
-    '@nuxtjs/google-analytics', {
-      id: 'UA-153093382-1'
-    }
+    ['@nuxtjs/google-analytics', {id: 'UA-153093382-1'}]
   ],
   /*
   ** Nuxt.js modules
