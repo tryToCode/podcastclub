@@ -10,29 +10,24 @@
 
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
           justify-center">
-      <div v-if="loading">
-        <p>Loading...</p>
+      <div v-if="items.length !== 0">
+        <BaseItemRow 
+          v-for="item in items"
+          :key="item.id"
+          :item="item" />
+        <BasePagination 
+          :currentPage="currentPage"
+          :pageCount="Number(pageCount)"
+          @nextPage="pageChangeHandle('next')"
+          @previousPage="pageChangeHandle('previous')"
+          @loadPage="pageChangeHandle" />
       </div>
+    
       <div v-else>
-        <div v-if="items.length !== 0">
-          <BaseItemRow 
-            v-for="item in items"
-            :key="item.id"
-            :item="item" />
-          <BasePagination 
-            :currentPage="currentPage"
-            :pageCount="Number(pageCount)"
-            @nextPage="pageChangeHandle('next')"
-            @previousPage="pageChangeHandle('previous')"
-            @loadPage="pageChangeHandle" />
-        </div>
-      
-        <div v-else>
-          <BaseNoItems
-          :baseUrl="loadItemBaseUrl"
-          :key="loadItemBaseUrl"/>
-        </div>
-      </div>     
+        <BaseNoItems
+        :baseUrl="loadItemBaseUrl"
+        :key="loadItemBaseUrl"/>
+      </div>
     </div>
   </div>
 </template>
@@ -128,6 +123,8 @@ export default {
       baseUrl.searchParams.set("page", this.currentPage)
       this.loadItemBaseUrl = baseUrl.toString()
       this.$store.dispatch("loadItems", this.loadItemBaseUrl)
+      if (process.browser)
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
   }
 }
