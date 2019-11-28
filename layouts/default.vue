@@ -7,12 +7,10 @@
 
 <script>
 import BaseFooter from '@/components/BaseFooter.vue'
-import BaseInfo from '@/components/BaseInfo.vue'
 
 export default {
   components: {
     BaseFooter,
-    BaseInfo,
   }  
 }
 </script>
