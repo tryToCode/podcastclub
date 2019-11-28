@@ -8,10 +8,6 @@
             to="/about">About
         </nuxt-link>
         <span>•</span>
-        <nuxt-link class="text-sm text-black px-2"
-            to="/contact">Contact
-        </nuxt-link>
-        <span>•</span>
         <a class="text-sm text-black px-2" href="#">Setting</a>
         <span>•</span>
         <nuxt-link class="text-sm text-black px-2"

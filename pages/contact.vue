@@ -91,6 +91,12 @@ export default {
               content: 'Podcast club contact page contact us get in touch' }
             ]
         }
+    },
+
+    mounted() {
+        let recaptchaScript = document.createElement('script')
+        recaptchaScript.setAttribute('src', 'https://www.google.com/recaptcha/api.js')
+        document.head.appendChild(recaptchaScript)
     }
 }
 </script>

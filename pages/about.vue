@@ -9,7 +9,7 @@
             We focus on the topics IT, Entrepreneurship and Finance.
             <br>
             All data come from the Internet, if you see any violiations of your rights in any form,
-            please <nuxt-link to="/contact" class="border-b-2">Contact</nuxt-link> us.
+            please <a class="border-b-2 cursor-pointer" @click="sendMail">Contact</a> us.
           </p>
       </div>
       <div class="my-2">
@@ -35,7 +35,7 @@
       <div class="my-2">
         <p class="font-semibold">
             You host a podcast and want to be on the list, let us 
-            <nuxt-link to="/contact" class="border-b-2">know</nuxt-link>. 
+            <a class="border-b-2 cursor-pointer" @click="sendMail">know</a>. 
         </p>
       </div>
   </div>
@@ -67,6 +67,13 @@ export default {
         ...mapState({
             podcasts: 'podcasts'
         })
+    },
+
+    methods: {
+        sendMail() {
+            if (process.browser)
+                window.location.href= 'mailto:tu295t.dy@gmail.com'
+        }
     }
 }
 </script>
