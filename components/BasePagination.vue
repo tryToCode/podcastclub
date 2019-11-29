@@ -61,21 +61,23 @@ export default {
         paginationTriggers() {
             const currentPage = this.currentPage
             const pageCount = this.pageCount
-            const visiblePagesCount = this.visiblePagesCount
-            const visiblePagesThreshold = (visiblePagesCount - 1) / 2
-            const pagintationTriggersArray = Array(this.visiblePagesCount - 1).fill(0)
+            var visiblePagesCount = this.visiblePagesCount
+            if (pageCount < visiblePagesCount)
+                visiblePagesCount = pageCount
+            const visiblePagesThreshold = Math.ceil((visiblePagesCount - 1) / 2) 
+            const paginationTriggersArray = Array(visiblePagesCount - 1).fill(0)
             if (currentPage <= visiblePagesThreshold + 1) {
-                pagintationTriggersArray[0] = 1
-                const pagintationTriggers = pagintationTriggersArray.map(
+                paginationTriggersArray[0] = 1
+                const pagintationTriggers = paginationTriggersArray.map(
                 (paginationTrigger, index) => {
-                    return pagintationTriggersArray[0] + index
+                    return paginationTriggersArray[0] + index
                     }
                 )
                 pagintationTriggers.push(pageCount)
                 return pagintationTriggers
             }
             if (currentPage >= pageCount - visiblePagesThreshold + 1) {
-                const pagintationTriggers = pagintationTriggersArray.map(
+                const pagintationTriggers = paginationTriggersArray.map(
                 (paginationTrigger, index) => {
                     return pageCount - index
                     }
@@ -83,10 +85,10 @@ export default {
                 pagintationTriggers.reverse().unshift(1)
                 return pagintationTriggers
             }
-            pagintationTriggersArray[0] = currentPage - visiblePagesThreshold + 1
-            const pagintationTriggers = pagintationTriggersArray.map(
+            paginationTriggersArray[0] = currentPage - visiblePagesThreshold + 1
+            const pagintationTriggers = paginationTriggersArray.map(
                 (paginationTrigger, index) => {
-                    return pagintationTriggersArray[0] + index
+                    return paginationTriggersArray[0] + index
                 }
             )
             pagintationTriggers.unshift(1)
