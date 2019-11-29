@@ -4,7 +4,8 @@
             <div class="flex pl-4 items-center">
                 <img src="https://img.icons8.com/ios-glyphs/50/000000/podcast.png">
                 <nuxt-link class="pl-2 tracking-wide text-xl"
-                    to="/">
+                    to="/"
+                    @click.native="reload">
                     Podcast Club
                 </nuxt-link>
             </div>
@@ -43,6 +44,10 @@ export default {
     methods: {
         onInputChange: function(event) {
             this.$emit('onInputChange', event.target.value)
+        },
+
+        reload() {
+            this.$emit('reload')
         }
     }
 }

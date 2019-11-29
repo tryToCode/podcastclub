@@ -1,7 +1,8 @@
 <template>
   <div>
     <BaseNavbar
-      @onInputChange="inputChangeHandle" />
+      @onInputChange="inputChangeHandle"
+      @reload="reloadHandle" />
 
     <BaseFilterRow 
       :itemsCount="Number(itemsCount)" 
@@ -10,23 +11,31 @@
 
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
           justify-center">
-      <div v-if="items.length !== 0">
-        <BaseItemRow 
-          v-for="item in items"
-          :key="item.id"
-          :item="item" />
-        <BasePagination 
-          :currentPage="currentPage"
-          :pageCount="Number(pageCount)"
-          @nextPage="pageChangeHandle('next')"
-          @previousPage="pageChangeHandle('previous')"
-          @loadPage="pageChangeHandle" />
-      </div>
-    
+      <div v-if="loading"
+        class="flex flex-col justify-center items-center my-32 sm:my-32 md:my-40">
+        <pulse-loader :color="color"></pulse-loader>
+      </div>  
+
       <div v-else>
-        <BaseNoItems
-        :baseUrl="loadItemBaseUrl"
-        :key="loadItemBaseUrl"/>
+        <div v-if="items.length !== 0">
+          <BaseItemRow 
+            v-for="item in items"
+            :key="item.id"
+            :item="item" />
+          <BasePagination 
+            :currentPage="currentPage"
+            :pageCount="Number(pageCount)"
+            @nextPage="pageChangeHandle('next')"
+            @previousPage="pageChangeHandle('previous')"
+            @loadPage="pageChangeHandle" />
+        </div>
+
+        <div v-else>
+          <BaseNoItems
+          :baseUrl="loadItemBaseUrl"
+          :key="loadItemBaseUrl"/>
+        </div>
+
       </div>
     </div>
   </div>
@@ -39,6 +48,7 @@ import BaseFilterRow from '@/components/BaseFilterRow.vue'
 import BaseItemRow from '@/components/BaseItemRow.vue'
 import BasePagination from '@/components/BasePagination.vue'
 import BaseNoItems from '@/components/BaseNoItems.vue'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
   head () {
@@ -55,6 +65,8 @@ export default {
     return {
       currentPage: 1,
       loadItemBaseUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems',
+      loading: true,
+      color: "#180d0b"
     }
   },
 
@@ -63,14 +75,18 @@ export default {
     BaseFilterRow,
     BaseItemRow,
     BasePagination,
-    BaseNoItems
+    BaseNoItems,
+    PulseLoader
   },
 
   mounted() {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
       this.$store.dispatch('loadItems', this.loadItemBaseUrl)
-      .then(() => this.$nuxt.$loading.finish())
+      .then(() => {
+        this.loading = false
+        this.$nuxt.$loading.finish()
+      })
     })
   },
 
@@ -84,6 +100,11 @@ export default {
   },
 
   methods: {
+    reloadHandle() {
+      if (process.browser)
+        window.location.reload(true)
+    },
+
     async inputChangeHandle(value) {
       var baseUrl = new URL(this.loadItemBaseUrl)
       if (value === '' && baseUrl.searchParams.has('search')) {
