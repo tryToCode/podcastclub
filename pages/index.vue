@@ -12,7 +12,7 @@
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
           justify-center">
       <div v-if="loading"
-        class="flex flex-col justify-center items-center my-32 sm:my-32 md:my-40">
+        class="flex flex-col justify-center items-center h-screen">
         <pulse-loader :color="color"></pulse-loader>
       </div>  
 
@@ -66,7 +66,7 @@ export default {
       currentPage: 1,
       loadItemBaseUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems',
       loading: true,
-      color: "#180d0b"
+      color: "#fc8181"
     }
   },
 

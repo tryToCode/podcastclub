@@ -73,7 +73,8 @@ export default {
                     return paginationTriggersArray[0] + index
                     }
                 )
-                pagintationTriggers.push(pageCount)
+                if (pageCount !== visiblePagesCount)
+                    pagintationTriggers.push(pageCount)
                 return pagintationTriggers
             }
             if (currentPage >= pageCount - visiblePagesThreshold + 1) {
