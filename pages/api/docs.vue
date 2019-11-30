@@ -64,7 +64,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="items.slice(0, 1)">
+                    :data="items[0]">
                 </vue-json-pretty>                
             </div>
         </div>
@@ -88,7 +88,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="podcasts.slice(0, 1)">
+                    :data="podcasts[0]">
                 </vue-json-pretty>                
             </div>
         </div>
