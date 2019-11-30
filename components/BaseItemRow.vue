@@ -1,10 +1,16 @@
 <template>
     <div class="overflow-hidden py-1">
         <div class="px-6">
-            <a class="font-medium text-base"
+            <a v-if="item.description.length !== 0"
+                class="font-medium text-base"
                 :href="item.item_url"
                 :content="item.description"
-                v-tippy="{ placement : 'top', arrow: true, theme: 'light', size: 'large' }">
+                v-tippy="{ placement : 'top', arrow: true, size: 'large' }">
+            {{item.title}}
+            </a>
+            <a v-else
+                class="font-medium text-base"
+                :href="item.item_url">
             {{item.title}}
             </a>
             <span class="hidden md:inline text-gray-500 text-sm">
