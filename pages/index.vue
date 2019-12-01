@@ -121,17 +121,19 @@ export default {
       */
       var baseUrl = new URL(this.loadItemBaseUrl)
       if (value === 'All' || value === "All Time" || value === '') {
-        if (baseUrl.searchParams.has(filterSection))
-            baseUrl.searchParams.delete(filterSection)
+        if (baseUrl.searchParams.has(filterSection)) {
+          baseUrl.searchParams.delete(filterSection)
+          this.deleteQuery(filterSection)
+        }
       } 
       else
         baseUrl.searchParams.set(filterSection, value)
       this.loadItemBaseUrl = baseUrl.toString()
       this.$store.dispatch("loadItems", this.loadItemBaseUrl)
-      this.extendRoute()
+      this.appendQuery()
     },
 
-    extendRoute() {
+    appendQuery() {
       const url = new URL(this.loadItemBaseUrl)
       var searchInput = url.searchParams.get('search') 
       var catInput = url.searchParams.get('category')
@@ -145,7 +147,23 @@ export default {
       if (dateInput != null)
         this.$router.push({query: 
           Object.assign({}, this.$route.query, {'date': dateInput})})
-    },  
+    },
+
+    deleteQuery(filterSection) {
+      var query = Object.assign({}, this.$route.query)
+      switch(filterSection) {
+        case 'search':
+          delete query.search
+          break
+        case 'category':
+          delete query.category
+          break
+        case 'date':
+          delete query.date
+          break
+      }
+      this.$router.replace({query})
+    },
 
     async pageChangeHandle(value) {
       switch(value) {
