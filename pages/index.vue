@@ -128,7 +128,24 @@ export default {
         baseUrl.searchParams.set(filterSection, value)
       this.loadItemBaseUrl = baseUrl.toString()
       this.$store.dispatch("loadItems", this.loadItemBaseUrl)
+      this.extendRoute()
     },
+
+    extendRoute() {
+      const url = new URL(this.loadItemBaseUrl)
+      var searchInput = url.searchParams.get('search') 
+      var catInput = url.searchParams.get('category')
+      var dateInput = url.searchParams.get('date')
+      if (searchInput !== null)
+        this.$router.push({query: 
+          Object.assign({}, this.$route.query, {'search': searchInput})})
+      if (catInput != null)
+        this.$router.push({query: 
+          Object.assign({}, this.$route.query, {'category': catInput})})
+      if (dateInput != null)
+        this.$router.push({query: 
+          Object.assign({}, this.$route.query, {'date': dateInput})})
+    },  
 
     async pageChangeHandle(value) {
       switch(value) {
