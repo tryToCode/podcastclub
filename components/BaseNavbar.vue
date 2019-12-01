@@ -2,7 +2,7 @@
     <nav class="max-w-5xl flex-col flex md:flex-row flex-nowrap bg-red-400 h-auto mx-auto">
         <div class="flex p-1">
             <div class="flex pl-4 items-center">
-                <img src="https://img.icons8.com/ios-glyphs/50/000000/podcast.png">
+                <img src="~/assets/podcast.png">
                 <nuxt-link class="pl-2 tracking-wide text-xl"
                     to="/"
                     @click.native="reload">
@@ -20,11 +20,11 @@
                     placeholder="Search Episode by title, url or podcast"
                     @input="onInputChange($event, 'search')">
                 <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-2">
-                    <img src="https://img.icons8.com/ios-glyphs/24/000000/search.png">
+                    <img src="~/assets/search.png">
                 </span>
             </div>
             <div class="hidden lg:flex items-center">
-                <img src="https://img.icons8.com/material-rounded/24/000000/settings.png">
+                <img src="~/assets/settings.png">
                 <a class="px-1 md:pr-6 tracking-wide text-xl" href="#">
                     Setting
                 </a>
