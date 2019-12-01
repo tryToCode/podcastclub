@@ -18,22 +18,22 @@
             </span>
         </div>
         <div class="px-6 text-sm font-semibold text-gray-500">
-            <a class="inline-block pr-1 "
+            <a class="pr-1"
                 :href="'https://' + item.creator.base_url">
             {{item.creator.name}}
             </a>
             <span class="text-gray-500">|</span>
-            <span class="inline-block px-1">
+            <span class="px-1">
             {{item.creator.category.split('.')[1]}}
             </span>
             <span class="text-gray-500">|</span>
-            <span class="inline-block px-1">
+            <span class="px-1">
             {{$moment(item.pub_date).fromNow()}}
             </span>
             <div v-if="item.episode_number !== null"
-                class="hidden md:inline-block">
+                class="hidden md:inline">
                 <span class="text-gray-500">|</span>
-                <span class="inline-block px-1">
+                <span class="px-1">
                     #{{item.episode_number}}
                 </span>
             </div>

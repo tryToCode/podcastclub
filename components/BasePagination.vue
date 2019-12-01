@@ -3,6 +3,10 @@
         <BaseButton
             class="mr-1"
             :disabled="isPreviousButtonDisabled"
+            :class="{
+                'hover:text-red-500': 
+                !isPreviousButtonDisabled
+            }"
             @click.native="previousPage"
         >
             ←
@@ -21,6 +25,10 @@
         <BaseButton
             class="ml-1"
             :disabled="isNextButtonDisabled"
+            :class="{
+                'hover:text-red-500': 
+                !isNextButtonDisabled
+            }"
             @click.native="nextPage"
         >
             →

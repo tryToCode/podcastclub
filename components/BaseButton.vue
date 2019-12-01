@@ -1,7 +1,7 @@
 <template>
     <button :disabled="disabled" 
-        class="border-solid border-2 px-2 rounded hover:text-red-500">
-        <slot class="inline-block align-middle" />
+        class="border-solid border-2 px-2 rounded">
+        <slot class="inline align-middle" />
     </button>
 </template>
 
