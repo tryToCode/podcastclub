@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseNavbar
-      @onInputChange="inputChangeHandle"
+      @onInputChange="filterChangeHandle"
       @reload="reloadHandle" />
 
     <BaseFilterRow 
@@ -56,7 +56,7 @@ export default {
       title: "Podcast Club",
       meta: [
       { name: 'description', 
-        content: 'Podcast club home index page, a weekly updated podcast aggregator' }
+        content: 'Podcast club home index page, a daily updated podcast aggregator' }
       ]
     }
   },
@@ -105,20 +105,22 @@ export default {
         window.location.reload(true)
     },
 
-    async inputChangeHandle(value) {
-      var baseUrl = new URL(this.loadItemBaseUrl)
-      if (value === '' && baseUrl.searchParams.has('search')) {
-        baseUrl.searchParams.delete('search')
-      }
-      else
-        baseUrl.searchParams.set('search', value)
-      this.loadItemBaseUrl = baseUrl.toString()
-      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
-    },
-
     async filterChangeHandle(value, filterSection) {
+      /*
+      listen on event change fired from the search input bar,
+      the category selection and the date selection 
+      
+      filter section values: search, category, date 
+
+      search input default: ''
+      category selection default: 'All'
+      date selection default: 'All Time'
+
+      based on the query key change from diverse filter section
+      rebuild REST url
+      */
       var baseUrl = new URL(this.loadItemBaseUrl)
-      if (value === 'All' || value === "All Time") {
+      if (value === 'All' || value === "All Time" || value === '') {
         if (baseUrl.searchParams.has(filterSection))
             baseUrl.searchParams.delete(filterSection)
       } 

@@ -18,7 +18,7 @@
                     type="text" 
                     v-model="searchInput"
                     placeholder="Search Episode by title, url or podcast"
-                    @input="onInputChange($event)">
+                    @input="onInputChange($event, 'search')">
                 <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-2">
                     <img src="https://img.icons8.com/ios-glyphs/24/000000/search.png">
                 </span>
@@ -42,8 +42,8 @@ export default {
     },
 
     methods: {
-        onInputChange: function(event) {
-            this.$emit('onInputChange', event.target.value)
+        onInputChange: function(event, filterSection) {
+            this.$emit('onInputChange', event.target.value, filterSection)
         },
 
         reload() {
