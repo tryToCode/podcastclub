@@ -81,12 +81,7 @@ export default {
 
   mounted() {
     this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      this.$store.dispatch('loadItems', this.loadItemBaseUrl)
-      .then(() => {
-        this.loading = false
-        this.$nuxt.$loading.finish()
-      })
+      this.waitForLoading()
     })
   },
 
@@ -103,6 +98,17 @@ export default {
     reloadHandle() {
       if (process.browser)
         window.location.reload(true)
+    },
+
+    waitForLoading() {
+      if (!this.loading)
+        this.loading = true
+      this.$store.dispatch('loadItems', this.loadItemBaseUrl)
+      .then(() => {
+        this.loading = false
+        if (process.browser)
+          window.scrollTo({top: 0, behavior: 'smooth'})
+      })
     },
 
     async filterChangeHandle(value, filterSection) {
@@ -129,8 +135,8 @@ export default {
       else
         baseUrl.searchParams.set(filterSection, value)
       this.loadItemBaseUrl = baseUrl.toString()
-      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
       this.appendQuery()
+      this.waitForLoading()
     },
 
     appendQuery() {
@@ -147,6 +153,9 @@ export default {
       if (dateInput != null)
         this.$router.push({query: 
           Object.assign({}, this.$route.query, {'date': dateInput})})
+      if (this.currentPage !== 1)
+        this.$router.push({query: 
+          Object.assign({}, this.$route.query, {'page': this.currentPage})})
     },
 
     deleteQuery(filterSection) {
@@ -161,8 +170,16 @@ export default {
         case 'date':
           delete query.date
           break
+        case 'page':
+          this.deletePageQuery(query)
+          break
       }
       this.$router.replace({query})
+    },
+
+    deletePageQuery(query) {
+      if (this.currentPage === 1)
+        delete query.page
     },
 
     async pageChangeHandle(value) {
@@ -180,9 +197,9 @@ export default {
       var baseUrl = new URL(this.loadItemBaseUrl)
       baseUrl.searchParams.set("page", this.currentPage)
       this.loadItemBaseUrl = baseUrl.toString()
-      this.$store.dispatch("loadItems", this.loadItemBaseUrl)
-      if (process.browser)
-        window.scrollTo({top: 0, behavior: 'smooth'});
+      this.waitForLoading()
+      this.appendQuery()
+      this.deleteQuery('page')
     }
   }
 }
