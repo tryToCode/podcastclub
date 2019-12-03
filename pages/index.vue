@@ -80,6 +80,8 @@ export default {
   },
 
   mounted() {
+    if (localStorage.getItem("loadItemUrl"))
+      this.loadItemBaseUrl = localStorage.getItem("loadItemUrl")
     this.$nextTick(() => {
       this.waitForLoading()
     })
@@ -96,8 +98,10 @@ export default {
 
   methods: {
     reloadHandle() {
-      if (process.browser)
+      if (process.browser) {
         window.location.reload(true)
+        localStorage.clear()
+      }
     },
 
     waitForLoading() {
@@ -123,7 +127,7 @@ export default {
       date selection default: 'All Time'
 
       based on the query key change from diverse filter section
-      rebuild REST url
+      rebuild REST url and also set local storage 
       */
       var baseUrl = new URL(this.loadItemBaseUrl)
       if (value === 'All' || value === "All Time" || value === '') {
@@ -137,6 +141,7 @@ export default {
         baseUrl.searchParams.set(filterSection, valueTrimmed)
       }
       this.loadItemBaseUrl = baseUrl.toString()
+      localStorage.setItem("loadItemUrl", this.loadItemBaseUrl)
       this.appendQuery()
       this.waitForLoading()
     },
@@ -199,6 +204,7 @@ export default {
       var baseUrl = new URL(this.loadItemBaseUrl)
       baseUrl.searchParams.set("page", this.currentPage)
       this.loadItemBaseUrl = baseUrl.toString()
+      localStorage.setItem("loadItemUrl", this.loadItemBaseUrl)
       this.waitForLoading()
       this.appendQuery()
       this.deleteQuery('page')

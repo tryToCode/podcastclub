@@ -83,6 +83,26 @@ export default {
         }
     },
 
+    mounted() {
+        if (localStorage.catSelected)
+            this.catSelected = localStorage.catSelected
+        if (localStorage.dateSelected)
+            this.dateSelected = localStorage.dateSelected
+    },
+    
+    watch: {
+        catSelected(newCat) {
+            if (newCat === "All")
+                localStorage.removeItem("catSelected")
+            localStorage.catSelected = newCat
+        },
+        dateSelected(newDate) {
+            if (newDate === "All Time")
+                localStorage.removeItem("dateSelected")
+            localStorage.dateSelected = newDate
+        }
+    },
+
     components: {
         BaseDownArrow
     },

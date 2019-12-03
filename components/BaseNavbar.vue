@@ -41,6 +41,20 @@ export default {
         }
     },
 
+    mounted() {
+        if (localStorage.searchInput) {
+            this.searchInput = localStorage.searchInput;
+        }
+    },
+
+    watch: {
+        searchInput(newInput) {
+            if (newInput.length === 0)
+                localStorage.removeItem("searchInput")
+            localStorage.searchInput = newInput;
+        }
+    },
+
     methods: {
         onInputChange: function(event, filterSection) {
             this.$emit('onInputChange', event.target.value, filterSection)
