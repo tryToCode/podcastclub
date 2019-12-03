@@ -137,7 +137,6 @@ export default {
         baseUrl.searchParams.set(filterSection, valueTrimmed)
       }
       this.loadItemBaseUrl = baseUrl.toString()
-      console.log('load item url: ' + this.loadItemBaseUrl)
       this.appendQuery()
       this.waitForLoading()
     },
