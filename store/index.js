@@ -65,8 +65,11 @@ export const actions = {
                  * console.log(error.response.status);
                  * console.log(error.response.headers);
                  */
-                if (error.response.status === 404 && error.response.data.detail === 'Invalid page.')
+                if (error.response.status === 404 && error.response.data.detail === 'Invalid page.') {
                     commit('setItems', [])
+                    commit('setTimer', 0)
+                    commit('setItemsCount', 0)
+                }
             } else if (error.request) {
                 /*
                  * The request was made but no response was received, `error.request`
