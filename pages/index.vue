@@ -132,9 +132,12 @@ export default {
           this.deleteQuery(filterSection)
         }
       } 
-      else
-        baseUrl.searchParams.set(filterSection, value)
+      else {
+        const valueTrimmed = value.split(' ').join('')
+        baseUrl.searchParams.set(filterSection, valueTrimmed)
+      }
       this.loadItemBaseUrl = baseUrl.toString()
+      console.log('load item url: ' + this.loadItemBaseUrl)
       this.appendQuery()
       this.waitForLoading()
     },
