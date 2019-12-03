@@ -23,9 +23,9 @@
           <p>
             Items are filtered by the given filter input which may include 
             <ul class="list-disc list-inside">
-                <li>category of item</li>
-                <li>published dated of item</li>
-                <li>the result page number</li>
+                <li>Category of item</li>
+                <li>Published date of item</li>
+                <li>The result page number</li>
             </ul>
             The result page number could cause the search result "No Items Found".
           </p>

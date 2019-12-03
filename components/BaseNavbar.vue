@@ -43,7 +43,7 @@ export default {
 
     mounted() {
         if (localStorage.searchInput) {
-            this.searchInput = localStorage.searchInput;
+            this.searchInput = localStorage.searchInput
         }
     },
 
@@ -51,7 +51,7 @@ export default {
         searchInput(newInput) {
             if (newInput.length === 0)
                 localStorage.removeItem("searchInput")
-            localStorage.searchInput = newInput;
+            localStorage.searchInput = newInput
         }
     },
 
