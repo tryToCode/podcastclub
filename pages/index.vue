@@ -152,17 +152,18 @@ export default {
       var catInput = url.searchParams.get('category')
       var dateInput = url.searchParams.get('date')
       if (searchInput !== null)
-        this.$router.push({query: 
-          Object.assign({}, this.$route.query, {'search': searchInput})})
+        this.extendRouter({'search': searchInput})
       if (catInput != null)
-        this.$router.push({query: 
-          Object.assign({}, this.$route.query, {'category': catInput})})
+        this.extendRouter({'category': catInput})
       if (dateInput != null)
-        this.$router.push({query: 
-          Object.assign({}, this.$route.query, {'date': dateInput})})
+        this.extendRouter({'date': dateInput})
       if (this.currentPage !== 1)
-        this.$router.push({query: 
-          Object.assign({}, this.$route.query, {'page': this.currentPage})})
+        this.extendRouter({'page': this.currentPage})
+    },
+
+    extendRouter(keyValueObj) {
+      this.$router.push({query: 
+        Object.assign({}, this.$route.query, keyValueObj)})
     },
 
     deleteQuery(filterSection) {
