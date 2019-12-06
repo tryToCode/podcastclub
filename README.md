@@ -5,7 +5,7 @@
 [Podcast Club](http://podcastclub.net/) is a daily updated podcast aggregator inspired from [AllTop](https://alltop.com).
 We focus on the topics IT, Entrepreneurship and Finance.
 
-Podcast Club consumes Data from the [Podcast API](https://github.com/tryToCode/podcast-api/tree/layout-v2) which is built 
+Podcast Club consumes Data from the [Podcast API](https://github.com/tryToCode/podcast-api) which is built 
 with the [Django Rest API](https://www.django-rest-framework.org).
 
 All Podcast we currently cover, check out [Here](http://podcastclub.net/about)
