@@ -61,11 +61,9 @@ export const actions = {
                 /*
                  * The request was made and the server responded with a
                  * status code that falls out of the range of 2xx
-                 * console.log(error.response.data);
-                 * console.log(error.response.status);
-                 * console.log(error.response.headers);
                  */
-                if (error.response.status === 404 && error.response.data.detail === 'Invalid page.') {
+                if (error.response.status === 404 && 
+                    error.response.data.detail === 'Invalid page.') {
                     commit('setItems', [])
                     commit('setTimer', 0)
                     commit('setItemsCount', 0)
@@ -76,7 +74,9 @@ export const actions = {
                  * is an instance of XMLHttpRequest in the browser and an instance
                  * of http.ClientRequest in Node.js
                  */
+                console.log('error request...');
                 console.log(error.request);
+                console.log(error.request.status)
             } else {
                 // Something happened in setting up the request and triggered an Error
                 console.log('Error', error.message);
