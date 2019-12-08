@@ -86,7 +86,8 @@ export const actions = {
 
     async updateLikes({commit}, pk) {
         try {
-            axios.patch(`http://localhost:8000/api/rssItems/${pk}/`)
+            const data = {upVote: true}
+            axios.patch(`http://localhost:8000/api/rssItems/${pk}/`, data)
         }
         catch (error) {
             console.log(error)
