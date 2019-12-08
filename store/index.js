@@ -39,7 +39,7 @@ export const actions = {
     async loadPodcasts({commit}) {
         try {
             var podcasts = await axios
-                .get('http://fathomless-beyond-28426.herokuapp.com/api/podcasts')
+                .get('http://localhost:8000/api/podcasts')
             commit('setPodcasts', podcasts.data.results)
         } catch(error) {
             console.log(error)
@@ -81,6 +81,15 @@ export const actions = {
                 // Something happened in setting up the request and triggered an Error
                 console.log('Error', error.message);
             }
+        }
+    },
+
+    async updateLikes({commit}, pk) {
+        try {
+            axios.patch(`http://localhost:8000/api/rssItems/${pk}/`)
+        }
+        catch (error) {
+            console.log(error)
         }
     }
 }

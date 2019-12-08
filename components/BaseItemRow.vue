@@ -1,8 +1,10 @@
 <template>
     <div class="flex overflow-hidden py-1">
-        <div class="flex flex-col justify-center pl-2 pr-1 text-center hover:text-gray-500 cursor-pointer">
+        <div class="flex flex-col justify-center pl-2 pr-1 text-center 
+            hover:text-gray-500 cursor-pointer"
+            @click="upVote(item.id)">
             <BaseUpArrow />
-            <span class="text-gray-500 text-sm">0</span>
+            <span class="text-gray-500 text-sm">{{this.likes}}</span>
         </div>
         <div>
             <div class="pb-1">
@@ -51,6 +53,12 @@
 import BaseUpArrow from './BaseUpArrow.vue'
 
 export default {
+    data() {
+        return {
+            likes: this.item.likes
+        }
+    },
+
     props: {
         item: {
             type: Object,
@@ -60,6 +68,13 @@ export default {
 
     components: {
         BaseUpArrow
+    },
+
+    methods: {
+        upVote(itemId) {
+            this.likes += 1
+            this.$store.dispatch('updateLikes', itemId)
+        }
     }
 }
 </script>
