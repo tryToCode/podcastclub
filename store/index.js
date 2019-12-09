@@ -39,7 +39,7 @@ export const actions = {
     async loadPodcasts({commit}) {
         try {
             var podcasts = await axios
-                .get('http://localhost:8000/api/podcasts')
+                .get('http://fathomless-beyond-28426.herokuapp.com/api/podcasts')
             commit('setPodcasts', podcasts.data.results)
         } catch(error) {
             console.log(error)
@@ -87,7 +87,7 @@ export const actions = {
     async updateLikes({commit}, pk) {
         try {
             const data = {upVote: true}
-            axios.patch(`http://localhost:8000/api/rssItems/${pk}/`, data)
+            axios.patch(`http://fathomless-beyond-28426.herokuapp.com/api/rssItems/${pk}/`, data)
         }
         catch (error) {
             console.log(error)

@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      loadItemBaseUrl: 'http://localhost:8000/api/rssItems',
+      loadItemBaseUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems',
       loading: true,
       color: "#fc8181"
     }
