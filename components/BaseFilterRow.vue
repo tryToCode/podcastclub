@@ -1,15 +1,8 @@
 <template>
     <div class="max-w-5xl flex flex-wrap md:justify-around bg-gray-100 mx-auto py-2">
         <div class="flex flex-wrap items-center text-sm">
-            <div class="">
-                <label class="hidden md:block tracking-wide text-gray-700">
-                Search Episodes
-                </label>
-            </div>
             <div class="ml-2 flex flex-wrap items-center">
-                <label class="hidden md:block md:pr-2 tracking-wide text-gray-700">
-                of
-                </label>
+                <BaseLabel :text="catLabel" />
                 <BaseFilter 
                     :model="catSelected"
                     :selectType="categoryType"
@@ -17,9 +10,7 @@
                     @onBaseFilterChange="onFilterChange"/>
             </div>
             <div class="flex flex-wrap items-center">
-                <label class="hidden md:block md:px-2 tracking-wide text-gray-700">
-                for
-                </label>
+                <BaseLabel :text="dateLabel" />
                 <BaseFilter 
                     :model="dateSelected"
                     :selectType="dateType"
@@ -36,6 +27,7 @@
 
 <script>
 import BaseFilter from './BaseFilter.vue'
+import BaseLabel from './BaseLabel.vue'
 
 export default {
     data() {
@@ -81,7 +73,8 @@ export default {
     },
 
     components: {
-        BaseFilter
+        BaseFilter,
+        BaseLabel
     },
 
     props: {
@@ -92,6 +85,16 @@ export default {
         timeSpend: {
             type: Number,
             required: true
+        }
+    },
+
+    computed: {
+        catLabel() {
+            return "Search Episodes of"
+        },
+
+        dateLabel() {
+            return "for"
         }
     },
 
