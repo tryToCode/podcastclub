@@ -2,7 +2,8 @@
     <div class="max-w-5xl flex flex-wrap md:justify-around bg-gray-100 mx-auto py-2">
         <div class="flex flex-wrap items-center text-sm">
             <div class="ml-2 flex flex-wrap items-center">
-                <BaseLabel :text="catLabel" />
+                <BaseLabel :text="catLabel"
+                    :hidden="hiddenOnMobile" />
                 <BaseFilter 
                     :model="catSelected"
                     :selectType="categoryType"
@@ -10,7 +11,8 @@
                     @onBaseFilterChange="onFilterChange"/>
             </div>
             <div class="flex flex-wrap items-center">
-                <BaseLabel :text="dateLabel" />
+                <BaseLabel :text="dateLabel"
+                    :hidden="hiddenOnMobile" />
                 <BaseFilter 
                     :model="dateSelected"
                     :selectType="dateType"
@@ -95,6 +97,10 @@ export default {
 
         dateLabel() {
             return "for"
+        },
+
+        hiddenOnMobile() {
+            return true
         }
     },
 
