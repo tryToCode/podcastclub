@@ -1,5 +1,5 @@
 <template>
-    <div class="flex overflow-hidden py-1">
+    <div class="flex overflow-hidden pb-2">
         <div class="flex flex-col justify-center pl-2 pr-1 text-center 
             hover:text-gray-500 cursor-pointer"
             @click="upVote(item.id)">
