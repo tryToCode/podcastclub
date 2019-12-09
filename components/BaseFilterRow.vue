@@ -94,12 +94,12 @@ export default {
         catSelected(newCat) {
             if (newCat === "All")
                 localStorage.removeItem("catSelected")
-            localStorage.catSelected = newCat
+            localStorage.setItem("catSelected", newCat)
         },
         dateSelected(newDate) {
             if (newDate === "All Time")
                 localStorage.removeItem("dateSelected")
-            localStorage.dateSelected = newDate
+            localStorage.setItem("dateSelected", newDate)
         }
     },
 
@@ -119,8 +119,17 @@ export default {
     },
 
     methods: {
-        onFilterChange: function(event, filterSection) {                
-            this.$emit('onFilterChange', event.target.value, filterSection)
+        onFilterChange: function(event, filterSection) {
+            const newValue = event.target.value
+            switch(filterSection){
+                case 'category':
+                    this.catSelected = newValue
+                    break
+                case 'date':
+                    this.dateSelected = newValue
+                    break
+            }            
+            this.$emit('onFilterChange', newValue, filterSection)
         }
     }
 }

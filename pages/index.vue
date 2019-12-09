@@ -66,7 +66,8 @@ export default {
       currentPage: 1,
       loadItemBaseUrl: 'http://localhost:8000/api/rssItems',
       loading: true,
-      color: "#fc8181"
+      color: "#fc8181",
+      pageSize: 20
     }
   },
 
@@ -81,7 +82,9 @@ export default {
 
   mounted() {
     if (localStorage.getItem("loadItemUrl"))
-      this.loadItemBaseUrl = localStorage.getItem("loadItemUrl")
+      this.loadItemBaseUrl = localStorage.loadItemUrl
+    if (localStorage.getItem("pageSize"))
+      this.filterChangeHandle(localStorage.pageSize, "pageSize")
     this.$nextTick(() => {
       this.waitForLoading()
     })
@@ -117,20 +120,24 @@ export default {
 
     async filterChangeHandle(value, filterSection) {
       /*
-      listen on event change fired from the search input bar,
-      the category selection and the date selection 
-      
-      filter section values: search, category, date 
+      listen on event change fired from 
+        the search input bar
+        the category selection
+        the date selection 
+        the page size selection
+
+      filter section values: search, category, date, page size 
 
       search input default: ''
       category selection default: 'All'
       date selection default: 'All Time'
+      page size selection default: 20
 
       based on the query key change from diverse filter section
       rebuild REST url and also set local storage 
       */
       var baseUrl = new URL(this.loadItemBaseUrl)
-      if (value === 'All' || value === "All Time" || value === '') {
+      if (value === 'All' || value === "All Time" || value === '' || value === 20) {
         if (baseUrl.searchParams.has(filterSection)) {
           baseUrl.searchParams.delete(filterSection)
           this.deleteQuery(filterSection)
@@ -151,6 +158,7 @@ export default {
       var searchInput = url.searchParams.get('search') 
       var catInput = url.searchParams.get('category')
       var dateInput = url.searchParams.get('date')
+      var pageSize = url.searchParams.get('pageSize')
       if (searchInput !== null)
         this.extendRouter({'search': searchInput})
       if (catInput != null)
@@ -159,6 +167,8 @@ export default {
         this.extendRouter({'date': dateInput})
       if (this.currentPage !== 1)
         this.extendRouter({'page': this.currentPage})
+      if (pageSize !== null)
+        this.extendRouter({'pageSize': pageSize})
     },
 
     extendRouter(keyValueObj) {
@@ -180,6 +190,9 @@ export default {
           break
         case 'page':
           this.deletePageQuery(query)
+          break
+        case 'pageSize':
+          delete query.pageSize
           break
       }
       this.$router.replace({query})

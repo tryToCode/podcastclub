@@ -25,9 +25,10 @@
             </div>
             <div class="hidden lg:flex items-center">
                 <img src="~/assets/settings.png">
-                <a class="px-1 md:pr-6 tracking-wide text-xl" href="#">
+                <nuxt-link class="px-1 md:pr-6 tracking-wide text-xl"
+                 to="/settings">
                     Setting
-                </a>
+                </nuxt-link>
             </div>
         </div>            
     </nav>
