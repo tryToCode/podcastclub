@@ -12,7 +12,9 @@
             to="/help">Help
         </nuxt-link>
         <span>•</span>
-        <a class="text-sm text-black px-2" href="#">Setting</a>
+        <nuxt-link class="text-sm text-black px-2"
+            to="/settings">Settings
+        </nuxt-link>
         <span>•</span>
         <nuxt-link class="text-sm text-black px-2"
             to="/api/docs">API Dokumentation

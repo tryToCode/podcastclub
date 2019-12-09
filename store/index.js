@@ -54,7 +54,10 @@ export const actions = {
             commit('setTimer', s)
             commit('setItems', items.data.results)
             commit('setItemsCount', items.data.count)
-            commit('setPageCount', Math.ceil(items.data.count / 20))
+            var pageSize = 20
+            if (localStorage.getItem("pageSize"))
+                pageSize = localStorage.pageSize
+            commit('setPageCount', Math.ceil(items.data.count / pageSize))
         }
         catch(error) {
             if (error.response) {
