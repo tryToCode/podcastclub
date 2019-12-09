@@ -1,0 +1,56 @@
+<template>
+    <div class="relative mx-2 md:mx-0">
+        <select class="block appearance-none bg-gray-200 
+                border border-gray-200 text-gray-700 py-1 
+                px-1 pr-1 px-2 md:pr-8 rounded leading-tight focus:outline-none 
+                focus:bg-white focus:border-gray-500" 
+            @change="onFilterChange($event)"
+            v-model="modelName">
+            <option v-for="t in selectType" 
+                :value="t.value" 
+                :key="t.id">
+                {{ t.value }}
+            </option>
+        </select>
+        <BaseDownArrow />
+    </div>
+</template>
+
+<script>
+import BaseDownArrow from './BaseDownArrow.vue'
+
+export default {
+    data() {
+        return {
+            modelName: this.model
+        }
+    },
+
+    props: {
+        model: {
+            type: String,
+            required: true
+        },
+
+        filterSection: {
+            type: String,
+            required: true
+        },
+
+        selectType: {
+            type: Array,
+            required: true
+        }
+    },
+
+    components: {
+        BaseDownArrow
+    },
+
+    methods: {
+        onFilterChange: function(event) {
+            this.$emit('onBaseFilterChange', event.target.value, this.filterSection)
+        }
+    }
+}
+</script>

@@ -2,54 +2,29 @@
     <div class="max-w-5xl flex flex-wrap md:justify-around bg-gray-100 mx-auto py-2">
         <div class="flex flex-wrap items-center text-sm">
             <div class="">
-                <label class="hidden md:block tracking-wide text-gray-700" 
-                    for="grid-state">
+                <label class="hidden md:block tracking-wide text-gray-700">
                 Search Episodes
                 </label>
             </div>
             <div class="ml-2 flex flex-wrap items-center">
-                <label class="hidden md:block md:pr-2 tracking-wide text-gray-700" 
-                    for="grid-state">
+                <label class="hidden md:block md:pr-2 tracking-wide text-gray-700">
                 of
                 </label>
-                <div class="relative mx-2 md:mx-0">
-                    <select class="block appearance-none bg-gray-200 
-                            border border-gray-200 text-gray-700 py-1 
-                            px-1 pr-1 px-2 md:pr-8 rounded leading-tight focus:outline-none 
-                            focus:bg-white focus:border-gray-500" 
-                        name="catType"
-                        @change="onFilterChange($event, 'category')"
-                        v-model="catSelected">
-                        <option v-for="cat in categoryType" 
-                            :value="cat.name" 
-                            :key="cat.id">
-                            {{ cat.name }}
-                        </option>
-                    </select>
-                    <BaseDownArrow />
-                </div>
+                <BaseFilter 
+                    :model="catSelected"
+                    :selectType="categoryType"
+                    :filterSection="category"
+                    @onBaseFilterChange="onFilterChange"/>
             </div>
             <div class="flex flex-wrap items-center">
-                <label class="hidden md:block md:px-2 tracking-wide text-gray-700" 
-                    for="grid-state">
+                <label class="hidden md:block md:px-2 tracking-wide text-gray-700">
                 for
                 </label>
-                <div class="relative">
-                    <select class="block appearance-none bg-gray-200 
-                            border border-gray-200 text-gray-700 
-                            px-1 py-1 md:px-2 md:pr-8 rounded leading-tight focus:outline-none 
-                            focus:bg-white focus:border-gray-500" 
-                        name="dateType"
-                        @change="onFilterChange($event, 'date')"
-                        v-model="dateSelected">
-                        <option v-for="date in dateType"
-                            :value="date.name" 
-                            :key="date.id">
-                            {{ date.name }}
-                        </option>
-                    </select>
-                    <BaseDownArrow />
-                </div>
+                <BaseFilter 
+                    :model="dateSelected"
+                    :selectType="dateType"
+                    :filterSection="date"
+                    @onBaseFilterChange="onFilterChange"/>
             </div>
         </div>
 
@@ -60,26 +35,28 @@
 </template>
 
 <script>
-import BaseDownArrow from './BaseDownArrow.vue'
+import BaseFilter from './BaseFilter.vue'
 
 export default {
     data() {
         return {
             catSelected: 'All',
             categoryType: [
-                {name: 'All', id: 0},
-                {name: 'IT', id: 1},
-                {name: 'Entrepreneurship', id: 2},
-                {name: 'Finance', id: 3}
+                {value: 'All', id: 0},
+                {value: 'IT', id: 1},
+                {value: 'Entrepreneurship', id: 2},
+                {value: 'Finance', id: 3}
             ],
             dateSelected: 'All Time',
             dateType: [
-                {name: 'All Time', id: 1},
-                {name: 'Last 24', id: 2},
-                {name: 'Past Week', id: 3},
-                {name: 'Past Month', id: 4},
-                {name: 'Past Year', id: 5}
-            ]
+                {value: 'All Time', id: 1},
+                {value: 'Last 24', id: 2},
+                {value: 'Past Week', id: 3},
+                {value: 'Past Month', id: 4},
+                {value: 'Past Year', id: 5}
+            ],
+            date: 'date',
+            category: 'category'
         }
     },
 
@@ -104,7 +81,7 @@ export default {
     },
 
     components: {
-        BaseDownArrow
+        BaseFilter
     },
 
     props: {
@@ -119,17 +96,16 @@ export default {
     },
 
     methods: {
-        onFilterChange: function(event, filterSection) {
-            const newValue = event.target.value
+        onFilterChange: function(value, filterSection) {
             switch(filterSection){
                 case 'category':
-                    this.catSelected = newValue
+                    this.catSelected = value
                     break
                 case 'date':
-                    this.dateSelected = newValue
+                    this.dateSelected = value
                     break
             }            
-            this.$emit('onFilterChange', newValue, filterSection)
+            this.$emit('onFilterChange', value, filterSection)
         }
     }
 }
