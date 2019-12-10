@@ -3,14 +3,14 @@
       <h1 class="text-2xl my-2">Setting</h1>
       <div class="py-2 h-24">
           <h1 class="text-xl border-b-2">Display Options</h1>
-          <div class="flex flex-col flex-wrap text-sm">
+          <div class="flex flex-col flex-wrap">
             <div class="flex flex-wrap justify-center items-center m-4">
                 <BaseLabel :text="displayLabel"
                     :hidden="hiddenOnMobile" />
                 <BaseFilter 
-                    :model="itemPerPage"
+                    :model="itemPerPage.toString()"
                     :selectType="selectOptions"
-                    :filterSection="filterSection"
+                    :filterSection="pageSection"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
           </div>
@@ -24,7 +24,7 @@
             <BaseFilter 
                 :model="catSelected"
                 :selectType="categoryType"
-                :filterSection="category"
+                :filterSection="catSection"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
         <div class="flex flex-wrap justify-center items-center m-4">
@@ -33,7 +33,7 @@
             <BaseFilter 
                 :model="dateSelected"
                 :selectType="dateType"
-                :filterSection="date"
+                :filterSection="dateSection"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
         <div class="flex my-8 justify-end items-end">
@@ -42,9 +42,10 @@
             hover:border-transparent rounded"
             :class="{
                 'opacity-50 cursor-not-allowed':
-                this.itemPerPage === 20
+                disable === true
             }"
-            @click="$router.go(-1)">
+            :key="changed"
+            @click="applySetting">
                 Apply
             </button>
         </div>
@@ -69,6 +70,7 @@ export default {
 
     data() {
         return {
+            changed: false,
             itemPerPage: 20,
             selectOptions: [
                 {value: 10, id: 0},
@@ -98,15 +100,18 @@ export default {
         BaseLabel,
         BaseFilter
     },
-
-    mounted() {
-        if (localStorage.pageSize)
-            this.itemPerPage = localStorage.pageSize
-    },
     
     computed: {
-        filterSection() {
-            return ''
+        pageSection() {
+            return 'pageSize'
+        },
+
+        catSection() {
+            return 'category'
+        },
+
+        dateSection() {
+            return 'date'
         },
 
         displayLabel() {
@@ -123,20 +128,36 @@ export default {
 
         hiddenOnMobile() {
             return false
-        }
-    },
+        },
 
-    watch: {
-        itemPerPage(newSize) {
-            if (newSize === 20)
-                localStorage.removeItem("pageSize")
-            localStorage.pageSize = newSize
+        disable() {
+            return this.itemPerPage === 20 && 
+                this.catSelected === 'All' && 
+                this.dateSelected === 'All Time'
         }
     },
 
     methods: {
-        onFilterChange: function(event) {                
-            localStorage.setItem('pageSize', event.target.value)
+        onFilterChange: function(value, filterSection) {
+            switch(filterSection) {
+                case 'pageSize':
+                    this.itemPerPage = value
+                    break
+                case 'category':
+                    this.catSelected = value
+                    break
+                case 'date':
+                    this.dateSelected = value
+                    break
+            }
+            this.changed = true
+        },
+
+        applySetting() {
+            localStorage.setItem("pageSize", this.itemPerPage)
+            localStorage.setItem("category", this.catSelected)
+            localStorage.setItem("date", this.dateSelected)
+            this.$router.go(-1)
         }
     }
 }

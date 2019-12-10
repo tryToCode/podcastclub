@@ -2,7 +2,7 @@
     <div class="relative mx-2 md:mx-0">
         <select class="block appearance-none bg-gray-200 
                 border border-gray-200 text-gray-700 py-1 
-                px-1 pr-1 px-2 md:pr-8 rounded leading-tight focus:outline-none 
+                px-1 pr-6 md:pr-6 rounded leading-tight focus:outline-none 
                 focus:bg-white focus:border-gray-500" 
             @change="onFilterChange($event)"
             v-model="modelName">
@@ -47,9 +47,15 @@ export default {
         BaseDownArrow
     },
 
+    mounted() {
+        if (localStorage.getItem(this.filterSection))
+            this.modelName = localStorage.getItem(this.filterSection)
+    },
+
     methods: {
         onFilterChange: function(event) {
-            this.$emit('onBaseFilterChange', event.target.value, this.filterSection)
+            const value = event.target.value
+            this.$emit('onBaseFilterChange', value, this.filterSection)
         }
     }
 }

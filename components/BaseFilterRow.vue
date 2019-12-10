@@ -7,7 +7,7 @@
                 <BaseFilter 
                     :model="catSelected"
                     :selectType="categoryType"
-                    :filterSection="category"
+                    :filterSection="catSection"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
             <div class="flex flex-wrap items-center">
@@ -16,7 +16,7 @@
                 <BaseFilter 
                     :model="dateSelected"
                     :selectType="dateType"
-                    :filterSection="date"
+                    :filterSection="dateSection"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
         </div>
@@ -48,29 +48,7 @@ export default {
                 {value: 'Past Week', id: 3},
                 {value: 'Past Month', id: 4},
                 {value: 'Past Year', id: 5}
-            ],
-            date: 'date',
-            category: 'category'
-        }
-    },
-
-    mounted() {
-        if (localStorage.catSelected)
-            this.catSelected = localStorage.catSelected
-        if (localStorage.dateSelected)
-            this.dateSelected = localStorage.dateSelected
-    },
-    
-    watch: {
-        catSelected(newCat) {
-            if (newCat === "All")
-                localStorage.removeItem("catSelected")
-            localStorage.setItem("catSelected", newCat)
-        },
-        dateSelected(newDate) {
-            if (newDate === "All Time")
-                localStorage.removeItem("dateSelected")
-            localStorage.setItem("dateSelected", newDate)
+            ]
         }
     },
 
@@ -91,6 +69,14 @@ export default {
     },
 
     computed: {
+        catSection() {
+            return 'category'
+        },
+
+        dateSection() {
+            return 'date'
+        },
+
         catLabel() {
             return "Search Episodes of"
         },
@@ -106,14 +92,7 @@ export default {
 
     methods: {
         onFilterChange: function(value, filterSection) {
-            switch(filterSection){
-                case 'category':
-                    this.catSelected = value
-                    break
-                case 'date':
-                    this.dateSelected = value
-                    break
-            }            
+            localStorage.setItem(filterSection, value)
             this.$emit('onFilterChange', value, filterSection)
         }
     }
