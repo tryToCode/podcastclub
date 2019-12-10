@@ -1,12 +1,9 @@
 <template>
   <div>
     <BaseNavbar
-      @onInputChange="filterChangeHandle"
-      @reload="reloadHandle" />
+      @onInputChange="filterChangeHandle"/>
 
     <BaseFilterRow 
-      :itemsCount="Number(itemsCount)" 
-      :timeSpend="Number(time)"
       @onFilterChange="filterChangeHandle"/>
 
     <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
@@ -24,7 +21,6 @@
             :item="item" />
           <BasePagination 
             :currentPage="currentPage"
-            :pageCount="Number(pageCount)"
             @nextPage="pageChangeHandle('next')"
             @previousPage="pageChangeHandle('previous')"
             @loadPage="pageChangeHandle" />
@@ -66,8 +62,7 @@ export default {
       currentPage: 1,
       loadItemBaseUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems',
       loading: true,
-      color: "#fc8181",
-      pageSize: 20
+      color: "#fc8181"
     }
   },
 
@@ -93,20 +88,10 @@ export default {
   computed: {
     ...mapState({
       items: 'items',
-      itemsCount: 'itemsCount',
-      time: 'time',
-      pageCount: 'pageCount'
     })
   },
 
   methods: {
-    reloadHandle() {
-      if (process.browser) {
-        window.location.reload(true)
-        localStorage.clear()
-      }
-    },
-
     waitForLoading() {
       if (!this.loading)
         this.loading = true

@@ -22,12 +22,13 @@
         </div>
 
         <div class="hidden md:flex flex-wrap items-center text-sm">
-            <span class="p-2">{{itemsCount}} results ( {{timeSpend}} seconds )</span>
+            <span class="p-2">{{itemsCount}} results ( {{time}} seconds )</span>
         </div>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import BaseFilter from './BaseFilter.vue'
 import BaseLabel from './BaseLabel.vue'
 
@@ -57,18 +58,12 @@ export default {
         BaseLabel
     },
 
-    props: {
-        itemsCount: {
-            type: Number,
-            required: true
-        },
-        timeSpend: {
-            type: Number,
-            required: true
-        }
-    },
-
     computed: {
+        ...mapState({
+            itemsCount: 'itemsCount',
+            time: 'time',
+        }),
+
         catSection() {
             return 'category'
         },

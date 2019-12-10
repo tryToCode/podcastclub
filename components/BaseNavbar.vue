@@ -62,7 +62,10 @@ export default {
         },
 
         reload() {
-            this.$emit('reload')
+            if (process.browser) {
+                window.location.reload(true)
+                localStorage.clear()
+            }
         }
     }
 }
