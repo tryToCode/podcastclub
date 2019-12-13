@@ -3,17 +3,17 @@
     <BaseNavbar
       @onInputChange="filterChangeHandle"/>
 
-    <BaseFilterRow 
-      @onFilterChange="filterChangeHandle"/>
-
-    <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
-          justify-center">
-      <div v-if="loading"
+    <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader :color="color"></pulse-loader>
-      </div>  
+    </div>
 
-      <div v-else>
+    <div v-else>
+      <BaseFilterRow 
+        @onFilterChange="filterChangeHandle"/>
+
+      <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
+        justify-center">
         <div v-if="items.length !== 0">
           <BaseItemRow 
             v-for="item in items"
@@ -31,9 +31,9 @@
           :baseUrl="loadItemUrl"
           :key="loadItemUrl"/>
         </div>
-
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -119,10 +119,10 @@ export default {
     resetRoute() {
       const url = new URL(this.loadItemUrl)
       console.log('url ' + url)
-      var searchInput = url.searchParams.get('search') 
-      var catInput = url.searchParams.get('category')
-      var dateInput = url.searchParams.get('date')
-      var pageSize = url.searchParams.get('pageSize')
+      const searchInput = url.searchParams.get('search') 
+      const catInput = url.searchParams.get('category')
+      const dateInput = url.searchParams.get('date')
+      const pageSize = url.searchParams.get('pageSize')
       searchInput === null ? this.deleteQuery('search') : 
         this.extendRouter({'search': searchInput})
       catInput === null ? this.deleteQuery('category') :
@@ -142,7 +142,7 @@ export default {
     },
 
     deleteQuery(filterSection) {
-      var query = Object.assign({}, this.$route.query)
+      let query = Object.assign({}, this.$route.query)
       switch(filterSection) {
         case 'search':
           delete query.search
