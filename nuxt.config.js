@@ -5,8 +5,8 @@ export default {
   **podcast api endpoint
   */
   env: {
-    baseItemUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems',
-    basePodcastUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/podcasts'
+    baseItemUrl: 'http://localhost:8000/api/rssItems',
+    basePodcastUrl: 'http://localhost:8000/api/podcasts'
   },
   /*
   ** Headers of the page

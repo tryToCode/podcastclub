@@ -3,9 +3,11 @@
       <h1 class="text-2xl my-2">Setting</h1>
       <div class="py-2 h-32">
           <h1 class="text-xl border-b-2">Display Options</h1>
-          <div class="flex flex-col flex-wrap">
-            <div class="flex flex-wrap justify-center items-center m-4">
-                <BaseLabel :text="displayLabel"
+          <div class="flex flex-col flex-wrap py-2">
+            <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
+                <BaseLabel 
+                    class="flex-1"
+                    :text="displayLabel"
                     :hidden="hiddenOnMobile" />
                 <BaseFilter 
                     :model="itemPerPage.toString()"
@@ -18,8 +20,10 @@
 
       <div class="py-2">
         <h1 class="text-xl border-b-2">Rss Item Options</h1>
-        <div class="flex flex-wrap justify-center items-center m-4">
-            <BaseLabel :text="catLabel"
+        <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
+            <BaseLabel 
+                class="flex-1"
+                :text="catLabel"
                 :hidden="hiddenOnMobile" />
             <BaseFilter 
                 :model="catSelected"
@@ -27,8 +31,10 @@
                 :filterSection="catSection"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
-        <div class="flex flex-wrap justify-center items-center m-4">
-            <BaseLabel :text="dateLabel"
+        <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
+            <BaseLabel 
+                class="flex-1"
+                :text="dateLabel"
                 :hidden="hiddenOnMobile" />
             <BaseFilter 
                 :model="dateSelected"
@@ -36,7 +42,7 @@
                 :filterSection="dateSection"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
-        <div class="flex my-8 justify-end items-end">
+        <div class="flex my-10 justify-center items-center">
             <button class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold 
             hover:text-white py-1 px-4 border border-blue-500 
             hover:border-transparent rounded"
