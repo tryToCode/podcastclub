@@ -118,26 +118,23 @@ export default {
 
     resetRoute() {
       const url = new URL(this.loadItemUrl)
-      console.log('url ' + url)
       const searchInput = url.searchParams.get('search') 
       const catInput = url.searchParams.get('category')
       const dateInput = url.searchParams.get('date')
       const pageSize = url.searchParams.get('pageSize')
+      const page = url.searchParams.get('page')
+      let query = Object.assign({}, this.$route.query)
       searchInput === null ? this.deleteQuery('search') : 
-        this.extendRouter({'search': searchInput})
+        query = Object.assign({}, query, {'search': searchInput})
       catInput === null ? this.deleteQuery('category') :
-        this.extendRouter({'category': catInput})
+        query = Object.assign({}, query, {'category': catInput})
       dateInput === null ? this.deleteQuery('date') :
-        this.extendRouter({'date': dateInput})
-      this.currentPage === 1 ? this.deleteQuery('page') :
-        this.extendRouter({'page': this.currentPage})
+        query = Object.assign({}, query, {'date': dateInput})
+      page === null ? this.deleteQuery('page') :
+        query = Object.assign({}, query, {'page': page})
       pageSize === null ? this.deleteQuery('pageSize') :
-        this.extendRouter({'pageSize': pageSize})
-      console.log('route path' + this.$router.query)
-    },
-
-    extendRouter(keyValueObj) {
-      let query = Object.assign({}, this.$route.query, keyValueObj)
+        query = Object.assign({}, query, {'pageSize': pageSize})
+      console.log(query)
       this.$router.push({query: query})
     },
 
