@@ -110,7 +110,8 @@ export const actions = {
         */
         const value = payload.value
         const section = payload.filterSection
-        if (value === 'All' || value === 'All Time' || value === '')
+        const defaultSelectValue = ['All', 'All Time', '']
+        if (value in defaultSelectValue)
             localStorage.removeItem(section)
         else
             localStorage.setItem(section, value)
@@ -127,12 +128,14 @@ export const actions = {
         var baseUrl = new URL(state.loadItemUrl)
         const section = payload.section
         const value = payload.value
-        if (value === 'All' || value === 'All Time' || value === '') {
+        const defaultSelectValue = ['All', 'All Time', '']
+        if (value in defaultSelectValue) {
             if (baseUrl.searchParams.has(section))
                 baseUrl.searchParams.delete(section)
         }
         else {
-            const valueTrimmed = value.split(' ').join('')
+            var valueTrimmed = section === 'search' ? value :
+                        value.split(' ').join('')
             baseUrl.searchParams.set(section, valueTrimmed)
         }
         commit('setUrl', baseUrl.toString())
