@@ -147,5 +147,43 @@ export const actions = {
         commit('setUrl', baseUrl.toString())
         localStorage.setItem('loadItemUrl', baseUrl.toString())
         await dispatch('loadItems')
+    },
+
+    async settingChangeHandle({commit, state, dispatch}, payload) {
+        var baseUrl = new URL(state.loadItemUrl)
+        const catSeleted = payload.category
+        const dateSeleted = payload.date
+        const pageSize = payload.pageSize
+        if (catSeleted === 'All') {
+            localStorage.removeItem('category')
+            if (baseUrl.searchParams.has('category'))
+                baseUrl.searchParams.delete('category')
+        }
+        else {
+            localStorage.setItem('category', catSeleted)
+            baseUrl.searchParams.set('category', catSeleted)
+        }
+        if (dateSeleted === 'All Time') {
+            localStorage.removeItem('date')
+            if (baseUrl.searchParams.has('date'))
+                baseUrl.searchParams.delete('date')
+        }
+        else {
+            const trimmedValue = dateSeleted.split(' ').join('')
+            localStorage.setItem('date', dateSeleted)
+            baseUrl.searchParams.set('date', trimmedValue)
+        }
+        if (pageSize === 20) {
+            localStorage.removeItem('pageSize')
+            if (baseUrl.searchParams.has('pageSize'))
+                baseUrl.searchParams.delete('pageSize')
+        }
+        else {
+            localStorage.setItem('pageSize', pageSize)
+            baseUrl.searchParams.set('pageSize', pageSize)
+        }
+        localStorage.setItem('loadItemUrl', baseUrl.toString())
+        commit('setUrl', baseUrl.toString())
+        await dispatch('loadItems')
     }
 }

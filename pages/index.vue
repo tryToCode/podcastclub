@@ -79,6 +79,7 @@ export default {
       this.startLoding()
       this.$store.dispatch('loadItems')
       .then(() => {
+        this.resetRoute()
         this.stopLoading()
       })
     })
@@ -111,33 +112,33 @@ export default {
       })
       .then(() => {
         this.stopLoading()
-        this.appendQuery()
-        if (value === 'All' || value === 'All Time' || value === '')
-          this.deleteQuery(filterSection)
+        this.resetRoute()
       })
     },
 
-    appendQuery() {
+    resetRoute() {
       const url = new URL(this.loadItemUrl)
+      console.log('url ' + url)
       var searchInput = url.searchParams.get('search') 
       var catInput = url.searchParams.get('category')
       var dateInput = url.searchParams.get('date')
       var pageSize = url.searchParams.get('pageSize')
-      if (searchInput !== null)
+      searchInput === null ? this.deleteQuery('search') : 
         this.extendRouter({'search': searchInput})
-      if (catInput != null)
+      catInput === null ? this.deleteQuery('category') :
         this.extendRouter({'category': catInput})
-      if (dateInput != null)
+      dateInput === null ? this.deleteQuery('date') :
         this.extendRouter({'date': dateInput})
-      if (this.currentPage !== 1)
+      this.currentPage === 1 ? this.deleteQuery('page') :
         this.extendRouter({'page': this.currentPage})
-      if (pageSize !== null)
+      pageSize === null ? this.deleteQuery('pageSize') :
         this.extendRouter({'pageSize': pageSize})
+      console.log('route path' + this.$router.query)
     },
 
     extendRouter(keyValueObj) {
-      this.$router.push({query: 
-        Object.assign({}, this.$route.query, keyValueObj)})
+      let query = Object.assign({}, this.$route.query, keyValueObj)
+      this.$router.push({query: query})
     },
 
     deleteQuery(filterSection) {
@@ -180,9 +181,7 @@ export default {
       })
       .then(() => {
         this.stopLoading()
-        this.appendQuery()
-        if (this.currentPage == 1)
-            this.deleteQuery('page')
+        this.resetRoute()
       })
     }
   }

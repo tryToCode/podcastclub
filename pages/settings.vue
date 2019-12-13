@@ -101,6 +101,15 @@ export default {
         BaseFilter
     },
     
+    mounted() {
+        if (localStorage.getItem('pageSize'))
+            this.itemPerPage = localStorage.getItem('pageSize')
+        if (localStorage.getItem('category'))
+            this.catSelected = localStorage.getItem('category')
+        if (localStorage.getItem('date'))
+            this.dateSelected = localStorage.getItem('date')
+    },
+
     computed: {
         pageSection() {
             return 'pageSize'
@@ -148,12 +157,13 @@ export default {
         },
 
         applySetting() {
-            localStorage.setItem("pageSize", this.itemPerPage)
-            if (this.catSelected !== 'All')
-                localStorage.setItem("category", this.catSelected)
-            if (this.dateSelected !== 'All Time')
-                localStorage.setItem("date", this.dateSelected)
-            this.$router.go(-1)
+            var payload = {
+                'pageSize': this.itemPerPage,
+                'category': this.catSelected,
+                'date': this.dateSelected
+            }
+            this.$store.dispatch('settingChangeHandle', payload)
+            this.$router.push('/')
         }
     }
 }
