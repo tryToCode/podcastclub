@@ -87,7 +87,6 @@ export default {
 
     methods: {
         onFilterChange: function(value, filterSection) {
-            localStorage.setItem(filterSection, value)
             this.$emit('onFilterChange', value, filterSection)
         }
     }

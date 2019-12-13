@@ -2,6 +2,13 @@
 export default {
   mode: 'universal',
   /*
+  **podcast api endpoint
+  */
+  env: {
+    baseItemUrl: 'http://localhost:8000/api/rssItems',
+    basePodcastUrl: 'http://localhost:8000/api/podcasts'
+  },
+  /*
   ** Headers of the page
   */
   head: {

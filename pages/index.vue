@@ -28,8 +28,8 @@
 
         <div v-else>
           <BaseNoItems
-          :baseUrl="loadItemBaseUrl"
-          :key="loadItemBaseUrl"/>
+          :baseUrl="loadItemUrl"
+          :key="loadItemUrl"/>
         </div>
 
       </div>
@@ -49,7 +49,7 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 export default {
   head () {
     return {
-      title: "Podcast Club",
+      title: 'Podcast Club',
       meta: [
       { name: 'description', 
         content: 'Podcast club home index page, a daily updated podcast aggregator' }
@@ -60,9 +60,8 @@ export default {
   data() {
     return {
       currentPage: 1,
-      loadItemBaseUrl: 'http://fathomless-beyond-28426.herokuapp.com/api/rssItems',
       loading: true,
-      color: "#fc8181"
+      color: '#fc8181'
     }
   },
 
@@ -76,70 +75,50 @@ export default {
   },
 
   mounted() {
-    if (localStorage.getItem("loadItemUrl"))
-      this.loadItemBaseUrl = localStorage.loadItemUrl
-    if (localStorage.getItem("pageSize"))
-      this.filterChangeHandle(localStorage.pageSize, "pageSize")
     this.$nextTick(() => {
-      this.waitForLoading()
+      this.startLoding()
+      this.$store.dispatch('loadItems')
+      .then(() => {
+        this.stopLoading()
+      })
     })
   },
 
   computed: {
     ...mapState({
       items: 'items',
+      loadItemUrl: 'loadItemUrl'
     })
   },
 
   methods: {
-    waitForLoading() {
+    startLoding() {
       if (!this.loading)
         this.loading = true
-      this.$store.dispatch('loadItems', this.loadItemBaseUrl)
-      .then(() => {
-        this.loading = false
-        if (process.browser)
-          window.scrollTo({top: 0, behavior: 'smooth'})
-      })
+    },
+
+    stopLoading() {
+      this.loading = false
+      if (process.browser)
+        window.scrollTo({top: 0, behavior: 'smooth'})
     },
 
     async filterChangeHandle(value, filterSection) {
-      /*
-      listen on event change fired from 
-        the search input bar
-        the category selection
-        the date selection 
-        the page size selection
-
-      filter section values: search, category, date, page size 
-
-      search input default: ''
-      category selection default: 'All'
-      date selection default: 'All Time'
-      page size selection default: 20
-
-      based on the query key change from diverse filter section
-      rebuild REST url and also set local storage 
-      */
-      var baseUrl = new URL(this.loadItemBaseUrl)
-      if (value === 'All' || value === "All Time" || value === '' || value === 20) {
-        if (baseUrl.searchParams.has(filterSection)) {
-          baseUrl.searchParams.delete(filterSection)
+      this.startLoding()
+      this.$store.dispatch('selectChangeHandle', {
+        value: value,
+        filterSection: filterSection
+      })
+      .then(() => {
+        this.stopLoading()
+        this.appendQuery()
+        if (value === 'All' || value === 'All Time' || value === '')
           this.deleteQuery(filterSection)
-        }
-      } 
-      else {
-        const valueTrimmed = value.split(' ').join('')
-        baseUrl.searchParams.set(filterSection, valueTrimmed)
-      }
-      this.loadItemBaseUrl = baseUrl.toString()
-      localStorage.setItem("loadItemUrl", this.loadItemBaseUrl)
-      this.appendQuery()
-      this.waitForLoading()
+      })
     },
 
     appendQuery() {
-      const url = new URL(this.loadItemBaseUrl)
+      const url = new URL(this.loadItemUrl)
       var searchInput = url.searchParams.get('search') 
       var catInput = url.searchParams.get('category')
       var dateInput = url.searchParams.get('date')
@@ -174,7 +153,7 @@ export default {
           delete query.date
           break
         case 'page':
-          this.deletePageQuery(query)
+          delete query.page
           break
         case 'pageSize':
           delete query.pageSize
@@ -183,30 +162,28 @@ export default {
       this.$router.replace({query})
     },
 
-    deletePageQuery(query) {
-      if (this.currentPage === 1)
-        delete query.page
-    },
-
     async pageChangeHandle(value) {
       switch(value) {
-          case 'next':
-              this.currentPage += 1
-              break
-          case 'previous':
-              this.currentPage -= 1
-              break
-          default:
-              this.currentPage = value
-              break
+        case 'next':
+            this.currentPage += 1
+            break
+        case 'previous':
+            this.currentPage -= 1
+            break
+        default:
+            this.currentPage = value
+            break
       }
-      var baseUrl = new URL(this.loadItemBaseUrl)
-      baseUrl.searchParams.set("page", this.currentPage)
-      this.loadItemBaseUrl = baseUrl.toString()
-      localStorage.setItem("loadItemUrl", this.loadItemBaseUrl)
-      this.waitForLoading()
-      this.appendQuery()
-      this.deleteQuery('page')
+      this.startLoding()
+      this.$store.dispatch('pageChangeHandle', {
+        pageNumber: this.currentPage
+      })
+      .then(() => {
+        this.stopLoading()
+        this.appendQuery()
+        if (this.currentPage == 1)
+            this.deleteQuery('page')
+      })
     }
   }
 }

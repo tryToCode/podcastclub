@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-3xl flex flex-col mx-auto justify-center px-4 py-2">
       <h1 class="text-2xl my-2">Setting</h1>
-      <div class="py-2 h-24">
+      <div class="py-2 h-32">
           <h1 class="text-xl border-b-2">Display Options</h1>
           <div class="flex flex-col flex-wrap">
             <div class="flex flex-wrap justify-center items-center m-4">
@@ -42,7 +42,7 @@
             hover:border-transparent rounded"
             :class="{
                 'opacity-50 cursor-not-allowed':
-                disable === true
+                changed !== true
             }"
             :key="changed"
             @click="applySetting">
@@ -119,7 +119,7 @@ export default {
         },
 
         catLabel() {
-            return 'Default type'
+            return 'Default category'
         },
 
         dateLabel() {
@@ -128,12 +128,6 @@ export default {
 
         hiddenOnMobile() {
             return false
-        },
-
-        disable() {
-            return this.itemPerPage === 20 && 
-                this.catSelected === 'All' && 
-                this.dateSelected === 'All Time'
         }
     },
 
@@ -155,8 +149,10 @@ export default {
 
         applySetting() {
             localStorage.setItem("pageSize", this.itemPerPage)
-            localStorage.setItem("category", this.catSelected)
-            localStorage.setItem("date", this.dateSelected)
+            if (this.catSelected !== 'All')
+                localStorage.setItem("category", this.catSelected)
+            if (this.dateSelected !== 'All Time')
+                localStorage.setItem("date", this.dateSelected)
             this.$router.go(-1)
         }
     }

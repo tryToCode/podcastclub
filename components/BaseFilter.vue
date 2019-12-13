@@ -54,8 +54,7 @@ export default {
 
     methods: {
         onFilterChange: function(event) {
-            const value = event.target.value
-            this.$emit('onBaseFilterChange', value, this.filterSection)
+            this.$emit('onBaseFilterChange', event.target.value, this.filterSection)
         }
     }
 }

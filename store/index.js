@@ -1,15 +1,19 @@
 import axios from 'axios'
 
 export const state = () => ({
+    loadItemUrl: process.env.baseItemUrl,
     items: [],
     itemsCount: Number,
     time: Number,
     pageCount: Number,
-    podcasts: [],
-    loading: Boolean
+    podcasts: []
 })
 
 export const mutations = {
+    setUrl(state, url) {
+        state.loadItemUrl = url
+    },
+
     setPodcasts(state, podcasts) {
         state.podcasts = podcasts
     },
@@ -28,10 +32,6 @@ export const mutations = {
 
     setPageCount(state, count) {
         state.pageCount = count
-    },
-
-    setLoading(state, loading) {
-        state.loading = loading
     }
 }
 
@@ -39,15 +39,20 @@ export const actions = {
     async loadPodcasts({commit}) {
         try {
             var podcasts = await axios
-                .get('http://fathomless-beyond-28426.herokuapp.com/api/podcasts')
+                .get(process.env.basePodcastUrl)
             commit('setPodcasts', podcasts.data.results)
         } catch(error) {
             console.log(error)
         }
     },
 
-    async loadItems({commit}, url) {
+    async loadItems({commit, state}) {
         try {
+            var url = null
+            if (localStorage.getItem('loadItemUrl'))
+                url = localStorage.getItem('loadItemUrl')
+            else
+                url = state.loadItemUrl
             var start = Date.now();
             var items = await axios.get(url)
             var s = (Date.now() - start) / 1000
@@ -87,13 +92,60 @@ export const actions = {
         }
     },
 
-    async updateLikes({commit}, pk) {
+    async updateLikes({state}, pk) {
         try {
             const data = {upVote: true}
-            axios.patch(`http://fathomless-beyond-28426.herokuapp.com/api/rssItems/${pk}/`, data)
+            const url = state.loadItemUrl
+            axios.patch(`${url}/${pk}/`, data)
         }
         catch (error) {
             console.log(error)
         }
+    },
+
+    async selectChangeHandle({dispatch}, payload) {
+        /* handle each select option change and search input 
+        *  event fired from ui and reset local storage 
+        *  storage variable used to load init selected value
+        */
+        const value = payload.value
+        const section = payload.filterSection
+        if (value === 'All' || value === 'All Time' || value === '')
+            localStorage.removeItem(section)
+        else
+            localStorage.setItem(section, value)
+        await dispatch('rebuildUrl', {
+            value: value,
+            section: section
+        })
+    },
+
+    async rebuildUrl({commit, state, dispatch}, payload) {
+        /*
+        * filter section is used as query key 
+        */
+        var baseUrl = new URL(state.loadItemUrl)
+        const section = payload.section
+        const value = payload.value
+        if (value === 'All' || value === 'All Time' || value === '') {
+            if (baseUrl.searchParams.has(section))
+                baseUrl.searchParams.delete(section)
+        }
+        else {
+            const valueTrimmed = value.split(' ').join('')
+            baseUrl.searchParams.set(section, valueTrimmed)
+        }
+        commit('setUrl', baseUrl.toString())
+        localStorage.setItem('loadItemUrl', baseUrl.toString())
+        await dispatch('loadItems')
+    },
+
+    async pageChangeHandle({commit, state, dispatch}, payload) {
+        var baseUrl = new URL(state.loadItemUrl)
+        const pageNumber = payload.pageNumber
+        baseUrl.searchParams.set('page', pageNumber)
+        commit('setUrl', baseUrl.toString())
+        localStorage.setItem('loadItemUrl', baseUrl.toString())
+        await dispatch('loadItems')
     }
 }

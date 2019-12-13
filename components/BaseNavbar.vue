@@ -43,16 +43,8 @@ export default {
     },
 
     mounted() {
-        if (localStorage.searchInput) {
-            this.searchInput = localStorage.searchInput
-        }
-    },
-
-    watch: {
-        searchInput(newInput) {
-            if (newInput.length === 0)
-                localStorage.removeItem("searchInput")
-            localStorage.searchInput = newInput
+        if (localStorage.getItem("search")) {
+            this.searchInput = localStorage.getItem("search")
         }
     },
 
