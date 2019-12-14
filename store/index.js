@@ -6,7 +6,9 @@ export const state = () => ({
     itemsCount: Number,
     time: Number,
     pageCount: Number,
-    podcasts: []
+    podcasts: [],
+    items4Doc: [],
+    itemsCount4Doc: Number
 })
 
 export const mutations = {
@@ -32,6 +34,14 @@ export const mutations = {
 
     setPageCount(state, count) {
         state.pageCount = count
+    },
+
+    setItems4Doc(state, items) {
+        state.items4Doc = items
+    },
+
+    setItemsCount4Doc(state, count) {
+        state.itemsCount4Doc = count
     }
 }
 
@@ -57,9 +67,8 @@ export const actions = {
             commit('setTimer', s)
             commit('setItems', items.data.results)
             commit('setItemsCount', items.data.count)
-            let pageSize = 20
-            if (localStorage.getItem("pageSize"))
-                pageSize = localStorage.pageSize
+            let pageSize = localStorage.getItem("pageSize") ?
+                localStorage.getItem("pageSize") : 20
             commit('setPageCount', Math.ceil(items.data.count / pageSize))
         }
         catch(error) {
@@ -87,6 +96,17 @@ export const actions = {
                 // Something happened in setting up the request and triggered an Error
                 console.log('Error', error.message);
             }
+        }
+    },
+
+    async loadItems4Doc({commit}) {
+        try {
+            let items = await axios.get(process.env.baseItemUrl)
+            commit('setItems4Doc', items.data.results)
+            commit('setItemsCount4Doc', items.data.count)
+        }
+        catch (error) {
+            console.log(error)
         }
     },
 

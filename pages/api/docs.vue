@@ -4,14 +4,21 @@
             <h1 class="text-2xl font-medium m-2">Intro</h1>
             <p class="text-base m-2">
                 Podcast Club consumes data from the 
-                <a class="border-b-2" href="https://github.com/tryToCode/podcast-api">
-                Podcast backend Api</a> which is built with the
-                <a class="border-b-2" href="https://www.django-rest-framework.org/">Django Rest API</a>.
-                The backend Api contains mainly 2 Resources as described below and currently only supports
+                <a class="border-b-2" 
+                    href="https://github.com/tryToCode/podcast-api">
+                    Podcast backend Api</a> 
+                which is built with the
+                <a class="border-b-2" 
+                    href="https://www.django-rest-framework.org/">
+                    Django Rest API
+                </a>.
+                The backend Api contains mainly 2 Resources as described below 
+                and currently only supports
                 HTTP GET method. 
             </p>
             <p class="m-2">
-                <strong>Note</strong>: The base Url to the backend Api: http://fathomless-beyond-28426.herokuapp.com
+                <strong>Note</strong>: The base Url to the backend Api: 
+                http://fathomless-beyond-28426.herokuapp.com
             </p>
         </div>
         <div class="flex flex-col m-2">
@@ -47,8 +54,13 @@
         <div class="flex flex-col border-2 p-4 m-4">
             <h1 class="text-2xl font-bold m-2">Items</h1>
             <div>
-                <span class="font-bold border-2 text-green-400 px-2 py-1 rounded uppercase m-2">Get</span>
-                <span class="bg-green-100">http://fathomless-beyond-28426.herokuapp.com/api/rssItems</span>
+                <span class="font-bold border-2 text-green-400 px-2 
+                    py-1 rounded uppercase m-2">
+                    Get
+                </span>
+                <span class="bg-green-100">
+                    http://fathomless-beyond-28426.herokuapp.com/api/rssItems
+                </span>
             </div>
             <div class="m-2">
                 <vue-json-pretty
@@ -59,8 +71,13 @@
         <div class="flex flex-col border-2 p-4 m-4">
             <h1 class="text-2xl font-bold m-2">Single Item</h1>
             <div>
-                <span class="font-bold border-2 text-green-400 px-2 py-1 rounded uppercase m-2">Get</span>
-                <span class="bg-green-100">http://fathomless-beyond-28426.herokuapp.com/api/rssItems/:id</span>
+                <span class="font-bold border-2 text-green-400 px-2 py-1 
+                    rounded uppercase m-2">
+                    Get
+                </span>
+                <span class="bg-green-100">
+                    http://fathomless-beyond-28426.herokuapp.com/api/rssItems/:id
+                </span>
             </div>
             <div class="m-2">
                 <vue-json-pretty
@@ -71,8 +88,13 @@
         <div class="flex flex-col border-2 p-4 m-4">
             <h1 class="text-2xl font-bold m-2">Podcasts</h1>
             <div>
-                <span class="font-bold border-2 text-green-400 px-2 py-1 rounded uppercase m-2">Get</span>
-                <span class="bg-green-100">http://fathomless-beyond-28426.herokuapp.com/api/podcasts</span>
+                <span class="font-bold border-2 text-green-400 px-2 
+                    py-1 rounded uppercase m-2">
+                    Get
+                </span>
+                <span class="bg-green-100">
+                    http://fathomless-beyond-28426.herokuapp.com/api/podcasts
+                </span>
             </div>
             <div class="m-2">
                 <vue-json-pretty
@@ -83,8 +105,13 @@
         <div class="flex flex-col border-2 p-4 m-4">
             <h1 class="text-2xl font-bold m-2">Single Podcast</h1>
             <div>
-                <span class="font-bold border-2 text-green-400 px-2 py-1 rounded uppercase m-2">Get</span>
-                <span class="bg-green-100">http://fathomless-beyond-28426.herokuapp.com/api/podcasts/:id</span>
+                <span class="font-bold border-2 text-green-400 px-2 py-1 
+                    rounded uppercase m-2">
+                    Get
+                </span>
+                <span class="bg-green-100">
+                    http://fathomless-beyond-28426.herokuapp.com/api/podcasts/:id
+                </span>
             </div>
             <div class="m-2">
                 <vue-json-pretty
@@ -112,8 +139,7 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.$nuxt.$loading.start()
-            this.$store.dispatch('loadItems', 
-                'http://fathomless-beyond-28426.herokuapp.com/api/rssItems')
+            this.$store.dispatch('loadItems4Doc')
             this.$store.dispatch('loadPodcasts')
             .then(() => this.$nuxt.$loading.finish())
         })
@@ -121,8 +147,8 @@ export default {
 
     computed: {
         ...mapState({
-            items: 'items',
-            itemsCount: 'itemsCount',
+            items: 'items4Doc',
+            itemsCount: 'itemsCount4Doc',
             podcasts: 'podcasts'
         })
     }

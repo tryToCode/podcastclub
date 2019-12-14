@@ -60,8 +60,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      loading: true,
-      color: '#fc8181'
+      loading: true
     }
   },
 
@@ -89,7 +88,11 @@ export default {
     ...mapState({
       items: 'items',
       loadItemUrl: 'loadItemUrl'
-    })
+    }),
+
+    color() {
+      return '#fc8181'
+    }
   },
 
   methods: {
@@ -124,17 +127,21 @@ export default {
       const pageSize = url.searchParams.get('pageSize')
       const page = url.searchParams.get('page')
       let query = Object.assign({}, this.$route.query)
-      searchInput === null ? this.deleteQuery('search') : 
+      searchInput === null ? 
+        this.deleteQuery('search') : 
         query = Object.assign({}, query, {'search': searchInput})
-      catInput === null ? this.deleteQuery('category') :
+      catInput === null ? 
+        this.deleteQuery('category') :
         query = Object.assign({}, query, {'category': catInput})
-      dateInput === null ? this.deleteQuery('date') :
+      dateInput === null ? 
+        this.deleteQuery('date') :
         query = Object.assign({}, query, {'date': dateInput})
-      page === null ? this.deleteQuery('page') :
+      page === null ? 
+        this.deleteQuery('page') :
         query = Object.assign({}, query, {'page': page})
-      pageSize === null ? this.deleteQuery('pageSize') :
+      pageSize === null ? 
+        this.deleteQuery('pageSize') :
         query = Object.assign({}, query, {'pageSize': pageSize})
-      console.log(query)
       this.$router.push({query: query})
     },
 
