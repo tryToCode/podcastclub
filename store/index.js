@@ -38,7 +38,7 @@ export const mutations = {
 export const actions = {
     async loadPodcasts({commit}) {
         try {
-            var podcasts = await axios
+            let podcasts = await axios
                 .get(process.env.basePodcastUrl)
             commit('setPodcasts', podcasts.data.results)
         } catch(error) {
@@ -48,18 +48,16 @@ export const actions = {
 
     async loadItems({commit, state}) {
         try {
-            var url = null
-            if (localStorage.getItem('loadItemUrl'))
-                url = localStorage.getItem('loadItemUrl')
-            else
+            let url = localStorage.getItem('loadItemUrl') ?
+                localStorage.getItem('loadItemUrl') :
                 url = state.loadItemUrl
-            var start = Date.now();
-            var items = await axios.get(url)
-            var s = (Date.now() - start) / 1000
+            let start = Date.now();
+            let items = await axios.get(url)
+            let s = (Date.now() - start) / 1000
             commit('setTimer', s)
             commit('setItems', items.data.results)
             commit('setItemsCount', items.data.count)
-            var pageSize = 20
+            let pageSize = 20
             if (localStorage.getItem("pageSize"))
                 pageSize = localStorage.pageSize
             commit('setPageCount', Math.ceil(items.data.count / pageSize))
@@ -95,8 +93,7 @@ export const actions = {
     async updateLikes({state}, pk) {
         try {
             const data = {upVote: true}
-            const url = state.loadItemUrl
-            axios.patch(`${url}/${pk}/`, data)
+            axios.patch(`${state.loadItemUrl}/${pk}/`, data)
         }
         catch (error) {
             console.log(error)
@@ -111,9 +108,8 @@ export const actions = {
         const value = payload.value
         const section = payload.filterSection
         const defaultSelectValue = ['All', 'All Time', '']
-        if (value in defaultSelectValue)
-            localStorage.removeItem(section)
-        else
+        defaultSelectValue.includes(value) ?
+            localStorage.removeItem(section) :
             localStorage.setItem(section, value)
         await dispatch('rebuildUrl', {
             value: value,
@@ -123,19 +119,17 @@ export const actions = {
 
     async rebuildUrl({commit, state, dispatch}, payload) {
         /*
-        * filter section is used as query key 
+        * filter section is used as backend query key 
         */
         var baseUrl = new URL(state.loadItemUrl)
         const section = payload.section
         const value = payload.value
         const defaultSelectValue = ['All', 'All Time', '']
-        if (value in defaultSelectValue) {
-            if (baseUrl.searchParams.has(section))
-                baseUrl.searchParams.delete(section)
-        }
+        if (defaultSelectValue.includes(value))
+            baseUrl.searchParams.delete(section)
         else {
-            var valueTrimmed = section === 'search' ? value :
-                        value.split(' ').join('')
+            let valueTrimmed = section === 'search' ? value :
+                value.split(' ').join('')
             baseUrl.searchParams.set(section, valueTrimmed)
         }
         commit('setUrl', baseUrl.toString())
@@ -154,32 +148,29 @@ export const actions = {
 
     async settingChangeHandle({commit, state, dispatch}, payload) {
         var baseUrl = new URL(state.loadItemUrl)
-        const catSeleted = payload.category
-        const dateSeleted = payload.date
+        const category = payload.category
+        const date = payload.date
         const pageSize = payload.pageSize
-        if (catSeleted === 'All') {
+        if (category === 'All') {
             localStorage.removeItem('category')
-            if (baseUrl.searchParams.has('category'))
-                baseUrl.searchParams.delete('category')
+            baseUrl.searchParams.delete('category')
         }
         else {
-            localStorage.setItem('category', catSeleted)
-            baseUrl.searchParams.set('category', catSeleted)
+            localStorage.setItem('category', category)
+            baseUrl.searchParams.set('category', category)
         }
-        if (dateSeleted === 'All Time') {
+        if (date === 'All Time') {
             localStorage.removeItem('date')
-            if (baseUrl.searchParams.has('date'))
-                baseUrl.searchParams.delete('date')
+            baseUrl.searchParams.delete('date')
         }
         else {
-            const trimmedValue = dateSeleted.split(' ').join('')
-            localStorage.setItem('date', dateSeleted)
+            const trimmedValue = date.split(' ').join('')
+            localStorage.setItem('date', date)
             baseUrl.searchParams.set('date', trimmedValue)
         }
         if (pageSize === 20) {
             localStorage.removeItem('pageSize')
-            if (baseUrl.searchParams.has('pageSize'))
-                baseUrl.searchParams.delete('pageSize')
+            baseUrl.searchParams.delete('pageSize')
         }
         else {
             localStorage.setItem('pageSize', pageSize)

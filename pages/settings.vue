@@ -163,7 +163,7 @@ export default {
         },
 
         applySetting() {
-            var payload = {
+            const payload = {
                 'pageSize': this.itemPerPage,
                 'category': this.catSelected,
                 'date': this.dateSelected
