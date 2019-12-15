@@ -1,5 +1,12 @@
-![MIT license](https://img.shields.io/github/license/tryToCode/podcastclub)
-![Website](https://img.shields.io/website?url=http%3A%2F%2Fpodcastclub.net%2F)
+<p>
+  <a href="https://github.com/tryToCode/podcastclub/blob/layout-v2/LICENSE">
+    <img src="https://img.shields.io/github/license/tryToCode/podcastclub" alt="mit license">
+  </a>
+  <a href="http://podcastclub.net/">
+    <img src="https://img.shields.io/website?url=http%3A%2F%2Fpodcastclub.net%2F" alt="Podcast Club">
+  </a>
+</p>
+
 # Podcast club
 
 ###### **Introduction**
@@ -38,10 +45,10 @@ npm run dev
 
 ## Runnig the tests
 
-Podcast Club is currently covered by ![nightwatch](https://nightwatchjs.org/) for End-To-End testing.
-Tests are executed under Firefox, if you prefer other browser, check out the ![documentation](https://nightwatchjs.org/gettingstarted/installation/#install-geckodriver) for installation.
+Podcast Club is currently covered by [nightwatch](https://nightwatchjs.org/) for End-To-End testing.
+Tests are executed under Firefox, if you prefer other browser, check out the [documentation](https://nightwatchjs.org/gettingstarted/installation/#install-geckodriver) for installation.
 
-Testcase are located under the ![test](https://github.com/tryToCode/podcastclub/tree/layout-v2/test) folder.
+Testcase are located under the [test](https://github.com/tryToCode/podcastclub/tree/layout-v2/test) folder.
 
 Run test under window:
 
@@ -50,12 +57,12 @@ node nightwatch.js test/index.test.js
 ```
 
 ## Build With
-* ![Nuxt.js](https://nuxtjs.org/)
-* ![Tailwindcss](https://tailwindcss.com/)
+* [Nuxt.js](https://nuxtjs.org/)
+* [Tailwindcss](https://tailwindcss.com/)
 
 ## Documentation
 
-Learn more about the Podcast backend API ![here](http://podcastclub.net/api/docs).
+Learn more about the Podcast backend API [here](http://podcastclub.net/api/docs).
 
 ## License
 
