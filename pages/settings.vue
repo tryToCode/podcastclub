@@ -10,6 +10,7 @@
                     :text="DISPALY_LABEL"
                     :hidden="hiddenOnMobile" />
                 <BaseFilter 
+                    :id="PAGE_ID"
                     :model="itemPerPage.toString()"
                     :selectType="selectOptions"
                     :filterSection="PAGE_SECTION"
@@ -26,6 +27,7 @@
                 :text="CAT_LAEBL"
                 :hidden="hiddenOnMobile" />
             <BaseFilter 
+                :id="CAT_ID"
                 :model="catSelected"
                 :selectType="categoryType"
                 :filterSection="CAT_SECTION"
@@ -36,10 +38,12 @@
                 class="flex-1"
                 :text="DATE_LABEL"
                 :hidden="hiddenOnMobile" />
-            <BaseFilter 
+            <BaseFilter
+                :id="DATE_ID" 
                 :model="dateSelected"
                 :selectType="dateType"
-                :filterSection="DATE_SECTION "/>
+                :filterSection="DATE_SECTION"
+                @onBaseFilterChange="onFilterChange"/>
         </div>
         <div class="flex my-10 justify-center items-center">
             <button class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold 
@@ -116,6 +120,12 @@ export default {
     },
 
     computed: {
+        PAGE_ID: () => 'pageSizeSelect',
+
+        CAT_ID: () => 'categorySelect',
+
+        DATE_ID: () => 'dateSelect',
+
         PAGE_SECTION: () => 'pageSize',
 
         CAT_SECTION: () => 'category',

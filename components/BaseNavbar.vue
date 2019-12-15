@@ -4,6 +4,7 @@
             <div class="flex pl-4 items-center">
                 <img src="~/assets/podcast.png">
                 <nuxt-link class="pl-2 tracking-wide text-xl"
+                    id="reloadPage"
                     to="/"
                     @click.native="reload">
                     Podcast Club
@@ -15,7 +16,7 @@
             <div class="flex flex-1 px-2 items-center relative">
                 <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-10
                      font-base md:font-medium justify-center flex" 
-                    type="text" 
+                    type="search" 
                     v-model.trim="searchInput"
                     placeholder="Search Episode by title, url or podcast"
                     @input="onInputChange($event, 'search')">
