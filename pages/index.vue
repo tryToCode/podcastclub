@@ -3,34 +3,33 @@
     <BaseNavbar
       @onInputChange="filterChangeHandle"/>
 
-    <div v-if="loading"
-        class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :color="color"></pulse-loader>
-    </div>
-
-    <div v-else>
-      <BaseFilterRow 
+    <BaseFilterRow 
         @onFilterChange="filterChangeHandle"/>
 
-      <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
-        justify-center">
-        <div v-if="items.length !== 0">
-          <BaseItemRow 
-            v-for="item in items"
-            :key="item.id"
-            :item="item" />
-          <BasePagination 
-            :currentPage="currentPage"
-            @nextPage="pageChangeHandle('next')"
-            @previousPage="pageChangeHandle('previous')"
-            @loadPage="pageChangeHandle" />
-        </div>
+    <div v-if="loading"
+        class="flex flex-col justify-center items-center h-screen">
+        <pulse-loader :COLOR="COLOR"></pulse-loader>
+    </div>
 
-        <div v-else>
-          <BaseNoItems
-          :baseUrl="loadItemUrl"
-          :key="loadItemUrl"/>
-        </div>
+    <div v-else 
+      class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
+      justify-center">
+      <div v-if="items.length !== 0">
+        <BaseItemRow 
+          v-for="item in items"
+          :key="item.id"
+          :item="item" />
+        <BasePagination 
+          :currentPage="currentPage"
+          @nextPage="pageChangeHandle('next')"
+          @previousPage="pageChangeHandle('previous')"
+          @loadPage="pageChangeHandle" />
+      </div>
+
+      <div v-else>
+        <BaseNoItems
+        :baseUrl="loadItemUrl"
+        :key="loadItemUrl"/>
       </div>
     </div>
     
@@ -60,8 +59,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      loading: true,
-      color: '#fc8181'
+      loading: true
     }
   },
 
@@ -86,10 +84,13 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      items: 'items',
-      loadItemUrl: 'loadItemUrl'
-    })
+    ...mapState([
+      'items',
+      'loadItemUrl'
+    ]),
+
+    COLOR: () => '#fc8181'
+
   },
 
   methods: {
@@ -124,17 +125,21 @@ export default {
       const pageSize = url.searchParams.get('pageSize')
       const page = url.searchParams.get('page')
       let query = Object.assign({}, this.$route.query)
-      searchInput === null ? this.deleteQuery('search') : 
+      searchInput === null ? 
+        this.deleteQuery('search') : 
         query = Object.assign({}, query, {'search': searchInput})
-      catInput === null ? this.deleteQuery('category') :
+      catInput === null ? 
+        this.deleteQuery('category') :
         query = Object.assign({}, query, {'category': catInput})
-      dateInput === null ? this.deleteQuery('date') :
+      dateInput === null ? 
+        this.deleteQuery('date') :
         query = Object.assign({}, query, {'date': dateInput})
-      page === null ? this.deleteQuery('page') :
+      page === null ? 
+        this.deleteQuery('page') :
         query = Object.assign({}, query, {'page': page})
-      pageSize === null ? this.deleteQuery('pageSize') :
+      pageSize === null ? 
+        this.deleteQuery('pageSize') :
         query = Object.assign({}, query, {'pageSize': pageSize})
-      console.log(query)
       this.$router.push({query: query})
     },
 

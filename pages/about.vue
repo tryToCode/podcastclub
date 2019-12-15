@@ -59,14 +59,16 @@ export default {
         this.$nextTick(() => {
             this.$nuxt.$loading.start()
             this.$store.dispatch('loadPodcasts')
-            .then(() => this.$nuxt.$loading.finish())
+            .then(() => 
+                this.$nuxt.$loading.finish()
+            )
         })
     },
 
     computed: {
-        ...mapState({
-            podcasts: 'podcasts'
-        })
+        ...mapState([
+            'podcasts'
+        ])
     },
 
     methods: {

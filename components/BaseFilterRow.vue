@@ -2,27 +2,30 @@
     <div class="max-w-5xl flex flex-wrap md:justify-around bg-gray-100 mx-auto py-2">
         <div class="flex flex-wrap items-center text-sm">
             <div class="ml-2 flex flex-wrap items-center">
-                <BaseLabel :text="catLabel"
+                <BaseLabel :text="CAT_LABEL"
                     :hidden="hiddenOnMobile" />
                 <BaseFilter 
                     :model="catSelected"
                     :selectType="categoryType"
-                    :filterSection="catSection"
+                    :filterSection="CAT_SECTION"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
             <div class="flex flex-wrap items-center">
-                <BaseLabel :text="dateLabel"
+                <BaseLabel :text="DATE_LABEL"
                     :hidden="hiddenOnMobile" />
                 <BaseFilter 
                     :model="dateSelected"
                     :selectType="dateType"
-                    :filterSection="dateSection"
+                    :filterSection="DATE_SECTION"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
         </div>
 
         <div class="hidden md:flex flex-wrap items-center text-sm">
-            <span class="p-2">{{itemsCount}} results ( {{time}} seconds )</span>
+            <span class="p-2">
+                {{Number(itemsCount)}} results 
+                ( {{Number(time)}} seconds )
+            </span>
         </div>
     </div>
 </template>
@@ -59,27 +62,19 @@ export default {
     },
 
     computed: {
-        ...mapState({
-            itemsCount: 'itemsCount',
-            time: 'time',
-        }),
+        ...mapState([
+            'itemsCount',
+            'time'
+        ]),
 
-        catSection() {
-            return 'category'
-        },
+        CAT_SECTION: () => 'category',
 
-        dateSection() {
-            return 'date'
-        },
+        DATE_SECTION: () => 'date',
 
-        catLabel() {
-            return "Search Episodes of"
-        },
+        CAT_LABEL: () => "Search Episodes of",
 
-        dateLabel() {
-            return "for"
-        },
-
+        DATE_LABEL: () => "for",
+        
         hiddenOnMobile() {
             return true
         }
@@ -87,6 +82,14 @@ export default {
 
     methods: {
         onFilterChange: function(value, filterSection) {
+            switch (filterSection) {
+                case 'category':
+                    this.catSelected = value
+                    break
+                case 'date':
+                    this.dateSelected = value
+                    break
+            }
             this.$emit('onFilterChange', value, filterSection)
         }
     }

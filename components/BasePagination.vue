@@ -59,9 +59,9 @@ export default {
         BasePaginationTrigger
     },
     computed: {
-        ...mapState({
-            pageCount: 'pageCount'
-        }),
+        ...mapState([
+            'pageCount'
+        ]),
 
         isPreviousButtonDisabled() {
             return this.currentPage === 1

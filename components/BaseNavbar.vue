@@ -16,7 +16,7 @@
                 <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-10
                      font-base md:font-medium justify-center flex" 
                     type="text" 
-                    v-model="searchInput"
+                    v-model.trim="searchInput"
                     placeholder="Search Episode by title, url or podcast"
                     @input="onInputChange($event, 'search')">
                 <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-2">
