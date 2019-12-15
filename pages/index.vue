@@ -3,34 +3,33 @@
     <BaseNavbar
       @onInputChange="filterChangeHandle"/>
 
-    <div v-if="loading"
-        class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :color="color"></pulse-loader>
-    </div>
-
-    <div v-else>
-      <BaseFilterRow 
+    <BaseFilterRow 
         @onFilterChange="filterChangeHandle"/>
 
-      <div class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
-        justify-center">
-        <div v-if="items.length !== 0">
-          <BaseItemRow 
-            v-for="item in items"
-            :key="item.id"
-            :item="item" />
-          <BasePagination 
-            :currentPage="currentPage"
-            @nextPage="pageChangeHandle('next')"
-            @previousPage="pageChangeHandle('previous')"
-            @loadPage="pageChangeHandle" />
-        </div>
+    <div v-if="loading"
+        class="flex flex-col justify-center items-center h-screen">
+        <pulse-loader :COLOR="COLOR"></pulse-loader>
+    </div>
 
-        <div v-else>
-          <BaseNoItems
-          :baseUrl="loadItemUrl"
-          :key="loadItemUrl"/>
-        </div>
+    <div v-else 
+      class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
+      justify-center">
+      <div v-if="items.length !== 0">
+        <BaseItemRow 
+          v-for="item in items"
+          :key="item.id"
+          :item="item" />
+        <BasePagination 
+          :currentPage="currentPage"
+          @nextPage="pageChangeHandle('next')"
+          @previousPage="pageChangeHandle('previous')"
+          @loadPage="pageChangeHandle" />
+      </div>
+
+      <div v-else>
+        <BaseNoItems
+        :baseUrl="loadItemUrl"
+        :key="loadItemUrl"/>
       </div>
     </div>
     
@@ -85,14 +84,13 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      items: 'items',
-      loadItemUrl: 'loadItemUrl'
-    }),
+    ...mapState([
+      'items',
+      'loadItemUrl'
+    ]),
 
-    color() {
-      return '#fc8181'
-    }
+    COLOR: () => '#fc8181'
+
   },
 
   methods: {

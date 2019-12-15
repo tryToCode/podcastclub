@@ -7,12 +7,12 @@
             <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
                 <BaseLabel 
                     class="flex-1"
-                    :text="displayLabel"
+                    :text="DISPALY_LABEL"
                     :hidden="hiddenOnMobile" />
                 <BaseFilter 
                     :model="itemPerPage.toString()"
                     :selectType="selectOptions"
-                    :filterSection="pageSection"
+                    :filterSection="PAGE_SECTION"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
           </div>
@@ -23,24 +23,23 @@
         <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
             <BaseLabel 
                 class="flex-1"
-                :text="catLabel"
+                :text="CAT_LAEBL"
                 :hidden="hiddenOnMobile" />
             <BaseFilter 
                 :model="catSelected"
                 :selectType="categoryType"
-                :filterSection="catSection"
+                :filterSection="CAT_SECTION"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
         <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
             <BaseLabel 
                 class="flex-1"
-                :text="dateLabel"
+                :text="DATE_LABEL"
                 :hidden="hiddenOnMobile" />
             <BaseFilter 
                 :model="dateSelected"
                 :selectType="dateType"
-                :filterSection="dateSection"
-                @onBaseFilterChange="onFilterChange"/>
+                :filterSection="DATE_SECTION "/>
         </div>
         <div class="flex my-10 justify-center items-center">
             <button class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold 
@@ -117,29 +116,17 @@ export default {
     },
 
     computed: {
-        pageSection() {
-            return 'pageSize'
-        },
+        PAGE_SECTION: () => 'pageSize',
 
-        catSection() {
-            return 'category'
-        },
+        CAT_SECTION: () => 'category',
 
-        dateSection() {
-            return 'date'
-        },
+        DATE_SECTION: () => 'date',
 
-        displayLabel() {
-            return 'Episodes Per Page'
-        },
+        DISPALY_LABEL: () => 'Episodes Per Page',
 
-        catLabel() {
-            return 'Default category'
-        },
+        CAT_LAEBL: () => 'Default category',
 
-        dateLabel() {
-            return 'Default date range'
-        },
+        DATE_LABEL: () => 'Default date range',
 
         hiddenOnMobile() {
             return false

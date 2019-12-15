@@ -141,7 +141,9 @@ export default {
             this.$nuxt.$loading.start()
             this.$store.dispatch('loadItems4Doc')
             this.$store.dispatch('loadPodcasts')
-            .then(() => this.$nuxt.$loading.finish())
+            .then(() => 
+                this.$nuxt.$loading.finish()
+            )
         })
     },
 
