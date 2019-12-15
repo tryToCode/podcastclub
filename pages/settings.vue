@@ -42,7 +42,8 @@
                 :id="DATE_ID" 
                 :model="dateSelected"
                 :selectType="dateType"
-                :filterSection="DATE_SECTION "/>
+                :filterSection="DATE_SECTION"
+                @onBaseFilterChange="onFilterChange"/>
         </div>
         <div class="flex my-10 justify-center items-center">
             <button class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold 

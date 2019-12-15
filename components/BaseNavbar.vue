@@ -4,6 +4,7 @@
             <div class="flex pl-4 items-center">
                 <img src="~/assets/podcast.png">
                 <nuxt-link class="pl-2 tracking-wide text-xl"
+                    id="reloadPage"
                     to="/"
                     @click.native="reload">
                     Podcast Club

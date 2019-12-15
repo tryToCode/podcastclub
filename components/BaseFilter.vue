@@ -6,7 +6,7 @@
                 focus:bg-white focus:border-gray-500" 
             :id="id"
             @change="onFilterChange($event)"
-            v-model="model">
+            v-model="modelName">
             <option v-for="t in selectType" 
                 :value="t.value" 
                 :key="t.id">
@@ -21,6 +21,12 @@
 import BaseDownArrow from './BaseDownArrow.vue'
 
 export default {
+    data() {
+        return {
+            modelName: this.model
+        }
+    },
+
     props: {
         id: {
             type: String,
@@ -49,7 +55,7 @@ export default {
 
     mounted() {
         if (localStorage.getItem(this.filterSection))
-            this.model = localStorage.getItem(this.filterSection)
+            this.modelName = localStorage.getItem(this.filterSection)
     },
 
     methods: {
