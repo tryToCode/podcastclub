@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="4">
+
+  <testsuite name="index.test"
+    errors="0" failures="0" hostname="" id="" package="index.test" skipped="0"
+    tests="4" time="5.733" timestamp="">
+  
+    <testcase name="step one: navigate to localhost home page" classname="index.test" time="1.155" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="step two: perform category select option change event" classname="index.test" time="1.423" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="step three: perform date select option change event" classname="index.test" time="1.348" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="step four: perform search input change event" classname="index.test" time="1.807" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

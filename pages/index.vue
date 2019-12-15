@@ -8,7 +8,7 @@
 
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :COLOR="COLOR"></pulse-loader>
+        <pulse-loader :color="COLOR"></pulse-loader>
     </div>
 
     <div v-else 

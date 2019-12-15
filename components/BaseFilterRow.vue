@@ -4,7 +4,8 @@
             <div class="ml-2 flex flex-wrap items-center">
                 <BaseLabel :text="CAT_LABEL"
                     :hidden="hiddenOnMobile" />
-                <BaseFilter 
+                <BaseFilter
+                    :id="CAT_ID"
                     :model="catSelected"
                     :selectType="categoryType"
                     :filterSection="CAT_SECTION"
@@ -14,6 +15,7 @@
                 <BaseLabel :text="DATE_LABEL"
                     :hidden="hiddenOnMobile" />
                 <BaseFilter 
+                    :id="DATE_ID"
                     :model="dateSelected"
                     :selectType="dateType"
                     :filterSection="DATE_SECTION"
@@ -66,6 +68,10 @@ export default {
             'itemsCount',
             'time'
         ]),
+
+        CAT_ID: () => 'categorySelect',
+
+        DATE_ID: () => 'dateSelect',
 
         CAT_SECTION: () => 'category',
 

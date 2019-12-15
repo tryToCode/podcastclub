@@ -4,6 +4,7 @@
                 border border-gray-200 text-gray-700 py-1 
                 px-1 pr-6 md:pr-6 rounded leading-tight focus:outline-none 
                 focus:bg-white focus:border-gray-500" 
+            :id="id"
             @change="onFilterChange($event)"
             v-model="model">
             <option v-for="t in selectType" 
@@ -21,6 +22,11 @@ import BaseDownArrow from './BaseDownArrow.vue'
 
 export default {
     props: {
+        id: {
+            type: String,
+            required: true
+        },
+
         model: {
             type: String,
             required: true
