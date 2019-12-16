@@ -17,23 +17,31 @@ We focus on the topics IT, Entrepreneurship and Finance.
 Podcast Club consumes Data from the [Podcast API](https://github.com/tryToCode/podcast-api) which is built 
 with the [Django Rest API](https://www.django-rest-framework.org).
 
-All Podcast we currently cover, check out [Here](http://podcastclub.net/about)
+All Podcast we currently cover, check out [Here](http://podcastclub.net/about).
 
 
 ## Getting Started
 
+### Prerequisites
+
+make sure you have Node.js installed, otherwise head to [Node.js official web site](https://nodejs.org/en/).
+
+### Installing
+
 First, check out the source code:
 
 ```bash
-cd <your project folder>
 git clone https://github.com/tryToCode/podcastclub.git
 ```
 
 Then install all dependencies in the project's root folder:
 
 ``` bash
-# install dependencies
-npm run install
+# move into project folder
+cd podcastclub
+
+# install dependencies, this may take a moment
+npm install
 ```
 
 You are good to go, run the following command to start local server:
@@ -42,6 +50,8 @@ You are good to go, run the following command to start local server:
 # serve with hot reload at localhost:3000
 npm run dev
 ```
+
+Now Podcast Club is listening on http://localhost:3000
 
 ## Runnig the tests
 
@@ -66,4 +76,4 @@ Learn more about the Podcast backend API [here](http://podcastclub.net/api/docs)
 
 ## License
 
-Podcast Club ist ![MIT licensed](https://github.com/tryToCode/podcastclub/blob/layout-v2/LICENSE)
+Podcast Club ist ![MIT licensed](https://github.com/tryToCode/podcastclub/blob/layout-v2/LICENSE).
