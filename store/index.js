@@ -48,7 +48,7 @@ export const mutations = {
 export const actions = {
     async loadPodcasts({commit}) {
         try {
-            let podcasts = await axios
+            const podcasts = await axios
                 .get(process.env.basePodcastUrl)
             commit('setPodcasts', podcasts.data.results)
         } catch(error) {
@@ -58,17 +58,18 @@ export const actions = {
 
     async loadItems({commit, state}) {
         try {
-            let url = localStorage.getItem('loadItemUrl') ?
-                localStorage.getItem('loadItemUrl') :
-                url = state.loadItemUrl
-            let start = Date.now();
-            let items = await axios.get(url)
-            let s = (Date.now() - start) / 1000
+            const url = localStorage.getItem('loadItemUrl')
+                ? localStorage.getItem('loadItemUrl')
+                : state.loadItemUrl
+            const start = Date.now();
+            const items = await axios.get(url)
+            const s = (Date.now() - start) / 1000
             commit('setTimer', s)
             commit('setItems', items.data.results)
             commit('setItemsCount', items.data.count)
-            let pageSize = localStorage.getItem("pageSize") ?
-                localStorage.getItem("pageSize") : 20
+            const pageSize = localStorage.getItem("pageSize") 
+                ? localStorage.getItem("pageSize") 
+                : 20
             commit('setPageCount', Math.ceil(items.data.count / pageSize))
         }
         catch(error) {
@@ -101,7 +102,7 @@ export const actions = {
 
     async loadItems4Doc({commit}) {
         try {
-            let items = await axios.get(process.env.baseItemUrl)
+            const items = await axios.get(process.env.baseItemUrl)
             commit('setItems4Doc', items.data.results)
             commit('setItemsCount4Doc', items.data.count)
         }
@@ -125,15 +126,14 @@ export const actions = {
         *  event fired from ui and reset local storage 
         *  storage variable used to load init selected value
         */
-        const value = payload.value
-        const section = payload.filterSection
+        const {value, filterSection} = payload
         const defaultSelectValue = ['All', 'All Time', '']
-        defaultSelectValue.includes(value) ?
-            localStorage.removeItem(section) :
-            localStorage.setItem(section, value)
+        defaultSelectValue.includes(value) 
+        ? localStorage.removeItem(filterSection) 
+        : localStorage.setItem(filterSection, value)
         await dispatch('rebuildUrl', {
             value: value,
-            section: section
+            section: filterSection
         })
     },
 
@@ -142,14 +142,14 @@ export const actions = {
         * filter section is used as backend query key 
         */
         var baseUrl = new URL(state.loadItemUrl)
-        const section = payload.section
-        const value = payload.value
+        const {value, section} = payload
         const defaultSelectValue = ['All', 'All Time', '']
         if (defaultSelectValue.includes(value))
             baseUrl.searchParams.delete(section)
         else {
-            let valueTrimmed = section === 'search' ? value :
-                value.split(' ').join('')
+            const valueTrimmed = section === 'search' 
+                ? value 
+                : value.split(' ').join('')
             baseUrl.searchParams.set(section, valueTrimmed)
         }
         commit('setUrl', baseUrl.toString())
@@ -173,14 +173,11 @@ export const actions = {
             if (defaultSelectValue.includes(value)) {
                 localStorage.removeItem(filterSection)
                 baseUrl.searchParams.delete(filterSection)
-            } 
-            else {
+            } else {
                 localStorage.setItem(filterSection, value)
-                if (filterSection === 'date')
-                    baseUrl.searchParams.set(filterSection, 
-                        value.split(' ').join(''))
-                else
-                    baseUrl.searchParams.set(filterSection, value)
+                filterSection === 'date' 
+                ? baseUrl.searchParams.set(filterSection, value.split(' ').join(''))
+                : baseUrl.searchParams.set(filterSection, value)
             }
         }
         localStorage.setItem('loadItemUrl', baseUrl.toString())

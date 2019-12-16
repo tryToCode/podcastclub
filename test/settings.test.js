@@ -30,5 +30,30 @@ module.exports = {
             .pause(1000)
             .verify.urlEquals('http://localhost:3000/?date=PastWeek&pageSize=10')
             .verify.value('select[id="dateSelect"]', 'Past Week')
+    },
+
+    'step six: go back to setting page': function(browser) {
+        browser
+            .pause(1000)
+            .url('http://localhost:3000/settings')
+            .waitForElementVisible('body')
+            .verify.titleContains('Settings')
+    },
+
+    'step seven: check selected value and reset': function(browser) {
+        browser
+            .pause(1000)
+            .verify.value('select[id="pageSizeSelect"]', '10')
+            .click('select[id="pageSizeSelect"]', '20')
+            .verify.value('select[id="dateSelect"]', 'Past Week')
+            .click('select[id="dateSelect"]', 'All Time')
+            .pause(1000)
+            .click('button')
+    },
+
+    'step eight: check home route': function(browser) {
+        browser
+            .pause(1000)
+            .verify.urlEquals('http://localhost:3000')
     }
 }
