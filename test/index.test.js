@@ -29,7 +29,33 @@ module.exports = {
             .verify.urlEquals('http://localhost:3000/?category=IT&date=PastMonth&search=hu%20la%20pa%20lu')
     },
 
-    'step five: reload home page': function(browser) {
+    'step five: reset category select option': function(browser) {
+        browser
+            .pause(1000)
+            .click('select[id="categorySelect"] option[value="All"]')
+            .verify.not.urlContains('?category=')
+    },
+
+    'step six: reset date select option': function(browser) {
+        browser
+            .pause(1000)
+            .click('select[id="dateSelect"] option[value="All Time"]')
+            .verify.not.urlContains('date=')
+    },
+
+    'step seven: clear search input': function(browser) {
+        browser
+            .pause(1000)
+            .getValue('input[type=search]', function(result) {
+                const length = result.value.length
+                for (let i = 0; i < length; i++) {
+                    browser.keys([browser.keys.BACK_SPACE]);
+                }
+            })
+            .verify.not.urlContains('search=')
+    },
+
+    'step eight: reload home page': function(browser) {
         browser
             .pause(1000)
             .waitForElementVisible('body')
