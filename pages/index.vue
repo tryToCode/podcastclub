@@ -119,27 +119,17 @@ export default {
 
     resetRoute() {
       const url = new URL(this.loadItemUrl)
-      const searchInput = url.searchParams.get('search') 
-      const catInput = url.searchParams.get('category')
-      const dateInput = url.searchParams.get('date')
-      const pageSize = url.searchParams.get('pageSize')
-      const page = url.searchParams.get('page')
+      const urlKey = ['search', 'category', 'date', 'pageSize', 'page']
       let query = Object.assign({}, this.$route.query)
-      searchInput === null ? 
-        this.deleteQuery('search') : 
-        query = Object.assign({}, query, {'search': searchInput})
-      catInput === null ? 
-        this.deleteQuery('category') :
-        query = Object.assign({}, query, {'category': catInput})
-      dateInput === null ? 
-        this.deleteQuery('date') :
-        query = Object.assign({}, query, {'date': dateInput})
-      page === null ? 
-        this.deleteQuery('page') :
-        query = Object.assign({}, query, {'page': page})
-      pageSize === null ? 
-        this.deleteQuery('pageSize') :
-        query = Object.assign({}, query, {'pageSize': pageSize})
+      for (var keyValue of url.searchParams.entries()) {
+        const [key, value] = keyValue
+        if (urlKey.includes(key)) {
+          let obj = {}
+          obj[key] = value
+          query = Object.assign({}, query, obj)
+        } else
+          this.deleteQuery(key)  
+      }
       this.$router.push({query: query})
     },
 
