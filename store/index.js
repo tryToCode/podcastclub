@@ -64,6 +64,7 @@ export const actions = {
             const start = Date.now();
             const items = await axios.get(url)
             const s = (Date.now() - start) / 1000
+            commit('setUrl', url)
             commit('setTimer', s)
             commit('setItems', items.data.results)
             commit('setItemsCount', items.data.count)
@@ -160,7 +161,9 @@ export const actions = {
     async pageChangeHandle({commit, state, dispatch}, payload) {
         var baseUrl = new URL(state.loadItemUrl)
         const pageNumber = payload.pageNumber
-        baseUrl.searchParams.set('page', pageNumber)
+        pageNumber === 1
+        ? baseUrl.searchParams.delete('page')
+        : baseUrl.searchParams.set('page', pageNumber)
         commit('setUrl', baseUrl.toString())
         localStorage.setItem('loadItemUrl', baseUrl.toString())
         await dispatch('loadItems')
@@ -168,7 +171,7 @@ export const actions = {
 
     async settingChangeHandle({commit, state, dispatch}, payload) {
         var baseUrl = new URL(state.loadItemUrl)
-        const defaultSelectValue = ['All', 'All Time', 20]
+        const defaultSelectValue = ['All', 'All Time', '20']
         for (const [filterSection, value] of Object.entries(payload)) {
             if (defaultSelectValue.includes(value)) {
                 localStorage.removeItem(filterSection)

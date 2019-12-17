@@ -89,4 +89,4 @@ sw.*
 # Vim swap files
 *.swp
 
-tests_output/
+test/e2e/reports
