@@ -11,16 +11,8 @@ module.exports = {
         browser
             .pause(1000)
             .click('select[id="pageSizeSelect"] option[value="10"]')
-    },
-
-    'step three: perform date select option change event': function(browser) {
-        browser
             .pause(1000)
             .click('select[id="dateSelect"] option[value="Past Week"]')
-    },
-
-    'step four: apply changes': function(browser) {
-        browser
             .pause(1000)
             .click('button')
     },
@@ -28,32 +20,34 @@ module.exports = {
     'step five: check home page route path': function(browser) {
         browser
             .pause(1000)
-            .verify.urlEquals('http://localhost:3000/?date=PastWeek&pageSize=10')
+            .verify.urlContains('date=PastWeek')
+            .verify.urlContains('pageSize=10')
             .verify.value('select[id="dateSelect"]', 'Past Week')
     },
 
-    'step six: go back to setting page': function(browser) {
+    'step six: go back to setting page and verify selected value': function(browser) {
         browser
             .pause(1000)
             .url('http://localhost:3000/settings')
             .waitForElementVisible('body')
             .verify.titleContains('Settings')
+            .verify.value('select[id="pageSizeSelect"]', '10')
+            .verify.value('select[id="dateSelect"]', 'Past Week')
     },
 
-    'step seven: check selected value and reset': function(browser) {
+    'step seven: reset selected value': function(browser) {
         browser
             .pause(1000)
-            .verify.value('select[id="pageSizeSelect"]', '10')
-            .click('select[id="pageSizeSelect"]', '20')
-            .verify.value('select[id="dateSelect"]', 'Past Week')
-            .click('select[id="dateSelect"]', 'All Time')
+            .click('select[id="pageSizeSelect"] option[value="20"]')
+            .pause(1000)
+            .click('select[id="dateSelect"] option[value="All Time"]')
             .pause(1000)
             .click('button')
     },
 
-    'step eight: check home route': function(browser) {
+    'step eight: back to home page and check the route': function(browser) {
         browser
             .pause(1000)
-            .verify.urlEquals('http://localhost:3000')
+            .verify.urlEquals('http://localhost:3000/')
     }
 }

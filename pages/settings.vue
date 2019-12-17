@@ -80,12 +80,12 @@ export default {
     data() {
         return {
             changed: false,
-            itemPerPage: 20,
+            itemPerPage: '20',
             selectOptions: [
-                {value: 10, id: 0},
-                {value: 20, id: 1},
-                {value: 30, id: 2},
-                {value: 50, id: 3}
+                {value: '10', id: 0},
+                {value: '20', id: 1},
+                {value: '30', id: 2},
+                {value: '50', id: 3}
             ],
             catSelected: 'All',
             categoryType: [
