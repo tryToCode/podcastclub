@@ -72,14 +72,6 @@ export default {
     PulseLoader
   },
 
-  created() {
-    if (process.browser)
-      window.addEventListener('beforeunload', () => {
-        //I CAN ACCESS TO this VARIABLE
-        console.log('page reload');
-      }, false)
-  },
-
   mounted() {
     this.$nextTick(() => {
       this.startLoding()
