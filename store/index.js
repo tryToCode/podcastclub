@@ -5,6 +5,7 @@ export const state = () => ({
     items: [],
     itemsCount: Number,
     time: Number,
+    currentPage: 1,
     pageCount: Number,
     podcasts: [],
     items4Doc: [],
@@ -32,6 +33,10 @@ export const mutations = {
         state.time = time
     },
 
+    setCurrentPage(state, page) {
+        state.currentPage = page
+    },
+
     setPageCount(state, count) {
         state.pageCount = count
     },
@@ -42,6 +47,12 @@ export const mutations = {
 
     setItemsCount4Doc(state, count) {
         state.itemsCount4Doc = count
+    }
+}
+
+export const getters = {
+    loadItemUrl(state) {
+        return state.loadItemUrl
     }
 }
 
@@ -165,6 +176,7 @@ export const actions = {
         ? baseUrl.searchParams.delete('page')
         : baseUrl.searchParams.set('page', pageNumber)
         commit('setUrl', baseUrl.toString())
+        commit('setCurrentPage', pageNumber)
         localStorage.setItem('loadItemUrl', baseUrl.toString())
         await dispatch('loadItems')
     },

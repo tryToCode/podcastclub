@@ -34,8 +34,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import BaseFilter from './BaseFilter.vue'
-import BaseLabel from './BaseLabel.vue'
+import BaseFilter from './Base/BaseFilter.vue'
+import BaseLabel from './Base/BaseLabel.vue'
 
 export default {
     data() {

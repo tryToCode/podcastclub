@@ -1,16 +1,16 @@
 <template>
   <div>
     <nuxt />
-    <BaseFooter />
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import BaseFooter from '@/components/BaseFooter.vue'
+import TheFooter from '@/components/TheFooter.vue'
 
 export default {
   components: {
-    BaseFooter,
+    TheFooter,
   }  
 }
 </script>

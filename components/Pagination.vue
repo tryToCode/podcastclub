@@ -38,13 +38,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import BaseButton from './BaseButton.vue'
-import BasePaginationTrigger from './BasePaginationTrigger.vue'
+import BaseButton from './Base/BaseButton.vue'
+import BasePaginationTrigger from './Base/BasePaginationTrigger.vue'
 
 export default {
     props: {
         currentPage: {
+            type: Number,
+            required: true
+        },
+
+        pageCount: {
             type: Number,
             required: true
         },
@@ -54,15 +58,13 @@ export default {
             default: 5
         }
     },
+
     components: {
         BaseButton,
         BasePaginationTrigger
     },
-    computed: {
-        ...mapState([
-            'pageCount'
-        ]),
 
+    computed: {
         isPreviousButtonDisabled() {
             return this.currentPage === 1
         },

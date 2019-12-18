@@ -1,49 +1,14 @@
 <template>
   <div>
-    <BaseNavbar
-      @onInputChange="filterChangeHandle"/>
-
-    <BaseFilterRow 
-        @onFilterChange="filterChangeHandle"/>
-
-    <div v-if="loading"
-        class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :color="COLOR"></pulse-loader>
-    </div>
-
-    <div v-else 
-      class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
-      justify-center">
-      <div v-if="items.length !== 0">
-        <BaseItemRow 
-          v-for="item in items"
-          :key="item.id"
-          :item="item" />
-        <BasePagination 
-          :currentPage="currentPage"
-          @nextPage="pageChangeHandle('next')"
-          @previousPage="pageChangeHandle('previous')"
-          @loadPage="pageChangeHandle" />
-      </div>
-
-      <div v-else>
-        <BaseNoItems
-        :baseUrl="loadItemUrl"
-        :key="loadItemUrl"/>
-      </div>
-    </div>
-    
+    <FilterArea />
+    <ItemArea />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import BaseNavbar from '@/components/BaseNavbar.vue'
-import BaseFilterRow from '@/components/BaseFilterRow.vue'
-import BaseItemRow from '@/components/BaseItemRow.vue'
-import BasePagination from '@/components/BasePagination.vue'
-import BaseNoItems from '@/components/BaseNoItems.vue'
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import FilterArea from '@/components/FilterArea.vue'
+import ItemArea from '@/components/ItemArea.vue'
 
 export default {
   head () {
@@ -56,75 +21,30 @@ export default {
     }
   },
 
-  data() {
-    return {
-      currentPage: 1,
-      loading: true
-    }
+  mounted() {
+    this.resetRoute()
   },
 
   components: {
-    BaseNavbar,
-    BaseFilterRow,
-    BaseItemRow,
-    BasePagination,
-    BaseNoItems,
-    PulseLoader
-  },
-
-  created() {
-    if (process.browser)
-      window.addEventListener('beforeunload', () => {
-        //I CAN ACCESS TO this VARIABLE
-        console.log('page reload');
-      }, false)
-  },
-
-  mounted() {
-    this.$nextTick(() => {
-      this.startLoding()
-      this.$store.dispatch('loadItems')
-      .then(() => {
-        this.resetRoute()
-        this.stopLoading()
-      })
-    })
+    FilterArea,
+    ItemArea
   },
 
   computed: {
     ...mapState([
-      'items',
       'loadItemUrl'
     ]),
+  },
 
-    COLOR: () => '#fc8181'
-
+  watch: {
+    loadItemUrl: {
+      handler(val, oldVal) {
+        this.resetRoute()
+      }
+    }
   },
 
   methods: {
-    startLoding() {
-      if (!this.loading)
-        this.loading = true
-    },
-
-    stopLoading() {
-      this.loading = false
-      if (process.browser)
-        window.scrollTo({top: 0, behavior: 'smooth'})
-    },
-
-    async filterChangeHandle(value, filterSection) {
-      this.startLoding()
-      this.$store.dispatch('selectChangeHandle', {
-        value: value,
-        filterSection: filterSection
-      })
-      .then(() => {
-        this.stopLoading()
-        this.resetRoute()
-      })
-    },
-
     resetRoute() {
       const url = new URL(this.loadItemUrl)
       let urlKey = ['search', 'category', 'date', 'pageSize', 'page']
@@ -160,28 +80,6 @@ export default {
           break
       }
       this.$router.replace({query})
-    },
-
-    async pageChangeHandle(value) {
-      switch(value) {
-        case 'next':
-            this.currentPage += 1
-            break
-        case 'previous':
-            this.currentPage -= 1
-            break
-        default:
-            this.currentPage = value
-            break
-      }
-      this.startLoding()
-      this.$store.dispatch('pageChangeHandle', {
-        pageNumber: this.currentPage
-      })
-      .then(() => {
-        this.stopLoading()
-        this.resetRoute()
-      })
     }
   }
 }

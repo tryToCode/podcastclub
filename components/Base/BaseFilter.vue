@@ -13,12 +13,12 @@
                 {{ t.value }}
             </option>
         </select>
-        <BaseDownArrow />
+        <DownArrowIcon />
     </div>
 </template>
 
 <script>
-import BaseDownArrow from './BaseDownArrow.vue'
+import DownArrowIcon from '@/components/DownArrowIcon.vue'
 
 export default {
     data() {
@@ -50,7 +50,7 @@ export default {
     },
 
     components: {
-        BaseDownArrow
+        DownArrowIcon
     },
 
     mounted() {
