@@ -3,7 +3,7 @@
         <div class="flex flex-col justify-center pl-2 pr-1 text-center 
             hover:text-gray-500 cursor-pointer"
             @click="upVote(item.id)">
-            <BaseUpArrow />
+            <UpArrowIcon />
             <span class="text-gray-500 text-sm">{{this.likes}}</span>
         </div>
         <div>
@@ -50,7 +50,7 @@
 </template>
     
 <script>
-import BaseUpArrow from './BaseUpArrow.vue'
+import UpArrowIcon from './UpArrowIcon.vue'
 
 export default {
     data() {
@@ -67,7 +67,7 @@ export default {
     },
 
     components: {
-        BaseUpArrow
+        UpArrowIcon
     },
 
     methods: {

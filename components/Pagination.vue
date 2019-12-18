@@ -15,7 +15,7 @@
             v-for="paginationTrigger in paginationTriggers"
             :class="{
                 'text-red-500 border-red-500': 
-                paginationTrigger === currentPage
+                paginationTrigger === Number(currentPage)
             }"
             :key="paginationTrigger"
             :pageNumber="paginationTrigger"
@@ -44,11 +44,6 @@ import BasePaginationTrigger from './BasePaginationTrigger.vue'
 
 export default {
     props: {
-        currentPage: {
-            type: Number,
-            required: true
-        },
-
         visiblePagesCount: {
             type: Number,
             default: 5
@@ -60,7 +55,8 @@ export default {
     },
     computed: {
         ...mapState([
-            'pageCount'
+            'pageCount',
+            'currentPage'
         ]),
 
         isPreviousButtonDisabled() {

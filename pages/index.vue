@@ -1,9 +1,9 @@
 <template>
   <div>
-    <BaseNavbar
+    <TheNavbar
       @onInputChange="filterChangeHandle"/>
 
-    <BaseFilterRow 
+    <TopFilterRow 
         @onFilterChange="filterChangeHandle"/>
 
     <div v-if="loading"
@@ -15,19 +15,18 @@
       class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
       justify-center">
       <div v-if="items.length !== 0">
-        <BaseItemRow 
+        <PodcastItem 
           v-for="item in items"
           :key="item.id"
           :item="item" />
-        <BasePagination 
-          :currentPage="currentPage"
+        <Pagination 
           @nextPage="pageChangeHandle('next')"
           @previousPage="pageChangeHandle('previous')"
           @loadPage="pageChangeHandle" />
       </div>
 
       <div v-else>
-        <BaseNoItems
+        <NoItems
         :baseUrl="loadItemUrl"
         :key="loadItemUrl"/>
       </div>
@@ -38,11 +37,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import BaseNavbar from '@/components/BaseNavbar.vue'
-import BaseFilterRow from '@/components/BaseFilterRow.vue'
-import BaseItemRow from '@/components/BaseItemRow.vue'
-import BasePagination from '@/components/BasePagination.vue'
-import BaseNoItems from '@/components/BaseNoItems.vue'
+import TheNavbar from '@/components/TheNavbar.vue'
+import TopFilterRow from '@/components/TopFilterRow.vue'
+import PodcastItem from '@/components/PodcastItem.vue'
+import Pagination from '@/components/Pagination.vue'
+import NoItems from '@/components/NoItems.vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
@@ -58,17 +57,16 @@ export default {
 
   data() {
     return {
-      currentPage: 1,
       loading: true
     }
   },
 
   components: {
-    BaseNavbar,
-    BaseFilterRow,
-    BaseItemRow,
-    BasePagination,
-    BaseNoItems,
+    TheNavbar,
+    TopFilterRow,
+    PodcastItem,
+    Pagination,
+    NoItems,
     PulseLoader
   },
 
@@ -86,11 +84,20 @@ export default {
   computed: {
     ...mapState([
       'items',
-      'loadItemUrl'
+      'loadItemUrl',
+      'currentPage'
     ]),
 
     COLOR: () => '#fc8181'
 
+  },
+
+  watch: {
+    loadItemUrl: {
+      handler(val, oldVal) {
+        console.log(`Updating loadItemUrl from ${oldVal} to ${val}`)
+      }
+    }
   },
 
   methods: {
@@ -155,20 +162,21 @@ export default {
     },
 
     async pageChangeHandle(value) {
+      let page = Number(this.currentPage)
       switch(value) {
         case 'next':
-            this.currentPage += 1
+            page += 1
             break
         case 'previous':
-            this.currentPage -= 1
+            page -= 1
             break
         default:
-            this.currentPage = value
+            page = value
             break
       }
       this.startLoding()
       this.$store.dispatch('pageChangeHandle', {
-        pageNumber: this.currentPage
+        pageNumber: page
       })
       .then(() => {
         this.stopLoading()
