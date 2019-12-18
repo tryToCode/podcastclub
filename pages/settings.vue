@@ -1,27 +1,27 @@
 <template>
-  <div class="max-w-3xl flex flex-col mx-auto justify-center px-4 py-2">
-      <h1 class="text-2xl my-2">Setting</h1>
-      <div class="py-2 h-32">
-          <h1 class="text-xl border-b-2">Display Options</h1>
-          <div class="flex flex-col flex-wrap py-2">
-            <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
-                <BaseLabel 
-                    class="flex-1"
-                    :text="DISPALY_LABEL"
-                    :hidden="hiddenOnMobile" />
-                <BaseFilter 
-                    :id="PAGE_ID"
-                    :model="itemPerPage.toString()"
-                    :selectType="selectOptions"
-                    :filterSection="PAGE_SECTION"
-                    @onBaseFilterChange="onFilterChange"/>
-            </div>
-          </div>
+  <div class="max-w-3xl flex flex-col justify-between py-2 px-4 mx-auto">
+      <div class="py-2">
+        <h1 class="text-2xl my-2">Setting</h1>
+      </div>
+      <div class="py-2">
+        <h1 class="text-xl border-b-2">Display Options</h1>
+        <div class="flex m-4 items-center mx-auto">
+            <BaseLabel
+                class="flex-1"
+                :text="DISPALY_LABEL"
+                :hidden="hiddenOnMobile" />
+            <BaseFilter 
+                :id="PAGE_ID"
+                :model="itemPerPage"
+                :selectType="selectOptions"
+                :filterSection="PAGE_SECTION"
+                @onBaseFilterChange="onFilterChange"/>
+        </div>
       </div>
 
       <div class="py-2">
         <h1 class="text-xl border-b-2">Rss Item Options</h1>
-        <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
+        <div class="flex items-center m-4 mx-auto">
             <BaseLabel 
                 class="flex-1"
                 :text="CAT_LAEBL"
@@ -33,7 +33,7 @@
                 :filterSection="CAT_SECTION"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
-        <div class="flex flex-wrap items-center m-4 md:w-1/2 mx-auto">
+        <div class="flex items-center m-4 mx-auto">
             <BaseLabel 
                 class="flex-1"
                 :text="DATE_LABEL"
@@ -45,20 +45,20 @@
                 :filterSection="DATE_SECTION"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
-        <div class="flex my-10 justify-center items-center">
-            <button class="bg-transparent hover:bg-red-500 text-blue-700 font-semibold 
-            hover:text-white py-1 px-4 border border-blue-500 
-            hover:border-transparent rounded"
-            :class="{
-                'opacity-50 cursor-not-allowed':
-                changed !== true
-            }"
-            :key="changed"
-            @click="applySetting">
-                Apply
-            </button>
-        </div>
       </div>
+      <div class="flex justify-center items-center h-24 md:h-32 lg:h-40">
+        <button class="bg-transparent hover:bg-red-500 text-blue-700 
+            font-semibold hover:text-white py-1 px-4 border 
+            border-blue-500 hover:border-transparent rounded"
+        :class="{
+            'opacity-50 cursor-not-allowed':
+            changed !== true
+        }"
+        :key="changed"
+        @click="applySetting">
+            Apply
+        </button>
+    </div>
   </div>
 </template>
 
