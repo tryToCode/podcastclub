@@ -1,19 +1,13 @@
 <template>
   <div>
-    <TheNavbar
-      @onInputChange="filterChangeHandle"/>
-
-    <TopFilterRow 
-        @onFilterChange="filterChangeHandle"/>
-    
+    <FilterArea />
     <ItemArea />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import TheNavbar from '@/components/TheNavbar.vue'
-import TopFilterRow from '@/components/TopFilterRow.vue'
+import FilterArea from '@/components/FilterArea.vue'
 import ItemArea from '@/components/ItemArea.vue'
 
 export default {
@@ -32,8 +26,7 @@ export default {
   },
 
   components: {
-    TheNavbar,
-    TopFilterRow,
+    FilterArea,
     ItemArea
   },
 
@@ -52,13 +45,6 @@ export default {
   },
 
   methods: {
-    async filterChangeHandle(value, filterSection) {
-      this.$store.dispatch('selectChangeHandle', {
-          value: value,
-          filterSection: filterSection
-      })
-    },
-
     resetRoute() {
       const url = new URL(this.loadItemUrl)
       let urlKey = ['search', 'category', 'date', 'pageSize', 'page']
