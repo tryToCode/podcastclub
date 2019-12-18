@@ -5,33 +5,8 @@
 
     <TopFilterRow 
         @onFilterChange="filterChangeHandle"/>
-
-    <div v-if="loading"
-        class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :color="COLOR"></pulse-loader>
-    </div>
-
-    <div v-else 
-      class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
-      justify-center">
-      <div v-if="items.length !== 0">
-        <PodcastItem 
-          v-for="item in items"
-          :key="item.id"
-          :item="item" />
-        <Pagination 
-          @nextPage="pageChangeHandle('next')"
-          @previousPage="pageChangeHandle('previous')"
-          @loadPage="pageChangeHandle" />
-      </div>
-
-      <div v-else>
-        <NoItems
-        :baseUrl="loadItemUrl"
-        :key="loadItemUrl"/>
-      </div>
-    </div>
     
+    <ItemArea />
   </div>
 </template>
 
@@ -39,10 +14,7 @@
 import { mapState } from 'vuex'
 import TheNavbar from '@/components/TheNavbar.vue'
 import TopFilterRow from '@/components/TopFilterRow.vue'
-import PodcastItem from '@/components/PodcastItem.vue'
-import Pagination from '@/components/Pagination.vue'
-import NoItems from '@/components/NoItems.vue'
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import ItemArea from '@/components/ItemArea.vue'
 
 export default {
   head () {
@@ -55,72 +27,35 @@ export default {
     }
   },
 
-  data() {
-    return {
-      loading: true
-    }
+  mounted() {
+    this.resetRoute()
   },
 
   components: {
     TheNavbar,
     TopFilterRow,
-    PodcastItem,
-    Pagination,
-    NoItems,
-    PulseLoader
-  },
-
-  mounted() {
-    this.$nextTick(() => {
-      this.startLoding()
-      this.$store.dispatch('loadItems')
-      .then(() => {
-        this.resetRoute()
-        this.stopLoading()
-      })
-    })
+    ItemArea
   },
 
   computed: {
     ...mapState([
-      'items',
-      'loadItemUrl',
-      'currentPage'
+      'loadItemUrl'
     ]),
-
-    COLOR: () => '#fc8181'
-
   },
 
   watch: {
     loadItemUrl: {
       handler(val, oldVal) {
-        console.log(`Updating loadItemUrl from ${oldVal} to ${val}`)
+        this.resetRoute()
       }
     }
   },
 
   methods: {
-    startLoding() {
-      if (!this.loading)
-        this.loading = true
-    },
-
-    stopLoading() {
-      this.loading = false
-      if (process.browser)
-        window.scrollTo({top: 0, behavior: 'smooth'})
-    },
-
     async filterChangeHandle(value, filterSection) {
-      this.startLoding()
       this.$store.dispatch('selectChangeHandle', {
-        value: value,
-        filterSection: filterSection
-      })
-      .then(() => {
-        this.stopLoading()
-        this.resetRoute()
+          value: value,
+          filterSection: filterSection
       })
     },
 
@@ -159,29 +94,6 @@ export default {
           break
       }
       this.$router.replace({query})
-    },
-
-    async pageChangeHandle(value) {
-      let page = Number(this.currentPage)
-      switch(value) {
-        case 'next':
-            page += 1
-            break
-        case 'previous':
-            page -= 1
-            break
-        default:
-            page = value
-            break
-      }
-      this.startLoding()
-      this.$store.dispatch('pageChangeHandle', {
-        pageNumber: page
-      })
-      .then(() => {
-        this.stopLoading()
-        this.resetRoute()
-      })
     }
   }
 }

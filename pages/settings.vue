@@ -63,8 +63,8 @@
 </template>
 
 <script>
-import BaseLabel from '@/components/BaseLabel.vue'
-import BaseFilter from '@/components/BaseFilter.vue'
+import BaseLabel from '@/components/Base/BaseLabel.vue'
+import BaseFilter from '@/components/Base/BaseFilter.vue'
 
 export default {
     head () {

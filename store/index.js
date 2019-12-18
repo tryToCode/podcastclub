@@ -50,6 +50,12 @@ export const mutations = {
     }
 }
 
+export const getters = {
+    loadItemUrl(state) {
+        return state.loadItemUrl
+    }
+}
+
 export const actions = {
     async loadPodcasts({commit}) {
         try {

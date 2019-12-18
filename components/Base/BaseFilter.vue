@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import DownArrowIcon from './DownArrowIcon.vue'
+import DownArrowIcon from '@/components/DownArrowIcon.vue'
 
 export default {
     data() {
