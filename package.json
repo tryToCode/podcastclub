@@ -27,11 +27,6 @@
     ],
     "snapshotDir": "./test/unit/snapshots"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
   "dependencies": {
     "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/google-analytics": "^2.2.1",

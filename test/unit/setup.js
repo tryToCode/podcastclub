@@ -3,3 +3,5 @@ require('browser-env')()
 
 hooks('vue').plugin('vue').push()
 hooks(['vue', 'js']).plugin('babel').push()
+
+window.Date = global.Date = Date
