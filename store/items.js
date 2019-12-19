@@ -2,14 +2,9 @@ import axios from 'axios'
 
 export const state = () => ({
     loadItemUrl: process.env.baseItemUrl,
-    items: [],
-    itemsCount: Number,
-    time: Number,
+    itemsResult: Object.create(null),
     currentPage: 1,
-    pageCount: Number,
-    podcasts: [],
-    items4Doc: [],
-    itemsCount4Doc: Number
+    pageCount: Number
 })
 
 export const mutations = {
@@ -17,20 +12,8 @@ export const mutations = {
         state.loadItemUrl = url
     },
 
-    setPodcasts(state, podcasts) {
-        state.podcasts = podcasts
-    },
-
-    setItems(state, items) {
-        state.items = items
-    },
-
-    setItemsCount(state, count) {
-        state.itemsCount = count
-    },
-
-    setTimer(state, time) {
-        state.time = time
+    setItemsResult(state, result) {
+        state.itemsResult = result
     },
 
     setCurrentPage(state, page) {
@@ -39,46 +22,42 @@ export const mutations = {
 
     setPageCount(state, count) {
         state.pageCount = count
-    },
-
-    setItems4Doc(state, items) {
-        state.items4Doc = items
-    },
-
-    setItemsCount4Doc(state, count) {
-        state.itemsCount4Doc = count
     }
 }
 
 export const getters = {
     loadItemUrl(state) {
         return state.loadItemUrl
+    },
+
+    itemsResult(state) {
+        return state.itemsResult
+    },
+
+    currentPage(state) {
+        return state.currentPage
+    },
+
+    pageCount(state) {
+        return state.pageCount
     }
 }
 
 export const actions = {
-    async loadPodcasts({commit}) {
-        try {
-            const podcasts = await axios
-                .get(process.env.basePodcastUrl)
-            commit('setPodcasts', podcasts.data.results)
-        } catch(error) {
-            console.log(error)
-        }
-    },
-
     async loadItems({commit, state}) {
         try {
             const url = localStorage.getItem('loadItemUrl')
                 ? localStorage.getItem('loadItemUrl')
                 : state.loadItemUrl
+            commit('setUrl', url)
             const start = Date.now();
             const items = await axios.get(url)
             const s = (Date.now() - start) / 1000
-            commit('setUrl', url)
-            commit('setTimer', s)
-            commit('setItems', items.data.results)
-            commit('setItemsCount', items.data.count)
+            const result = {
+                items: items.data.results, 
+                itemsCount: items.data.count,
+                timeSpeed: s}
+            commit('setItemsResult', result)
             const pageSize = localStorage.getItem("pageSize") 
                 ? localStorage.getItem("pageSize") 
                 : 20
@@ -90,11 +69,14 @@ export const actions = {
                  * The request was made and the server responded with a
                  * status code that falls out of the range of 2xx
                  */
-                if (error.response.status === 404 && 
-                    error.response.data.detail === 'Invalid page.') {
-                    commit('setItems', [])
-                    commit('setTimer', 0)
-                    commit('setItemsCount', 0)
+                if (error.response.status === 404 
+                    && error.response.data.detail === 'Invalid page.') {
+                    const result = {
+                        items: [],
+                        itemsCount: 0,
+                        timeSpeed: 0
+                    }
+                    commit('setItemsResult', result)
                 }
             } else if (error.request) {
                 /*
@@ -109,17 +91,6 @@ export const actions = {
                 // Something happened in setting up the request and triggered an Error
                 console.log('Error', error.message);
             }
-        }
-    },
-
-    async loadItems4Doc({commit}) {
-        try {
-            const items = await axios.get(process.env.baseItemUrl)
-            commit('setItems4Doc', items.data.results)
-            commit('setItemsCount4Doc', items.data.count)
-        }
-        catch (error) {
-            console.log(error)
         }
     },
 

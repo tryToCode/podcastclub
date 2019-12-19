@@ -50,7 +50,7 @@
 </template>
     
 <script>
-import UpArrowIcon from './UpArrowIcon.vue'
+import UpArrowIcon from './Icon/UpArrowIcon.vue'
 
 export default {
     data() {
@@ -73,7 +73,7 @@ export default {
     methods: {
         upVote(itemId) {
             this.likes += 1
-            this.$store.dispatch('updateLikes', itemId)
+            this.$store.dispatch('items/updateLikes', itemId)
         }
     }
 }

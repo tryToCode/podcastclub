@@ -25,7 +25,7 @@
             <h1 class="text-2xl font-medium m-2">Resources</h1>
             <p>
                 <span class="text-green-400 m-2">api/rssItems</span>
-                <span class="">{{Number(itemsCount)}} items</span>
+                <span class="">{{itemsResult.itemsCount}} items</span>
             </p>
             <p>
                 <span class="text-green-400 m-2">api/podcasts</span>
@@ -64,7 +64,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="items.slice(0, 2)">
+                    :data="itemsResult.items.slice(0, 2)">
                 </vue-json-pretty>                
             </div>
         </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="items[0]">
+                    :data="itemsResult.items[0]">
                 </vue-json-pretty>                
             </div>
         </div>
@@ -139,8 +139,8 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.$nuxt.$loading.start()
-            this.$store.dispatch('loadItems4Doc')
-            this.$store.dispatch('loadPodcasts')
+            this.$store.dispatch('docItems/loadItems')
+            this.$store.dispatch('podcasts/loadPodcasts')
             .then(() => 
                 this.$nuxt.$loading.finish()
             )
@@ -149,9 +149,8 @@ export default {
 
     computed: {
         ...mapState({
-            items: 'items4Doc',
-            itemsCount: 'itemsCount4Doc',
-            podcasts: 'podcasts'
+            itemsResult: 'docItems/itemsResult',
+            podcasts: 'podcasts/podcasts'
         })
     }
 }

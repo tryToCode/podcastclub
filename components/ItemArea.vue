@@ -8,9 +8,9 @@
     <div v-else 
         class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
         justify-center">
-        <div v-if="items.length !== 0">
+        <div v-if="itemsResult.items.length !== 0">
         <PodcastItem 
-            v-for="item in items"
+            v-for="item in itemsResult.items"
             :key="item.id"
             :item="item" />
         <Pagination 
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import PodcastItem from './PodcastItem.vue'
 import Pagination from './Pagination.vue'
 import NoItems from './NoItems.vue'
@@ -47,7 +47,7 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.startLoding()
-            this.$store.dispatch('loadItems')
+            this.$store.dispatch('items/loadItems')
             .then(() =>
                 this.stopLoading())
         })
@@ -61,12 +61,12 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            'items',
-            'loadItemUrl',
-            'currentPage',
-            'pageCount'
-        ]),
+        ...mapGetters({
+            itemsResult: 'items/itemsResult',
+            loadItemUrl: 'items/loadItemUrl',
+            currentPage: 'items/currentPage',
+            pageCount: 'items/pageCount'
+        }),
 
         COLOR: () => '#fc8181'
     },
@@ -97,7 +97,7 @@ export default {
                     break
             }
             this.startLoding()
-            this.$store.dispatch('pageChangeHandle', {
+            this.$store.dispatch('items/pageChangeHandle', {
                 pageNumber: page
             })
             .then(() =>
