@@ -58,7 +58,7 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.$nuxt.$loading.start()
-            this.$store.dispatch('loadPodcasts')
+            this.$store.dispatch('podcasts/loadPodcasts')
             .then(() => 
                 this.$nuxt.$loading.finish()
             )
@@ -67,7 +67,7 @@ export default {
 
     computed: {
         ...mapState([
-            'podcasts'
+            'podcasts/podcasts'
         ])
     },
 
