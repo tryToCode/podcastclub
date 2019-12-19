@@ -12,6 +12,7 @@ export const state = () => ({
 })
 
 export const mutations = {
+    // whenever url for loading items changed, triggers index page reset route
     setUrl(state, url) {
         state.loadItemUrl = url
     },
@@ -30,12 +31,22 @@ export const mutations = {
 }
 
 export const actions = {
+    /**
+     * this action is triggered by following events:
+     *  select option from index page change event
+     *  search input change event
+     *  select option from setting page change event and apply
+     *  pagination click event
+     *  index page onCreate, refresh
+     *  navbar click and reload
+     * 
+     * @param {*} param
+     */
     async loadItems({commit, state}) {
         try {
             const url = localStorage.getItem('loadItemUrl')
                 ? localStorage.getItem('loadItemUrl')
                 : state.loadItemUrl
-            commit('setUrl', url)
             const start = Date.now();
             const items = await axios.get(url)
             const s = (Date.now() - start) / 1000
@@ -43,6 +54,8 @@ export const actions = {
                 items: items.data.results, 
                 itemsCount: items.data.count,
                 timeSpent: s }
+            // 
+            commit('setUrl', url)
             commit('setItemsResult', result)
             const pageSize = localStorage.getItem("pageSize") 
                 ? localStorage.getItem("pageSize") 
@@ -121,24 +134,29 @@ export const actions = {
                 : value.split(' ').join('')
             baseUrl.searchParams.set(section, valueTrimmed)
         }
-        commit('setUrl', baseUrl.toString())
         localStorage.setItem('loadItemUrl', baseUrl.toString())
         await dispatch('loadItems')
     },
 
     async pageChangeHandle({commit, state, dispatch}, payload) {
+        /**
+         * handle pagination click event
+         */
         var baseUrl = new URL(state.loadItemUrl)
         const pageNumber = payload.pageNumber
         pageNumber === 1
         ? baseUrl.searchParams.delete('page')
         : baseUrl.searchParams.set('page', pageNumber)
-        commit('setUrl', baseUrl.toString())
         commit('setCurrentPage', pageNumber)
         localStorage.setItem('loadItemUrl', baseUrl.toString())
         await dispatch('loadItems')
     },
 
     async settingChangeHandle({commit, state, dispatch}, payload) {
+        /**
+         * handle select option change event from setting page
+         * only triggered after apply button clicked
+         */
         var baseUrl = new URL(state.loadItemUrl)
         const defaultSelectValue = ['All', 'All Time', '20']
         for (const [filterSection, value] of Object.entries(payload)) {
@@ -153,7 +171,6 @@ export const actions = {
             }
         }
         localStorage.setItem('loadItemUrl', baseUrl.toString())
-        commit('setUrl', baseUrl.toString())
         await dispatch('loadItems')
     }
 }
