@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import PodcastItem from './PodcastItem.vue'
 import Pagination from './Pagination.vue'
 import NoItems from './NoItems.vue'
@@ -47,7 +47,7 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.startLoding()
-            this.$store.dispatch('items/loadItems')
+            this.$store.dispatch('loadItems')
             .then(() =>
                 this.stopLoading())
         })
@@ -61,12 +61,12 @@ export default {
     },
 
     computed: {
-        ...mapGetters({
-            itemsResult: 'items/itemsResult',
-            loadItemUrl: 'items/loadItemUrl',
-            currentPage: 'items/currentPage',
-            pageCount: 'items/pageCount'
-        }),
+        ...mapState([
+            'itemsResult',
+            'loadItemUrl',
+            'currentPage',
+            'pageCount'
+        ]),
 
         COLOR: () => '#fc8181'
     },
@@ -97,7 +97,7 @@ export default {
                     break
             }
             this.startLoding()
-            this.$store.dispatch('items/pageChangeHandle', {
+            this.$store.dispatch('pageChangeHandle', {
                 pageNumber: page
             })
             .then(() =>

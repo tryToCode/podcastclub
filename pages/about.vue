@@ -4,21 +4,35 @@
           <h1 class="text-2xl">Welcome to Podcast Club</h1>
           <p class="pt-2">
             Podcast Club is a daily updated podcast aggregator inspired from 
-            <a class="border-b-2" href="https://alltop.com">Alltop.com</a>  
+            <a class="border-b-2" 
+                href="https://alltop.com">
+                Alltop.com
+            </a>  
             <br>
             We focus on the topics IT, Entrepreneurship and Finance.
             <br>
             All data come from the Internet, if you see any violiations of your rights in any form,
-            please <a class="border-b-2 cursor-pointer" @click="sendMail">Contact</a> us.
+            please 
+            <a class="border-b-2 cursor-pointer" 
+                @click="sendMail">
+                Contact
+            </a> us.
           </p>
       </div>
       <div class="my-2">
           <h1 class="text-2xl">How it works</h1>
           <p class="pt-2">
             Podcast Club consumes Data from the 
-            <a class="border-b-2" href="https://github.com/tryToCode/podcast-api">Podcast API</a> 
+            <a class="border-b-2" 
+                href="https://github.com/tryToCode/podcast-api">
+                Podcast API
+            </a> 
             which is built 
-            with the <a class="border-b-2" href="https://www.django-rest-framework.org/">Django Rest API</a>.  
+            with the 
+            <a class="border-b-2" 
+                href="https://www.django-rest-framework.org/">
+                Django Rest API
+            </a>.  
           </p>
       </div>
       <div class="items-center">
@@ -35,14 +49,17 @@
       <div class="my-2">
         <p class="font-semibold">
             You host a podcast and want to be on the list, let us 
-            <a class="border-b-2 cursor-pointer" @click="sendMail">know</a>. 
+            <a class="border-b-2 cursor-pointer" 
+                @click="sendMail">
+                know
+            </a>. 
         </p>
       </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     head () {
@@ -66,9 +83,9 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            'podcasts/podcasts'
-        ])
+        ...mapGetters({
+            podcasts: 'podcasts/podcasts'
+        })
     },
 
     methods: {

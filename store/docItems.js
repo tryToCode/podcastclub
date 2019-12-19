@@ -1,30 +1,41 @@
 import axios from 'axios'
 
-export const state = () => {
-    itemsResult: Object.create(null)
-}
+export const state = () => ({
+    result: {
+        items: [],
+        itemsCount: 0
+    }
+})
 
 export const mutations = {
-    setItemsResult(state, result) {
-        state.itemResult = result
+    setResult(state, result) {
+        state.result = result
     }
 }
 
 export const getters = {
-    itemsResult (state) {
-        return state.itemResult
+    item (state) {
+        return state.result.items[0]
+    },
+
+    items (state) {
+        return state.result.items.slice(0, 2)
+    },
+
+    itemsCount(state) {
+        return state.result.itemsCount
     }
 }
 
 export const actions = {
-    async loadItems4Doc({commit}) {
+    async loadDocItems({commit}) {
         try {
             const items = await axios.get(process.env.baseItemUrl)
             const result = {
                 items: items.data.results,
                 itemsCount: items.data.count
             }
-            commit('setItems4Result', result)
+            commit('setResult', result)
         }
         catch (error) {
             console.log(error)
