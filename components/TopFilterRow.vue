@@ -26,14 +26,14 @@
         <div class="hidden md:flex flex-wrap items-center text-sm">
             <span class="p-2">
                 {{itemsResult.itemsCount}} results 
-                ( {{itemsResult.timeSpeed}} seconds )
+                ( {{itemsResult.timeSpent}} seconds )
             </span>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import BaseFilter from './Base/BaseFilter.vue'
 import BaseLabel from './Base/BaseLabel.vue'
 
@@ -64,9 +64,9 @@ export default {
     },
 
     computed: {
-        ...mapGetters({
-            itemsResult: 'items/itemsResult'
-        }),
+        ...mapState([
+            'itemsResult'
+        ]),
 
         CAT_ID: () => 'categorySelect',
 

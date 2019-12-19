@@ -2,7 +2,11 @@ import axios from 'axios'
 
 export const state = () => ({
     loadItemUrl: process.env.baseItemUrl,
-    itemsResult: Object.create(null),
+    itemsResult: {
+        items: [],
+        itemsCount: 0,
+        timeSpent: 0
+    },
     currentPage: 1,
     pageCount: Number
 })
@@ -25,24 +29,6 @@ export const mutations = {
     }
 }
 
-export const getters = {
-    loadItemUrl(state) {
-        return state.loadItemUrl
-    },
-
-    itemsResult(state) {
-        return state.itemsResult
-    },
-
-    currentPage(state) {
-        return state.currentPage
-    },
-
-    pageCount(state) {
-        return state.pageCount
-    }
-}
-
 export const actions = {
     async loadItems({commit, state}) {
         try {
@@ -56,7 +42,7 @@ export const actions = {
             const result = {
                 items: items.data.results, 
                 itemsCount: items.data.count,
-                timeSpeed: s}
+                timeSpent: s }
             commit('setItemsResult', result)
             const pageSize = localStorage.getItem("pageSize") 
                 ? localStorage.getItem("pageSize") 
@@ -94,10 +80,10 @@ export const actions = {
         }
     },
 
-    async updateLikes({state}, pk) {
+    async updateLikes({state}, itemId) {
         try {
             const data = {upVote: true}
-            axios.patch(`${state.loadItemUrl}/${pk}/`, data)
+            axios.patch(`${process.env.baseItemUrl}/${itemId}/`, data)
         }
         catch (error) {
             console.log(error)

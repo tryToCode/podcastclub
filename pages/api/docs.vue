@@ -25,11 +25,11 @@
             <h1 class="text-2xl font-medium m-2">Resources</h1>
             <p>
                 <span class="text-green-400 m-2">api/rssItems</span>
-                <span class="">{{itemsResult.itemsCount}} items</span>
+                <span class="">{{itemsCount}} items</span>
             </p>
             <p>
                 <span class="text-green-400 m-2">api/podcasts</span>
-                <span class="">{{podcasts.length}} podcasts</span>
+                <span class="">{{podcastsCount}} podcasts</span>
             </p>
         </div>
         <div class="flex flex-col m-2">
@@ -64,7 +64,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="itemsResult.items.slice(0, 2)">
+                    :data="items">
                 </vue-json-pretty>                
             </div>
         </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="itemsResult.items[0]">
+                    :data="item">
                 </vue-json-pretty>                
             </div>
         </div>
@@ -98,7 +98,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="podcasts.slice(0, 2)">
+                    :data="podcasts">
                 </vue-json-pretty>                
             </div>
         </div>
@@ -115,7 +115,7 @@
             </div>
             <div class="m-2">
                 <vue-json-pretty
-                    :data="podcasts[0]">
+                    :data="podcast">
                 </vue-json-pretty>                
             </div>
         </div>
@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     head () {
@@ -139,7 +139,7 @@ export default {
     mounted() {
         this.$nextTick(() => {
             this.$nuxt.$loading.start()
-            this.$store.dispatch('docItems/loadItems')
+            this.$store.dispatch('docItems/loadDocItems')
             this.$store.dispatch('podcasts/loadPodcasts')
             .then(() => 
                 this.$nuxt.$loading.finish()
@@ -148,9 +148,13 @@ export default {
     },
 
     computed: {
-        ...mapState({
-            itemsResult: 'docItems/itemsResult',
-            podcasts: 'podcasts/podcasts'
+        ...mapGetters({
+            item: 'docItems/item',
+            items: 'docItems/items',
+            itemsCount: 'docItems/itemsCount',
+            podcast: 'podcasts/podcast',
+            podcasts: 'podcasts/podcasts4Doc',
+            podcastsCount: 'podcasts/podcastsCount'
         })
     }
 }

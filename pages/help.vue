@@ -12,7 +12,12 @@
             <li>Podcast original URL</li>
             </ul>
           <p class="py-1">
-              Check out <nuxt-link class="border-b-2" to="/about">here</nuxt-link> to see available Podcasts.
+              Check out 
+              <nuxt-link 
+                class="border-b-2" 
+                to="/about">
+                here
+              </nuxt-link> to see available Podcasts.
           </p>
       </div>
       <div class="my-2">
