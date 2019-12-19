@@ -1,7 +1,8 @@
 <template>
-  <div class="max-w-3xl flex flex-col mx-auto justify-center px-4 py-2">
-      <div class="my-2">
-          <h1 class="text-2xl">Welcome to Podcast Club</h1>
+  <div class="max-w-5xl flex flex-col mx-auto justify-center">
+      <BasePageNav />
+      <div class="m-4">
+          <h1 class="text-xl">Welcome to Podcast Club</h1>
           <p class="pt-2">
             Podcast Club is a daily updated podcast aggregator inspired from 
             <a class="border-b-2" 
@@ -19,8 +20,8 @@
             </a> us.
           </p>
       </div>
-      <div class="my-2">
-          <h1 class="text-2xl">How it works</h1>
+      <div class="m-4">
+          <h1 class="text-xl">How it works</h1>
           <p class="pt-2">
             Podcast Club consumes Data from the 
             <a class="border-b-2" 
@@ -35,8 +36,8 @@
             </a>.  
           </p>
       </div>
-      <div class="items-center">
-          <h1 class="text-2xl pb-2">Podcasts we currently cover: </h1>
+      <div class="m-4 items-center">
+          <h1 class="text-xl pb-2">Podcasts we currently cover: </h1>
           <div v-for="podcast in podcasts"
             :key="podcast.id"
             class="pb-1">
@@ -46,7 +47,7 @@
             </a>
           </div>
       </div>
-      <div class="my-2">
+      <div class="m-4">
         <p class="font-semibold">
             You host a podcast and want to be on the list, let us 
             <a class="border-b-2 cursor-pointer" 
@@ -60,6 +61,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import BasePageNav from '@/components/Base/BasePageNav.vue'
 
 export default {
     head () {
@@ -70,6 +72,10 @@ export default {
                   content: 'Podcast club Podcast Club is a weekly updated podcast aggregator' }
             ]
         }
+    },
+
+    components: {
+        BasePageNav
     },
 
     mounted() {

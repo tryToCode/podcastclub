@@ -1,5 +1,7 @@
 <template>
-    <div class="max-w-3xl flex flex-col mx-auto p-2 justify-center overflow-hidden">
+    <div class="max-w-5xl flex flex-col mx-auto justify-center overflow-hidden">
+        <BasePageNav />
+        
         <div class="m-2">
             <h1 class="text-2xl font-medium m-2">Intro</h1>
             <p class="text-base m-2">
@@ -124,6 +126,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import BasePageNav from '@/components/Base/BasePageNav.vue'
 
 export default {
     head () {
@@ -134,6 +137,10 @@ export default {
                   content: 'Podcast club Podcast Club backend Api documetation' }
             ]
         }
+    },
+
+    components: {
+        BasePageNav
     },
 
     mounted() {

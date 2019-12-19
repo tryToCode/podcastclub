@@ -1,9 +1,11 @@
 <template>
-  <div class="max-w-3xl flex flex-col justify-between py-2 px-4 mx-auto">
-      <div class="py-2">
+  <div class="max-w-5xl flex flex-col justify-between mx-auto">
+      <BasePageNav />
+
+      <div class="m-4">
         <h1 class="text-2xl my-2">Setting</h1>
       </div>
-      <div class="py-2">
+      <div class="m-4">
         <h1 class="text-xl border-b-2">Display Options</h1>
         <div class="flex m-4 items-center mx-auto">
             <BaseLabel
@@ -19,7 +21,7 @@
         </div>
       </div>
 
-      <div class="py-2">
+      <div class="m-4">
         <h1 class="text-xl border-b-2">Rss Item Options</h1>
         <div class="flex items-center m-4 mx-auto">
             <BaseLabel 
@@ -65,6 +67,7 @@
 <script>
 import BaseLabel from '@/components/Base/BaseLabel.vue'
 import BaseFilter from '@/components/Base/BaseFilter.vue'
+import BasePageNav from '@/components/Base/BasePageNav.vue'
 
 export default {
     head () {
@@ -107,7 +110,8 @@ export default {
 
     components: {
         BaseLabel,
-        BaseFilter
+        BaseFilter,
+        BasePageNav
     },
     
     mounted() {

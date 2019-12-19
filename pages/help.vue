@@ -1,7 +1,9 @@
 <template>
-  <div class="max-w-3xl flex flex-col mx-auto justify-center px-4 py-2">
-      <div class="my-2">
-          <h1 class="text-2xl">Search</h1>
+  <div class="max-w-5xl flex flex-col mx-auto justify-center">
+      <BasePageNav />
+
+      <div class="m-4">
+          <h1 class="text-xl">Search</h1>
           <p class="py-1">
               The following internal items are used to match the input search query.
           </p>
@@ -20,8 +22,8 @@
               </nuxt-link> to see available Podcasts.
           </p>
       </div>
-      <div class="my-2">
-          <h1 class="text-2xl">Filter</h1>
+      <div class="m-4">
+          <h1 class="text-xl">Filter</h1>
           <p class="py-1 font-bold">
               Possible Filter Result: No Items Found
           </p>
@@ -42,3 +44,13 @@
       </div>
   </div>
 </template>
+
+<script>
+import BasePageNav from '@/components/Base/BasePageNav.vue'
+
+export default {
+  components: {
+    BasePageNav
+  }  
+}
+</script>
