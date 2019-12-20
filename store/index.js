@@ -42,7 +42,8 @@ export const actions = {
      * 
      * @param {*} param
      */
-    async loadItems({commit, state}) {
+    async loadItems({commit, state, dispatch}) {
+        dispatch('loading/startLoading', null)
         try {
             const url = localStorage.getItem('loadItemUrl')
                 ? localStorage.getItem('loadItemUrl')
@@ -91,6 +92,7 @@ export const actions = {
                 console.log('Error', error.message);
             }
         }
+        dispatch("loading/stopLoading", null)
     },
 
     async updateLikes({state}, itemId) {

@@ -8,9 +8,9 @@
     <div v-else 
         class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
         justify-center">
-        <div v-if="itemsResult.items.length !== 0">
+        <div v-if="items.length !== 0">
         <PodcastItem 
-            v-for="item in itemsResult.items"
+            v-for="item in items"
             :key="item.id"
             :item="item" />
         <Pagination 
@@ -38,19 +38,8 @@ import NoItems from './NoItems.vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
-    data() {
-        return {
-            loading: true
-        }
-    },
-
     mounted() {
-        this.$nextTick(() => {
-            this.startLoding()
-            this.$store.dispatch('loadItems')
-            .then(() =>
-                this.stopLoading())
-        })
+        this.$store.dispatch('loadItems')
     },
 
     components: {
@@ -61,24 +50,19 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            'itemsResult',
-            'loadItemUrl',
-            'currentPage',
-            'pageCount'
-        ]),
+        ...mapState({
+            loading: state => state.loading.loading,
+            items: state => state.itemsResult.items,
+            loadItemUrl: state => state.loadItemUrl,
+            currentPage: state => state.currentPage,
+            pageCount: state => state.pageCount
+        }),
 
         COLOR: () => '#fc8181'
     },
 
     methods: {
-        startLoding() {
-            if (!this.loading)
-                this.loading = true
-        },
-
-        stopLoading() {
-            this.loading = false
+        toTop() {
             if (process.browser)
                 window.scrollTo({top: 0, behavior: 'smooth'})
         },
@@ -96,12 +80,11 @@ export default {
                     page = value
                     break
             }
-            this.startLoding()
             this.$store.dispatch('pageChangeHandle', {
                 pageNumber: page
             })
             .then(() =>
-                this.stopLoading()
+                this.toTop()
             )
         }
     }
