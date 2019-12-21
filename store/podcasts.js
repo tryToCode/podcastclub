@@ -5,7 +5,7 @@ export const state = () => ({
 })
 
 export const mutations = {   
-    setPodcasts(state, podcasts) {
+    SET_PODCASTS(state, podcasts) {
         state.podcasts = podcasts
     }
 }
@@ -36,7 +36,7 @@ export const actions = {
         try {
             const podcasts = await axios
                 .get(process.env.basePodcastUrl)
-            commit('setPodcasts', podcasts.data.results)
+            commit('SET_PODCASTS', podcasts.data.results)
         } catch(error) {
             console.log(error)
         }

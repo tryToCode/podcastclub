@@ -39,7 +39,7 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
     mounted() {
-        this.$store.dispatch('loadItems')
+        this.$store.dispatch('items/loadItems')
     },
 
     components: {
@@ -52,8 +52,8 @@ export default {
     computed: {
         ...mapState({
             loading: state => state.loading.loading,
-            items: state => state.items,
-            itemsCount: state => state.itemsCount
+            items: state => state.items.items,
+            itemsCount: state => state.items.itemsCount
         }),
 
         ...mapGetters('apiUrl', {

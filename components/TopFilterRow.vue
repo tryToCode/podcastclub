@@ -64,10 +64,10 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            'itemsCount',
-            'timeSpent'
-        ]),
+        ...mapState({
+            itemsCount: state => state.items.itemsCount,
+            timeSpent: state => state.items.timeSpent
+        }),
 
         CAT_ID: () => 'categorySelect',
 
