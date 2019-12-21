@@ -40,6 +40,7 @@ export default {
     loadItemUrl: {
       handler(val, oldVal) {
         this.resetRoute()
+        this.$store.dispatch('items/loadItems')
       }
     }
   },
