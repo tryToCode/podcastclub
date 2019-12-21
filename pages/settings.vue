@@ -169,7 +169,7 @@ export default {
                 'category': this.catSelected,
                 'date': this.dateSelected
             }
-            this.$store.dispatch('settingChangeHandle', payload)
+            this.$store.dispatch('apiUrl/settingChangeHandle', payload)
             this.$router.push('/')
         }
     }

@@ -1,33 +1,29 @@
 import axios from 'axios'
 
 export const state = () => ({
-    loadItemUrl: process.env.baseItemUrl,
-    itemsResult: {
-        items: [],
-        itemsCount: 0,
-        timeSpent: 0
-    },
-    currentPage: 1,
-    pageCount: Number
+    items: [],
+    itemsCount: Number,
+    timeSpent: Number
 })
 
 export const mutations = {
-    // whenever url for loading items changed, triggers index page reset route
-    setUrl(state, url) {
-        state.loadItemUrl = url
+    SET_ITEMS(state, items) {
+        state.items = items
     },
 
-    setItemsResult(state, result) {
-        state.itemsResult = result
+    SET_ITEMS_COUNT(state, count) {
+        state.itemsCount = count
     },
 
-    setCurrentPage(state, page) {
-        state.currentPage = page
-    },
-
-    setPageCount(state, count) {
-        state.pageCount = count
+    SET_TIME_SPENT(state, time) {
+        state.timeSpent = time
     }
+}
+
+export const getters = {
+
+    urlGetter: state => state.apiUrl.url
+
 }
 
 export const actions = {
@@ -42,26 +38,15 @@ export const actions = {
      * 
      * @param {*} param
      */
-    async loadItems({commit, state, dispatch}) {
+    async loadItems({commit, getters, dispatch}) {
         dispatch('loading/startLoading', null)
         try {
-            const url = localStorage.getItem('loadItemUrl')
-                ? localStorage.getItem('loadItemUrl')
-                : state.loadItemUrl
             const start = Date.now();
-            const items = await axios.get(url)
+            const items = await axios.get(getters.urlGetter)
             const s = (Date.now() - start) / 1000
-            const result = {
-                items: items.data.results, 
-                itemsCount: items.data.count,
-                timeSpent: s }
-            // 
-            commit('setUrl', url)
-            commit('setItemsResult', result)
-            const pageSize = localStorage.getItem("pageSize") 
-                ? localStorage.getItem("pageSize") 
-                : 20
-            commit('setPageCount', Math.ceil(items.data.count / pageSize))
+            commit('SET_ITEMS', items.data.results)
+            commit('SET_ITEMS_COUNT', items.data.count)
+            commit('SET_TIME_SPENT', s)
         }
         catch(error) {
             if (error.response) {
@@ -71,12 +56,9 @@ export const actions = {
                  */
                 if (error.response.status === 404 
                     && error.response.data.detail === 'Invalid page.') {
-                    const result = {
-                        items: [],
-                        itemsCount: 0,
-                        timeSpeed: 0
-                    }
-                    commit('setItemsResult', result)
+                    commit('SET_ITEMS', [])
+                    commit('SET_ITEMS_COUNT', 0)
+                    commit('SET_TIME_SPENT', 0)
                 }
             } else if (error.request) {
                 /*
@@ -103,76 +85,5 @@ export const actions = {
         catch (error) {
             console.log(error)
         }
-    },
-
-    async selectChangeHandle({dispatch}, payload) {
-        /* handle each select option change and search input 
-        *  event fired from ui and reset local storage 
-        *  storage variable used to load init selected value
-        */
-        const {value, filterSection} = payload
-        const defaultSelectValue = ['All', 'All Time', '']
-        defaultSelectValue.includes(value) 
-        ? localStorage.removeItem(filterSection) 
-        : localStorage.setItem(filterSection, value)
-        await dispatch('rebuildUrl', {
-            value: value,
-            section: filterSection
-        })
-    },
-
-    async rebuildUrl({commit, state, dispatch}, payload) {
-        /*
-        * filter section is used as backend query key 
-        */
-        var baseUrl = new URL(state.loadItemUrl)
-        const {value, section} = payload
-        const defaultSelectValue = ['All', 'All Time', '']
-        if (defaultSelectValue.includes(value))
-            baseUrl.searchParams.delete(section)
-        else {
-            const valueTrimmed = section === 'search' 
-                ? value 
-                : value.split(' ').join('')
-            baseUrl.searchParams.set(section, valueTrimmed)
-        }
-        localStorage.setItem('loadItemUrl', baseUrl.toString())
-        await dispatch('loadItems')
-    },
-
-    async pageChangeHandle({commit, state, dispatch}, payload) {
-        /**
-         * handle pagination click event
-         */
-        var baseUrl = new URL(state.loadItemUrl)
-        const pageNumber = payload.pageNumber
-        pageNumber === 1
-        ? baseUrl.searchParams.delete('page')
-        : baseUrl.searchParams.set('page', pageNumber)
-        commit('setCurrentPage', pageNumber)
-        localStorage.setItem('loadItemUrl', baseUrl.toString())
-        await dispatch('loadItems')
-    },
-
-    async settingChangeHandle({commit, state, dispatch}, payload) {
-        /**
-         * handle select option change event from setting page
-         * only triggered after apply button clicked
-         */
-        var baseUrl = new URL(state.loadItemUrl)
-        const defaultSelectValue = ['All', 'All Time', '20']
-        for (const [filterSection, value] of Object.entries(payload)) {
-            if (defaultSelectValue.includes(value)) {
-                localStorage.removeItem(filterSection)
-                baseUrl.searchParams.delete(filterSection)
-            } else {
-                localStorage.setItem(filterSection, value)
-                filterSection === 'date' 
-                ? baseUrl.searchParams.set(filterSection, value.split(' ').join(''))
-                : baseUrl.searchParams.set(filterSection, value)
-            }
-        }
-        localStorage.setItem('loadItemUrl', baseUrl.toString())
-        await dispatch('loadItems')
     }
 }

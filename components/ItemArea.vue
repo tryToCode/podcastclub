@@ -2,7 +2,7 @@
   <div>
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :color="COLOR"></pulse-loader>
+        <pulse-loader :color="loaderColor"></pulse-loader>
     </div>
 
     <div v-else 
@@ -15,7 +15,7 @@
             :item="item" />
         <Pagination 
             :currentPage="Number(currentPage)"
-            :pageCount="Number(pageCount)"
+            :pageCount="pageCount"
             @nextPage="pageChangeHandle('next')"
             @previousPage="pageChangeHandle('previous')"
             @loadPage="pageChangeHandle" />
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import PodcastItem from './PodcastItem.vue'
 import Pagination from './Pagination.vue'
 import NoItems from './NoItems.vue'
@@ -52,13 +52,21 @@ export default {
     computed: {
         ...mapState({
             loading: state => state.loading.loading,
-            items: state => state.itemsResult.items,
-            loadItemUrl: state => state.loadItemUrl,
-            currentPage: state => state.currentPage,
-            pageCount: state => state.pageCount
+            items: state => state.items,
+            itemsCount: state => state.itemsCount
         }),
 
-        COLOR: () => '#fc8181'
+        ...mapGetters('apiUrl', {
+            loadItemUrl: 'url',
+            currentPage: 'page',
+            pageSize: 'pageSize'
+        }),
+
+        loaderColor: () => '#fc8181',
+
+        pageCount () {
+            return Math.ceil(Number(this.itemsCount) / Number(this.pageSize))
+        } 
     },
 
     methods: {
@@ -80,8 +88,9 @@ export default {
                     page = value
                     break
             }
-            this.$store.dispatch('pageChangeHandle', {
-                pageNumber: page
+            this.$store.dispatch('apiUrl/filterChangeHandle', {
+                section: 'page',
+                value: page.toString()
             })
             .then(() =>
                 this.toTop()
