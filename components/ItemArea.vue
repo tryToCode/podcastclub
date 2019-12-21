@@ -53,11 +53,11 @@ export default {
         ...mapState({
             loading: state => state.loading.loading,
             items: state => state.items.items,
-            itemsCount: state => state.items.itemsCount
+            itemsCount: state => state.items.itemsCount,
+            loadItemUrl: state => state.apiUrl.url
         }),
 
         ...mapGetters('apiUrl', {
-            loadItemUrl: 'url',
             currentPage: 'page',
             pageSize: 'pageSize'
         }),

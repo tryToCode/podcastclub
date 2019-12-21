@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import FilterArea from '@/components/FilterArea.vue'
 import ItemArea from '@/components/ItemArea.vue'
 
@@ -31,8 +31,8 @@ export default {
   },
 
   computed: {
-    ...mapGetters('apiUrl', {
-      loadItemUrl: 'url'
+    ...mapState({
+      loadItemUrl: state => state.apiUrl.url
     }),
   },
 

@@ -12,80 +12,49 @@ export const state = () => ({
 })
 
 export const getters = {
-
-    url(state) {
-        return window.localStorage.getItem('url')
-        ? window.localStorage.getItem('url')
-        : state.url
-    },
-
-    search(state) {
-        return localStorage.getItem('search') 
-        ? localStorage.getItem('search')
-        : state.urlKeyValuePair.search
-    },
-
-    category(state) {
-        return localStorage.getItem('category')
-        ? localStorage.get('category')
-        : state.urlKeyValuePair.category
-    },
-
-    date(state) {
-        return localStorage.getItem('date')
-        ? localStorage.getItem('date')
-        : state.urlKeyValuePair.date
-    },
-
     page(state) {
-        return localStorage.getItem('page')
-        ? Number(localStorage.getItem('page')) 
-        : Number(state.urlKeyValuePair.page)
+        return state.urlKeyValuePair.page
     },
 
     pageSize(state) {
-        return localStorage.getItem('pageSize')
-        ? Number(localStorage.getItem('pageSize'))
-        : Number(state.urlKeyValuePair.pageSize)
+        return state.urlKeyValuePair.pageSize
     }
 }
 
 export const mutations = {
     SET_URL(state, url) {
         state.url = url
-        localStorage.setItem('url', url)
     },
 
     SET_FILTER(state, sectionValuePair) {
         const { section, value } = sectionValuePair
         state.urlKeyValuePair[section] = value
-        defaultFilterValue.includes(value)
-        ? localStorage.removeItem(section)
-        : localStorage.setItem(section, value)
+        if (!defaultFilterValue.includes(value))
+            state.urlKeyValuePair[section] = value
     }
 }
 
 export const actions = {
-    filterChangeHandle({commit, state}, payload) {
-        const section = payload.section
-        const value = payload.value
+    filterChangeHandle({ commit, state }, payload) {
+        var { section, value } = payload
         let url = new URL(state.url)
         defaultFilterValue.includes(value)
         ? url.searchParams.delete(section)
         : url.searchParams.set(section, value)
-        commit('SET_FILTER', { section, value })
         commit('SET_URL', url.toString())
+        commit('SET_FILTER', payload)
     },
 
-    settingChangeHandle({commit, state}, payload) {
+    settingChangeHandle({ commit, state }, payload) {
         let url = new URL(state.url)
-        for (const [section, value] of Object.entries(payload)) {
-            commit('SET_FILTER ', { 
-                section: section, 
-                value: value })
+        for (var [section, value] of Object.entries(payload)) {
             defaultFilterValue.includes(value)
             ? url.searchParams.delete(section)
             : url.searchParams.set(section, value)
+            commit('SET_FILTER', {
+                section: section,
+                value: value
+            })
         }
         commit('SET_URL', url.toString())
     }

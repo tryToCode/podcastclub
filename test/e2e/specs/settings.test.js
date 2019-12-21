@@ -20,7 +20,7 @@ module.exports = {
     'step five: check home page route path': function(browser) {
         browser
             .pause(1000)
-            .verify.urlContains('date=PastWeek')
+            .verify.urlContains('date=Past%20Week')
             .verify.urlContains('pageSize=10')
             .verify.value('select[id="dateSelect"]', 'Past Week')
     },

@@ -21,9 +21,9 @@ export const mutations = {
 }
 
 export const getters = {
-
-    urlGetter: state => state.apiUrl.url
-
+    urlGetter(state, getters, rootState, rootGetters) {
+        return rootState.apiUrl.url
+    }
 }
 
 export const actions = {
@@ -31,15 +31,14 @@ export const actions = {
      * this action is triggered by following events:
      *  select option from index page change event
      *  search input change event
-     *  select option from setting page change event and apply
+     *  select option from setting page change event
      *  pagination click event
      *  index page onCreate, refresh
      *  navbar click and reload
      * 
-     * @param {*} param
      */
     async loadItems({commit, getters, dispatch}) {
-        dispatch('loading/startLoading', null)
+        dispatch('loading/startLoading', null, { root: true })
         try {
             const start = Date.now();
             const items = await axios.get(getters.urlGetter)
@@ -74,7 +73,7 @@ export const actions = {
                 console.log('Error', error.message);
             }
         }
-        dispatch("loading/stopLoading", null)
+        dispatch("loading/stopLoading", null, { root: true })
     },
 
     async updateLikes({state}, itemId) {
