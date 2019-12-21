@@ -31,9 +31,9 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'loadItemUrl'
-    ]),
+    ...mapState({
+      loadItemUrl: state => state.apiUrl.url
+    }),
   },
 
   watch: {
@@ -56,7 +56,7 @@ export default {
         query = Object.assign({}, query, obj)
         urlKey = urlKey.filter(e => e !== key)
       }
-      this.$router.push({query: query})
+      this.$router.replace({query: query})
       urlKey.forEach(e => this.deleteQuery(e))
     },
 

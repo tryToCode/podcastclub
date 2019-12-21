@@ -2,20 +2,20 @@
   <div>
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :color="COLOR"></pulse-loader>
+        <pulse-loader :color="loaderColor"></pulse-loader>
     </div>
 
     <div v-else 
         class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
         justify-center">
-        <div v-if="itemsResult.items.length !== 0">
+        <div v-if="items.length !== 0">
         <PodcastItem 
-            v-for="item in itemsResult.items"
+            v-for="item in items"
             :key="item.id"
             :item="item" />
         <Pagination 
             :currentPage="Number(currentPage)"
-            :pageCount="Number(pageCount)"
+            :pageCount="pageCount"
             @nextPage="pageChangeHandle('next')"
             @previousPage="pageChangeHandle('previous')"
             @loadPage="pageChangeHandle" />
@@ -31,26 +31,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import PodcastItem from './PodcastItem.vue'
 import Pagination from './Pagination.vue'
 import NoItems from './NoItems.vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
-    data() {
-        return {
-            loading: true
-        }
-    },
-
     mounted() {
-        this.$nextTick(() => {
-            this.startLoding()
-            this.$store.dispatch('loadItems')
-            .then(() =>
-                this.stopLoading())
-        })
+        this.$store.dispatch('items/loadItems')
     },
 
     components: {
@@ -61,24 +50,27 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            'itemsResult',
-            'loadItemUrl',
-            'currentPage',
-            'pageCount'
-        ]),
+        ...mapState({
+            loading: state => state.loading.loading,
+            items: state => state.items.items,
+            itemsCount: state => state.items.itemsCount,
+            loadItemUrl: state => state.apiUrl.url
+        }),
 
-        COLOR: () => '#fc8181'
+        ...mapGetters('apiUrl', {
+            currentPage: 'page',
+            pageSize: 'pageSize'
+        }),
+
+        loaderColor: () => '#fc8181',
+
+        pageCount () {
+            return Math.ceil(Number(this.itemsCount) / Number(this.pageSize))
+        } 
     },
 
     methods: {
-        startLoding() {
-            if (!this.loading)
-                this.loading = true
-        },
-
-        stopLoading() {
-            this.loading = false
+        toTop() {
             if (process.browser)
                 window.scrollTo({top: 0, behavior: 'smooth'})
         },
@@ -96,12 +88,12 @@ export default {
                     page = value
                     break
             }
-            this.startLoding()
-            this.$store.dispatch('pageChangeHandle', {
-                pageNumber: page
+            this.$store.dispatch('apiUrl/filterChangeHandle', {
+                section: 'page',
+                value: page.toString()
             })
             .then(() =>
-                this.stopLoading()
+                this.toTop()
             )
         }
     }

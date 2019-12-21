@@ -20,9 +20,9 @@ export default {
 
     methods: {
         async filterChangeHandle(value, filterSection) {
-            this.$store.dispatch('selectChangeHandle', {
-                value: value,
-                filterSection: filterSection
+            this.$store.dispatch('apiUrl/filterChangeHandle', {
+                section: filterSection,
+                value: value
             })
         }
     }

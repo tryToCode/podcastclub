@@ -14,7 +14,7 @@ module.exports = {
             .verify.urlContains('category=')
             .pause(1000)
             .click('select[id="dateSelect"] option[value="Past Month"]')
-            .verify.urlEquals('http://localhost:3000/?category=IT&date=PastMonth')
+            .verify.urlEquals('http://localhost:3000/?category=IT&date=Past%20Month')
     },
 
     'step three: reset select option': function(browser) {

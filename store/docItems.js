@@ -1,29 +1,31 @@
 import axios from 'axios'
 
 export const state = () => ({
-    result: {
-        items: [],
-        itemsCount: 0
-    }
+    items: [],
+    itemsCount: Number
 })
 
 export const mutations = {
-    setResult(state, result) {
-        state.result = result
+    SET_ITEMS(state, items) {
+        state.items = items
+    },
+
+    SET_ITEMS_COUNT(state, count) {
+        state.itemsCount = count
     }
 }
 
 export const getters = {
     item (state) {
-        return state.result.items[0]
+        return state.items[0]
     },
 
     items (state) {
-        return state.result.items.slice(0, 2)
+        return state.items.slice(0, 2)
     },
 
     itemsCount(state) {
-        return state.result.itemsCount
+        return state.itemsCount
     }
 }
 
@@ -31,11 +33,8 @@ export const actions = {
     async loadDocItems({commit}) {
         try {
             const items = await axios.get(process.env.baseItemUrl)
-            const result = {
-                items: items.data.results,
-                itemsCount: items.data.count
-            }
-            commit('setResult', result)
+            commit('SET_ITEMS', items.data.results)
+            commit('SET_ITEMS_COUNT', items.data.count)
         }
         catch (error) {
             console.log(error)

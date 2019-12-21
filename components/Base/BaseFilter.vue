@@ -54,8 +54,17 @@ export default {
     },
 
     mounted() {
-        if (localStorage.getItem(this.filterSection))
-            this.modelName = localStorage.getItem(this.filterSection)
+        if (localStorage.getItem('apiUrl')) {
+            let model = null
+            JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
+                if (key === this.filterSection) {
+                    model = value
+                    return
+                }
+            })
+            this.modelName = model
+        }
+            
     },
 
     methods: {

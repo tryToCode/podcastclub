@@ -25,8 +25,8 @@
 
         <div class="hidden md:flex flex-wrap items-center text-sm">
             <span class="p-2">
-                {{itemsResult.itemsCount}} results 
-                ( {{itemsResult.timeSpent}} seconds )
+                {{Number(itemsCount)}} results 
+                ( {{Number(timeSpent)}} seconds )
             </span>
         </div>
     </div>
@@ -64,9 +64,10 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            'itemsResult'
-        ]),
+        ...mapState({
+            itemsCount: state => state.items.itemsCount,
+            timeSpent: state => state.items.timeSpent
+        }),
 
         CAT_ID: () => 'categorySelect',
 
