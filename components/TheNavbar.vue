@@ -13,21 +13,13 @@
         </div>
         
         <div class="flex flex-1 pb-2 px-3 md:py-2 items-center md:justify-end">
-            <div class="flex flex-1 px-2 items-center relative">
-                <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-10
-                     font-base md:font-medium justify-center flex" 
-                    type="search" 
-                    v-model.trim="searchInput"
-                    placeholder="Search Episode by title, url or podcast"
-                    @input="onInputChange($event, 'search')">
-                <span class="absolute md:w-auto flex justify-start items-center text-grey px-2 md:px-2">
-                    <img src="~/assets/search.png">
-                </span>
-            </div>
-            <div class="hidden lg:flex items-center">
+            <BaseInput
+            @inputChange="inputChange" />
+            
+            <div class="hidden md:flex items-center">
                 <img src="~/assets/settings.png">
                 <nuxt-link class="px-1 md:pr-6 tracking-wide text-xl"
-                 to="/settings">
+                    to="/settings">
                     Setting
                 </nuxt-link>
             </div>
@@ -36,22 +28,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            searchInput: ''
-        }
-    },
+import BaseInput from './Base/BaseInput.vue'
 
-    mounted() {
-        if (localStorage.getItem("search")) {
-            this.searchInput = localStorage.getItem("search")
-        }
+export default {
+    components: {
+        BaseInput
     },
 
     methods: {
-        onInputChange: function(event, filterSection) {
-            this.$emit('onInputChange', event.target.value, filterSection)
+        inputChange: function(filterSection, value) {
+            this.$emit('onInputChange', filterSection, value)
         },
 
         reload() {

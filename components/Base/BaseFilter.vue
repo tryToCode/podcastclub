@@ -64,12 +64,11 @@ export default {
             })
             this.modelName = model
         }
-            
     },
 
     methods: {
         onFilterChange: function(event) {
-            this.$emit('onBaseFilterChange', event.target.value, this.filterSection)
+            this.$emit('onBaseFilterChange', this.filterSection, event.target.value)
         }
     }
 }
