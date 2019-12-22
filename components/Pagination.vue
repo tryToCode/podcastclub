@@ -2,6 +2,7 @@
     <div class="flex justify-center items-center my-4">
         <BaseButton
             class="mr-1"
+            :id="previoudBtn"
             :disabled="isPreviousButtonDisabled"
             :class="{
                 'hover:text-red-500': 
@@ -24,6 +25,7 @@
         />
         <BaseButton
             class="ml-1"
+            :id="nextBtn"
             :disabled="isNextButtonDisabled"
             :class="{
                 'hover:text-red-500': 
@@ -65,12 +67,22 @@ export default {
     },
 
     computed: {
+        previoudBtn() {
+            return 'previous-btn'
+        },
+
+        nextBtn() {
+            return 'next-btn'
+        },
+
         isPreviousButtonDisabled() {
             return this.currentPage === 1
         },
+
         isNextButtonDisabled() {
             return this.currentPage === this.pageCount
         },
+
         paginationTriggers() {
             const currentPage = this.currentPage
             const pageCount = this.pageCount
@@ -114,9 +126,11 @@ export default {
         previousPage() {
             this.$emit("previousPage")
         },
+
         nextPage() {
             this.$emit("nextPage")
         },
+
         onLoadPage(value) {
             this.$emit("loadPage", value)
         }

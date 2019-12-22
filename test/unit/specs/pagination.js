@@ -16,7 +16,8 @@ test('pagination with one page count', t => {
     t.is(wrapper.props().visiblePagesCount, 5)
 
     // check previous and next button
-    t.true(wrapper.contains('button'))
+    t.true(wrapper.contains('button #previous-btn'))
+    t.true(wrapper.contains('button #next-btn'))
 
     // check only one visiable trigger
     t.true(wrapper.find('#trigger-1').isVisible())

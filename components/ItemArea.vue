@@ -92,9 +92,7 @@ export default {
                 section: 'page',
                 value: page.toString()
             })
-            .then(() =>
-                this.toTop()
-            )
+            this.toTop()
         }
     }
 }
