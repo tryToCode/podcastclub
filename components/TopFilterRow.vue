@@ -87,7 +87,7 @@ export default {
     },
 
     methods: {
-        onFilterChange: function(value, filterSection) {
+        onFilterChange: function(filterSection, value) {
             switch (filterSection) {
                 case 'category':
                     this.catSelected = value
@@ -96,7 +96,7 @@ export default {
                     this.dateSelected = value
                     break
             }
-            this.$emit('onFilterChange', value, filterSection)
+            this.$emit('onFilterChange', filterSection, value)
         }
     }
 }

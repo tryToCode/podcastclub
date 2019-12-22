@@ -14,17 +14,17 @@ import TopFilterRow from './TopFilterRow.vue'
 
 export default {
     components: {
-        TheNavbar,
-        TopFilterRow
+      TheNavbar,
+      TopFilterRow
     },
 
     methods: {
-        async filterChangeHandle(value, filterSection) {
-            this.$store.dispatch('apiUrl/filterChangeHandle', {
-                section: filterSection,
-                value: value
-            })
-        }
+      async filterChangeHandle(filterSection, value) {
+        this.$store.dispatch('apiUrl/filterChangeHandle', {
+            section: filterSection,
+            value: value
+        })
+      }
     }
 }
 </script>

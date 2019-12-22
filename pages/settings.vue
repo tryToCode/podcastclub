@@ -115,12 +115,25 @@ export default {
     },
     
     mounted() {
-        if (localStorage.getItem('pageSize'))
-            this.itemPerPage = localStorage.getItem('pageSize')
-        if (localStorage.getItem('category'))
-            this.catSelected = localStorage.getItem('category')
-        if (localStorage.getItem('date'))
-            this.dateSelected = localStorage.getItem('date')
+        if (localStorage.getItem('apiUrl')) {
+            let pageSize = null, category = null, date = null
+            JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
+                switch(key) {
+                    case 'pageSize':
+                        pageSize = value
+                        break
+                    case 'category':
+                        category = value
+                        break
+                    case 'date':
+                        date = value
+                        break
+                }
+            })
+            this.itemPerPage = pageSize
+            this.catSelected = category
+            this.dateSelected = date
+        }
     },
 
     computed: {
@@ -148,7 +161,7 @@ export default {
     },
 
     methods: {
-        onFilterChange: function(value, filterSection) {
+        onFilterChange: function(filterSection,value) {
             switch(filterSection) {
                 case 'pageSize':
                     this.itemPerPage = value
