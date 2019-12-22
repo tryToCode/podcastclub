@@ -2,16 +2,16 @@
     <div class="flex justify-center items-center my-4">
         <BaseButton
             class="mr-1"
-            :id="previoudBtn"
+            id="previous-btn"
             :disabled="isPreviousButtonDisabled"
             :class="{
                 'hover:text-red-500': 
                 !isPreviousButtonDisabled
             }"
-            @click.native="previousPage"
-        >
+            @click.native="pageChangeHandle('previous')">
             ←
         </BaseButton>
+        
         <BasePaginationTrigger 
             v-for="paginationTrigger in paginationTriggers"
             :class="{
@@ -21,18 +21,17 @@
             :key="paginationTrigger"
             :pageNumber="paginationTrigger"
             class="flex mx-1"
-            @loadPage="onLoadPage"
-        />
+            @loadPage="pageChangeHandle(paginationTrigger)" />
+        
         <BaseButton
             class="ml-1"
-            :id="nextBtn"
+            id="next-btn"
             :disabled="isNextButtonDisabled"
             :class="{
                 'hover:text-red-500': 
                 !isNextButtonDisabled
             }"
-            @click.native="nextPage"
-        >
+            @click.native="pageChangeHandle('next')">
             →
         </BaseButton>
     </div>
@@ -40,6 +39,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
 import BaseButton from './Base/BaseButton.vue'
 import BasePaginationTrigger from './Base/BasePaginationTrigger.vue'
 
@@ -67,14 +67,6 @@ export default {
     },
 
     computed: {
-        previoudBtn() {
-            return 'previous-btn'
-        },
-
-        nextBtn() {
-            return 'next-btn'
-        },
-
         isPreviousButtonDisabled() {
             return this.currentPage === 1
         },
@@ -122,17 +114,31 @@ export default {
             return pagintationTriggers
         }
     },
+
     methods: {
-        previousPage() {
-            this.$emit("previousPage")
+        toTop() {
+            if (process.browser)
+                window.scrollTo({top: 0, behavior: 'smooth'})
         },
 
-        nextPage() {
-            this.$emit("nextPage")
-        },
-
-        onLoadPage(value) {
-            this.$emit("loadPage", value)
+        async pageChangeHandle(value) {
+            let page = this.currentPage
+            switch(value) {
+                case 'next':
+                    page += 1
+                    break
+                case 'previous':
+                    page -= 1
+                    break
+                default:
+                    page = value
+                    break
+            }
+            this.$store.dispatch('apiUrl/filterChangeHandle', {
+                section: 'page',
+                value: page.toString()
+            })
+            this.toTop()
         }
     }
 }
