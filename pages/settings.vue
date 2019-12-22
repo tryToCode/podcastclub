@@ -113,28 +113,6 @@ export default {
         BaseFilter,
         BasePageNav
     },
-    
-    mounted() {
-        if (localStorage.getItem('apiUrl')) {
-            let pageSize = null, category = null, date = null
-            JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
-                switch(key) {
-                    case 'pageSize':
-                        pageSize = value
-                        break
-                    case 'category':
-                        category = value
-                        break
-                    case 'date':
-                        date = value
-                        break
-                }
-            })
-            this.itemPerPage = pageSize
-            this.catSelected = category
-            this.dateSelected = date
-        }
-    },
 
     computed: {
         PAGE_ID: () => 'pageSizeSelect',
