@@ -9,22 +9,19 @@
         class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
         justify-center">
         <div v-if="items.length !== 0">
-        <PodcastItem 
-            v-for="item in items"
-            :key="item.id"
-            :item="item" />
-        <Pagination 
-            :currentPage="Number(currentPage)"
-            :pageCount="pageCount"
-            @nextPage="pageChangeHandle('next')"
-            @previousPage="pageChangeHandle('previous')"
-            @loadPage="pageChangeHandle" />
+            <PodcastItem 
+                v-for="item in items"
+                :key="item.id"
+                :item="item" />
+            <Pagination
+                :currentPage="Number(currentPage)"
+                :pageCount="pageCount" />
         </div>
 
         <div v-else>
-        <NoItems
-            :baseUrl="loadItemUrl"
-            :key="loadItemUrl"/>
+            <NoItems
+                :baseUrl="loadItemUrl"
+                :key="loadItemUrl"/>
         </div>
     </div>
   </div>
@@ -64,35 +61,8 @@ export default {
 
         loaderColor: () => '#fc8181',
 
-        pageCount () {
+        pageCount() {
             return Math.ceil(Number(this.itemsCount) / Number(this.pageSize))
-        } 
-    },
-
-    methods: {
-        toTop() {
-            if (process.browser)
-                window.scrollTo({top: 0, behavior: 'smooth'})
-        },
-
-        async pageChangeHandle(value) {
-            let page = Number(this.currentPage)
-            switch(value) {
-                case 'next':
-                    page += 1
-                    break
-                case 'previous':
-                    page -= 1
-                    break
-                default:
-                    page = value
-                    break
-            }
-            this.$store.dispatch('apiUrl/filterChangeHandle', {
-                section: 'page',
-                value: page.toString()
-            })
-            this.toTop()
         }
     }
 }
