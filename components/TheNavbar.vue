@@ -31,6 +31,8 @@
 import BaseInput from './Base/BaseInput.vue'
 
 export default {
+    name: 'navbar',
+
     components: {
         BaseInput
     },

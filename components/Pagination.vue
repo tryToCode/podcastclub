@@ -44,6 +44,8 @@ import BaseButton from './Base/BaseButton.vue'
 import BasePaginationTrigger from './Base/BasePaginationTrigger.vue'
 
 export default {
+    name: 'pagination',
+
     props: {
         currentPage: {
             type: Number,
@@ -79,10 +81,13 @@ export default {
             const currentPage = this.currentPage
             const pageCount = this.pageCount
             var visiblePagesCount = this.visiblePagesCount
-            if (pageCount < visiblePagesCount)
-                visiblePagesCount = pageCount
             const visiblePagesThreshold = Math.ceil((visiblePagesCount - 1) / 2) 
+
+            if (pageCount <= visiblePagesCount)
+                visiblePagesCount = pageCount
+
             const paginationTriggersArray = Array(visiblePagesCount - 1).fill(0)
+
             if (currentPage <= visiblePagesThreshold + 1) {
                 paginationTriggersArray[0] = 1
                 const pagintationTriggers = paginationTriggersArray.map(
@@ -90,10 +95,11 @@ export default {
                     return paginationTriggersArray[0] + index
                     }
                 )
-                if (pageCount > currentPage)
-                    pagintationTriggers.push(pageCount)
+                
+                pagintationTriggers.push(pageCount)
                 return pagintationTriggers
             }
+
             if (currentPage >= pageCount - visiblePagesThreshold + 1) {
                 const pagintationTriggers = paginationTriggersArray.map(
                 (paginationTrigger, index) => {

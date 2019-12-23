@@ -1,42 +1,67 @@
-import { mount } from '@vue/test-utils'
+import Vuex from 'vuex'
+import sinon from 'sinon'
+import { createLocalVue, mount } from '@vue/test-utils'
 import test from 'ava'
 
 import Pagination from '../../../components/Pagination.vue'
 
-test('pagination with one page count', t => {
-    const wrapper = mount(Pagination, {
-        propsData: {
-            currentPage: 1,
-            pageCount: 1
-        }
+const localVue = createLocalVue()
+localVue.use(Vuex)
+
+const actions = {
+    filterChangeHandle: sinon.stub()
+}
+
+// This function creates a new Vuex store
+// instance for every new test case.
+function createStore() {
+    const modules = {
+      apiUrl: {
+        namespaced: true,
+        actions
+      },
+    }
+  
+    return new Vuex.Store({
+      modules,
     })
-    // check prop data
-    t.is(wrapper.props().currentPage, 1)
-    t.is(wrapper.props().pageCount, 1)
-    t.is(wrapper.props().visiblePagesCount, 5)
+}
 
-    // check previous and next button
-    t.true(wrapper.contains('button #previous-btn'))
-    t.true(wrapper.contains('button #next-btn'))
-
-    // check only one visiable trigger
-    t.true(wrapper.find('#trigger-1').isVisible())
-    t.false(wrapper.contains('span #trigger-2'))
-})
-
-test('pagination with two page count', t => {
+// starting point two pages
+test('pagination with two pages', t => {
     const wrapper = mount(Pagination, {
         propsData: {
             currentPage: 1,
             pageCount: 2
-        }
+        },
+        localVue,
+        store: createStore()
     })
 
     // check the last visiable trigger
     t.true(wrapper.find('#trigger-2').isVisible())
-    t.true(wrapper.find('#trigger-2').trigger('click'))
-    // TODO: the first page should still be visible
+    
+    wrapper.find('#trigger-2').trigger('click')
+
+    // check the action was called
+    t.is(actions.filterChangeHandle.callCount, 1)
+
+    // check the first page if it's still visible
     t.true(wrapper.find('#trigger-1').isVisible())
+})
+
+// test with the default visiable page count 5
+test('pagination with five pages', t => {
+    const wrapper = mount(Pagination, {
+        propsData: {
+            currentPage: 1,
+            pageCount: 5
+        }
+    })
+
+    // check first and last visible trigger
+    t.true(wrapper.find('#trigger-1').isVisible())
+    t.true(wrapper.find('#trigger-5').isVisible())
 })
 
 test('pagination with more pages', t => {
@@ -53,8 +78,4 @@ test('pagination with more pages', t => {
     // check first and last visible trigger
     t.true(wrapper.find('#trigger-1').isVisible())
     t.true(wrapper.find('#trigger-10').isVisible())
-})
-
-test.skip('check pagination click event', t => {
-    // TODO
 })

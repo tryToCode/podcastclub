@@ -19,6 +19,8 @@
 
 <script>
 export default {
+    name: 'No Items',
+
     data() {
         return {
             url: this.baseUrl,

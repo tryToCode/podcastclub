@@ -53,6 +53,8 @@
 import UpArrowIcon from './Icon/UpArrowIcon.vue'
 
 export default {
+    name: 'podcast item',
+
     data() {
         return {
             likes: this.item.likes
