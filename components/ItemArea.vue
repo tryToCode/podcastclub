@@ -8,7 +8,20 @@
     <div v-else 
         class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
         justify-center">
-        <div v-if="items.length !== 0">
+        <div v-if="itemsCount === 0">
+            <NoItems
+                :baseUrl="loadItemUrl"
+                :key="loadItemUrl"/>
+        </div>
+
+        <div v-else-if="itemsCount <= pageSize">
+            <PodcastItem 
+                v-for="item in items"
+                :key="item.id"
+                :item="item" />
+        </div>
+
+        <div v-else>
             <PodcastItem 
                 v-for="item in items"
                 :key="item.id"
@@ -16,12 +29,6 @@
             <Pagination
                 :currentPage="Number(currentPage)"
                 :pageCount="pageCount" />
-        </div>
-
-        <div v-else>
-            <NoItems
-                :baseUrl="loadItemUrl"
-                :key="loadItemUrl"/>
         </div>
     </div>
   </div>
@@ -35,6 +42,8 @@ import NoItems from './NoItems.vue'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
+    name: 'Item Area',
+
     mounted() {
         this.$store.dispatch('items/loadItems')
     },

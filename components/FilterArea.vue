@@ -13,6 +13,8 @@ import TheNavbar from './TheNavbar.vue'
 import TopFilterRow from './TopFilterRow.vue'
 
 export default {
+    name: 'Filter Area',
+
     components: {
       TheNavbar,
       TopFilterRow
