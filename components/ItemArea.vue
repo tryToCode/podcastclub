@@ -39,10 +39,10 @@ import { mapState, mapGetters } from 'vuex'
 import PodcastItem from './PodcastItem.vue'
 import Pagination from './Pagination.vue'
 import NoItems from './NoItems.vue'
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import { PulseLoader } from '@saeris/vue-spinners'
 
 export default {
-    name: 'Item Area',
+    name: 'item-area',
 
     mounted() {
         this.$store.dispatch('items/loadItems')
