@@ -1,7 +1,6 @@
 import Vuex from 'vuex'
 import sinon from 'sinon'
 import { createLocalVue, mount } from '@vue/test-utils'
-import test from 'ava'
 
 import Pagination from '../../../components/Pagination.vue'
 
@@ -27,55 +26,57 @@ function createStore() {
     })
 }
 
-// starting point two pages
-test('pagination with two pages', t => {
-    const wrapper = mount(Pagination, {
-        propsData: {
-            currentPage: 1,
-            pageCount: 2
-        },
-        localVue,
-        store: createStore()
+describe('test pagination component with diverse page count', () => {
+    // starting point two pages
+    test('pagination with two pages', () => {
+        const wrapper = mount(Pagination, {
+            propsData: {
+                currentPage: 1,
+                pageCount: 2
+            },
+            localVue,
+            store: createStore()
+        })
+
+        // check the last visiable trigger
+        expect(wrapper.find('#trigger-2').isVisible()).toBeTruthy()
+        
+        wrapper.find('#trigger-2').trigger('click')
+
+        // check the action was called
+        expect(actions.filterChangeHandle.callCount).toBe(1)
+
+        // check the first page if it's still visible
+        expect(wrapper.find('#trigger-1').isVisible()).toBeTruthy()
     })
 
-    // check the last visiable trigger
-    t.true(wrapper.find('#trigger-2').isVisible())
-    
-    wrapper.find('#trigger-2').trigger('click')
+    // test with the default visiable page count 5
+    test('pagination with five pages', () => {
+        const wrapper = mount(Pagination, {
+            propsData: {
+                currentPage: 1,
+                pageCount: 5
+            }
+        })
 
-    // check the action was called
-    t.is(actions.filterChangeHandle.callCount, 1)
-
-    // check the first page if it's still visible
-    t.true(wrapper.find('#trigger-1').isVisible())
-})
-
-// test with the default visiable page count 5
-test('pagination with five pages', t => {
-    const wrapper = mount(Pagination, {
-        propsData: {
-            currentPage: 1,
-            pageCount: 5
-        }
+        // check first and last visible trigger
+        expect(wrapper.find('#trigger-1').isVisible()).toBeTruthy()
+        expect(wrapper.find('#trigger-5').isVisible()).toBeTruthy()
     })
 
-    // check first and last visible trigger
-    t.true(wrapper.find('#trigger-1').isVisible())
-    t.true(wrapper.find('#trigger-5').isVisible())
-})
+    test('pagination with more pages', () => {
+        const wrapper = mount(Pagination, {
+            propsData: {
+                currentPage: 1,
+                pageCount: 10
+            }
+        })
+        
+        // check if wrapper contains triggers
+        expect(wrapper.contains('span')).toBeTruthy()
 
-test('pagination with more pages', t => {
-    const wrapper = mount(Pagination, {
-        propsData: {
-            currentPage: 1,
-            pageCount: 10
-        }
+        // check first and last visible trigger
+        expect(wrapper.find('#trigger-1').isVisible()).toBeTruthy()
+        expect(wrapper.find('#trigger-10').isVisible()).toBeTruthy()
     })
-    
-    // check if wrapper contains triggers
-    t.true(wrapper.contains('span'))
-
-    // check first and last visible trigger
-    t.true(wrapper.find('#trigger-1').isVisible())
-    t.true(wrapper.find('#trigger-10').isVisible())
 })

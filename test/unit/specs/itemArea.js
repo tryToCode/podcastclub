@@ -1,7 +1,6 @@
 import Vuex from 'vuex'
 import sinon from 'sinon'
 import { createLocalVue, mount } from '@vue/test-utils'
-import test from 'ava'
 
 import ItemArea from '../../../components/ItemArea.vue'
 
@@ -49,39 +48,41 @@ function createStore() {
     })
 }
 
-// test component with zero item
-test('item area with zero item', t => {
-    const wrapper = mount(ItemArea, {
-        localVue,
-        store:createStore()
+describe('test item area component with diverse items count', () => {
+    // test component with zero item
+    test('item area with zero item', () => {
+        const wrapper = mount(ItemArea, {
+            localVue,
+            store:createStore()
+        })
+
+        // check component name
+        expect(wrapper.name()).toBe('item-area')
+
+        // check the action was called
+        //t.is(actions.loadItems.callCount, 1)
+        
+        // no items
+        //t.true(wrapper.contains('p#no-items'))
+
+        // help link
+        //t.true(wrapper.contains('a'))
     })
 
-    // check component name
-    t.is(wrapper.name(), 'item-area')
-
-    // check the action was called
-    //t.is(actions.loadItems.callCount, 1)
-    
-    // no items
-    //t.true(wrapper.contains('p#no-items'))
-
-    // help link
-    //t.true(wrapper.contains('a'))
-})
-
-// test component with default page size items
-test.skip('item area with default page size', t => {
-    const wrapper = mount(ItemArea, {
-        localVue,
-        store: createStore()
+    // test component with default page size items
+    test.skip('item area with default page size', () => {
+        const wrapper = mount(ItemArea, {
+            localVue,
+            store: createStore()
+        })
+        
     })
-    
-})
 
-// test component with more items
-test.skip('item area with more items', t => {
-    const wrapper = mount(ItemArea, {
-        localVue,
-        store: createStore()
+    // test component with more items
+    test.skip('item area with more items', () => {
+        const wrapper = mount(ItemArea, {
+            localVue,
+            store: createStore()
+        })
     })
 })
