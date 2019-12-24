@@ -2,7 +2,7 @@
   <div>
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
-        <pulse-loader :color="loaderColor"></pulse-loader>
+        <pulse-loader color="#fc8181"></pulse-loader>
     </div>
 
     <div v-else 
@@ -67,8 +67,6 @@ export default {
             currentPage: 'page',
             pageSize: 'pageSize'
         }),
-
-        loaderColor: () => '#fc8181',
 
         pageCount() {
             return Math.ceil(Number(this.itemsCount) / Number(this.pageSize))

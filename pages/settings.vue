@@ -10,13 +10,13 @@
         <div class="flex m-4 items-center mx-auto">
             <BaseLabel
                 class="flex-1"
-                :text="DISPALY_LABEL"
-                :hidden="hiddenOnMobile" />
+                text="Episodes Per Page"
+                hidden="false" />
             <BaseFilter 
-                :id="PAGE_ID"
+                id="pageSizeSelect"
                 :model="itemPerPage"
                 :selectType="selectOptions"
-                :filterSection="PAGE_SECTION"
+                filterSection="pageSize"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
       </div>
@@ -26,25 +26,25 @@
         <div class="flex items-center m-4 mx-auto">
             <BaseLabel 
                 class="flex-1"
-                :text="CAT_LAEBL"
-                :hidden="hiddenOnMobile" />
+                text="Default category"
+                hidden="false" />
             <BaseFilter 
-                :id="CAT_ID"
+                id="categorySelect"
                 :model="catSelected"
                 :selectType="categoryType"
-                :filterSection="CAT_SECTION"
+                filterSection="category"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
         <div class="flex items-center m-4 mx-auto">
             <BaseLabel 
                 class="flex-1"
-                :text="DATE_LABEL"
-                :hidden="hiddenOnMobile" />
+                text="Default date range"
+                hidden="false" />
             <BaseFilter
-                :id="DATE_ID" 
+                id="dateSelect" 
                 :model="dateSelected"
                 :selectType="dateType"
-                :filterSection="DATE_SECTION"
+                filterSection="date"
                 @onBaseFilterChange="onFilterChange"/>
         </div>
       </div>
@@ -112,30 +112,6 @@ export default {
         BaseLabel,
         BaseFilter,
         BasePageNav
-    },
-
-    computed: {
-        PAGE_ID: () => 'pageSizeSelect',
-
-        CAT_ID: () => 'categorySelect',
-
-        DATE_ID: () => 'dateSelect',
-
-        PAGE_SECTION: () => 'pageSize',
-
-        CAT_SECTION: () => 'category',
-
-        DATE_SECTION: () => 'date',
-
-        DISPALY_LABEL: () => 'Episodes Per Page',
-
-        CAT_LAEBL: () => 'Default category',
-
-        DATE_LABEL: () => 'Default date range',
-
-        hiddenOnMobile() {
-            return false
-        }
     },
 
     methods: {

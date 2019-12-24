@@ -2,23 +2,23 @@
     <div class="max-w-5xl flex flex-wrap md:justify-around bg-gray-100 mx-auto py-2">
         <div class="flex flex-wrap items-center text-sm">
             <div class="ml-2 flex flex-wrap items-center">
-                <BaseLabel :text="CAT_LABEL"
-                    :hidden="hiddenOnMobile" />
+                <BaseLabel text="Search Episodes of"
+                    :hidden="true" />
                 <BaseFilter
-                    :id="CAT_ID"
+                    id="categorySelect"
                     :model="catSelected"
                     :selectType="categoryType"
-                    :filterSection="CAT_SECTION"
+                    filterSection="category"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
             <div class="flex flex-wrap items-center">
-                <BaseLabel :text="DATE_LABEL"
-                    :hidden="hiddenOnMobile" />
+                <BaseLabel text="for"
+                    :hidden="true" />
                 <BaseFilter 
-                    :id="DATE_ID"
+                    id="dateSelect"
                     :model="dateSelected"
                     :selectType="dateType"
-                    :filterSection="DATE_SECTION"
+                    filterSection="date"
                     @onBaseFilterChange="onFilterChange"/>
             </div>
         </div>
@@ -69,23 +69,7 @@ export default {
         ...mapState({
             itemsCount: state => state.items.itemsCount,
             timeSpent: state => state.items.timeSpent
-        }),
-
-        CAT_ID: () => 'categorySelect',
-
-        DATE_ID: () => 'dateSelect',
-
-        CAT_SECTION: () => 'category',
-
-        DATE_SECTION: () => 'date',
-
-        CAT_LABEL: () => "Search Episodes of",
-
-        DATE_LABEL: () => "for",
-        
-        hiddenOnMobile() {
-            return true
-        }
+        })
     },
 
     methods: {

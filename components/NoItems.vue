@@ -7,7 +7,7 @@
     <p id="of-date" v-if="dateInput.length !== 0">
         in the period <span class="font-semibold">{{dateInput}}</span>
     </p>
-    <p id="for-seaarch" v-if="searchInput.length !== 0">
+    <p id="for-search" v-if="searchInput.length !== 0">
         for the search input <span class="font-semibold">{{searchInput}}</span>
     </p>
     <br>
@@ -23,7 +23,6 @@ export default {
 
     data() {
         return {
-            url: this.baseUrl,
             categoryInput: '',
             dateInput: '',
             searchInput: ''
@@ -43,9 +42,7 @@ export default {
 
     methods: {
         extractInput: function() {
-            if (this.url.length === 0)
-                return
-            var url = new URL(this.url)
+            var url = new URL(this.baseUrl)
             if (url.searchParams.has('category'))
                 this.categoryInput = url.searchParams.get('category')
             if (url.searchParams.has('date'))

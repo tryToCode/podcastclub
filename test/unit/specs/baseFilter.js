@@ -1,5 +1,5 @@
-import { shallowMount } from "@vue/test-utils";
-import BaseFilter from "../../../components/Base/BaseFilter.vue";
+import { shallowMount } from "@vue/test-utils"
+import BaseFilter from "../../../components/Base/BaseFilter.vue"
 
 const catSelected = [
   {value: 'All', id: 0},

@@ -3,6 +3,7 @@ import sinon from 'sinon'
 import { createLocalVue, mount } from '@vue/test-utils'
 
 import ItemArea from '../../../components/ItemArea.vue'
+import NoItems from '../../../components/Noitems.vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -16,6 +17,14 @@ const getters = {
     pageSize: sinon.stub()
 }
 
+function createNoItemCom() {
+    return mount(NoItems, {
+        propsData: {
+            baseUrl: 'http://localhost:3000'
+        }
+    })
+}
+
 // This function creates a new Vuex store
 // instance for every new test case.
 function createStore() {
@@ -24,9 +33,9 @@ function createStore() {
         namespaced: true,
         actions,
         state: {
-            items: sinon.fake.returns(0),
-            itemsCount: sinon.fake.returns(0),
-            timeSpent: sinon.fake.returns(0)
+            items: 0,
+            itemsCount: 0,
+            timeSpent: 0
         }
       },
 
@@ -38,7 +47,7 @@ function createStore() {
       loading: {
           namespaced: true,
           state: {
-              loading: sinon.stub()
+            loading: false
           }
       }
     }
@@ -53,20 +62,22 @@ describe('test item area component with diverse items count', () => {
     test('item area with zero item', () => {
         const wrapper = mount(ItemArea, {
             localVue,
-            store:createStore()
+            store:createStore(),
+            components: createNoItemCom()
         })
 
         // check component name
         expect(wrapper.name()).toBe('item-area')
 
         // check the action was called
-        //t.is(actions.loadItems.callCount, 1)
+        expect(actions.loadItems.callCount).toBe(1)
         
+        console.log(wrapper.html())
         // no items
-        //t.true(wrapper.contains('p#no-items'))
+        expect(wrapper.contains('p #no-items')).toBeTruthy()
 
         // help link
-        //t.true(wrapper.contains('a'))
+        expect(wrapper.contains('a')).toBeTruthy()
     })
 
     // test component with default page size items
