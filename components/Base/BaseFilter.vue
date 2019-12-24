@@ -21,6 +21,8 @@
 import DownArrowIcon from '@/components/Icon/DownArrowIcon.vue'
 
 export default {
+    name: 'base-filter',
+
     data() {
         return {
             modelName: this.model

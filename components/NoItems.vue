@@ -1,13 +1,13 @@
 <template>
   <div class="h-screen flex flex-col justify-center items-center">
-    <p>No Items found</p> 
-    <p v-if="categoryInput.length !== 0">
+    <p id="no-items">No Items found</p> 
+    <p id="of-category" v-if="categoryInput.length !== 0">
         of the category <span class="font-semibold">{{categoryInput}}</span>
     </p>
-    <p v-if="dateInput.length !== 0">
+    <p id="of-date" v-if="dateInput.length !== 0">
         in the period <span class="font-semibold">{{dateInput}}</span>
     </p>
-    <p v-if="searchInput.length !== 0">
+    <p id="for-seaarch" v-if="searchInput.length !== 0">
         for the search input <span class="font-semibold">{{searchInput}}</span>
     </p>
     <br>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: 'No Items',
+    name: 'no-items',
 
     data() {
         return {

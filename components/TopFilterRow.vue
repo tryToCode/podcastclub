@@ -38,7 +38,7 @@ import BaseFilter from './Base/BaseFilter.vue'
 import BaseLabel from './Base/BaseLabel.vue'
 
 export default {
-    name: 'filter row',
+    name: 'filter-row',
 
     data() {
         return {

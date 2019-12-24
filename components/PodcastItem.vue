@@ -53,7 +53,7 @@
 import UpArrowIcon from './Icon/UpArrowIcon.vue'
 
 export default {
-    name: 'podcast item',
+    name: 'podcast-item',
 
     data() {
         return {
