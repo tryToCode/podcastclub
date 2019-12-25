@@ -3,7 +3,7 @@
         <BasePageNav />
         
         <div class="m-2">
-            <h1 class="text-2xl font-medium m-2">Intro</h1>
+            <h1 class="text-xl font-medium m-2">Intro</h1>
             <p class="text-base m-2">
                 Podcast Club consumes data from the 
                 <a class="border-b-2" 
@@ -24,7 +24,7 @@
             </p>
         </div>
         <div class="flex flex-col m-2">
-            <h1 class="text-2xl font-medium m-2">Resources</h1>
+            <h1 class="text-xl font-medium m-2">Resources</h1>
             <p>
                 <span class="text-green-400 m-2">api/rssItems</span>
                 <span class="">{{itemsCount}} items</span>
@@ -35,7 +35,7 @@
             </p>
         </div>
         <div class="flex flex-col m-2">
-            <h1 class="text-2xl font-medium m-2">Routes</h1>
+            <h1 class="text-xl font-medium m-2">Routes</h1>
             <p>
                 <span class="py-1 m-2 uppercase">get</span>
                 <span class="text-green-400">api/rssItems</span>
@@ -54,7 +54,7 @@
             </p>
         </div>
         <div class="flex flex-col border-2 p-4 m-4">
-            <h1 class="text-2xl font-bold m-2">Items</h1>
+            <h1 class="text-xl font-bold m-2">Items</h1>
             <div>
                 <span class="font-bold border-2 text-green-400 px-2 
                     py-1 rounded uppercase m-2">
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="flex flex-col border-2 p-4 m-4">
-            <h1 class="text-2xl font-bold m-2">Single Item</h1>
+            <h1 class="text-xl font-bold m-2">Single Item</h1>
             <div>
                 <span class="font-bold border-2 text-green-400 px-2 py-1 
                     rounded uppercase m-2">
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="flex flex-col border-2 p-4 m-4">
-            <h1 class="text-2xl font-bold m-2">Podcasts</h1>
+            <h1 class="text-xl font-bold m-2">Podcasts</h1>
             <div>
                 <span class="font-bold border-2 text-green-400 px-2 
                     py-1 rounded uppercase m-2">
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="flex flex-col border-2 p-4 m-4">
-            <h1 class="text-2xl font-bold m-2">Single Podcast</h1>
+            <h1 class="text-xl font-bold m-2">Single Podcast</h1>
             <div>
                 <span class="font-bold border-2 text-green-400 px-2 py-1 
                     rounded uppercase m-2">

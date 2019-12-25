@@ -2,6 +2,7 @@
   <div class="flex flex-1 px-2 items-center relative">
         <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-10
                 font-base md:font-medium justify-center flex"
+            id="search-input"
             type="search" 
             v-model.trim="searchInput"
             placeholder="Search Episode by title, url or podcast"
@@ -15,6 +16,8 @@
 
 <script>
 export default {
+    name: 'base-input',
+
     data() {
         return {
             searchInput: ''
