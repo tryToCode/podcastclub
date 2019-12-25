@@ -1,5 +1,7 @@
-import { mount } from "@vue/test-utils"
+import { shallowMount, createLocalVue, RouterLinkStub } from "@vue/test-utils"
 import NoItems from "../../../components/NoItems.vue"
+
+const localVue = createLocalVue()
 
 const url = 'http://localost:3000'
 const urlWithCatQueryKey = 'http://localhost:3000/?category=IT'
@@ -27,45 +29,78 @@ const factory = (queryKey) => {
     })
 }
 
-test('no items without any query key given', () => {
-    const wrapper = factory('')
+test('no items without any query key given', () => {    
+    const wrapper = shallowMount(NoItems, {
+        localVue,
+        propsData: {
+            baseUrl: url
+        },
+        stubs: {
+            NuxtLink: RouterLinkStub
+        }
+    })
 
     // check componet name
     expect(wrapper.name()).toBe('no-items')
 
-    // no items
+    // no items text
     expect(wrapper.contains('#no-items')).toBeTruthy()
 
-    console.log('date url: ' + getUrl('date'))
-    wrapper.setProps(
-        { baseUrl: getUrl('date') }
-    )
+})
 
+test('no items with category query key given', () => {    
+    const wrapper = shallowMount(NoItems, {
+        localVue,
+        propsData: {
+            baseUrl: urlWithCatQueryKey
+        },
+        stubs: {
+            NuxtLink: RouterLinkStub
+        }
+    })
+
+    // check props
+    expect(wrapper.vm.baseUrl).toBe(urlWithCatQueryKey)
+
+    // check category input data
+    expect(wrapper.vm.categoryInput).toBe('IT')
+
+})
+
+test('no items with date query key', () => {    
+    const wrapper = shallowMount(NoItems, {
+        localVue,
+        propsData: {
+            baseUrl: urlWithDateQueryKey
+        },
+        stubs: {
+            NuxtLink: RouterLinkStub
+        }
+    })
+
+    // check props
     expect(wrapper.vm.baseUrl).toBe(urlWithDateQueryKey)
-    console.log(wrapper.html())
 
-    // date info
-    expect(wrapper.contains('#of-date')).toBeTruthy()
+    // check date input 
+    expect(wrapper.vm.dateInput).toBe('Last 24')
+
 })
 
-test('no items with category query key', () => {
-    const wrapper = factory('category')
+test('no items with search query key', () => {    
+    const wrapper = shallowMount(NoItems, {
+        localVue,
+        propsData: {
+            baseUrl: urlWithSearchQueryKey
+        },
+        stubs: {
+            NuxtLink: RouterLinkStub
+        }
+    })
 
-    console.log(wrapper.html())
-    // category info
-    expect(wrapper.contains('#of-category')).toBeTruthy()
-})
+    // check props
+    expect(wrapper.vm.baseUrl).toBe(urlWithSearchQueryKey)
 
-test('no items with date query key', () => {
-    const wrapper = factory('date')
+    // check search input data 
+    expect(wrapper.vm.searchInput).toBe('hulapalu')
 
-    // category info
-    expect(wrapper.contains('#of-date')).toBeTruthy()
-})
-
-test('no items with search query key', () => {
-    const wrapper = factory('search')
-
-    // category info
-    expect(wrapper.contains('#for-search')).toBeTruthy()
 })

@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import sinon from 'sinon'
-import { createLocalVue, mount } from '@vue/test-utils'
+import { createLocalVue, shallowMount, RouterLinkStub } from '@vue/test-utils'
 
 import ItemArea from '../../../components/ItemArea.vue'
 import NoItems from '../../../components/Noitems.vue'
@@ -14,28 +14,20 @@ const actions = {
 
 const getters = {
     page: sinon.stub(),
-    pageSize: sinon.stub()
-}
-
-function createNoItemCom() {
-    return mount(NoItems, {
-        propsData: {
-            baseUrl: 'http://localhost:3000'
-        }
-    })
+    pageSize: () => 20
 }
 
 // This function creates a new Vuex store
 // instance for every new test case.
-function createStore() {
+function createStore(itemsFakeCount) {
     const modules = {
       items: {
         namespaced: true,
         actions,
         state: {
-            items: 0,
-            itemsCount: 0,
-            timeSpent: 0
+            items: sinon.stub(),
+            itemsCount: itemsFakeCount,
+            timeSpent: sinon.stub()
         }
       },
 
@@ -60,10 +52,9 @@ function createStore() {
 describe('test item area component with diverse items count', () => {
     // test component with zero item
     test('item area with zero item', () => {
-        const wrapper = mount(ItemArea, {
+        const wrapper = shallowMount(ItemArea, {
             localVue,
-            store:createStore(),
-            components: createNoItemCom()
+            store:createStore(0)
         })
 
         // check component name
@@ -72,28 +63,32 @@ describe('test item area component with diverse items count', () => {
         // check the action was called
         expect(actions.loadItems.callCount).toBe(1)
         
-        console.log(wrapper.html())
-        // no items
-        expect(wrapper.contains('p #no-items')).toBeTruthy()
-
-        // help link
-        expect(wrapper.contains('a')).toBeTruthy()
+        // no items stub component rendered
+        expect(wrapper.contains('noitems-stub')).toBeTruthy()
     })
 
     // test component with default page size items
-    test.skip('item area with default page size', () => {
-        const wrapper = mount(ItemArea, {
+    test('item area with default page size', () => {
+        const wrapper = shallowMount(ItemArea, {
             localVue,
-            store: createStore()
+            store: createStore(20)
         })
         
+        // check the action was called
+        expect(actions.loadItems.callCount).toBe(2)
+
+        // no pagination stub component rendered
+        expect(wrapper.contains('pagination-stub')).toBe(false)
     })
 
     // test component with more items
-    test.skip('item area with more items', () => {
-        const wrapper = mount(ItemArea, {
+    test('item area with more items', () => {
+        const wrapper = shallowMount(ItemArea, {
             localVue,
-            store: createStore()
+            store: createStore(30)
         })
+
+        // pagination stub component rendered
+        expect(wrapper.contains('pagination-stub')).toBeTruthy()
     })
 })
