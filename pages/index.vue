@@ -32,7 +32,8 @@ export default {
 
   computed: {
     ...mapState({
-      loadItemUrl: state => state.apiUrl.url
+      loadItemUrl: state => state.apiUrl.url,
+      error: state => state.error.error
     }),
   },
 
@@ -41,6 +42,12 @@ export default {
       handler(val, oldVal) {
         this.resetRoute()
         this.$store.dispatch('items/loadItems')
+      }
+    },
+
+    error: {
+      handler(val, oldVal) {
+        this.$router.push({name: 'error'})
       }
     }
   },

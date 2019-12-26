@@ -32,13 +32,15 @@ export const getters = {
 }
 
 export const actions = {
-    async loadPodcasts({commit}) {
+    async loadPodcasts({commit, dispatch}) {
+        dispatch('loading/startLoading', null, { root: true })
         try {
             const podcasts = await axios
                 .get(process.env.basePodcastUrl)
             commit('SET_PODCASTS', podcasts.data.results)
         } catch(error) {
-            console.log(error)
+            dispatch("error/onError", e, { root: true })
         }
+        dispatch('loading/stopLoading', null, { root: true })
     }
 }

@@ -47,30 +47,31 @@ export const actions = {
             commit('SET_ITEMS_COUNT', items.data.count)
             commit('SET_TIME_SPENT', s)
         }
-        catch(error) {
-            if (error.response) {
+        catch(e) {
+            if (e.response) {
                 /*
                  * The request was made and the server responded with a
                  * status code that falls out of the range of 2xx
                  */
-                if (error.response.status === 404 
-                    && error.response.data.detail === 'Invalid page.') {
+                if (e.response.status === 404 
+                    && e.response.data.detail === 'Invalid page.') {
                     commit('SET_ITEMS', [])
                     commit('SET_ITEMS_COUNT', 0)
                     commit('SET_TIME_SPENT', 0)
                 }
-            } else if (error.request) {
+            } else if (e.request) {
                 /*
                  * The request was made but no response was received, `error.request`
                  * is an instance of XMLHttpRequest in the browser and an instance
                  * of http.ClientRequest in Node.js
                  */
-                console.log('error request...');
-                console.log(error.request);
-                console.log(error.request.status)
+                console.log('e request...');
+                console.log(e.request);
+                console.log(e.request.status)
+                dispatch("error/onError", e, { root: true })
             } else {
                 // Something happened in setting up the request and triggered an Error
-                console.log('Error', error.message);
+                console.log('Error', e.message);
             }
         }
         dispatch("loading/stopLoading", null, { root: true })
@@ -81,8 +82,8 @@ export const actions = {
             const data = {upVote: true}
             axios.patch(`${process.env.baseItemUrl}/${itemId}/`, data)
         }
-        catch (error) {
-            console.log(error)
+        catch (e) {
+            console.log(e)
         }
     }
 }
