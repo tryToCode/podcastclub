@@ -22,85 +22,53 @@ function getUrl(queryKey) {
 }
 
 const factory = (queryKey) => {
-    return mount(NoItems, {
-        propsData: {
-            baseUrl: getUrl(queryKey)
-        }
-    })
-}
-
-test('no items without any query key given', () => {    
-    const wrapper = shallowMount(NoItems, {
+    return shallowMount(NoItems, {
         localVue,
         propsData: {
-            baseUrl: url
+            baseUrl: getUrl(queryKey)
         },
         stubs: {
             NuxtLink: RouterLinkStub
         }
     })
+}
+
+test('no items without any query key given', () => {    
+    const wrapper = factory('')
 
     // check componet name
     expect(wrapper.name()).toBe('no-items')
 
     // no items text
     expect(wrapper.contains('#no-items')).toBeTruthy()
-
 })
 
 test('no items with category query key given', () => {    
-    const wrapper = shallowMount(NoItems, {
-        localVue,
-        propsData: {
-            baseUrl: urlWithCatQueryKey
-        },
-        stubs: {
-            NuxtLink: RouterLinkStub
-        }
-    })
+    const wrapper = factory('category')
 
     // check props
     expect(wrapper.vm.baseUrl).toBe(urlWithCatQueryKey)
 
     // check category input data
     expect(wrapper.vm.categoryInput).toBe('IT')
-
 })
 
 test('no items with date query key', () => {    
-    const wrapper = shallowMount(NoItems, {
-        localVue,
-        propsData: {
-            baseUrl: urlWithDateQueryKey
-        },
-        stubs: {
-            NuxtLink: RouterLinkStub
-        }
-    })
+    const wrapper = factory('date')
 
     // check props
     expect(wrapper.vm.baseUrl).toBe(urlWithDateQueryKey)
 
     // check date input 
     expect(wrapper.vm.dateInput).toBe('Last 24')
-
 })
 
 test('no items with search query key', () => {    
-    const wrapper = shallowMount(NoItems, {
-        localVue,
-        propsData: {
-            baseUrl: urlWithSearchQueryKey
-        },
-        stubs: {
-            NuxtLink: RouterLinkStub
-        }
-    })
+    const wrapper = factory('search')
 
     // check props
     expect(wrapper.vm.baseUrl).toBe(urlWithSearchQueryKey)
 
     // check search input data 
     expect(wrapper.vm.searchInput).toBe('hulapalu')
-
 })

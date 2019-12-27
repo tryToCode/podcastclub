@@ -11,7 +11,7 @@
             <BaseLabel
                 class="flex-1"
                 text="Episodes Per Page"
-                hidden="false" />
+                :hidden="false" />
             <BaseFilter 
                 id="pageSizeSelect"
                 :model="itemPerPage"
@@ -27,7 +27,7 @@
             <BaseLabel 
                 class="flex-1"
                 text="Default category"
-                hidden="false" />
+                :hidden="false" />
             <BaseFilter 
                 id="categorySelect"
                 :model="catSelected"
@@ -39,7 +39,7 @@
             <BaseLabel 
                 class="flex-1"
                 text="Default date range"
-                hidden="false" />
+                :hidden="false" />
             <BaseFilter
                 id="dateSelect" 
                 :model="dateSelected"

@@ -30,14 +30,16 @@ export const getters = {
 }
 
 export const actions = {
-    async loadDocItems({commit}) {
+    async loadDocItems({commit, dispatch}) {
+        dispatch('loading/startLoading', null, { root: true })
         try {
             const items = await axios.get(process.env.baseItemUrl)
             commit('SET_ITEMS', items.data.results)
             commit('SET_ITEMS_COUNT', items.data.count)
         }
         catch (error) {
-            console.log(error)
+            dispatch("error/onError", null, { root: true })
         }
+        dispatch('loading/stopLoading', null, { root: true })
     }
 }
