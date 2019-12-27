@@ -1,15 +1,15 @@
-export const state = () => {
-    error: null
-}
+export const state = () => ({
+    error: false
+})
 
 export const mutations = {
-    SET_ERROR(state, payload) {
-        state.error = payload
+    SET_ERROR(state) {
+        state.error = true 
     }
 }
 
 export const actions = {
-    onError({commit}, error) {
-        commit('SET_ERROR', error)
+    onError({commit}) {
+        commit('SET_ERROR')
     }
 }

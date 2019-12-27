@@ -73,6 +73,8 @@ import BasePageNav from '@/components/Base/BasePageNav.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 
 export default {
+    middleware: 'error',
+    
     head () {
         return {
             title: "About",
@@ -88,8 +90,8 @@ export default {
         PulseLoader
     },
 
-    mounted() {
-        this.$store.dispatch('podcasts/loadPodcasts')
+    fetch({ store }) {
+        store.dispatch('podcasts/loadPodcasts')
     },
 
     computed: {
@@ -98,8 +100,7 @@ export default {
         }),
 
         ...mapState({
-            loading: state => state.loading.loading,
-            error: state => state.error.error
+            loading: state => state.loading.loading
         })
     },
 
@@ -107,14 +108,6 @@ export default {
         sendMail() {
             if (process.browser)
                 window.location.href= 'mailto:tu295t.dy@gmail.com'
-        }
-    },
-
-    watch: {
-        error: {
-            handler(val, oldVal) {
-                this.$router.push({name: 'error'})
-            }
         }
     }
 }

@@ -65,16 +65,15 @@ export const actions = {
                  * is an instance of XMLHttpRequest in the browser and an instance
                  * of http.ClientRequest in Node.js
                  */
-                console.log('e request...');
-                console.log(e.request);
-                console.log(e.request.status)
-                dispatch("error/onError", e, { root: true })
+                dispatch("error/onError", null, { root: true })
             } else {
                 // Something happened in setting up the request and triggered an Error
                 console.log('Error', e.message);
             }
         }
-        dispatch("loading/stopLoading", null, { root: true })
+        finally {
+            dispatch("loading/stopLoading", null, { root: true })
+        }
     },
 
     async updateLikes({state}, itemId) {

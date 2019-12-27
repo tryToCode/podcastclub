@@ -39,7 +39,7 @@ export const actions = {
                 .get(process.env.basePodcastUrl)
             commit('SET_PODCASTS', podcasts.data.results)
         } catch(error) {
-            dispatch("error/onError", e, { root: true })
+            dispatch("error/onError", null, { root: true })
         }
         dispatch('loading/stopLoading', null, { root: true })
     }

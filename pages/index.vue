@@ -11,6 +11,8 @@ import FilterArea from '@/components/FilterArea.vue'
 import ItemArea from '@/components/ItemArea.vue'
 
 export default {
+  middleware: 'error',
+
   head () {
     return {
       title: 'Podcast Club',
@@ -32,9 +34,8 @@ export default {
 
   computed: {
     ...mapState({
-      loadItemUrl: state => state.apiUrl.url,
-      error: state => state.error.error
-    }),
+      loadItemUrl: state => state.apiUrl.url
+    })
   },
 
   watch: {
@@ -42,12 +43,6 @@ export default {
       handler(val, oldVal) {
         this.resetRoute()
         this.$store.dispatch('items/loadItems')
-      }
-    },
-
-    error: {
-      handler(val, oldVal) {
-        this.$router.push({name: 'error'})
       }
     }
   },

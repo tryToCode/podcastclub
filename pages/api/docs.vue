@@ -86,6 +86,8 @@ import BaseDocSection from '@/components/Base/BaseDocSection.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 
 export default {
+    middleware: 'error',
+
     head () {
         return {
             title: "Api Docs",
@@ -102,11 +104,6 @@ export default {
         BaseDocSection
     },
 
-    mounted() {
-        this.$store.dispatch('docItems/loadDocItems')
-        this.$store.dispatch('podcasts/loadPodcasts')
-    },
-
     computed: {
         ...mapGetters({
             item: 'docItems/item',
@@ -119,16 +116,12 @@ export default {
 
         ...mapState({
             loading: state => state.loading.loading,
-            error: state => state.error.error
         })
     },
 
-    watch: {
-        error: {
-            handler(val, oldVal) {
-                this.$router.push({name: 'error'})
-            }
-        }
+    fetch({ store }) {
+        store.dispatch('docItems/loadDocItems')
+        store.dispatch('podcasts/loadPodcasts')
     }
 }
 </script>

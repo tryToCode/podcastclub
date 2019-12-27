@@ -38,7 +38,7 @@ export const actions = {
             commit('SET_ITEMS_COUNT', items.data.count)
         }
         catch (error) {
-            dispatch("error/onError", error, { root: true })
+            dispatch("error/onError", null, { root: true })
         }
         dispatch('loading/stopLoading', null, { root: true })
     }
