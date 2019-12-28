@@ -1,6 +1,6 @@
-export default function ({ store, redirect }) {
-    // If the user is not authenticated
-    if (store.state.error.error) {
-      return redirect('/error')
-    }
-  }
+export default function ({ store, error }) {
+    const code = store.state.error.statusCode
+    const message = store.state.error.message
+    if (code !== 0)
+      error({ statusCode: code, message: message })
+}

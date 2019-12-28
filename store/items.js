@@ -65,7 +65,10 @@ export const actions = {
                  * is an instance of XMLHttpRequest in the browser and an instance
                  * of http.ClientRequest in Node.js
                  */
-                dispatch("error/onError", null, { root: true })
+                dispatch("error/onError", 
+                    { statusCode: 500, message: 'Server unavailable' }, 
+                    { root: true }
+                )
             } else {
                 // Something happened in setting up the request and triggered an Error
                 console.log('Error', e.message);
