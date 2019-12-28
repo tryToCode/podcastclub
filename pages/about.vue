@@ -90,8 +90,8 @@ export default {
         PulseLoader
     },
 
-    fetch({ store }) {
-        store.dispatch('podcasts/loadPodcasts')
+    async fetch({ store }) {
+        await store.dispatch('podcasts/loadPodcasts')
     },
 
     computed: {

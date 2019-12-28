@@ -38,8 +38,14 @@ export const actions = {
             commit('SET_ITEMS_COUNT', items.data.count)
         }
         catch (error) {
-            dispatch("error/onError", null, { root: true })
+            if (error.request)
+                dispatch("error/onError", 
+                    { statusCode: 500, message: 'Server unavailable' }, 
+                    { root: true }
+                )
         }
-        dispatch('loading/stopLoading', null, { root: true })
+        finally {
+            dispatch("loading/stopLoading", null, { root: true })
+        }
     }
 }

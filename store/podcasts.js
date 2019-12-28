@@ -38,9 +38,16 @@ export const actions = {
             const podcasts = await axios
                 .get(process.env.basePodcastUrl)
             commit('SET_PODCASTS', podcasts.data.results)
-        } catch(error) {
-            dispatch("error/onError", null, { root: true })
+        } 
+        catch(error) {
+            if (error.request)
+                dispatch("error/onError", 
+                    { statusCode: 500, message: 'Server unavailable' }, 
+                    { root: true }
+                )
         }
-        dispatch('loading/stopLoading', null, { root: true })
+        finally {
+            dispatch("loading/stopLoading", null, { root: true })
+        }
     }
 }

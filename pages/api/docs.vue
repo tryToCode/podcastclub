@@ -119,9 +119,9 @@ export default {
         })
     },
 
-    fetch({ store }) {
-        store.dispatch('docItems/loadDocItems')
-        store.dispatch('podcasts/loadPodcasts')
+    async fetch({ store }) {
+        await store.dispatch('docItems/loadDocItems')
+        await store.dispatch('podcasts/loadPodcasts')
     }
 }
 </script>
