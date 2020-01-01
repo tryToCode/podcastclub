@@ -33,6 +33,7 @@ export default {
   ** Global CSS
   */
   css: [
+    'plyr/dist/plyr.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -40,7 +41,8 @@ export default {
   plugins: [
     {src: '~/plugins/vueTippy.js'},
     {src: '~/plugins/jsonFormatter.js', mode: 'client'},
-    { src: '~/plugins/localStorage.js', mode: 'client' }
+    { src: '~/plugins/localStorage.js', mode: 'client' },
+    { src: '~/plugins/vue-plyr.js', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules

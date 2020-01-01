@@ -8,13 +8,14 @@
         </div>
         <div>
             <div class="pb-1">
-                <a v-if="item.description.length !== 0"
+                <nuxt-link v-if="item.description.length !== 0"
+                    :to="'/show/' + item.id"
                     class="font-medium text-base"
                     :href="item.item_url"
                     :content="item.description"
                     v-tippy="{ placement : 'top', arrow: true, size: 'large' }">
                 {{item.title}}
-                </a>
+                </nuxt-link>
                 <a v-else
                     class="font-medium text-base"
                     :href="item.item_url">
