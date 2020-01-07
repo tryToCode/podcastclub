@@ -2,7 +2,25 @@ import axios from 'axios'
 
 export const state = () => ({
     items: [],
-    item: Object,
+    item: {
+        id: Number,
+        title: String,
+        pub_date: Date,
+        description: String,
+        item_url: String,
+        enclosure: String,
+        duration: Number,
+        summary: String,
+        episode_number: Number,
+        likes: Number,
+        creator: {
+            id: Number,
+            name: String,
+            base_url: String,
+            image_url: String,
+            category: String
+        }
+    },
     itemsCount: Number,
     timeSpent: Number
 })
@@ -88,7 +106,6 @@ export const actions = {
         dispatch('loading/startLoading', null, { root: true })
         try {
             const item = await axios.get(`${process.env.baseItemUrl}/${itemId}/`)
-            console.log(item.data.creator)
             commit('SET_ITEM', item.data)
         }
         catch (error) {
