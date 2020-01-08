@@ -9,34 +9,40 @@
 
     <div class="flex flex-col lg:flex-row">
         <div class="flex flex-col m-4 lg:w-3/4 mx-auto">
-            <div class="flex py-2 items-center">
-                <img class="h-16 object-cover" :src="podcastImg" :alt="item.creator.name">
-                <a class="ml-2 text-lg" :href="'https://' + item.creator.base_url">
-                    {{item.creator.name}}
-                </a>
-            </div> 
-            <div class="text-xl font-bold">
+            <div class="text-3xl font-medium">
                 {{item.title}}
             </div>
-            <div class="py-2 text-gray-500">
-                {{$moment(item.pub_date).format('LL')}}
-            </div>
-            <div class="flex p-2 md:p-4">
-                <a class="px-2 py-1 flex items-center mr-2 justify-center cursor-pointer"
-                    @click="playSound(item.enclosure)"
-                    :href="item.enclosure">
-                    <svg class="fill-current text-red-400 hover:text-red-500 w-12 h-12 mr-2" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 
-                        10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 
-                        17v-10l9 5.146-9 4.854z"/>
-                    </svg>
-                    Play
-                </a>
-            </div>
 
-            <div class="flex">
-                <a class="bg-gray-200 rounded px-2 py-1 flex items-center mr-2 justify-center"
+            <div class="flex py-2 items-center">
+                <img class="h-16 object-cover" :src="podcastImg" :alt="item.creator.name">
+
+                <div class="flex flex-col">
+                    <a class="ml-2 text-lg" :href="'https://' + item.creator.base_url">
+                        By <span class="">{{item.creator.name}}</span>
+                    </a>
+                    <div class=" ml-2 text-gray-500">
+                        {{$moment(item.pub_date).format('llll')}}
+                    </div>
+                </div>
+            </div> 
+            
+            <AudioPlayer :audioSource="item.enclosure" />
+            
+
+            <div class="flex my-2">
+                <a class="bg-gray-200 rounded px-2 py-1 flex items-center mx-1 justify-center"
+                    href="">
+                    <svg class="fill-current text-red-400 hover:text-red-500 w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
+                        <path d="M12 9.229C12.234 8.109 13.547 3 17.382 3 19.602 3 22 4.551 22 8.003c0 
+                        3.907-3.627 8.47-10 12.629C5.627 16.473 2 11.91 2 8.003c0-3.484 2.369-5.005 
+                        4.577-5.005 3.923 0 5.145 5.126 5.423 6.231zM0 8.003C0 12.071 3.06 17.484 
+                        12 23c8.94-5.516 12-10.929 12-14.997 0-7.962-9.648-9.028-12-3.737C9.662-.996 
+                        0-.004 0 8.003z"/>
+                    </svg>
+                    Like
+                </a>
+                <a class="bg-gray-200 rounded px-2 py-1 flex items-center mx-1 justify-center"
                     :href="item.item_url">
                     <svg class="fill-current text-red-400 hover:text-red-500 w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 24 24">
@@ -51,7 +57,7 @@
                     </svg>
                     Link
                 </a>
-                <a class="bg-gray-200 rounded px-2 py-1 flex items-center mr-2 justify-center">
+                <a class="bg-gray-200 rounded px-2 py-1 flex items-center mx-1 justify-center">
                     <svg class="fill-current text-red-400 w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"  
                         viewBox="0 0 24 24">
                         <path d="M6.503 20.752A3.25 3.25 0 013.252 24 3.25 3.25 0 010 20.752a3.25 3.25 0 
@@ -61,7 +67,7 @@
                     </svg>
                     RSS
                 </a>
-                <a class="bg-gray-200 rounded px-2 py-1 flex items-center justify-center">
+                <a class="bg-gray-200 rounded px-2 py-1 flex items-center mx-1 justify-center">
                     <svg class="fill-current text-red-400 w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 24 24">
                         <path d="M5 7a5 5 0 11-.001 10.001A5 5 0 015 7zm11.122 12.065A3.946 3.946 0 0016 
@@ -82,7 +88,7 @@
             <div class="rounded shadow-lg p-4 my-4">
                 <p class="text-xl py-2">Transcript</p>
                 <p>
-                    Let automated speech-to-text technology transcribes this episode so you can
+                    Let automated speech-to-text technology transcribe this episode so you can
                     get more out of the content.
                 </p>
                 <h2 class="mt-2">Before purchase: </h2>
@@ -136,6 +142,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import AudioPlayer from '@/components/AudioPlayer.vue'
 import BasePageNav from '@/components/Base/BasePageNav.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 
@@ -153,6 +160,7 @@ export default {
     },
 
     components: {
+        AudioPlayer,
         BasePageNav,
         PulseLoader
     },
@@ -173,13 +181,6 @@ export default {
     },
 
     methods: {
-        playSound (sound) {
-            if(sound) {
-                var audio = new Audio(sound);
-                audio.play();
-            }
-        },
-
         calcPrice(duration) {
             const price =  Math.ceil(duration / 15) * 0.02
             return Math.round( price * 100 + Number.EPSILON ) / 100
