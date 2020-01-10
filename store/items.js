@@ -2,25 +2,6 @@ import axios from 'axios'
 
 export const state = () => ({
     items: [],
-    item: {
-        id: Number,
-        title: String,
-        pub_date: Date,
-        description: String,
-        item_url: String,
-        enclosure: String,
-        duration: Number,
-        summary: String,
-        episode_number: Number,
-        likes: Number,
-        creator: {
-            id: Number,
-            name: String,
-            base_url: String,
-            image_url: String,
-            category: String
-        }
-    },
     itemsCount: Number,
     timeSpent: Number
 })
@@ -36,10 +17,6 @@ export const mutations = {
 
     SET_TIME_SPENT(state, time) {
         state.timeSpent = time
-    },
-
-    SET_ITEM(state, item) {
-        Object.assign(state.item, item)
     }
 }
 
@@ -96,23 +73,6 @@ export const actions = {
                 // Something happened in setting up the request and triggered an Error
                 console.log('Error', e.message);
             }
-        }
-        finally {
-            dispatch("loading/stopLoading", null, { root: true })
-        }
-    },
-
-    async loadItem({commit, dispatch}, itemId) {
-        dispatch('loading/startLoading', null, { root: true })
-        try {
-            const item = await axios.get(`${process.env.baseItemUrl}/${itemId}/`)
-            commit('SET_ITEM', item.data)
-        }
-        catch (error) {
-            dispatch("error/onError", 
-                { statusCode: 500, message: 'Server unavailable' }, 
-                { root: true }
-            )
         }
         finally {
             dispatch("loading/stopLoading", null, { root: true })

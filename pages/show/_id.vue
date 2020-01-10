@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl flex flex-col mx-auto justify-center overflow-hidden">
     <BasePageNav />
-        
+
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>
@@ -10,15 +10,18 @@
     <div class="flex flex-col lg:flex-row">
         <div class="flex flex-col m-4 lg:w-3/4 mx-auto">
             <div class="text-3xl font-medium">
-                {{item.title}}
+                {{ item.title }}
             </div>
 
             <div class="flex py-2 items-center">
-                <img class="h-16 object-cover" :src="podcastImg" :alt="item.creator.name">
+                <img class="h-16 object-cover" 
+                    :src="item.creator.image_url" 
+                    :alt="item.creator.name">
 
                 <div class="flex flex-col">
-                    <a class="ml-2 text-lg" :href="'https://' + item.creator.base_url">
-                        By <span class="">{{item.creator.name}}</span>
+                    <a class="ml-2 text-lg" 
+                        :href="'https://' + item.creator.base_url">
+                        By <span class="">{{ item.creator.name }}</span>
                     </a>
                     <div class=" ml-2 text-gray-500">
                         {{$moment(item.pub_date).format('llll')}}
@@ -117,7 +120,7 @@
                 <div class="flex flex-col items-center mx-auto justify-center my-4">
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 
                         px-4 border border-blue-700 rounded">
-                        Transcribe episode for &#36;{{calcPrice(item.duration)}}
+                        Transcribe episode for &#36;{{ calcPrice }}
                     </button>
                     <p>We have generated 0 transcripts so far</p>
                 </div>
@@ -126,16 +129,13 @@
             <div class="my-2 rounded shadow-lg p-4">
                 <span class="font-black">Disclaimer</span>: 
                 The podcast and artwork embedded on this page are from the Podcast 
-                <a :href="item.creator.base_url" class="border-b-2">
-                    {{item.creator.name}}
+                <a :href="item.creator.base_url" 
+                    class="border-b-2">
+                    {{ item.creator.name }}
                 </a>,
                 which is the property of its owner and not affiliated with or endorsed by Podcast Club.
             </div>
         </div><!--detail section -->
-
-        <!--div class="lg:w-1/3 m-4 p-2 rounded shadow-lg flex flex-col items-center">
-            
-        </div-->
     </div>
   </div>
 </template>
@@ -145,9 +145,16 @@ import { mapState } from 'vuex'
 import AudioPlayer from '@/components/AudioPlayer.vue'
 import BasePageNav from '@/components/Base/BasePageNav.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
+import axios from 'axios'
 
 export default {
     middleware: 'error',
+
+    data() {
+        return {
+            item: {}
+        }
+    },
 
     head () {
         return {
@@ -167,28 +174,37 @@ export default {
 
     computed: {
         ...mapState({
-            loading: state => state.loading.loading,
-            item: state => state.items.item
+            loading: state => state.loading.loading
         }),
 
-        enclosure() {
-            return this.item.enclosure
-        },
-
-        podcastImg() {
-            return this.item.creator.image_url
-        }
-    },
-
-    methods: {
-        calcPrice(duration) {
-            const price =  Math.ceil(duration / 15) * 0.02
+        calcPrice() {
+            const price =  Math.ceil(this.item.duration / 15) * 0.02
             return Math.round( price * 100 + Number.EPSILON ) / 100
         }
     },
 
-    fetch({ store, params }) {
-        store.dispatch('items/loadItem', params.id)
+    methods: {
+        upVote(itemId) {
+            this.likes += 1
+            this.$store.dispatch('items/updateLikes', itemId)
+        }
+    },
+
+    async asyncData ({ store, params }) {
+        store.dispatch('loading/startLoading', null, { root: true })
+        try {
+            const item = await axios.get(`${process.env.baseItemUrl}/${params.id}/`)
+            return {item: item.data}
+        }
+        catch (error) {
+            store.dispatch("error/onError", 
+                { statusCode: 500, message: 'Server unavailable' }, 
+                { root: true }
+            )
+        }
+        finally {
+            store.dispatch("loading/stopLoading", null, { root: true })
+        }
     }
 }
 </script>
