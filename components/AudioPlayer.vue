@@ -2,11 +2,11 @@
   <div class="flex my-2 items-center">
     <a class="py-1 flex items-center mr-2 justify-center cursor-pointer"
         @click="play">
-        <svg v-if="isTimerPlaying" class="fill-current text-red-400 hover:text-red-500 w-8 h-8 mr-2"
+        <svg v-if="isTimerPlaying" class="fill-current text-red-400 hover:text-red-500 w-12 h-12 mr-2"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M11 22h-4v-20h4v20zm6-20h-4v20h4v-20z"/>
         </svg>
-        <svg v-else class="fill-current text-red-400 hover:text-red-500 w-8 h-8 mr-2" 
+        <svg v-else class="fill-current text-red-400 hover:text-red-600 w-12 h-12 mr-2" 
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 
             10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 
@@ -53,7 +53,6 @@ export default {
             vm.generateTime()
         }
         this.audio.onloadedmetadata = function() {
-            console.log('audio metadata loaded...')
             vm.generateTime()
         }
         this.audio.onended = function() {
