@@ -1,17 +1,17 @@
 <template>
   <transition name="modal-fade">
-    <div class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-        <div class="flex flex-col shadow-lg bg-gray-200 overflow-x-auto"
+    <div class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center backdrop-color">
+        <div class="flex flex-col shadow-lg bg-white overflow-x-auto px-8 py-4 border rounded"
             role="dialog"
             aria-labelledby="modalTitle"
             aria-describedby="modalDescription">
-            <header class="flex p-4 border-b-2 justify-between">
-                <div class="font-medium m-4">
+            <header class="flex p-4 justify-between">
+                <div class="text-lg font-medium m-2">
                     Login to transcribe this episode
                 </div> 
 
                 <button
-                    class="block bg-transparent cursor-pointer font-bold"
+                    class="block bg-transparent cursor-pointer font-bold py-1 px-2"
                     type="button"
                     aria-label="Close modal"
                     @click="close">
@@ -19,10 +19,13 @@
                 </button>
             </header>
             <section class="relativ p-4">
+                <p class="flex items-center justify-start mb-1 text-base">
+                    Email is used to received transcripts once it's done.
+                </p>
                 <form class="w-full max-w-sm">
-                    <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
-                        <input class="appearance-none bg-transparent border-none w-full 
-                            text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" 
+                    <div class="flex items-center py-2">
+                        <input class="appearance-none bg-transparent border border-teal-500 w-full 
+                            text-gray-700 mr-1 py-2 px-2 leading-tight focus:outline-none rounded" 
                             type="text" 
                             placeholder="Your Email" 
                             aria-label="Full name">
@@ -34,7 +37,7 @@
                         </button>
                     </div>
                 </form>
-                <p class="flex items-center justify-center my-2">
+                <p class="flex items-center justify-center mb-1 text-sm">
                     We will never spam you.
                 </p>
             </section>
@@ -74,9 +77,14 @@ export default {
 </script>
 
 <style>
+    .backdrop-color {
+        background-color: rgba(0, 0, 0, 0.3)    
+    }
+
    .modal-fade-enter,
    .modal-fade-leave-active {
     opacity: 0;
+    
   }
 
   .modal-fade-enter-active,

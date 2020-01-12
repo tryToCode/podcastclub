@@ -39,8 +39,8 @@
 
             <div class="flex my-2">
                 <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white 
-                    py-2 px-1 rounded-lg mr-2">
-                    <svg class="fill-current w-4 h-4 mr-2"
+                    rounded-lg mr-2 flex items-center justify-center px-1">
+                    <svg class="fill-current" width="24px" height="24px"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24">
                         <path d="M12 4.435C10.011-.964 0-.162 0 8.003 0 12.071 3.06 17.484 12 23c8.94-5.516 
@@ -49,9 +49,9 @@
                 </a>
                 
                 <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white
-                    py-2 px-1 rounded-lg mr-2"
+                    rounded-lg mr-2 flex items-center justify-center px-1"
                     :href="item.item_url">
-                    <svg class="fill-current w-4 h-4 mr-2" 
+                    <svg class="fill-current" width="24px" height="24px" 
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24">
                         <path d="M6 17C8.269 7.119 17 5.333 17 5.333V2l7 6.637-7 6.696V12s-6.17-.171-11 
@@ -60,8 +60,8 @@
                 </a>
 
                 <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white 
-                    py-2 px-1 rounded-lg mr-2">
-                    <svg class="fill-current w-4 h-4 mr-2" 
+                    rounded-lg mr-2 flex items-center justify-center px-1">
+                    <svg class="fill-current" width="24px" height="24px"
                         xmlns="http://www.w3.org/2000/svg"  
                         viewBox="0 0 24 24">
                         <path d="M6.503 20.752A3.25 3.25 0 013.252 24 3.25 3.25 0 010 20.752a3.25 3.25 0 
@@ -72,8 +72,8 @@
                 </a>
                 
                 <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white 
-                    py-2 px-1 rounded-lg">
-                    <svg class="fill-current w-4 h-4 mr-2" 
+                    rounded-lg flex items-center justify-center px-1">
+                    <svg class="fill-current" width="24px" height="24px"
                         xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 24 24">
                         <path d="M5 7a5 5 0 11-.001 10.001A5 5 0 015 7zm11.122 12.065A3.946 3.946 0 0016 
@@ -81,7 +81,6 @@
                         1.764l5.488 2.927zM24 4a4 4 0 00-8 0c0 .324.049.634.122.935l-5.488 2.927c.395.535.713 
                         1.127.943 1.764l5.488-2.927A3.974 3.974 0 0020 8a4 4 0 004-4z"/>
                     </svg>
-                
                 </a>
                 
             </div>
