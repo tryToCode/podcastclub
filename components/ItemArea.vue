@@ -6,7 +6,7 @@
     </div>
 
     <div v-else 
-        class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
+        class="max-w-5xl flex flex-col mx-auto 
         justify-center">
         <div v-if="itemsCount === 0">
             <NoItems

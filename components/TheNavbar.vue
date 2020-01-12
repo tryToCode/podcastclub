@@ -1,9 +1,10 @@
 <template>
-    <nav class="max-w-5xl flex-col flex md:flex-row flex-nowrap bg-red-400 h-auto mx-auto">
+    <nav class="max-w-5xl flex-col flex md:flex-row items-center justify-center 
+        flex-nowrap mx-auto h-auto">
         <div class="flex p-1">
             <div class="flex pl-4 items-center">
                 <img src="~/assets/podcast.png">
-                <nuxt-link class="pl-2 tracking-wide text-xl"
+                <nuxt-link class="pl-2 tracking-tight text-xl text-lg"
                     id="reloadPage"
                     to="/"
                     @click.native="reload">

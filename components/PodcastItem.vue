@@ -1,16 +1,18 @@
 <template>
-    <div class="flex flex-col overflow-hidden px-4 pb-2">
-        <div>
+    <div class="flex flex-col overflow-hidden px-8 py-2 border-b-1 mt-2">
+        <div class="leading-tight">
             <nuxt-link
                 :to="'/show/' + item.id"
                 class="font-medium text-base">
             {{ item.title }}
             </nuxt-link>
-            <span class="hidden md:inline text-gray-500 text-sm">
+            <br />
+            <span v-if="item.item_url !== null" 
+                class="hidden md:inline text-gray-500 text-sm">
                 ({{ item.item_url }})
             </span>
         </div>
-        <div class="text-sm font-semibold text-gray-500">
+        <div class="text-sm font-semibold text-gray-500 mt-2">
             <a class="pr-1"
                 :href="'https://' + item.creator.base_url">
             {{ item.creator.name }}
