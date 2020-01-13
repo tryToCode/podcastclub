@@ -7,7 +7,7 @@
         <pulse-loader color="#fc8181"></pulse-loader>
       </div>
 
-      <div v-else class="bg-gray-100 p-4">
+      <div v-else class="bg-gray-200 p-4">
         <div class="max-w-5xl mx-auto">
             <div class="m-4 bg-white rounded p-4">
                 <h1 class="text-xl font-medium">Welcome to Podcast Club</h1>

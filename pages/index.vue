@@ -2,15 +2,15 @@
   <div>
     <TheNavbar
       @onInputChange="filterChangeHandle"/>
-    <div class="bg-gray-100">
+    <div class="bg-gray-200">
       <div class="max-w-5xl flex mx-auto py-4">
         <div class="bg-white w-2/3 my-4 rounded">
           <ItemArea />
         </div>
         <div class="w-1/3 mt-4">
           <div class="px-8 py-2">
-            <button class="w-full bg-transparent hover:bg-blue-500 text-blue-700 font-semibold 
-              hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded mb-4">
+            <button class="w-full bg-transparent hover:bg-red-500 text-blue-700 font-semibold 
+              hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded mb-4">
               Reset Filter
             </button>
             <p class="font-bold my-2">Search Filter</p>
@@ -20,7 +20,7 @@
                   <span class="">
                     All
                   </span>
-                  <input type="checkbox" class="form-checkbox" checked>
+                  <input type="checkbox" class="form-checkbox text-red-500" checked>
               </div>
               <div class="flex items-center my-2 justify-between cursor-pointer">
                   <span class="">
@@ -53,7 +53,7 @@
                   <span class="">
                     All Time
                   </span>
-                  <input type="checkbox" class="form-checkbox" checked>
+                  <input type="checkbox" class="form-checkbox text-red-500" checked>
               </div>
               <div class="flex items-center my-2 justify-between cursor-pointer">
                   <span class="">
