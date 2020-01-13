@@ -18,10 +18,14 @@
             @inputChange="inputChange" />
             
             <div class="hidden md:flex items-center">
-                <img src="~/assets/settings.png">
-                <nuxt-link class="px-1 md:pr-6 tracking-wide text-xl"
+                <!--img src="~/assets/settings.png"-->
+                <nuxt-link class="px-1 md:pr-6 tracking-wide"
                     to="/settings">
-                    Setting
+                    Login
+                </nuxt-link>
+                <nuxt-link class="px-1 md:pr-6 tracking-wide"
+                    to="/settings">
+                    Register
                 </nuxt-link>
             </div>
         </div>            

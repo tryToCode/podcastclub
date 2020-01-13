@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col border-2 m-4 bg-white rounded p-4">
+  <div class="flex flex-col m-4 bg-white rounded p-4">
     <h1 class="text-xl font-bold m-2">{{ title }}</h1>
     <div>
         <span class="font-bold border-2 text-green-400 px-2 

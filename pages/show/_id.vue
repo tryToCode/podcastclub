@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-5xl flex flex-col mx-auto justify-center overflow-hidden">
+  <div>
     <BasePageNav />
 
     <div v-if="loading"
@@ -12,13 +12,14 @@
       @close="closeModal"
     />
 
-    <div class="flex flex-col lg:flex-row">
-        <div class="flex flex-col m-4 lg:w-3/4 mx-auto">
-            <div class="text-3xl font-medium leading-none tracking-normal mt-1 mb-2">
-                {{ item.title }}
-            </div>
+    <div class="bg-gray-200 flex flex-col lg:flex-row">
+        <div class="flex flex-col m-4 lg:w-3/4 mx-auto justify-center overflow-hidden">
+            <div class="m-4 bg-white rounded p-4">
+                <p class="text-3xl font-medium leading-none tracking-normal mt-1 mb-2">
+                    {{ item.title }}
+                </p>
 
-            <div class="flex py-2 items-center">
+                <div class="flex py-2 items-center">
                 <img class="h-16 object-cover rounded-lg" 
                     :src="item.creator.image_url" 
                     :alt="item.creator.name">
@@ -32,66 +33,45 @@
                         {{$moment(item.pub_date).format('llll')}}
                     </div>
                 </div>
-            </div> 
-            
-            <AudioPlayer :audioSource="item.enclosure" />
-            
+                </div> 
+                
+                <AudioPlayer :audioSource="item.enclosure" />
 
-            <div class="flex my-2">
-                <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white 
-                    rounded-lg mr-2 flex items-center justify-center px-1">
-                    <svg class="fill-current" width="24px" height="24px"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <path d="M12 4.435C10.011-.964 0-.162 0 8.003 0 12.071 3.06 17.484 12 23c8.94-5.516 
-                        12-10.929 12-14.997C24-.115 14-.996 12 4.435z"/>
-                    </svg>
-                </a>
-                
-                <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white
-                    rounded-lg mr-2 flex items-center justify-center px-1"
-                    :href="item.item_url">
-                    <svg class="fill-current" width="24px" height="24px" 
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <path d="M6 17C8.269 7.119 17 5.333 17 5.333V2l7 6.637-7 6.696V12s-6.17-.171-11 
-                        5zm12 .145V20H2V8h6.598a16.999 16.999 0 012.339-2H0v16h20v-6.769l-2 1.914z"/>
-                    </svg>
-                </a>
+                <div class="flex my-2">
+                    <a class="bg-transparent border border-red-500 hover:border-transparent 
+                        hover:bg-red-500 hover:text-white 
+                        rounded-lg mr-2 flex items-center justify-center px-1">
+                        <LikeIcon />
+                    </a>
 
-                <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white 
-                    rounded-lg mr-2 flex items-center justify-center px-1">
-                    <svg class="fill-current" width="24px" height="24px"
-                        xmlns="http://www.w3.org/2000/svg"  
-                        viewBox="0 0 24 24">
-                        <path d="M6.503 20.752A3.25 3.25 0 013.252 24 3.25 3.25 0 010 20.752a3.25 3.25 0 
-                        013.252-3.248 3.25 3.25 0 013.251 3.248zM0 8.18v4.811c6.05.062 10.96 4.966 11.022 
-                        11.009h4.817C15.777 15.29 8.721 8.242 0 8.18zm0-3.368C10.58 4.858 19.152 13.406 
-                        19.183 24H24C23.97 10.769 13.245.046 0 0v4.812z"/>
-                    </svg>
-                </a>
-                
-                <a class="bg-transparent border border-red-500 hover:border-transparent hover:bg-red-500 hover:text-white 
-                    rounded-lg flex items-center justify-center px-1">
-                    <svg class="fill-current" width="24px" height="24px"
-                        xmlns="http://www.w3.org/2000/svg" 
-                        viewBox="0 0 24 24">
-                        <path d="M5 7a5 5 0 11-.001 10.001A5 5 0 015 7zm11.122 12.065A3.946 3.946 0 0016 
-                        20a4 4 0 104-4 3.974 3.974 0 00-2.935 1.301l-5.488-2.927a6.973 6.973 0 01-.943 
-                        1.764l5.488 2.927zM24 4a4 4 0 00-8 0c0 .324.049.634.122.935l-5.488 2.927c.395.535.713 
-                        1.127.943 1.764l5.488-2.927A3.974 3.974 0 0020 8a4 4 0 004-4z"/>
-                    </svg>
-                </a>
-                
+                    <a class="bg-transparent border border-red-500 hover:border-transparent 
+                        hover:bg-red-500 hover:text-white
+                        rounded-lg mr-2 flex items-center justify-center px-1"
+                        :href="item.item_url">
+                        <LinkIcon />                    
+                    </a>
+
+                    <a class="bg-transparent border border-red-500 hover:border-transparent 
+                        hover:bg-red-500 hover:text-white 
+                        rounded-lg mr-2 flex items-center justify-center px-1">
+                        <RssIcon />
+                    </a>
+
+                    <a class="bg-transparent border border-red-500 hover:border-transparent 
+                        hover:bg-red-500 hover:text-white 
+                        rounded-lg flex items-center justify-center px-1">
+                        <ShareIcon />   
+                    </a>
+                </div>
             </div>
-            
-            <div class="rounded shadow-lg p-4 my-4">
+
+            <div class="m-4 bg-white rounded p-4">
                 <p class="text-xl py-2">About this Episode</p>
                 <div class="leading-relaxed" v-html="item.summary">
                 </div> 
             </div>
 
-            <div class="leading-relaxed rounded shadow-lg p-4 my-4">
+            <div class="leading-relaxed m-4 bg-white rounded p-4">
                 <p class="text-xl py-2">Transcript</p>
                 <p>
                     Let automated speech-to-text technology transcribe this episode so you can
@@ -130,7 +110,7 @@
                 </div>
             </div>
 
-            <div class="my-2 rounded shadow-lg p-4">
+            <div class="m-4 bg-white rounded p-4">
                 <span class="font-black">Disclaimer</span>: 
                 The podcast and artwork embedded on this page are from the Podcast 
                 <a :href="item.creator.base_url" 
@@ -152,6 +132,10 @@ import BasePageNav from '@/components/Base/BasePageNav.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 import axios from 'axios'
 import Modal from '@/components/Modal.vue'
+import LikeIcon from '@/components/Icon/LikeIcon.vue'
+import LinkIcon from '@/components/Icon/LinkIcon.vue'
+import RssIcon from '@/components/Icon/RssIcon.vue'
+import ShareIcon from '@/components/Icon/ShareIcon.vue'
 
 export default {
     middleware: 'error',
@@ -177,7 +161,11 @@ export default {
         AudioPlayer,
         BasePageNav,
         PulseLoader,
-        Modal
+        Modal,
+        LikeIcon,
+        LinkIcon,
+        RssIcon,
+        ShareIcon
     },
 
     computed: {
@@ -192,7 +180,6 @@ export default {
     },
 
     methods: {
-
         showModal() {
             this.isModalVisible = true;
         },
