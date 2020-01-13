@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-5xl flex flex-col mx-auto justify-center">
+  <div>
       <BasePageNav />
 
       <div v-if="loading"
@@ -7,62 +7,68 @@
         <pulse-loader color="#fc8181"></pulse-loader>
       </div>
 
-      <div v-else>
-        <div class="m-4">
-            <h1 class="text-xl">Welcome to Podcast Club</h1>
-            <p class="pt-2">
-                Podcast Club is a daily updated podcast aggregator inspired from 
-                <a class="border-b-2" 
-                    href="https://alltop.com">
-                    Alltop.com
-                </a>  
-                <br>
-                We focus on the topics IT, Entrepreneurship and Finance.
-                <br>
-                All data come from the Internet, if you see any violiations of your rights in any form,
-                please 
-                <a class="border-b-2 cursor-pointer" 
-                    @click="sendMail">
-                    Contact
-                </a> us.
-            </p>
-        </div>
-        <div class="m-4">
-            <h1 class="text-xl">How it works</h1>
-            <p class="pt-2">
-                Podcast Club consumes Data from the 
-                <a class="border-b-2" 
-                    href="https://github.com/tryToCode/podcast-api">
-                    Podcast API
-                </a> 
-                which is built 
-                with the 
-                <a class="border-b-2" 
-                    href="https://www.django-rest-framework.org/">
-                    Django Rest API
-                </a>.  
-            </p>
-        </div>
-        <div class="m-4 items-center">
-            <h1 class="text-xl pb-2">Podcasts we currently cover: </h1>
-            <div v-for="podcast in podcasts"
-                :key="podcast.id"
-                class="pb-1">
-                <a :href="podcast.base_url"
-                class="border-b-2">
-                    {{ podcast.name }}
+      <div v-else class="bg-gray-100 p-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="m-4 bg-white rounded p-4">
+                <h1 class="text-xl font-medium">Welcome to Podcast Club</h1>
+                <p class="pt-2">
+                    Podcast Club is a daily updated podcast aggregator inspired from 
+                    <a class="border-b-2" 
+                        href="https://alltop.com">
+                        Alltop.com
+                    </a>  
+                    <br>
+                    We focus on the topics IT, Entrepreneurship and Finance.
+                    <br>
+                    All data come from the Internet, if you see any violiations of your 
+                    rights in any form, please 
+                    <a class="border-b-2 cursor-pointer" 
+                        @click="sendMail">
+                        Contact
+                    </a> us.
+                </p>
+            </div>
+
+            <div class="m-4 bg-white rounded p-4">
+                <h1 class="text-xl font-medium">How it works</h1>
+                <p class="pt-2">
+                    Podcast Club consumes Data from the 
+                    <a class="border-b-2" 
+                        href="https://github.com/tryToCode/podcast-api">
+                        Podcast API
+                    </a> 
+                    which is built 
+                    with the 
+                    <a class="border-b-2" 
+                        href="https://www.django-rest-framework.org/">
+                        Django Rest API
+                    </a>.  
+                </p>
+            </div>
+            <div class="m-4 bg-white rounded p-4">
+                <h1 class="text-xl font-medium my-4">Podcasts we currently cover: </h1>
+                <a v-for="podcast in podcasts"
+                    :key="podcast.id"
+                    :href="podcast.base_url"
+                    class="inline-flex items-center mx-2 border rounded">
+                    <img class="w-auto h-8 object-cover mr-2" 
+                        :src="podcast.image_url" 
+                        :alt="podcast.name">
+                    <span class="pr-1 hover:bg-gray-200 font-medium">{{ podcast.name }}</span>
                 </a>
             </div>
+            <div class="flex items-center justify-center m-4 bg-white rounded p-4">
+                <p class="font-semibold">
+                    You host a podcast and want to be on the list, let us 
+                    <a class="border-b-2 cursor-pointer" 
+                        @click="sendMail">
+                        know
+                    </a>. 
+                </p>
+            </div>
         </div>
-        <div class="m-4">
-            <p class="font-semibold">
-                You host a podcast and want to be on the list, let us 
-                <a class="border-b-2 cursor-pointer" 
-                    @click="sendMail">
-                    know
-                </a>. 
-            </p>
-        </div>
+        
+        
       </div><!--v-else-->
   </div>
 </template>

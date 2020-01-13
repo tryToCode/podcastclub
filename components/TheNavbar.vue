@@ -4,7 +4,7 @@
         <div class="flex p-1">
             <div class="flex pl-4 items-center">
                 <img src="~/assets/podcast.png">
-                <nuxt-link class="pl-2 tracking-tight text-xl text-lg"
+                <nuxt-link class="pl-2 tracking-tight text-xl"
                     id="reloadPage"
                     to="/"
                     @click.native="reload">
