@@ -16,7 +16,6 @@
 <script>
 import { mapState } from 'vuex'
 import TheNavbar from '@/components/TheNavbar.vue'
-import FilterArea from '@/components/FilterArea.vue'
 import ItemArea from '@/components/ItemArea.vue'
 import FilterAreaV3 from '@/components/FilterAreaV3.vue'
 
@@ -39,7 +38,6 @@ export default {
 
   components: {
     TheNavbar,
-    FilterArea,
     ItemArea,
     FilterAreaV3
   },
@@ -66,7 +64,7 @@ export default {
           value: value
       })
     },
-
+    
     resetRoute() {
       const url = new URL(this.loadItemUrl)
       let urlKey = ['search', 'category', 'date', 'pageSize', 'page']

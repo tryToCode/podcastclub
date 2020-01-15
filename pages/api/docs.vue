@@ -32,7 +32,7 @@
             <div class="flex flex-col m-4 bg-white rounded p-4">
                 <h1 class="text-xl font-medium m-2">Resources</h1>
                 <p>
-                    <span class="text-green-400 mr-8">api/rssItems</span>
+                    <span class="text-green-400 m-2">api/rssItems</span>
                     <span class="">{{itemsCount}} items</span>
                 </p>
                 <p>

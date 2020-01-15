@@ -3,8 +3,8 @@
     <BasePageNav />
 
     <div v-if="loading"
-    class="flex flex-col justify-center items-center h-screen">
-    <pulse-loader color="#fc8181"></pulse-loader>
+        class="flex flex-col justify-center items-center h-screen">
+        <pulse-loader color="#fc8181"></pulse-loader>
     </div>
 
     <div class="max-w-5xl mx-auto">
@@ -44,6 +44,7 @@
                 </a>.  
             </p>
         </div>
+
         <div class="m-4 bg-white rounded p-4">
             <h1 class="text-xl font-medium my-4">Podcasts we currently cover: </h1>
             <a v-for="podcast in podcasts"
@@ -56,6 +57,7 @@
                 <span class="pr-1 hover:bg-gray-200 font-medium">{{ podcast.name }}</span>
             </a>
         </div>
+        
         <div class="flex items-center justify-center m-4 bg-white rounded p-4">
             <p class="font-semibold">
                 You host a podcast and want to be on the list, let us 

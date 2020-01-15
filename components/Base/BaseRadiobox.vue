@@ -8,7 +8,7 @@
         :id="label"
         :name="filterSection"
         :value="label"
-        v-model="model"
+        v-model="modelName"
         class="form-radio"
         :class="color">
   </div>
@@ -16,6 +16,12 @@
 
 <script>
 export default {
+    data() {
+        return {
+            modelName: this.model
+        }
+    },
+
     props: {
         label: {
             tpye: String,
@@ -36,6 +42,19 @@ export default {
             type: String,
             required: true
         },
+    },
+
+    mounted() {
+        if (localStorage.getItem('apiUrl')) {
+            let model = null
+            JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
+                if (key === this.filterSection) {
+                    model = value
+                    return
+                }
+            })
+            this.modelName = model
+        }
     },
 
     methods: {
