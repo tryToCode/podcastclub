@@ -1,17 +1,13 @@
 <template>
   <div>
-    <div class="border-t-4 border-red-500">
-      <TheNavbar
-      @onInputChange="filterChangeHandle"/>
-    </div>
-    <div class="bg-gray-200">
-      <div class="max-w-5xl flex flex-col md:flex-row mx-auto py-2 md:py-4">
-        <div class="bg-white md:w-2/3 md:my-4 rounded">
-          <ItemArea />
-        </div>
-        <div class="md:w-1/3 mt-4">
-          <FilterAreaV3 />          
-        </div>
+    <TheNavbar
+    @onInputChange="filterChangeHandle"/>
+    <div class="max-w-5xl flex flex-col md:flex-row mx-auto py-2 md:py-4">
+      <div class="bg-white md:w-2/3 md:my-4 rounded">
+        <ItemArea />
+      </div>
+      <div class="md:w-1/3 mt-4">
+        <FilterAreaV3 />          
       </div>
     </div>
   </div>

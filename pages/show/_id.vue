@@ -12,7 +12,7 @@
       @close="closeModal"
     />
 
-    <div class="bg-gray-200 flex flex-col lg:flex-row">
+    <div class="flex flex-col lg:flex-row">
         <div class="flex flex-col m-4 lg:w-3/4 mx-auto justify-center overflow-hidden">
             <div class="m-4 bg-white rounded p-4">
                 <p class="text-3xl font-medium leading-none tracking-normal mt-1 mb-2">

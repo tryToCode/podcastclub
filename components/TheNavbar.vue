@@ -1,35 +1,37 @@
 <template>
-    <nav class="max-w-5xl flex-col flex md:flex-row md:items-center 
+    <div class="border-t-4 border-red-500 bg-white">
+        <nav class="max-w-5xl flex-col flex md:flex-row md:items-center 
         justify-between md:justify-center flex-nowrap mx-auto h-auto">
-        <div class="flex p-1">
-            <div class="flex pl-4 items-center">
-                <img src="~/assets/podcast.png">
-                <nuxt-link class="pl-2 tracking-tight text-xl"
-                    id="reloadPage"
-                    to="/"
-                    @click.native="reload">
-                    Podcast Club
-                </nuxt-link>
+            <div class="flex p-1">
+                <div class="flex pl-4 items-center">
+                    <img src="~/assets/podcast.png">
+                    <nuxt-link class="pl-2 tracking-tight text-xl"
+                        id="reloadPage"
+                        to="/"
+                        @click.native="reload">
+                        Podcast Club
+                    </nuxt-link>
+                </div>
             </div>
-        </div>
-        
-        <div class="flex flex-1 pb-2 px-3 md:py-2 items-center md:justify-end">
-            <BaseInput
-            @inputChange="inputChange" />
             
-            <div class="hidden md:flex items-center">
-                <!--img src="~/assets/settings.png"-->
-                <nuxt-link class="px-1 md:pr-6 tracking-wide"
-                    to="/settings">
-                    Login
-                </nuxt-link>
-                <nuxt-link class="px-1 md:pr-6 tracking-wide"
-                    to="/settings">
-                    Register
-                </nuxt-link>
-            </div>
-        </div>            
-    </nav>
+            <div class="flex flex-1 pb-2 px-3 md:py-2 items-center md:justify-end">
+                <BaseInput
+                @inputChange="inputChange" />
+                
+                <div class="hidden md:flex items-center">
+                    <!--img src="~/assets/settings.png"-->
+                    <nuxt-link class="px-1 md:pr-6 tracking-wide"
+                        to="/settings">
+                        Login
+                    </nuxt-link>
+                    <nuxt-link class="px-1 md:pr-6 tracking-wide"
+                        to="/settings">
+                        Register
+                    </nuxt-link>
+                </div>
+            </div>            
+        </nav>
+    </div>
 </template>
 
 <script>
