@@ -47,7 +47,7 @@
               <p class="py-1">
                   Possible Filter Result: No Items Found
               </p>
-              <p>
+              <div>
                 Items are filtered by the given filter input which may include 
                 <div class="flex items-center my-2">
                   <input type="checkbox" disabled class="form-checkbox text-green-500" checked>
@@ -68,7 +68,7 @@
                   </span>
                 </div>
                 The page number (Pagination number at the bottom) could cause the result "No Items Found".
-              </p>
+              </div>
               <p class="py-1 font-bold">Solution</p>
               <p>
                 Make sure the filter "Category" or "Date" is executed by querying with 
