@@ -1,6 +1,6 @@
 <template>
-    <nav class="max-w-5xl flex-col flex md:flex-row md:items-center justify-between md:justify-center 
-        flex-nowrap mx-auto h-auto">
+    <nav class="max-w-5xl flex-col flex md:flex-row md:items-center 
+        justify-between md:justify-center flex-nowrap mx-auto h-auto">
         <div class="flex p-1">
             <div class="flex pl-4 items-center">
                 <img src="~/assets/podcast.png">
