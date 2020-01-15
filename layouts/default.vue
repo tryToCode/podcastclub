@@ -9,6 +9,8 @@
 import TheFooter from '@/components/TheFooter.vue'
 
 export default {
+  name: 'default-layout',
+
   components: {
     TheFooter,
   }  

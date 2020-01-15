@@ -1,12 +1,13 @@
 <template>
-  <div class="flex flex-1 px-2 items-center relative">
+  <div class="flex flex-1 px-2 items-center">
         <input class="min-w-0 w-full md:w-3/4 py-1 lg:py-2 rounded pl-10
-                justify-center flex border"
+            justify-center flex border"
             id="search-input"
             type="search" 
             v-model.trim="searchInput"
             placeholder="Search Episode by title, url or podcast"
             @input="onInputChange($event)">
+            
         <span class="absolute md:w-auto flex justify-start items-center 
                 text-grey px-2 md:px-2">
             <img src="~/assets/search.png">

@@ -7,7 +7,7 @@
         <pulse-loader color="#fc8181"></pulse-loader>
     </div>
 
-    <modal
+    <LoginModal
       v-show="isModalVisible"
       @close="closeModal"
     />
@@ -131,7 +131,7 @@ import AudioPlayer from '@/components/AudioPlayer.vue'
 import BasePageNav from '@/components/Base/BasePageNav.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 import axios from 'axios'
-import Modal from '@/components/Modal.vue'
+import LoginModal from '@/components/LoginModal.vue'
 import LikeIcon from '@/components/Icon/LikeIcon.vue'
 import LinkIcon from '@/components/Icon/LinkIcon.vue'
 import RssIcon from '@/components/Icon/RssIcon.vue'
@@ -161,7 +161,7 @@ export default {
         AudioPlayer,
         BasePageNav,
         PulseLoader,
-        Modal,
+        LoginModal,
         LikeIcon,
         LinkIcon,
         RssIcon,
@@ -181,11 +181,11 @@ export default {
 
     methods: {
         showModal() {
-            this.isModalVisible = true;
+            this.isModalVisible = true
         },
 
         closeModal() {
-            this.isModalVisible = false;
+            this.isModalVisible = false
         },
 
         upVote(itemId) {

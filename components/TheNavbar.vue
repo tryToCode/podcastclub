@@ -16,18 +16,18 @@
             
             <div class="flex flex-1 pb-2 px-3 md:py-2 items-center md:justify-end">
                 <BaseInput
-                @inputChange="inputChange" />
+                    @inputChange="inputChange" />
                 
                 <div class="hidden md:flex items-center">
-                    <!--img src="~/assets/settings.png"-->
                     <nuxt-link class="px-1 md:pr-6 tracking-wide"
-                        to="/settings">
+                        to=""
+                        @click.native="onLogin">
                         Login
                     </nuxt-link>
-                    <nuxt-link class="px-1 md:pr-6 tracking-wide"
-                        to="/settings">
+                    <a class="px-1 md:pr-6 tracking-wide cursor-pointer"
+                        >
                         Register
-                    </nuxt-link>
+                    </a>
                 </div>
             </div>            
         </nav>
@@ -54,6 +54,10 @@ export default {
                 window.location.reload(true)
                 localStorage.clear()
             }
+        },
+
+        onLogin() {
+            this.$emit('login')
         }
     }
 }

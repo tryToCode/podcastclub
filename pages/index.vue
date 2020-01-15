@@ -1,7 +1,13 @@
 <template>
   <div>
+    <LoginModal
+      v-show="isModalVisible"
+      @close="closeModal" />
+    
     <TheNavbar
-    @onInputChange="filterChangeHandle"/>
+      @login="loginHandle"
+      @onInputChange="filterChangeHandle"/>
+
     <div class="max-w-5xl flex flex-col md:flex-row mx-auto py-2 md:py-4">
       <div class="bg-white md:w-2/3 md:my-4 rounded">
         <ItemArea />
@@ -18,9 +24,16 @@ import { mapState } from 'vuex'
 import TheNavbar from '@/components/TheNavbar.vue'
 import ItemArea from '@/components/ItemArea.vue'
 import FilterAreaV3 from '@/components/FilterAreaV3.vue'
+import LoginModal from '@/components/LoginModal.vue'
 
 export default {
   middleware: 'error',
+
+  data() {
+    return {
+      isModalVisible: false
+    }
+  },
 
   head () {
     return {
@@ -39,7 +52,8 @@ export default {
   components: {
     TheNavbar,
     ItemArea,
-    FilterAreaV3
+    FilterAreaV3,
+    LoginModal
   },
 
   computed: {
@@ -58,13 +72,21 @@ export default {
   },
 
   methods: {
+    loginHandle() {
+      this.isModalVisible = true
+    },
+
+    closeModal() {
+      this.isModalVisible = false
+    },
+
     async filterChangeHandle(filterSection, value) {
       this.$store.dispatch('apiUrl/filterChangeHandle', {
           section: filterSection,
           value: value
       })
     },
-    
+
     resetRoute() {
       const url = new URL(this.loadItemUrl)
       let urlKey = ['search', 'category', 'date', 'pageSize', 'page']
