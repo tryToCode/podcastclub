@@ -7,7 +7,7 @@
         <pulse-loader color="#fc8181"></pulse-loader>
     </div>
 
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-4xl mx-auto">
         <div class="m-4 bg-white rounded p-4">
             <h1 class="text-xl font-medium">Welcome to Podcast Club</h1>
             <p class="pt-2">
@@ -50,14 +50,14 @@
             <a v-for="podcast in podcasts"
                 :key="podcast.id"
                 :href="podcast.base_url"
-                class="inline-flex items-center mx-2 border rounded">
+                class="flex md:inline-flex items-center mx-2 border rounded">
                 <img class="w-auto h-8 object-cover mr-2" 
                     :src="podcast.image_url" 
                     :alt="podcast.name">
                 <span class="pr-1 hover:bg-gray-200 font-medium">{{ podcast.name }}</span>
             </a>
         </div>
-        
+
         <div class="flex items-center justify-center m-4 bg-white rounded p-4">
             <p class="font-semibold">
                 You host a podcast and want to be on the list, let us 

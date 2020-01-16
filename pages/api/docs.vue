@@ -7,7 +7,7 @@
             <pulse-loader color="#fc8181"></pulse-loader>
         </div>
 
-        <div class="max-w-5xl flex flex-col mx-auto justify-center overflow-hidden">
+        <div class="max-w-4xl flex flex-col mx-auto justify-center overflow-hidden">
             <div class="m-4 bg-white rounded p-4">
                 <h1 class="text-xl font-medium m-2">Intro</h1>
                 <p class="text-base m-2">

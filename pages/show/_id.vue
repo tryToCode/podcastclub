@@ -101,8 +101,8 @@
                     </ul>
                 </div>
                 <div class="flex flex-col items-center mx-auto justify-center my-4">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 
-                        px-4 border border-blue-700 rounded"
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 
+                        px-4 border border-red-700 rounded"
                         @click="showModal">
                         Transcribe episode for &#36;{{ calcPrice }}
                     </button>
