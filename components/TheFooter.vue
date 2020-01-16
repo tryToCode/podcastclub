@@ -6,10 +6,6 @@
             </nuxt-link>
             <span>•</span>
             <nuxt-link class="text-sm text-black px-2"
-                to="/about">About
-            </nuxt-link>
-            <span>•</span>
-            <nuxt-link class="text-sm text-black px-2"
                 to="/help">Help
             </nuxt-link>    
             <span>•</span>

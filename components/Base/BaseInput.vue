@@ -1,10 +1,10 @@
 <template>
-  <div class="flex px-2 items-center">
+  <div class="flex flex-1 px-2 items-center">
         <BaseSearchFocus
             @keyup="focusSearch($event)" />
 
         <div class="relative w-full">
-            <input class="w-full md:w-5/6 py-1 md:py-2 mx-1 rounded-full pl-8 md:pl-10 flex
+            <input class="w-full md:w-5/6 py-1 mx-1 rounded-full pl-8 md:pl-10 flex
                 justify-center border focus:outline-none"
                 ref="search"
                 id="search-input"
@@ -14,7 +14,7 @@
                 @input="onInputChange($event)"
                 @keydown.esc="blur($event)">
 
-            <div class="absolute top-0 ml-3 flex justify-center items-center pt-2 md:pt-3">
+            <div class="absolute top-0 ml-3 flex justify-center items-center pt-2 md:pt-2">
                 <svg fill="currentColor" class="text-gray-500 h-5 w-5" 
                     viewBox="0 0 24 24" width="24" height="24">
                     <path class="heroicon-ui" 

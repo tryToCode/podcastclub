@@ -1,10 +1,13 @@
 <template>
   <transition name="modal-fade">
-    <div class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center backdrop-color">
+    <div class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center 
+            backdrop-color"
+        @click="$emit('close')">
         <div class="flex flex-col shadow-lg bg-white overflow-x-auto px-8 py-4 border rounded"
             role="dialog"
             aria-labelledby="modalTitle"
-            aria-describedby="modalDescription">
+            aria-describedby="modalDescription"
+            @click.stop>
             <header class="flex p-4 justify-between">
                 <div class="text-lg font-medium m-2">
                     Login to transcribe this episode
