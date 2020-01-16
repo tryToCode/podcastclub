@@ -1,11 +1,12 @@
 <template>
-  <div class=""></div>
+  <div class="hidden"></div>
 </template>
 
 <script>
 export default {
     mounted() {
         this.handler = event => {
+            event.preventDefault()
             this.$emit('keyup', event)
         }
         if (process.browser)
@@ -18,7 +19,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
