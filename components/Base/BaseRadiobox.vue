@@ -1,8 +1,7 @@
 <template>
-  <div class="flex items-center my-2 justify-between cursor-pointer pl-2">
-    <span class="font-semibold">
-        {{ label }}
-    </span>
+  <label class="flex items-center my-2 justify-between cursor-pointer 
+    pl-2 font-semibold">
+    {{ label }}
     <input type="radio"
         @change="onCheckboxChanged($event)"
         :id="label"
@@ -11,7 +10,7 @@
         v-model="modelName"
         class="form-radio"
         :class="color">
-  </div>
+  </label>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="px-8 py-2">
+  <div class="px-8 py-2" :key="rerender">
     <button class="w-full bg-transparent hover:bg-red-500 
         hover:text-white py-1 px-2 border border-red-500 
         hover:border-transparent rounded mb-4"
@@ -13,7 +13,7 @@
 
     <p class="my-2">Search Filter</p>
     
-    <div :key="categorySection">
+    <div>
         <p class="">Category</p>
         <BaseRadioBox v-for="category in categoryType"
             :key="category"
@@ -26,7 +26,7 @@
     <div class="border-t my-4">
     </div>
     
-    <div :key="dateSection">
+    <div>
         <p class="mt-2">Time Periode</p>
         <BaseRadioBox v-for="date in dateType"
             :key="date"
@@ -46,8 +46,7 @@ export default {
 
     data() {
         return {
-            categorySection: 0,
-            dateSection: 0,
+            rerender: false,
             catSelected: 'All',
             dateSelected: 'All Time'
         }
@@ -83,11 +82,9 @@ export default {
             switch (filterSection) {
                 case 'category':
                     this.catSelected = value
-                    this.categorySection += 1
                     break
                 case 'date':
-                    this.dateChanged = true
-                    this.dateSection += 1
+                    this.dateSelected = value
                     break
             }
             this.$store.dispatch('apiUrl/filterChangeHandle', {
@@ -105,6 +102,9 @@ export default {
                 'date': this.dateSelected
             }
             this.$store.dispatch('apiUrl/settingChangeHandle', payload)
+            .then(() => {
+                this.rerender = !this.rerender
+            })
         }
     }
 }
