@@ -1,6 +1,7 @@
 <template>
   <div class="border-t-4 border-red-500 bg-white">
-    <nav class="max-w-5xl flex flex-col md:flex-row p-1 justify-between h-auto mx-auto">
+    <nav class="max-w-5xl flex flex-col md:flex-row p-1 justify-between h-auto mx-auto
+      px-4 py-2">
       <div class="flex pl-4 items-center">
           <img src="~/assets/podcast.png">
           <nuxt-link class="pl-2 tracking-tight text-xl"
