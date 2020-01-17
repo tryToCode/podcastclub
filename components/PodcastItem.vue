@@ -3,7 +3,7 @@
         <div class="leading-tight">
             <nuxt-link
                 :to="'/show/' + item.id"
-                class="font-medium text-base">
+                class="font-semibold">
             {{ item.title }}
             </nuxt-link>
             <br />
@@ -12,7 +12,7 @@
                 ({{ item.item_url }})
             </span>
         </div>
-        <div class="text-sm font-semibold text-gray-500 mt-2">
+        <div class="text-sm text-gray-500 mt-2">
             <a class="pr-1"
                 :href="'https://' + item.creator.base_url">
             {{ item.creator.name }}

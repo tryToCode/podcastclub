@@ -1,6 +1,6 @@
 <template>
   <label class="flex items-center my-2 justify-between cursor-pointer 
-    pl-2 font-semibold">
+    pl-3">
     {{ label }}
     <input type="radio"
         @change="onCheckboxChanged($event)"

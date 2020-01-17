@@ -1,20 +1,16 @@
 <template>
   <div class="px-8 py-2" :key="rerender">
-    <button class="w-full bg-transparent hover:bg-red-500 
-        hover:text-white py-1 px-2 border border-red-500 
-        hover:border-transparent rounded mb-4"
-        @click="reset"
-        :class="{
-            'cursor-not-allowed':
-            catSelected === 'All' && dateSelected === 'All Time'
-        }">
+    <button v-show="catSelected !== 'All' || dateSelected !== 'All Time'" 
+        class="w-full bg-red-500 text-white py-1 px-2 border border-red-500 
+        rounded mb-4"
+        @click="reset">
         Reset Filter
     </button>
 
     <p class="my-2">Search Filter</p>
     
     <div>
-        <p class="">Category</p>
+        <p class="font-semibold">Category</p>
         <BaseRadioBox v-for="category in categoryType"
             :key="category"
             :label="category"
@@ -27,7 +23,7 @@
     </div>
     
     <div>
-        <p class="mt-2">Time Periode</p>
+        <p class="mt-2 font-semibold">Time Periode</p>
         <BaseRadioBox v-for="date in dateType"
             :key="date"
             :label="date"
@@ -70,9 +66,9 @@ export default {
             return [
                 'All Time', 
                 'Last 24', 
-                'Last Week', 
-                'Last Month', 
-                'Last Year'
+                'Past Week', 
+                'Past Month', 
+                'Past Year'
             ]
         }
     },

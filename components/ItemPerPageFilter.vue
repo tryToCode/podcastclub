@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center md:justify-end p-4 m-4">
+    <div class="flex items-center justify-center md:justify-end p-4 m-4 md:p-0 md:m-0">
         <BaseLabel
             class="text-sm text-gray-500"
             text="Episodes Per Page"
