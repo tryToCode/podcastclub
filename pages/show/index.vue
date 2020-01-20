@@ -1,12 +1,12 @@
 <template>
-  <div class="max-w-5xl flex flex-col md:flex-row mx-auto py-2 md:py-4">
-    <div class="bg-white md:w-2/3 md:my-4 rounded">
-    <ItemArea />
+    <div class="max-w-5xl flex flex-col md:flex-row mx-auto py-2 md:py-4">
+        <div class="bg-white md:w-2/3 md:my-4 rounded">
+            <ItemArea />
+        </div>
+        <div class="md:w-1/3 mt-4">
+            <FilterAreaV3 />          
+        </div>
     </div>
-    <div class="md:w-1/3 mt-4">
-    <FilterAreaV3 />          
-    </div>
-  </div>
 </template>
 
 <script>
@@ -24,6 +24,11 @@ export default {
             content: 'Podcast club home index page, a daily updated podcast aggregator' }
             ]
         }
+    },
+
+    components: {
+        ItemArea,
+        FilterAreaV3
     }
 }
 </script>

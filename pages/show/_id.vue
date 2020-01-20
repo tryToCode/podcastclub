@@ -1,7 +1,5 @@
 <template>
   <div>
-    <BasePageNav />
-
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>
@@ -102,7 +100,7 @@
                 </div>
                 <div class="flex flex-col items-center mx-auto justify-center my-4">
                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 
-                        px-4 border border-red-700 rounded"
+                        px-4 rounded outline-none"
                         @click="showModal">
                         Transcribe episode for &#36;{{ calcPrice }}
                     </button>

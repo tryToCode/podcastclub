@@ -20,7 +20,7 @@ import BaseFilter from './Base/BaseFilter.vue'
 export default {
     data() {
         return {
-            itemPerPage: 20,
+            itemPerPage: '20',
             selectOptions: [
                 {value: '10', id: 0},
                 {value: '20', id: 1},

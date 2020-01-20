@@ -1,54 +1,13 @@
 <template>
-  <div>
-    <!-- This is an example component -->
     <div>
-      <div class="bg-indigo-900 px-4 py-4">
-        <div class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between">
-          <div class="flex justify-between items-center">
-            <a href="#" class="inline-block py-2 text-white text-xl font-bold">
-              Podcast Club
-            </a>
-            <div class="inline-block cursor-pointer md:hidden">
-              <div class="bg-gray-400 w-8 mb-2" style="height: 2px;"></div>
-              <div class="bg-gray-400 w-8 mb-2" style="height: 2px;"></div>
-              <div class="bg-gray-400 w-8" style="height: 2px;"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="hidden md:block">
-              <a
-                href="#"
-                class="inline-block py-1 md:py-4 text-gray-100 mr-6 font-bold">
-                Home
-              </a>
-              <a
-                href="#"
-                class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-100 mr-6">
-                Show
-                </a>
-            </div>
-          </div>
-          <div class="hidden md:block">
-            <a
-              href="#"
-              class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-100 mr-6">
-              Login
-              </a>
-            <a
-              href="#"
-              class="inline-block py-2 px-4 text-gray-700 bg-white hover:bg-gray-100 rounded-lg">
-              Sign Up
-              </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-gray-600 md:overflow-hidden">
+      <div class="bg-gray-600">
         <div class="px-4 py-20 md:py-6">
           <div class="md:max-w-6xl md:mx-auto">
             <div class="md:flex md:flex-wrap">
-              <div class="md:w-2/5 text-center md:text-left md:py-16">
+              <div class="md:order-last md:w-1/2 overflow-hidden">
+                <IntroIcon />   
+              </div>
+              <div class="md:w-1/2 text-center md:text-left md:py-16">
                 <h1 class="font-bold text-white text-2xl md:text-5xl leading-tight mb-4">
                   A daily updated Podcast aggregator
                 </h1>
@@ -57,81 +16,124 @@
                   With the focus of IT, Finance and Entrepreneurship
                 </p>
 
-                <a
-                  href="#"
+                <nuxt-link
+                  to="/show"
                   class="mt-6 mb-12 md:mb-0 md:mt-10 inline-block py-3 px-8 text-white bg-red-500 hover:bg-red-600 rounded-lg shadow">
                   Get Inspired
-                  </a>
-              </div>
-              <div class="md:w-3/5 overflow-hidden">
-                <svg class="w-full h-full" 
-                  viewbox="77 -77 943 943">
-                  <ellipse cx="265.952" cy="750" fill="#3f3d56" rx="253" ry="39"/>
-                  <path fill="#f2f2f2" d="M56 179h140v2H56z"/>
-                  <path fill="#f2f2f2" d="M94 161h2v18.5h-2zM155 161h2v18.5h-2zM432 124h140v2H432z"/>
-                  <path fill="#f2f2f2" d="M470 106h2v18.5h-2zM531 106h2v18.5h-2zM511 681h140v2H511z"/>
-                  <path fill="#f2f2f2" d="M549 663h2v18.5h-2zM610 663h2v18.5h-2zM792 591h140v2H792z"/>
-                  <path fill="#f2f2f2" d="M830 573h2v18.5h-2zM891 573h2v18.5h-2zM803 362h140v2H803z"/>
-                  <path fill="#f2f2f2" d="M841 344h2v18.5h-2zM902 344h2v18.5h-2zM306 384h140v2H306z"/>
-                  <path fill="#f2f2f2" d="M344 366h2v18.5h-2zM405 366h2v18.5h-2zM654 534h140v2H654z"/>
-                  <path fill="#f2f2f2" d="M692 516h2v18.5h-2zM753 516h2v18.5h-2zM457 471h140v2H457z"/>
-                  <path fill="#f2f2f2" d="M495 453h2v18.5h-2zM556 453h2v18.5h-2zM266 273h140v2H266z"/>
-                  <path fill="#f2f2f2" d="M304 255h2v18.5h-2zM365 255h2v18.5h-2zM0 491h140v2H0z"/>
-                  <path fill="#f2f2f2" d="M38 473h2v18.5h-2zM99 473h2v18.5h-2z"/>
-                  <circle cx="723.952" cy="215" r="215" fill="#3f3d56"/>
-                  <path fill="#2f2e41" d="M63.98 328.233l1.945-.467 48.478 202.14-1.946.467z"/>
-                  <path fill="#9f616a" d="M283.452 465.5s41 17 28 27-40-12-39-15-4-10-4-10z"/>
-                  <path fill="#575a88" d="M247.452 331.5l13 12 3 35 10 37s17 35 14 42 3 9 3 9l-23 9s-25-28-25-34 5-110 5-110z"/>
-                  <path d="M247.452 331.5l13 12 3 35 10 37s17 35 14 42 3 9 3 9l-23 9s-25-28-25-34 5-110 5-110z" opacity=".1"/>
-                  <path fill="#575a88" d="M370.452 691.5s-5 23-6 25 19 9 19 9l24-17s-10-22-10-26z"/>
-                  <path fill="#2f2e41" d="M239.452 467.5l7 8s145 18 148 46 24 160 12 164-43 19-43 11-20-118-16-138c0 0-173-22-177-47s4-36 4-36z"/>
-                  <path d="M239.452 467.5l7 8s145 18 148 46 24 160 12 164-43 19-43 11-20-118-16-138c0 0-173-22-177-47s4-36 4-36z" opacity=".1"/>
-                  <path fill="#2f2e41" d="M368.452 714.5s-4-9-6-6-9 38-2 38 71 16 80 14 26 1 24-9-12-11-12-11-37-22-39-33-13-5-13-5v7s-21 16-32 5z"/>
-                  <path fill="#9f616a" d="M178.452 255.5s7 34-8 37 19 23 19 23l22 12 16-16s-14.5-29.5-3.5-51.5-45.5-4.5-45.5-4.5z"/>
-                  <path fill="#9f616a" d="M227.452 311.5l-16 16-22-12s-34-20-19-23c9.65-1.93 10.19-16.69 9.36-26.97a92.993 92.993 0 00-1.36-10.03s56.5-17.5 45.5 4.5a38.361 38.361 0 00-3.44 10.76c-3.37 19.77 6.94 40.74 6.94 40.74z"/>
-                  <path fill="#575a88" d="M283.452 720.5v23h38l3-9-4-24-37 10z"/>
-                  <path fill="#2f2e41" d="M126.452 487.5s0 59 24 61 110 13 110 13 5 98 14 130 1 34 9 36 42-5 41-12-5-184-5-184 9-38-111-56z"/>
-                  <path fill="#2f2e41" d="M286.452 736.5s-6-13-7-9-13 39-1 42 50 19 75 18 28-2 28-2 7-10-2-16-46-41-48-45-17-7-17 0-21 21-28 12z"/>
-                  <path d="M223.952 260a38.361 38.361 0 00-3.44 10.76c-4.98 3.01-8.31 2.24-14.56 2.24-9.27 0-13.01-11.85-19-18-.47-5.71-8.5.5-8.5.5s56.5-17.5 45.5 4.5z" opacity=".1"/>
-                  <circle cx="203.452" cy="239.5" r="33" fill="#9f616a"/>
-                  <path fill="#575a88" d="M260.452 343.5s-5 36-8 49-7 73-9 81-14 10-38 7a45.103 45.103 0 00-4.54-.34c-14.78-.47-31.69 5.06-47.34 9.4-9 2.5-17.59 4.6-25.12 4.94-11.4.52-14.74-12.12-14.35-25.8.37-12.73 3.98-26.38 7.35-31.2 6.07-8.68.1-86.61 2.34-112.31v-.01c.34-3.92.87-6.62 1.66-7.68 6-8 45-28 49.37-27.19 4.36.81 41.63 24.19 41.63 24.19 9 0 8.71-9.76 8.71-9.76s6.29 11.76 18.29 14.76 17 24 17 24z"/>
-                  <path fill="#9f616a" d="M193.605 473.143s64.416 2.05 53.132 9.704-61.285 14.653-62.285 4.653 9.153-14.357 9.153-14.357z"/>
-                  <path d="M200.912 480.16c.21 3.84-10.12 12.49-13.46 18.34-1.85 3.24-16.17-1.03-33.88-8.94a347.397 347.397 0 01-39.47-20.86c.37-12.73 3.98-26.38 7.35-31.2 6.07-8.68.1-86.61 2.34-112.31v-.01a11.087 11.087 0 011.66-.68h12c41 19-6 101-6 101s62 51 68 53a1.798 1.798 0 011.46 1.66z" opacity=".1"/>
-                  <path fill="#575a88" d="M137.452 318.5h-12s-11 3-20 23-42 82-13 106 91 52 95 45 18-18 12-20-68-53-68-53 47-82 6-101z"/>
-                  <path fill="#2f2e41" d="M198.375 224.144s1.449-20.047 19.314-11.873 16.7-14.357 11.301-18.338-5.228-4.967-24.974-2.303-58.081 7.177-45.686 46.88S181.952 268 181.952 268s-9.853-35.728.13-28.921l9.984 6.807 5.268-1.116zM347.014 731.345l-63.777-173.393-168.508-11.894L70.925 731.23l-1.946-.46 44.196-186.828.847.061 170.645 12.045.224.607 64 174-1.877.69z"/>
-                  <circle cx="596.704" cy="555.8" r="31.248" fill="#f56565" opacity=".4"/>
-                  <circle cx="538.872" cy="570.724" r="21.92" fill="#f56565" opacity=".4"/>
-                  <circle cx="55.872" cy="261.724" r="21.92" fill="#f56565" opacity=".4"/>
-                  <path fill="#2f2e41" d="M474.583 739.118l-2-.04a463.835 463.835 0 017.1-66.287c8.648-46.88 23.029-77.67 42.743-91.511l1.148 1.636c-46.052 32.334-48.968 154.966-48.991 156.202zM499.583 738.64l-2-.04c.043-2.215 1.293-54.414 21.843-68.842l1.148 1.637c-19.72 13.846-20.981 66.712-20.991 67.244z"/>
-                  <circle cx="534.952" cy="573.098" r="10" fill="#f56565"/>
-                  <circle cx="530" cy="659.098" r="10" fill="#f56565"/>
-                  <path fill="#2f2e41" d="M494.922 589.093c1.88 12.004-3.02 22.74-3.02 22.74s-7.944-8.725-9.824-20.73 3.02-22.74 3.02-22.74 7.944 8.726 9.824 20.73zM527.609 618.246c-11.493 3.943-22.919.99-22.919.99s7.208-9.344 18.701-13.286 22.919-.99 22.919-.99-7.208 9.344-18.701 13.286zM527.978 694.408a31.134 31.134 0 01-16.064.693 28.374 28.374 0 0129.172-10.006 31.134 31.134 0 01-13.108 9.313z"/>
-                  <path fill="#f56565" d="M171.733 195.617l7.395-1.366 7.448 40.318-11.8 2.18-6.634-35.913a4.48 4.48 0 013.591-5.219z"/>
-                  <circle cx="181.952" cy="243" r="15" fill="#f56565"/>
-                  <circle cx="181.952" cy="243" r="9" fill="#f2f2f2"/>
-                  <circle cx="181.952" cy="243" r="3" fill="#f56565"/>
-                  <path fill="#f56565" d="M745.452 134.956v90h-130.83l-24.17 29 2.76-29h-11.76v-90h164z"/>
-                  <path d="M686.452 165.956h59v59h-59z" opacity=".1"/>
-                  <path fill="#f56565" d="M699.452 178.956h164v90H851.69l2.762 29-24.167-29H699.452v-90z"/>
-                  <ellipse cx="591.452" cy="264.956" opacity=".1" rx="36" ry="3.512"/>
-                  <ellipse cx="854.452" cy="311.956" opacity=".1" rx="41" ry="4"/>
-                </svg>
-
+                </nuxt-link>
               </div>
             </div>
           </div>
         </div>
+      </div><!--hero-->
+
+      <div class="bg-gray-300">
+        <div class="px-4 py-20 md:py-6">
+          <div class="block md:flex justify-between md:-mx-2">
+            <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0 hover:border-red-500">
+              <div class="bg-white rounded-lg overflow-hidden shadow relative">
+                <svg class="flex w-16 h-16 items-center mx-auto mt-8 fill-current text-teal-500" viewBox="0 0 24 24">
+                  <path d="M22 3.2A1.2 1.2 0 0020.8 2H3.2A1.2 1.2 0 002 3.2V15h20V3.2zM20 13H4V4h16v9zm2 3H2c-.197.372-2 4.582-2 4.998C0 21.52.418 22 1.002 22h21.996c.584 0 1.002-.48 1.002-1.002 0-.416-1.803-4.626-2-4.998zM9.771 21l.467-1h3.523l.467 1H9.771z"/>
+                </svg>
+
+                <div class="p-4 h-auto md:h-40 lg:h-48">
+                  <a href="#" class="block text-blue-500 hover:text-blue-600 font-semibold mb-2 
+                    text-lg md:text-base lg:text-lg text-center">
+                    IT
+                  </a>
+                  <div class="text-gray-600 text-sm leading-relaxed block md:text-xs lg:text-sm">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo quidem blanditiis unde asperiores? Officia amet perspiciatis ad quibusdam incidunt eaque, nobis, eveniet neque porro id commodi quisquam debitis!
+                  </div>
+                  <div class="relative mt-2 lg:absolute bottom-0 mb-4 md:hidden lg:block">
+                    <a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">#something</a>
+                    <a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">#sky</a>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
+                <div class="bg-white rounded-lg overflow-hidden shadow relative">
+                  <svg class="flex w-16 h-16 items-center mx-auto mt-8 fill-current text-teal-500" viewBox="0 0 24 24">
+                    <path d="M11.329 19.6a.939.939 0 01-1.317.202.941.941 0 01-.202-1.315l1.077-1.456a.94.94 0 011.315-.199.934.934 0 01.201 1.313L11.329 19.6zm-.825-2.839a.942.942 0 10-1.518-1.113l-1.073 1.449a.942.942 0 001.517 1.115l1.074-1.451zm-1.9-1.388a.94.94 0 00-1.517-1.113l-1.083 1.461a.93.93 0 00.209 1.304.93.93 0 001.308-.19l1.083-1.462zm-1.898-1.386a.938.938 0 00-.203-1.315.94.94 0 00-1.315.201l-1.075 1.451a.94.94 0 101.517 1.113l1.076-1.45zM24 5.549s-1.555.301-2.667.479c-2.146.344-4.144-.416-6.361-1.562-.445-.229-.957-.466-1.458-.466-.461 0-.913.209-1.292.639-1.366 1.547-2.16 2.915-3.785 3.864-.801.468.14 1.934 1.86 1.331.878-.308 1.736-.895 2.706-1.677.762-.615 1.22-.524 1.879.135 1.238 1.238 5.404 5.351 5.404 5.351 1.317-.812 2.422-1.312 3.713-1.792V5.549zM13.476 18.211c-.158.459-.618 1.001-.953 1.455.297.235.608.334.882.334.717 0 1.188-.671.542-1.318l-.471-.471zm6.506-3.463c-1.07-1.055-4.732-4.667-5.803-5.713a.472.472 0 00-.608-.044c-.639.464-2.082 1.485-2.944 1.788-1.685.59-3.115-.222-3.422-1.359a1.547 1.547 0 01.727-1.781c1.008-.589 1.657-1.375 2.456-2.363-.695-.539-1.35-.732-1.991-.732-1.706 0-3.317 1.366-5.336 1.231C1.688 5.685 0 5.372 0 5.372v6.333c1.476.321 2.455.464 3.92 1.199l.462-.624a1.943 1.943 0 013.425.596c.951 0 1.667.602 1.898 1.387a1.932 1.932 0 011.897 1.385c1.171 0 2.017.92 1.981 2.007l1.168 1.168a.941.941 0 101.331-1.332l-1.686-1.687c-.22-.22.113-.553.333-.333l2.032 2.033a.94.94 0 101.331-1.331l-2.501-2.502c-.221-.218.113-.553.333-.333l2.7 2.701a.94.94 0 001.331 0 .933.933 0 00.027-1.291z"/>
+                  </svg>
+
+                  <div class="p-4 h-auto md:h-40 lg:h-48">
+                    <a href="#" class="block text-blue-500 hover:text-blue-600 font-semibold mb-2 
+                      text-lg md:text-base lg:text-lg text-center">
+                      Entrepreneurship
+                    </a>
+                    <div class="text-gray-600 text-sm leading-relaxed block md:text-xs lg:text-sm">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure aut quia alias ullam eveniet sunt! Ipsa, sunt. Inventore ipsum sit quasi. Alias quasi officiis blanditiis!
+                    </div>
+                    <div class="relative mt-2 lg:absolute bottom-0 mb-4 md:hidden lg:block">
+                      <a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">#pathway</a>
+                      <a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">#woman</a>
+                      <a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">#walkalone</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
+                <div class="bg-white rounded-lg overflow-hidden shadow relative">
+                  <svg class="flex w-16 h-16 items-center mx-auto mt-8 fill-current text-teal-500" viewBox="0 0 24 24">
+                    <path d="M22 2H8a2 2 0 00-2 2v4h16v3.5a.5.5 0 01-.5.5H20v2h2a2 2 0 002-2V4a2 2 0 00-2-2zm0 3H8v-.5a.5.5 0 01.5-.5h13a.5.5 0 01.5.5V5zm-6 5H2a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2v-8a2 2 0 00-2-2zM5 20H3v-1h2v1zm3 0H6v-1h2v1zm.32-3.377a2.5 2.5 0 110-4.246 3.053 3.053 0 00-.857 2.123c0 .824.326 1.571.857 2.123zM12 20h-2v-1h2v1zm-1-3a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm4 3h-2v-1h2v1z"/>
+                  </svg>
+
+                  <div class="p-4 h-auto md:h-40 lg:h-48">
+                    <a href="#" class="block text-blue-500 hover:text-blue-600 font-semibold mb-2 
+                      text-lg md:text-base lg:text-lg text-center">
+                      Finance
+                    </a>
+                    <div class="text-gray-600 text-sm leading-relaxed block md:text-xs lg:text-sm">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi nemo magni saepe cumque error quia quae sint ducimus, maiores doloremque.
+                    </div>
+                    <div class="relative mt-2 lg:absolute bottom-0 mb-4 md:hidden lg:block">
+                      <a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">#forest</a>
+                      <a class="inline bg-gray-300 py-1 px-2 rounded-full text-xs lowercase text-gray-700" href="#">#walk</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
+
+      <div class="bg-white">
+        <div class="py-16">
+          <div class="flex flex-col md:flex-row mx-auto px-4 justify-between">
+            <div class="md:w-1/2 items-center m-4 font-medium">
+              Subscribe to our mailing list and get notified by daily updated shows.
+            </div>
+            <div class="md:w-1/2 m-4">
+              <form class="w-full max-w-sm">
+                  <div class="flex flex-col py-2">
+                      <input class="appearance-none bg-transparent border border-red-500 w-full 
+                          text-gray-700 mr-1 py-2 px-2 leading-tight focus:outline-none rounded" 
+                          type="text" 
+                          placeholder="Your Email" 
+                          aria-label="Full name">
+                      <button class="inline-block flex-shrink-0 bg-red-500 hover:bg-red-700 
+                          border-red-500 hover:border-red-700 text-sm border-4
+                          text-white py-1 px-2 rounded my-2" 
+                          type="button">
+                          Continue
+                      </button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import TheNavbar from "@/components/TheNavbar.vue";
-import ItemArea from "@/components/ItemArea.vue";
-import FilterAreaV3 from "@/components/FilterAreaV3.vue";
-import LoginModal from "@/components/LoginModal.vue";
+import ItemArea from "@/components/ItemArea.vue"
+import FilterAreaV3 from "@/components/FilterAreaV3.vue"
+import LoginModal from "@/components/LoginModal.vue"
+import IntroIcon from '@/components/Icon/IntroductionIcon.vue'
 
 export default {
   middleware: "error",
@@ -154,7 +156,7 @@ export default {
   },
 
   components: {
-    TheNavbar
+    IntroIcon
   },
 
   computed: {

@@ -1,6 +1,5 @@
 <template>
   <div>
-      <BasePageNav />
       <div class="max-w-4xl flex flex-col p-4 mx-auto">
         <div class="m-4 bg-white rounded p-4">
           <h1 class="text-xl font-medium">Search</h1>
@@ -44,13 +43,11 @@
 </template>
 
 <script>
-import BasePageNav from '@/components/Base/BasePageNav.vue'
 import BaseCheckedBox from '@/components/Base/BaseCheckedBox.vue'
 
 export default {
   components: {
     BaseCheckedBox,
-    BasePageNav
   },
 
   computed: {
