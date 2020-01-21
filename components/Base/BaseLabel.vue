@@ -1,5 +1,5 @@
 <template>
-    <label class="md:block md:px-2 tracking-wide text-gray-700"
+    <label class="md:block tracking-wide text-gray-700"
         :class="{'hidden': hidden}">
         {{text}}
     </label>

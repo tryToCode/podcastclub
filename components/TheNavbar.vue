@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-indigo-900 px-4 py-4">
+  <div class="bg-white px-4 py-4 border-b">
     <div class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between">
         <div class="flex justify-between items-center">
-            <nuxt-link class="block flex items-center py-2 text-white text-xl font-bold"
+            <nuxt-link class="block flex items-center py-2 text-xl font-bold"
                 id="reloadPage"
                 to="/"
                 @click.native="reload">
@@ -20,11 +20,11 @@
         <div class="hidden md:block">
             <nuxt-link
                 to="/"
-                class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-100 mr-6 
+                class="inline-block py-1 md:py-4 text-gray-600 hover:text-gray-700 mr-6 
                 active:text-gray-100 active:font-bold">
                 Home
             </nuxt-link>
-            <nuxt-link class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-100 
+            <nuxt-link class="inline-block py-1 md:py-4 text-gray-600 hover:text-gray-700 
                 active:text-gray-100 active:font-bold mr-6 active:bg-red-600"
                 to="/show">
                 Show
@@ -34,12 +34,12 @@
         <div class="hidden md:block">
         <a
             href="#"
-            class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-100 mr-6">
+            class="inline-block py-1 md:py-4 text-gray-600 hover:text-gray-700 mr-6">
             Login
             </a>
         <a
             href="#"
-            class="inline-block py-2 px-4 text-gray-700 bg-white hover:bg-gray-100 rounded-lg">
+            class="inline-block py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-lg">
             Sign Up
             </a>
         </div>

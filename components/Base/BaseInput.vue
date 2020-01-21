@@ -4,7 +4,7 @@
             @keyup="focusSearch($event)" />
 
         <div class="relative w-full">
-            <input class="w-full py-1 rounded pl-8 flex
+            <input class="w-full py-1 rounded pl-6 flex
                 justify-center border focus:outline-none"
                 ref="search"
                 id="search-input"
@@ -14,7 +14,7 @@
                 @input="onInputChange($event)"
                 @keydown.esc="blur($event)">
 
-            <div class="absolute top-0 ml-2 flex justify-center items-center pt-2 md:pt-2">
+            <div class="absolute top-0 ml-1 flex justify-center items-center pt-2 md:pt-2">
                 <svg fill="currentColor" class="text-gray-500 h-5 w-5" 
                     viewBox="0 0 24 24" width="24" height="24">
                     <path class="heroicon-ui" 

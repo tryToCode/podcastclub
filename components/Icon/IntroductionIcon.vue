@@ -1,5 +1,5 @@
 <template>
-  <svg class="w-full h-full object-fill object-center" 
+  <svg class="w-full h-128 object-fill object-center" 
     viewbox="77 -77 943 943">
     <ellipse cx="265.952" cy="750" fill="#3f3d56" rx="253" ry="39"/>
     <path fill="#f2f2f2" d="M56 179h140v2H56z"/>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-gray-200">
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>
@@ -10,7 +10,7 @@
       @close="closeModal"
     />
 
-    <nav class="border-b">
+    <nav class="bg-white border-b">
         <ol class="max-w-6xl mx-auto flex items-center px-4 py-2">
             <li><nuxt-link to="/show" class="font-bold">Show</nuxt-link></li>
             <li><span class="mx-2">/</span></li>
@@ -19,26 +19,26 @@
     </nav>
     <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-20 md:py-6">
         
-        <div class="flex flex-col lg:w-2/3 justify-center overflow-hidden">
+        <div class="bg-white flex flex-col lg:w-2/3 justify-center overflow-hidden">
             <div class="my-4">
                 <p class="text-3xl font-medium leading-none tracking-normal mt-1 mb-2">
                     {{ item.title }}
                 </p>
 
                 <div class="flex py-2 items-center">
-                <img class="h-16 object-cover rounded-lg" 
-                    :src="item.creator.image_url" 
-                    :alt="item.creator.name">
+                    <img class="h-24 object-cover rounded-lg" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
 
-                <div class="flex flex-col ml-4">
-                    <a class="text-lg" 
-                        :href="'https://' + item.creator.base_url">
-                        By <span class="">{{ item.creator.name }}</span>
-                    </a>
-                    <div class="text-gray-500">
-                        {{$moment(item.pub_date).format('llll')}}
+                    <div class="flex flex-col ml-4">
+                        <a class="text-lg" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
+                        <div class="text-gray-500">
+                            {{$moment(item.pub_date).format('llll')}}
+                        </div>
                     </div>
-                </div>
                 </div> 
                 
                 <AudioPlayer :audioSource="item.enclosure" />
@@ -129,70 +129,111 @@
         </div><!--detail section -->
 
         <div class="lg:w-1/3 my-4 ml-8">
-            <ul class="px-6 py-8 border rounded">
-                <div class="flex flex--col">
-                   <a class="text-lg" 
-                        :href="'https://' + item.creator.base_url">
-                        By <span class="">{{ item.creator.name }}</span>
-                    </a>
-                    <div class="text-gray-500">
-                        {{$moment(item.pub_date).format('llll')}}
+            <ul class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
+                <p class="text-lg font-semibold mb-4">Recommandations</p>
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
                     </div>
                 </div>
-                <div class="flex flex--col">
-                   <a class="text-lg" 
-                        :href="'https://' + item.creator.base_url">
-                        By <span class="">{{ item.creator.name }}</span>
-                    </a>
-                    <div class="text-gray-500">
-                        {{$moment(item.pub_date).format('llll')}}
+                
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="text-base" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
                     </div>
                 </div>
-                <div class="flex flex--col">
-                   <a class="text-lg" 
-                        :href="'https://' + item.creator.base_url">
-                        By <span class="">{{ item.creator.name }}</span>
-                    </a>
-                    <div class="text-gray-500">
-                        {{$moment(item.pub_date).format('llll')}}
+
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
                     </div>
                 </div>
-                <div class="flex flex--col">
-                   <a class="text-lg" 
-                        :href="'https://' + item.creator.base_url">
-                        By <span class="">{{ item.creator.name }}</span>
-                    </a>
-                    <div class="text-gray-500">
-                        {{$moment(item.pub_date).format('llll')}}
+
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="text-base" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
                     </div>
                 </div>
-                <div class="flex flex--col">
-                   <a class="text-lg" 
-                        :href="'https://' + item.creator.base_url">
-                        By <span class="">{{ item.creator.name }}</span>
-                    </a>
-                    <div class="text-gray-500">
-                        {{$moment(item.pub_date).format('llll')}}
+
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="text-base" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
                     </div>
                 </div>
-                <div class="flex flex--col">
-                   <a class="text-lg" 
-                        :href="'https://' + item.creator.base_url">
-                        By <span class="">{{ item.creator.name }}</span>
-                    </a>
-                    <div class="text-gray-500">
-                        {{$moment(item.pub_date).format('llll')}}
+
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="text-base" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
                     </div>
                 </div>
-                <div>
-                    <p>blabalbl</p>
+
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="text-base" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
+                    </div>
                 </div>
-                <div>vlasdadsa</div>
-                <div>sadawdad</div>
-                <div>dawdawda</div>
-                <div>dawdawdada</div>
-                <div>dawdadadwa</div>
-                <div>dawdadadwa</div>
+
+                <div class="flex py-2 items-center border-b">
+                    <img class="h-12 object-cover rounded" 
+                        :src="item.creator.image_url" 
+                        :alt="item.creator.name">
+
+                    <div class="flex flex-col ml-4">
+                        <a class="text-base" 
+                            :href="'https://' + item.creator.base_url">
+                            By <span class="">{{ item.creator.name }}</span>
+                        </a>
+                    </div>
+                </div>
             </ul>
         </div>
     </div>

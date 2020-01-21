@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-col px-8 py-2 my-4 md:my-0">
+  <div class="flex flex-col px-8 py-2 my-4 md:my-0 md:w-4/5">
     <BaseInput
         class="my-2"
         @inputChange="filterChangeHandle" />
     
     <p class="font-semibold my-4 border-b">Filters</p>
 
-    <div class="mt-2 flex items-center px-1">
+    <div class="mt-2 flex items-center">
         <BaseLabel 
             class="w-1/2"
             text="Category"
@@ -20,7 +20,7 @@
             @onBaseFilterChange="filterChangeHandle"/>
     </div>
     
-    <div class="mt-2 flex items-center px-1">
+    <div class="mt-2 flex items-center">
         <BaseLabel 
             class="w-1/2"
             text="Time Periode"
@@ -34,12 +34,13 @@
             @onBaseFilterChange="filterChangeHandle"/>
     </div>
 
-    <button v-show="catSelected !== 'All' || dateSelected !== 'All Time'" 
-        class="w-full bg-red-500 text-white py-1 px-2 border border-red-500 
-        rounded mt-6 mx-1 hover:bg-red-600"
-        @click="reset">
-        Reset Filter
-    </button>
+    <div class="flex w-full items-center mt-6">
+        <button v-show="catSelected !== 'All' || dateSelected !== 'All Time'" 
+            class="w-full bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 mr-1"
+            @click="reset">
+            Reset Filter
+        </button>
+    </div>
   </div>
 </template>
 
