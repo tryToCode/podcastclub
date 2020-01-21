@@ -47,20 +47,11 @@
 </template>
 
 <script>
-import BaseInput from './Base/BaseInput.vue'
 
 export default {
     name: 'navbar',
-
-    components: {
-        BaseInput
-    },
-
+    
     methods: {
-        inputChange: function(filterSection, value) {
-            this.$emit('onInputChange', filterSection, value)
-        },
-
         reload() {
             if (process.browser) {
                 window.location.reload(true)

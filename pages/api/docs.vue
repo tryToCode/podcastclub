@@ -1,7 +1,5 @@
 <template>
     <div>
-        <BasePageNav />
-        
         <div v-if="loading"
             class="flex flex-col justify-center items-center h-screen">
             <pulse-loader color="#fc8181"></pulse-loader>
@@ -81,7 +79,6 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import BasePageNav from '@/components/Base/BasePageNav.vue'
 import BaseDocSection from '@/components/Base/BaseDocSection.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 
@@ -99,7 +96,6 @@ export default {
     },
 
     components: {
-        BasePageNav,
         PulseLoader,
         BaseDocSection
     },

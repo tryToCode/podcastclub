@@ -1,8 +1,7 @@
 <template>
-    <div class="relative mx-2 md:mx-0">
-        <select class="block appearance-none bg-gray-200 
-                border border-gray-200 text-gray-700 py-1 
-                px-1 pr-6 md:pr-6 rounded leading-tight focus:outline-none 
+    <div class="relative border border-gray-200 rounded">
+        <select class="appearance-none text-gray-700 py-1 
+                px-1 pr-6 leading-tight focus:outline-none 
                 focus:bg-white focus:border-gray-500" 
             :id="id"
             @change="onFilterChange($event)"
