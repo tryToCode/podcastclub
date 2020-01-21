@@ -36,7 +36,7 @@
 
     <button v-show="catSelected !== 'All' || dateSelected !== 'All Time'" 
         class="w-full bg-red-500 text-white py-1 px-2 border border-red-500 
-        rounded mt-6 mx-1"
+        rounded mt-6 mx-1 hover:bg-red-600"
         @click="reset">
         Reset Filter
     </button>

@@ -20,11 +20,12 @@
         <div class="hidden md:block">
             <nuxt-link
                 to="/"
-            class="inline-block py-1 md:py-4 text-gray-100 mr-6 font-bold">
+                class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-100 mr-6 
+                active:text-gray-100 active:font-bold">
                 Home
             </nuxt-link>
             <nuxt-link class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-100 
-                visited:text-gray-100 visited:font-bold mr-6"
+                active:text-gray-100 active:font-bold mr-6 active:bg-red-600"
                 to="/show">
                 Show
             </nuxt-link>  

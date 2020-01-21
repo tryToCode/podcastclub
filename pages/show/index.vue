@@ -1,10 +1,10 @@
 <template>
-    <div class="max-w-5xl flex flex-col md:flex-row mx-auto py-2 md:py-4">
+    <div class="md:max-w-6xl flex flex-col md:flex-row md:mx-auto md:px-4 py-10 md:py-6">
         <div class="bg-white md:w-3/5 lg:w-2/3 md:my-4 rounded">
             <ItemArea />
         </div>
 
-        <div class="border mx-2 md:hidden">
+        <div class="border md:hidden">
         </div>
 
         <div class="md:w-2/5 lg:w-1/3 mt-4">
@@ -34,7 +34,7 @@ export default {
     mounted() {
         this.resetRoute();
     },
-    
+
     components: {
         ItemArea,
         FilterAreaV4

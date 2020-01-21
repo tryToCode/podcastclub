@@ -29,8 +29,8 @@
 
       <div class="bg-gray-300">
         <div class="px-4 py-20 md:py-6">
-          <div class="block md:flex justify-between md:-mx-2">
-            <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0 hover:border-red-500">
+          <div class="md:max-w-6xl md:mx-auto block md:flex">
+            <div class="w-full lg:w-1/3 mb-4 md:mb-0 hover:border-red-500">
               <div class="bg-white rounded-lg overflow-hidden shadow relative">
                 <svg class="flex w-16 h-16 items-center mx-auto mt-8 fill-current text-teal-500" viewBox="0 0 24 24">
                   <path d="M22 3.2A1.2 1.2 0 0020.8 2H3.2A1.2 1.2 0 002 3.2V15h20V3.2zM20 13H4V4h16v9zm2 3H2c-.197.372-2 4.582-2 4.998C0 21.52.418 22 1.002 22h21.996c.584 0 1.002-.48 1.002-1.002 0-.416-1.803-4.626-2-4.998zM9.771 21l.467-1h3.523l.467 1H9.771z"/>
@@ -99,7 +99,7 @@
       </div>
 
       <div class="bg-white">
-        <div class="py-16">
+        <div class="px-4 py-20 md:py-6">
           <div class="flex flex-col md:flex-row mx-auto px-4 justify-between">
             <div class="md:w-1/2 items-center m-4 font-medium">
               Subscribe to our mailing list and get notified by daily updated shows.

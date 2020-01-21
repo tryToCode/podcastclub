@@ -10,9 +10,17 @@
       @close="closeModal"
     />
 
-    <div class="flex flex-col lg:flex-row">
-        <div class="flex flex-col m-4 max-w-4xl mx-auto justify-center overflow-hidden">
-            <div class="m-4 bg-white rounded p-4">
+    <nav class="border-b">
+        <ol class="max-w-6xl mx-auto flex items-center px-4 py-2">
+            <li><nuxt-link to="/show" class="font-bold">Show</nuxt-link></li>
+            <li><span class="mx-2">/</span></li>
+            <li>{{item.title}}</li>
+        </ol>
+    </nav>
+    <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-20 md:py-6">
+        
+        <div class="flex flex-col lg:w-2/3 justify-center overflow-hidden">
+            <div class="my-4">
                 <p class="text-3xl font-medium leading-none tracking-normal mt-1 mb-2">
                     {{ item.title }}
                 </p>
@@ -63,13 +71,13 @@
                 </div>
             </div>
 
-            <div class="m-4 bg-white rounded p-4">
+            <div class="my-4">
                 <p class="text-xl py-2">About this Episode</p>
                 <div class="leading-relaxed" v-html="item.summary">
                 </div> 
             </div>
 
-            <div class="leading-relaxed m-4 bg-white rounded p-4">
+            <div class="leading-relaxed my-4">
                 <p class="text-xl py-2">Transcript</p>
                 <p>
                     Let automated speech-to-text technology transcribe this episode so you can
@@ -99,7 +107,7 @@
                     </ul>
                 </div>
                 <div class="flex flex-col items-center mx-auto justify-center my-4">
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 
+                    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 
                         px-4 rounded outline-none"
                         @click="showModal">
                         Transcribe episode for &#36;{{ calcPrice }}
@@ -108,7 +116,7 @@
                 </div>
             </div>
 
-            <div class="m-4 bg-white rounded p-4">
+            <div class="my-4">
                 <span class="font-black">Disclaimer</span>: 
                 The podcast and artwork embedded on this page are from the Podcast 
                 <a :href="item.creator.base_url" 
@@ -119,6 +127,74 @@
                 by Podcast Club.
             </div>
         </div><!--detail section -->
+
+        <div class="lg:w-1/3 my-4 ml-8">
+            <ul class="px-6 py-8 border rounded">
+                <div class="flex flex--col">
+                   <a class="text-lg" 
+                        :href="'https://' + item.creator.base_url">
+                        By <span class="">{{ item.creator.name }}</span>
+                    </a>
+                    <div class="text-gray-500">
+                        {{$moment(item.pub_date).format('llll')}}
+                    </div>
+                </div>
+                <div class="flex flex--col">
+                   <a class="text-lg" 
+                        :href="'https://' + item.creator.base_url">
+                        By <span class="">{{ item.creator.name }}</span>
+                    </a>
+                    <div class="text-gray-500">
+                        {{$moment(item.pub_date).format('llll')}}
+                    </div>
+                </div>
+                <div class="flex flex--col">
+                   <a class="text-lg" 
+                        :href="'https://' + item.creator.base_url">
+                        By <span class="">{{ item.creator.name }}</span>
+                    </a>
+                    <div class="text-gray-500">
+                        {{$moment(item.pub_date).format('llll')}}
+                    </div>
+                </div>
+                <div class="flex flex--col">
+                   <a class="text-lg" 
+                        :href="'https://' + item.creator.base_url">
+                        By <span class="">{{ item.creator.name }}</span>
+                    </a>
+                    <div class="text-gray-500">
+                        {{$moment(item.pub_date).format('llll')}}
+                    </div>
+                </div>
+                <div class="flex flex--col">
+                   <a class="text-lg" 
+                        :href="'https://' + item.creator.base_url">
+                        By <span class="">{{ item.creator.name }}</span>
+                    </a>
+                    <div class="text-gray-500">
+                        {{$moment(item.pub_date).format('llll')}}
+                    </div>
+                </div>
+                <div class="flex flex--col">
+                   <a class="text-lg" 
+                        :href="'https://' + item.creator.base_url">
+                        By <span class="">{{ item.creator.name }}</span>
+                    </a>
+                    <div class="text-gray-500">
+                        {{$moment(item.pub_date).format('llll')}}
+                    </div>
+                </div>
+                <div>
+                    <p>blabalbl</p>
+                </div>
+                <div>vlasdadsa</div>
+                <div>sadawdad</div>
+                <div>dawdawda</div>
+                <div>dawdawdada</div>
+                <div>dawdadadwa</div>
+                <div>dawdadadwa</div>
+            </ul>
+        </div>
     </div>
   </div>
 </template>

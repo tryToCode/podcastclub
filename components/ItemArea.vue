@@ -6,8 +6,7 @@
     </div>
 
     <div v-else 
-        class="max-w-5xl flex flex-col mx-auto 
-        justify-center">
+        class="flex flex-col mx-auto justify-center">
         <div v-if="itemsCount === 0">
             <NoItems
                 :baseUrl="loadItemUrl"
