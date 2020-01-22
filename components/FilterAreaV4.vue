@@ -1,18 +1,18 @@
 <template>
-  <div class="flex flex-col px-8 py-2 my-4 md:my-0 md:w-4/5">
+  <div class="flex flex-col px-6 py-2 my-4 md:my-0 md:w-4/5" :key="rerender">
     <BaseInput
         class="my-2"
         @inputChange="filterChangeHandle" />
     
     <p class="font-semibold my-4 border-b">Filters</p>
 
-    <div class="mt-2 flex items-center">
+    <div class="mt-2 flex items-center justify-between">
         <BaseLabel 
             class="w-1/2"
             text="Category"
             :hidden="false" />
         <BaseFilter
-            class="w-1/2 mx-1"
+            class="w-1/2"
             id="categorySelect"
             :model="catSelected"
             :selectType="categoryType"
@@ -20,13 +20,13 @@
             @onBaseFilterChange="filterChangeHandle"/>
     </div>
     
-    <div class="mt-2 flex items-center">
+    <div class="mt-2 flex items-center justify-between">
         <BaseLabel 
             class="w-1/2"
             text="Time Periode"
             :hidden="false" />
         <BaseFilter
-            class="w-1/2 mx-1"
+            class="w-1/2"
             id="dateSelect"
             :model="dateSelected"
             :selectType="dateType"
@@ -54,6 +54,7 @@ export default {
 
     data() {
         return {
+            rerender: false,
             catSelected: 'All',
             categoryType: [
                 {value: 'All', id: 0},
@@ -110,7 +111,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

@@ -1,8 +1,6 @@
 <template>
-    <div class="relative border border-gray-200 rounded">
-        <select class="appearance-none text-gray-700 py-1 
-                px-1 pr-6 leading-tight focus:outline-none 
-                focus:bg-white focus:border-gray-500" 
+    <div class="">
+        <select class="form-select block w-full" 
             :id="id"
             @change="onFilterChange($event)"
             v-model="modelName">
@@ -11,8 +9,10 @@
                 :key="t.id">
                 {{ t.value }}
             </option>
+
+            <DownArrowIcon />
+
         </select>
-        <DownArrowIcon />
     </div>
 </template>
 

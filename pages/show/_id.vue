@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200">
+  <div class="bg-gray-100">
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>
@@ -11,16 +11,20 @@
     />
 
     <nav class="bg-white border-b">
-        <ol class="max-w-6xl mx-auto flex items-center px-4 py-2">
-            <li><nuxt-link to="/show" class="font-bold">Show</nuxt-link></li>
+        <ol class="max-w-6xl mx-auto flex items-center px-12 py-2">
+            <li>
+            <nuxt-link to="/show" class="font-bold hover:border-b-2 hover:border-red-500">
+                Show
+            </nuxt-link>
+            </li>
             <li><span class="mx-2">/</span></li>
             <li>{{item.title}}</li>
         </ol>
     </nav>
     <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-20 md:py-6">
         
-        <div class="bg-white flex flex-col lg:w-2/3 justify-center overflow-hidden">
-            <div class="my-4">
+        <div class="bg-white flex flex-col lg:w-2/3 justify-center overflow-hidden rounded">
+            <div class="m-8">
                 <p class="text-3xl font-medium leading-none tracking-normal mt-1 mb-2">
                     {{ item.title }}
                 </p>
@@ -71,13 +75,13 @@
                 </div>
             </div>
 
-            <div class="my-4">
+            <div class="m-8">
                 <p class="text-xl py-2">About this Episode</p>
                 <div class="leading-relaxed" v-html="item.summary">
                 </div> 
             </div>
 
-            <div class="leading-relaxed my-4">
+            <div class="leading-relaxed m-8">
                 <p class="text-xl py-2">Transcript</p>
                 <p>
                     Let automated speech-to-text technology transcribe this episode so you can
@@ -116,7 +120,7 @@
                 </div>
             </div>
 
-            <div class="my-4">
+            <div class="m-8">
                 <span class="font-black">Disclaimer</span>: 
                 The podcast and artwork embedded on this page are from the Podcast 
                 <a :href="item.creator.base_url" 

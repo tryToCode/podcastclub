@@ -1,14 +1,14 @@
 <template>
-    <div class="bg-gray-200">
+    <div class="bg-gray-100">
         <div class="md:max-w-6xl flex flex-col md:flex-row md:mx-auto py-10 md:py-6">
-            <div class="md:w-3/5 lg:w-2/3">
+            <div class="md:w-3/5 lg:w-2/3 px-8 py-4">
                 <ItemArea />
             </div>
 
             <div class="border md:hidden">
             </div>
 
-            <div class="md:w-2/5 lg:w-1/3">
+            <div class="md:w-2/5 lg:w-1/3 py-4">
                 <FilterAreaV4 />
             </div>
 

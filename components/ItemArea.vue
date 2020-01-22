@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div class="bg-white rounded">
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>

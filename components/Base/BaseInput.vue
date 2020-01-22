@@ -4,17 +4,16 @@
             @keyup="focusSearch($event)" />
 
         <div class="relative w-full">
-            <input class="w-full py-1 rounded pl-6 flex
-                justify-center border focus:outline-none"
+            <input class="w-full form-input pl-8 pr-6"
                 ref="search"
                 id="search-input"
                 type="search" 
                 v-model.trim="searchInput"
-                placeholder="Search Episode (Press &quot;/&quot; to focus)"
+                placeholder="Search Episode (&quot;/&quot; to focus)"
                 @input="onInputChange($event)"
                 @keydown.esc="blur($event)">
 
-            <div class="absolute top-0 ml-1 flex justify-center items-center pt-2 md:pt-2">
+            <div class="absolute top-0 left-0 ml-2 pt-3">
                 <svg fill="currentColor" class="text-gray-500 h-5 w-5" 
                     viewBox="0 0 24 24" width="24" height="24">
                     <path class="heroicon-ui" 
@@ -27,7 +26,7 @@
             <div
                 v-if="searchInput.length > 0"
                 class="absolute top-0 right-0 text-2xl mr-2 cursor-pointer text-gray-600 
-                    hover:text-gray-800"
+                    hover:text-gray-800 pt-1"
                 @click="reset">
                 &times;
             </div>
@@ -88,3 +87,14 @@ export default {
     }
 }
 </script>
+
+<style>
+    
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration { 
+        display: none; 
+    }
+
+</style>
