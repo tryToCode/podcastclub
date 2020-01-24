@@ -9,7 +9,7 @@
             </div>
 
             <div class="md:w-2/5 lg:w-1/3 py-4">
-                <FilterAreaV4 />
+                <FilterArea />
             </div>
 
         </div>
@@ -19,7 +19,7 @@
 <script>
 import { mapState } from 'vuex'
 import ItemArea from '@/components/ItemArea.vue'
-import FilterAreaV4 from '@/components/FilterAreaV4.vue'
+import FilterArea from '@/components/FilterArea.vue'
 
 export default {
     middleware: 'error',
@@ -40,7 +40,7 @@ export default {
 
     components: {
         ItemArea,
-        FilterAreaV4
+        FilterArea
     },
 
     computed: {

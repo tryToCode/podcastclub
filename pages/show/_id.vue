@@ -11,14 +11,14 @@
     />
 
     <nav class="bg-white border-b">
-        <ol class="max-w-6xl mx-auto flex items-center px-12 py-2">
+        <ol class="max-w-6xl mx-auto flex items-center px-12 py-2 text-sm">
             <li>
-            <nuxt-link to="/show" class="font-bold hover:border-b-2 hover:border-red-500">
-                Show
-            </nuxt-link>
+                <nuxt-link to="/show" class="text-gray-600">
+                    Show
+                </nuxt-link>
             </li>
             <li><span class="mx-2">/</span></li>
-            <li>{{item.title}}</li>
+            <li class="font-medium">{{item.title}}</li>
         </ol>
     </nav>
     <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-20 md:py-6">
@@ -47,24 +47,24 @@
                 
                 <AudioPlayer :audioSource="item.enclosure" />
 
-                <div class="flex my-2 border-t pt-3">
-                    <a class="bg-transparent mr-2 flex items-center justify-center px-1">
+                <div class="flex my-2 border-t pt-3 items-center">
+                    <a class="md:mr-2 flex items-center justify-center px-1">
                         <LikeIcon />
                         <span>Like</span>
                     </a>
 
-                    <a class="rounded-lg mr-2 flex items-center justify-center px-1"
+                    <a class="md:mr-2 flex items-center justify-center px-1"
                         :href="item.item_url">
                         <LinkIcon />
                         <span>Link</span>
                     </a>
 
-                    <a class="rounded-lg mr-2 flex items-center justify-center px-1">
+                    <a class="md:mr-2 flex items-center justify-center px-1">
                         <RssIcon />
                         <span>RSS</span>
                     </a>
 
-                    <a class="rounded-lg flex items-center justify-center px-1">
+                    <a class="flex items-center justify-center px-1">
                         <ShareIcon />
                         <span>Share</span>
                     </a>
@@ -128,7 +128,7 @@
             </div>
         </div><!--detail section -->
 
-        <div class="lg:w-1/3 my-4 ml-8">
+        <div class="lg:w-1/3 my-4 md:ml-8">
             <div class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
                 <p class="text-lg font-semibold mb-4">Recommandations</p>
                 <div class="flex py-2 items-center border-b">
@@ -268,7 +268,6 @@
 <script>
 import { mapState } from 'vuex'
 import AudioPlayer from '@/components/AudioPlayer.vue'
-import BasePageNav from '@/components/Base/BasePageNav.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 import axios from 'axios'
 import LoginModal from '@/components/LoginModal.vue'
@@ -300,7 +299,6 @@ export default {
 
     components: {
         AudioPlayer,
-        BasePageNav,
         PulseLoader,
         LoginModal,
         LikeIcon,

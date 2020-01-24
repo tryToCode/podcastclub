@@ -14,9 +14,9 @@
                 @keydown.esc="blur($event)">
 
             <div class="absolute top-0 left-0 ml-2 pt-3">
-                <svg fill="currentColor" class="text-gray-500 h-5 w-5" 
+                <svg class="fill-current text-gray-500 h-5 w-5" 
                     viewBox="0 0 24 24" width="24" height="24">
-                    <path class="heroicon-ui" 
+                    <path
                     d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 
                     16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
                     </path>
@@ -89,12 +89,11 @@ export default {
 </script>
 
 <style>
-    
+    /*remove 'X' from input search bar on chrome and IE */
     input[type="search"]::-webkit-search-decoration,
     input[type="search"]::-webkit-search-cancel-button,
     input[type="search"]::-webkit-search-results-button,
     input[type="search"]::-webkit-search-results-decoration { 
         display: none; 
     }
-
 </style>

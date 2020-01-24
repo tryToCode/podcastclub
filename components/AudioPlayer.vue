@@ -1,6 +1,6 @@
 <template>
   <div class="flex my-2 items-center">
-    <a class="py-1 flex items-center mr-2 justify-center cursor-pointer"
+    <a class="py-1 flex items-center md:mr-2 justify-center cursor-pointer"
         @click="play">
         <svg v-if="isTimerPlaying" class="fill-current text-red-400 hover:text-red-500 w-12 h-12 mr-2"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -15,7 +15,7 @@
     </a>
     <div class="flex items-center justify-between" ref="progress">
         <div class="px-2 opacity-50">{{ currentTime }}</div>
-        <div class="inline-block h-2 w-64 bg-gray-400 cursor-pointer rounded mx-2 opacity-75"
+        <div class="inline-block h-2 w-32 md:w-64 bg-gray-400 cursor-pointer rounded md:mx-2 opacity-75"
             @click="clickProgress">
             <div class="h-2 bg-red-500 rounded" :style="{ width : barWidth }"></div>
         </div>
