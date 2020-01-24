@@ -24,12 +24,12 @@
     <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-20 md:py-6">
         
         <div class="bg-white flex flex-col lg:w-2/3 justify-center overflow-hidden rounded">
-            <div class="m-8">
-                <p class="text-3xl font-medium leading-none tracking-normal mt-1 mb-2">
+            <div class="my-4 mx-8">
+                <p class="text-2xl font-semibold leading-none tracking-normal mt-1 mb-2">
                     {{ item.title }}
                 </p>
 
-                <div class="flex py-2 items-center">
+                <div class="flex py-3 items-center">
                     <img class="h-24 object-cover rounded-lg" 
                         :src="item.creator.image_url" 
                         :alt="item.creator.name">
@@ -39,7 +39,7 @@
                             :href="'https://' + item.creator.base_url">
                             By <span class="">{{ item.creator.name }}</span>
                         </a>
-                        <div class="text-gray-500">
+                        <div class="text-base text-gray-500">
                             {{$moment(item.pub_date).format('llll')}}
                         </div>
                     </div>
@@ -47,41 +47,37 @@
                 
                 <AudioPlayer :audioSource="item.enclosure" />
 
-                <div class="flex my-2">
-                    <a class="bg-transparent border border-red-500 hover:border-transparent 
-                        hover:bg-red-500 hover:text-white 
-                        rounded-lg mr-2 flex items-center justify-center px-1">
+                <div class="flex my-2 border-t pt-3">
+                    <a class="bg-transparent mr-2 flex items-center justify-center px-1">
                         <LikeIcon />
+                        <span>Like</span>
                     </a>
 
-                    <a class="bg-transparent border border-red-500 hover:border-transparent 
-                        hover:bg-red-500 hover:text-white
-                        rounded-lg mr-2 flex items-center justify-center px-1"
+                    <a class="rounded-lg mr-2 flex items-center justify-center px-1"
                         :href="item.item_url">
-                        <LinkIcon />                    
+                        <LinkIcon />
+                        <span>Link</span>
                     </a>
 
-                    <a class="bg-transparent border border-red-500 hover:border-transparent 
-                        hover:bg-red-500 hover:text-white 
-                        rounded-lg mr-2 flex items-center justify-center px-1">
+                    <a class="rounded-lg mr-2 flex items-center justify-center px-1">
                         <RssIcon />
+                        <span>RSS</span>
                     </a>
 
-                    <a class="bg-transparent border border-red-500 hover:border-transparent 
-                        hover:bg-red-500 hover:text-white 
-                        rounded-lg flex items-center justify-center px-1">
-                        <ShareIcon />   
+                    <a class="rounded-lg flex items-center justify-center px-1">
+                        <ShareIcon />
+                        <span>Share</span>
                     </a>
                 </div>
             </div>
 
-            <div class="m-8">
+            <div class="my-4 mx-8">
                 <p class="text-xl py-2">About this Episode</p>
                 <div class="leading-relaxed" v-html="item.summary">
                 </div> 
             </div>
 
-            <div class="leading-relaxed m-8">
+            <div class="leading-relaxed my-4 mx-8">
                 <p class="text-xl py-2">Transcript</p>
                 <p>
                     Let automated speech-to-text technology transcribe this episode so you can
@@ -120,7 +116,7 @@
                 </div>
             </div>
 
-            <div class="m-8">
+            <div class="my-4 mx-8">
                 <span class="font-black">Disclaimer</span>: 
                 The podcast and artwork embedded on this page are from the Podcast 
                 <a :href="item.creator.base_url" 
@@ -133,20 +129,45 @@
         </div><!--detail section -->
 
         <div class="lg:w-1/3 my-4 ml-8">
-            <ul class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
+            <div class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
                 <p class="text-lg font-semibold mb-4">Recommandations</p>
                 <div class="flex py-2 items-center border-b">
                     <img class="h-12 object-cover rounded" 
                         :src="item.creator.image_url" 
                         :alt="item.creator.name">
 
-                    <div class="flex flex-col ml-4">
-                        <a class="" 
+                    <div class="flex flex-col ml-4 flex-wrap">
+                        
+                        <p class="" 
                             :href="'https://' + item.creator.base_url">
                             By <span class="">{{ item.creator.name }}</span>
-                        </a>
+                        </p>
                     </div>
                 </div>
+                
+                <a :href="item.item_url">
+                    <div class="flex py-2 items-center border-b">
+                        <img class="h-12 object-cover rounded" 
+                            :src="item.creator.image_url" 
+                            :alt="item.creator.name">
+                        <div class="flex flex-col ml-4 overflow-hidden">
+                            <div class="truncate text-gray-500">
+                                {{item.creator.name}}
+                            </div>
+                                
+                            <div class="w-full items-center">
+                                <div class="font-semibold truncate">
+                                    {{item.title}}
+                                </div>
+                                <div class="text-gray-500">
+                                    <span>{{$moment(item.pub_date).startOf('day').fromNow()}}</span>
+                                    <span>1:10:03</span> 
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
                 
                 <div class="flex py-2 items-center border-b">
                     <img class="h-12 object-cover rounded" 
@@ -238,7 +259,7 @@
                         </a>
                     </div>
                 </div>
-            </ul>
+            </div>
         </div>
     </div>
   </div>
@@ -255,6 +276,7 @@ import LikeIcon from '@/components/Icon/LikeIcon.vue'
 import LinkIcon from '@/components/Icon/LinkIcon.vue'
 import RssIcon from '@/components/Icon/RssIcon.vue'
 import ShareIcon from '@/components/Icon/ShareIcon.vue'
+import IconBase from '@/components/Icon/IconBase.vue'
 
 export default {
     middleware: 'error',
@@ -284,7 +306,8 @@ export default {
         LikeIcon,
         LinkIcon,
         RssIcon,
-        ShareIcon
+        ShareIcon,
+        IconBase
     },
 
     computed: {
