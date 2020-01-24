@@ -5,7 +5,8 @@ export default {
      */
     env: {
         baseItemUrl: 'http://localhost:8000/api/rssItems',
-        basePodcastUrl: 'http://localhost:8000/api/podcasts'
+        basePodcastUrl: 'http://localhost:8000/api/podcasts',
+        relatedItemsUrl: 'http://localhost:8000/api/relatedItems'
     },
     /*
      ** Headers of the page

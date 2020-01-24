@@ -12,17 +12,18 @@
                 ({{ item.item_url }})
             </span>
         </div>
-        <div class="text-sm text-gray-500 mt-2">
-            <a class="pr-1"
+        <div class="flex text-sm text-gray-500 mt-3 items-center">
+            <a class="flex pr-1"
                 :href="'https://' + item.creator.base_url">
-            {{ item.creator.name }}
+                <span><UserIcon /></span>
+                {{ item.creator.name }}
             </a>
-            <span class="text-gray-500">|</span>
-            <span class="px-1">
+            <span class="flex px-1">
+            <span><GroupIcon /></span>
             {{ item.creator.category.split('.')[1] }}
             </span>
-            <span class="text-gray-500">|</span>
-            <span class="px-1">
+            <span class="flex px-1">
+            <span><ClockIcon /></span>
             {{ $moment(item.pub_date).fromNow() }}
             </span>
         </div>
@@ -30,6 +31,9 @@
 </template>
     
 <script>
+import ClockIcon from './Icon/ClockIcon.vue'
+import UserIcon from './Icon/UserIcon.vue'
+import GroupIcon from './Icon/GroupIcon.vue'
 
 export default {
     name: 'podcast-item',
@@ -39,6 +43,12 @@ export default {
             type: Object,
             required: true
         }
+    },
+
+    components: {
+        ClockIcon,
+        UserIcon,
+        GroupIcon
     }
 }
 </script>

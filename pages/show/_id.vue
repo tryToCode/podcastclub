@@ -47,28 +47,7 @@
                 
                 <AudioPlayer :audioSource="item.enclosure" />
 
-                <div class="flex my-2 border-t pt-3 items-center">
-                    <a class="md:mr-2 flex items-center justify-center px-1">
-                        <LikeIcon />
-                        <span>Like</span>
-                    </a>
-
-                    <a class="md:mr-2 flex items-center justify-center px-1"
-                        :href="item.item_url">
-                        <LinkIcon />
-                        <span>Link</span>
-                    </a>
-
-                    <a class="md:mr-2 flex items-center justify-center px-1">
-                        <RssIcon />
-                        <span>RSS</span>
-                    </a>
-
-                    <a class="flex items-center justify-center px-1">
-                        <ShareIcon />
-                        <span>Share</span>
-                    </a>
-                </div>
+                <ItemAction :item="item" />
             </div>
 
             <div class="my-4 mx-8">
@@ -130,135 +109,12 @@
 
         <div class="lg:w-1/3 my-4 md:ml-8">
             <div class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
-                <p class="text-lg font-semibold mb-4">Recommandations</p>
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4 flex-wrap">
-                        
-                        <p class="" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </p>
-                    </div>
-                </div>
-                
-                <a :href="item.item_url">
-                    <div class="flex py-2 items-center border-b">
-                        <img class="h-12 object-cover rounded" 
-                            :src="item.creator.image_url" 
-                            :alt="item.creator.name">
-                        <div class="flex flex-col ml-4 overflow-hidden">
-                            <div class="truncate text-gray-500">
-                                {{item.creator.name}}
-                            </div>
-                                
-                            <div class="w-full items-center">
-                                <div class="font-semibold truncate">
-                                    {{item.title}}
-                                </div>
-                                <div class="text-gray-500">
-                                    <span>{{$moment(item.pub_date).startOf('day').fromNow()}}</span>
-                                    <span>1:10:03</span> 
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4">
-                        <a class="text-base" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4">
-                        <a class="" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4">
-                        <a class="text-base" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4">
-                        <a class="text-base" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4">
-                        <a class="text-base" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4">
-                        <a class="text-base" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="flex py-2 items-center border-b">
-                    <img class="h-12 object-cover rounded" 
-                        :src="item.creator.image_url" 
-                        :alt="item.creator.name">
-
-                    <div class="flex flex-col ml-4">
-                        <a class="text-base" 
-                            :href="'https://' + item.creator.base_url">
-                            By <span class="">{{ item.creator.name }}</span>
-                        </a>
-                    </div>
-                </div>
+                <p class="text-lg font-semibold mb-4">Other Shows</p>
+                <RelatedItem 
+                    class="border-b"
+                    v-for="item in relatedItems"
+                    :key="item.id"
+                    :item="item" />
             </div>
         </div>
     </div>
@@ -271,11 +127,8 @@ import AudioPlayer from '@/components/AudioPlayer.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 import axios from 'axios'
 import LoginModal from '@/components/LoginModal.vue'
-import LikeIcon from '@/components/Icon/LikeIcon.vue'
-import LinkIcon from '@/components/Icon/LinkIcon.vue'
-import RssIcon from '@/components/Icon/RssIcon.vue'
-import ShareIcon from '@/components/Icon/ShareIcon.vue'
-import IconBase from '@/components/Icon/IconBase.vue'
+import ItemAction from '@/components/ItemAction.vue'
+import RelatedItem from '@/components/RelatedItem.vue'
 
 export default {
     middleware: 'error',
@@ -283,6 +136,7 @@ export default {
     data() {
         return {
             item: {},
+            relatedItems: [],
             isModalVisible: false
         }
     },
@@ -301,11 +155,8 @@ export default {
         AudioPlayer,
         PulseLoader,
         LoginModal,
-        LikeIcon,
-        LinkIcon,
-        RssIcon,
-        ShareIcon,
-        IconBase
+        ItemAction,
+        RelatedItem
     },
 
     computed: {
@@ -326,11 +177,6 @@ export default {
 
         closeModal() {
             this.isModalVisible = false
-        },
-
-        upVote(itemId) {
-            this.likes += 1
-            this.$store.dispatch('items/updateLikes', itemId)
         }
     },
 
@@ -338,7 +184,17 @@ export default {
         store.dispatch('loading/startLoading', null, { root: true })
         try {
             const item = await axios.get(`${process.env.baseItemUrl}/${params.id}/`)
-            return {item: item.data}
+            console.log(item.data)
+            let relatedItemsUrl = new URL(process.env.relatedItemsUrl)
+            relatedItemsUrl.searchParams.set('category', item.data.creator.category.split('.')[1])
+            console.log('related items url: ' + relatedItemsUrl.toString())
+            relatedItemsUrl.searchParams.set('exclude', params.id)
+            const relatedItems = await axios.get(relatedItemsUrl.toString())
+            console.log(relatedItems.data.results)
+            return { 
+                item: item.data,
+                relatedItems: relatedItems.data.results
+            }
         }
         catch (error) {
             store.dispatch("error/onError", 

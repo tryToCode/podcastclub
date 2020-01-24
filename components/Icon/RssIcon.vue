@@ -1,6 +1,6 @@
 <template>
     <div class="pointer-events-none flex items-center justify-center px-2 text-gray-400">
-        <svg class="fill-current" width="16" height="16"
+        <svg class="fill-current" width="18" height="18"
             xmlns="http://www.w3.org/2000/svg"  
             viewBox="0 0 24 24">
             <path d="M6.503 20.752A3.25 3.25 0 013.252 24 3.25 3.25 0 010 20.752a3.25 3.25 0 
