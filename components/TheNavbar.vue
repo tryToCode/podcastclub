@@ -32,16 +32,16 @@
         </div>
         </div>
         <div class="hidden md:block">
-        <a
-            href="#"
-            class="py-1 md:py-4 mr-6 hover:border-b-4 border-red-500
-                font-medium">
-            Login
+            <a
+                @click="login"
+                class="py-1 md:py-4 mr-6 hover:border-b-4 border-red-500
+                    font-medium cursor-pointer">
+                Login
             </a>
-        <a
-            href="#"
-            class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-lg">
-            Sign Up
+            <a
+                href="#"
+                class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-lg">
+                Sign Up
             </a>
         </div>
     </div>
@@ -49,7 +49,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'navbar',
     
@@ -59,6 +58,10 @@ export default {
                 window.location.reload(true)
                 localStorage.clear()
             }
+        },
+
+        login() {
+            this.$emit('login')
         }
     }
 }

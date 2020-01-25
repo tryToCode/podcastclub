@@ -9,16 +9,11 @@
                 :key="t.id">
                 {{ t.value }}
             </option>
-
-            <DownArrowIcon />
-
         </select>
     </div>
 </template>
 
 <script>
-import DownArrowIcon from '@/components/Icon/DownArrowIcon.vue'
-
 export default {
     name: 'base-filter',
 
@@ -48,10 +43,6 @@ export default {
             type: Array,
             required: true
         }
-    },
-
-    components: {
-        DownArrowIcon
     },
 
     mounted() {

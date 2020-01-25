@@ -7,8 +7,7 @@
 
     <LoginModal
       v-show="isModalVisible"
-      @close="closeModal"
-    />
+      @close="closeModal" />
 
     <nav class="bg-white border-b">
         <ol class="max-w-6xl mx-auto flex items-center px-12 py-2 text-sm">
@@ -109,7 +108,7 @@
 
         <div class="lg:w-1/3 my-4 md:ml-8">
             <div class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
-                <p class="text-lg font-semibold mb-4">Other Shows</p>
+                <p class="font-medium mb-4">Other Shows</p>
                 <RelatedItem 
                     class="border-b last:border-b-0"
                     v-for="item in relatedItems"

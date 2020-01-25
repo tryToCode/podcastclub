@@ -14,12 +14,12 @@
         </svg>
     </a>
     <div class="flex items-center justify-between" ref="progress">
-        <div class="px-2 opacity-50">{{ currentTime }}</div>
-        <div class="inline-block h-2 w-32 md:w-64 bg-gray-400 cursor-pointer rounded md:mx-2 opacity-75"
+        <div class="px-2 text-gray-500">{{ currentTime }}</div>
+        <div class="inline-block h-2 w-32 md:w-64 bg-gray-400 cursor-pointer rounded md:mx-2"
             @click="clickProgress">
             <div class="h-2 bg-red-500 rounded" :style="{ width : barWidth }"></div>
         </div>
-        <div class="px-2 opacity-75">{{ duration }}</div>
+        <div class="px-2 text-gray-700">{{ duration }}</div>
     </div>
   </div>
 </template>

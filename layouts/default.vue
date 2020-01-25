@@ -1,6 +1,10 @@
 <template>
   <div>
-    <TheNavbar />
+    <LoginModal
+      v-show="isModalVisible"
+      @close="closeModal"/>
+    <TheNavbar 
+      @login="showModal" />
     <nuxt />
     <TheFooter />
   </div>
@@ -9,14 +13,32 @@
 <script>
 import TheNavbar from "@/components/TheNavbar.vue"
 import TheFooter from '@/components/TheFooter.vue'
+import LoginModal from '@/components/LoginModal.vue'
 
 export default {
   name: 'default-layout',
 
+  data() {
+    return {
+      isModalVisible: false
+    }
+  },
+
   components: {
     TheNavbar,
     TheFooter,
-  }  
+    LoginModal
+  },
+
+  methods: {
+    showModal() {
+        this.isModalVisible = true
+    },
+
+    closeModal() {
+        this.isModalVisible = false
+    }
+  }
 }
 </script>
 

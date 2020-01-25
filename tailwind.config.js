@@ -25,7 +25,8 @@ module.exports = {
                     '&:focus': {
                         outline: 'none',
                         boxShadow: undefined,
-                        borderColor: undefined,
+                        borderColor: defaultTheme.colors.red[500],
+                        borderWidth: defaultTheme.borderWidth[2]
                     }
                 },
                 select: {
@@ -34,7 +35,8 @@ module.exports = {
                     '&:focus': {
                         outline: 'none',
                         boxShadow: undefined,
-                        borderColor: undefined,
+                        borderColor: defaultTheme.colors.red[500],
+                        borderWidth: defaultTheme.borderWidth[2]
                     }
                 }
             },
