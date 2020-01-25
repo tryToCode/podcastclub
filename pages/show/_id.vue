@@ -21,7 +21,7 @@
             <li class="font-medium">{{item.title}}</li>
         </ol>
     </nav>
-    <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-20 md:py-6">
+    <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-6">
         
         <div class="bg-white flex flex-col lg:w-2/3 justify-center overflow-hidden rounded">
             <div class="my-4 mx-8">
@@ -111,7 +111,7 @@
             <div class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
                 <p class="text-lg font-semibold mb-4">Other Shows</p>
                 <RelatedItem 
-                    class="border-b"
+                    class="border-b last:border-b-0"
                     v-for="item in relatedItems"
                     :key="item.id"
                     :item="item" />

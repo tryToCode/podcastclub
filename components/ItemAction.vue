@@ -1,25 +1,25 @@
 <template>
   <div class="flex my-2 border-t pt-3 items-center">
-    <a class="md:mr-2 flex items-center justify-center px-1 cursor-pointer hover:text-red-500"
+    <a class="group md:mr-2 flex items-center justify-center px-1 cursor-pointer"
         @click="upVote">
-        <ThumbIcon />
-        <span>Like</span>
+        <ThumbIcon class="group-hover:text-red-500" />
+        <span class="group-hover:text-red-500">Like</span>
     </a>
 
-    <a class="md:mr-2 flex items-center justify-center px-1"
+    <a class="group md:mr-2 flex items-center justify-center px-1"
         :href="item.item_url">
-        <LinkIcon />
-        <span>Link</span>
+        <LinkIcon class="group-hover:text-red-500" />
+        <span class="group-hover:text-red-500">Link</span>
     </a>
 
-    <a class="md:mr-2 flex items-center justify-center px-1 cursor-pointer">
-        <RssIcon />
-        <span>RSS</span>
+    <a class="group md:mr-2 flex items-center justify-center px-1 cursor-pointer">
+        <RssIcon class="group-hover:text-red-500" />
+        <span class="group-hover:text-red-500">RSS</span>
     </a>
 
-    <a class="flex items-center justify-center px-1 cursor-pointer">
-        <ShareIcon />
-        <span>Share</span>
+    <a class="group flex items-center justify-center px-1 cursor-pointer">
+        <ShareIcon class="group-hover:text-red-500" />
+        <span class="group-hover:text-red-500">Share</span>
     </a>
   </div>
 </template>

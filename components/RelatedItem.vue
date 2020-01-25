@@ -1,6 +1,6 @@
 <template>
-  <nuxt-link :to="'/show/' + item.id">
-    <div class="flex py-2 items-center border-b">
+  <div class="cursor-pointer hover:opacity-50" @click="toItem">
+    <div class="flex py-2 items-center">
         <img class="h-12 object-cover rounded" 
             :src="item.creator.image_url" 
             :alt="item.creator.name">
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -41,6 +41,12 @@ export default {
             if (dursec < 10) 
                 dursec = "0" + dursec
             return durmin + ":" + dursec
+        }
+    },
+
+    methods: {
+        toItem() {
+            this.$router.push({ path: `/show/${this.item.id}` })
         }
     }
 }

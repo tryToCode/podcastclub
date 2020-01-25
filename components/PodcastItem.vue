@@ -12,19 +12,33 @@
                 ({{ item.item_url }})
             </span>
         </div>
-        <div class="flex text-sm text-gray-500 mt-3 items-center">
-            <a class="flex pr-1"
+        <div class="md:flex text-sm text-gray-500 mt-3 items-center">
+            <a class="md:flex pr-1 group"
                 :href="'https://' + item.creator.base_url">
-                <span><UserIcon /></span>
-                {{ item.creator.name }}
+                <span class="hidden md:inline-block">
+                    <UserIcon class="group-hover:text-red-500" />
+                </span>
+                <span class="group-hover:text-red-500">
+                    {{ item.creator.name }}
+                </span>
             </a>
-            <span class="flex px-1">
-            <span><GroupIcon /></span>
-            {{ item.creator.category.split('.')[1] }}
+            <span class="text-gray-500 md:hidden">|</span>
+            <span class="md:flex px-1 group">
+                <span class="hidden md:inline-block">
+                    <GroupIcon class="group-hover:text-red-500" />
+                </span>
+                <span class="group-hover:text-red-500">
+                    {{ item.creator.category.split('.')[1] }}
+                </span> 
             </span>
-            <span class="flex px-1">
-            <span><ClockIcon /></span>
-            {{ $moment(item.pub_date).fromNow() }}
+            <span class="text-gray-500 md:hidden    ">|</span>
+            <span class="md:flex px-1 group">
+                <span class="hidden md:inline-block">
+                    <ClockIcon class="group-hover:text-red-500" />
+                </span>
+                <span class="group-hover:text-red-500">
+                    {{ $moment(item.pub_date).fromNow() }}
+                </span> 
             </span>
         </div>
     </div>

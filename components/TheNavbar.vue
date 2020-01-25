@@ -20,12 +20,12 @@
         <div class="hidden md:block">
             <nuxt-link
                 to="/"
-                class="inline-block py-1 md:py-4 mr-6 
-                active:text-gray-100 active:font-bold">
+                class="py-1 md:py-4 mr-6 hover:border-b-4 border-red-500
+                font-medium">
                 Home
             </nuxt-link>
-            <nuxt-link class="inline-block py-1 md:py-4 
-                active:text-gray-100 active:font-bold mr-6 active:bg-red-600"
+            <nuxt-link class="py-1 md:py-4 hover:border-b-4 border-red-500
+                font-medium"
                 to="/show">
                 Show
             </nuxt-link>  
@@ -34,12 +34,13 @@
         <div class="hidden md:block">
         <a
             href="#"
-            class="inline-block py-1 md:py-4 mr-6">
+            class="py-1 md:py-4 mr-6 hover:border-b-4 border-red-500
+                font-medium">
             Login
             </a>
         <a
             href="#"
-            class="inline-block py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-lg">
+            class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-lg">
             Sign Up
             </a>
         </div>
