@@ -34,14 +34,9 @@
         <div class="hidden md:block">
             <a
                 @click="login"
-                class="py-1 md:py-4 mr-6 hover:border-b-4 border-red-500
+                class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded
                     font-medium cursor-pointer">
                 Login
-            </a>
-            <a
-                href="#"
-                class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-lg">
-                Sign Up
             </a>
         </div>
     </div>
@@ -49,9 +44,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     name: 'navbar',
     
+    computed: {
+        ...mapState({
+            loggedIn: state => state.auth.isAuthenticated
+        })
+    },
+
     methods: {
         reload() {
             if (process.browser) {

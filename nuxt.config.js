@@ -6,7 +6,9 @@ export default {
     env: {
         baseItemUrl: 'http://localhost:8000/api/rssItems',
         basePodcastUrl: 'http://localhost:8000/api/podcasts',
-        relatedItemsUrl: 'http://localhost:8000/api/relatedItems'
+        relatedItemsUrl: 'http://localhost:8000/api/relatedItems',
+        loginUrl: 'http://localhost:8000/auth/login/',
+        verifyTokenUrl: 'http://localhost:8000/auth/login/token_post/'
     },
     /*
      ** Headers of the page

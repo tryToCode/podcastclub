@@ -36,7 +36,7 @@
 
     <div class="flex w-full items-center mt-6">
         <button v-show="catSelected !== 'All' || dateSelected !== 'All Time'" 
-            class="w-full bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 mr-1"
+            class="w-full bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
             @click="reset">
             Reset Filter
         </button>

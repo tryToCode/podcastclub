@@ -18,7 +18,8 @@
 
                 <nuxt-link
                   to="/show"
-                  class="mt-6 mb-12 md:mb-0 md:mt-10 inline-block py-3 px-8 text-white bg-red-500 hover:bg-red-600 rounded-lg shadow">
+                  class="mt-6 mb-12 md:mb-0 md:mt-10 inline-block py-3 px-8 text-white 
+                    bg-red-500 hover:bg-red-600 rounded shadow">
                   Get Inspired
                 </nuxt-link>
               </div>
@@ -107,14 +108,13 @@
             <div class="md:w-1/2 m-4">
               <form class="w-full max-w-sm">
                   <div class="flex flex-col py-2">
-                      <input class="appearance-none bg-transparent border border-red-500 w-full 
-                          text-gray-700 mr-1 py-2 px-2 leading-tight focus:outline-none rounded" 
+                      <input class="w-full form-input" 
                           type="text" 
                           placeholder="Your Email" 
                           aria-label="Full name">
                       <button class="inline-block flex-shrink-0 bg-red-500 hover:bg-red-700 
                           border-red-500 hover:border-red-700 text-sm border-4
-                          text-white py-1 px-2 rounded my-2" 
+                          text-white py-2 px-4 rounded my-2" 
                           type="button">
                           Continue
                       </button>
