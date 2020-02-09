@@ -113,7 +113,7 @@
                           placeholder="Your Email" 
                           aria-label="Full name">
                       <button class="inline-block flex-shrink-0 bg-red-500 hover:bg-red-700 
-                          border-red-500 hover:border-red-700 text-sm border-4
+                          border-red-500 hover:border-red-700 font-bold
                           text-white py-2 px-4 rounded my-2" 
                           type="button">
                           Continue

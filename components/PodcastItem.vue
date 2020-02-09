@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col overflow-hidden px-8 py-2 mt-2 border-b">
+    <div class="flex flex-col overflow-hidden px-4 lg:px-8 py-2 mt-2 border-b">
         <div class="leading-tight">
             <nuxt-link
                 :to="'/show/' + item.id"

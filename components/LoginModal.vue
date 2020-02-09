@@ -8,18 +8,19 @@
             aria-labelledby="modalTitle"
             aria-describedby="modalDescription"
             @click.stop>
-            <header class="flex p-4 justify-between">
-                <div class="text-lg font-medium m-2">
-                    Login to transcribe this episode
-                </div> 
-
-                <button
-                    class="block bg-transparent cursor-pointer font-bold py-1 px-2"
-                    type="button"
+            <div class="flex justify-end">
+                <a
+                    class="cursor-pointer"
                     aria-label="Close modal"
                     @click="close">
-                    x
-                </button>
+                    <span class="text-2xl text-gray-600 opacity-75">x</span>
+                </a>
+            </div>
+            
+            <header class="flex px-4 justify-between">
+                <p class="text-lg font-medium">
+                    Login to transcribe this episode
+                </p>
             </header>
             <section class="relativ p-4">
                 <p class="flex items-center justify-start mb-1 text-base">
@@ -56,9 +57,7 @@
                         </p>
                     </div>
                 </form>
-                <p class="mb-4 text-center">OR</p>
-                <hr class="block w-full mb-4 border-0 border-t border-gray-300" />
-
+                <p class="mb-4 text-center">- OR -</p>
                 <div class="flex flex-wrap justify-center">
                     <div class="w-full sm:w-1/2 sm:pr-2 mb-3 sm:mb-0">
                         <button
@@ -76,21 +75,29 @@
                             Login with Google
                         </button>
                     </div>
+                    
                 </div>
-            </section>
-            <footer class="flex flex-col items-center justify-center p-4">
-                <p class="mb-2">
-                    After Submit the Email, you'll received a link to verify.
+                <p class="flex justify-center my-2 text-sm text-gray-600">
+                    We'll never sell your personal Information
                 </p>
-                <button
-                    class="bg-transparent hover:bg-red-700 hover:text-white
-                            border-red-500 hover:border-red-700 text-sm border 
-                            py-2 px-4 rounded"
-                    aria-label="Close modal"
-                    type="button"
-                    @click="close">
-                    Cancel
-                </button>
+            </section>
+            <hr class="block w-full mb-4 border-0 border-t border-gray-300" />
+            <footer class="flex flex-col justify-center px-4">
+                <p class="mb-2 text-xs text-gray-600">
+                    After login, you agree to accept 
+                    <nuxt-link to="/" class="text-black hover:text-gray-600">
+                        Terms of Service
+                    </nuxt-link> and 
+                    <nuxt-link to="/" class="text-black hover:text-gray-600">
+                        Privacy Policies
+                    </nuxt-link>.
+                    <br/>
+                    Questions: 
+                    <a class="cursor-pointer text-black hover:text-gray-600" 
+                        @click="sendMail">
+                            hello@podcastclub.net
+                    </a>
+                </p>
             </footer>
         </div>
     </div>
@@ -138,6 +145,11 @@ export default {
             this.$store.dispatch('auth/login', {
                 email: this.loginEmail
             })
+        },
+
+        sendMail() {
+            if (process.browser)
+                window.location.href= 'mailto:hello@podcastclub.net'
         }
     }
 }

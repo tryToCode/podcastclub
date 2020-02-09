@@ -10,7 +10,7 @@
       @close="closeModal" />
 
     <nav class="bg-white border-b">
-        <ol class="max-w-6xl mx-auto flex items-center px-12 py-2 text-sm">
+        <ol class="container mx-auto flex items-center px-4 lg:px-16 py-2 text-sm">
             <li>
                 <nuxt-link to="/show" class="text-gray-600">
                     Show
@@ -20,10 +20,10 @@
             <li class="font-medium">{{item.title}}</li>
         </ol>
     </nav>
-    <div class="flex flex-col lg:flex-row md:max-w-6xl md:mx-auto px-4 py-6">
+    <div class="flex flex-col lg:flex-row md:container md:mx-auto lg:px-16 py-6">
         
         <div class="bg-white flex flex-col lg:w-2/3 justify-center overflow-hidden rounded">
-            <div class="my-4 mx-8">
+            <div class="my-4 mx-4 lg:mx-8">
                 <p class="text-2xl font-semibold leading-none tracking-normal mt-1 mb-2">
                     {{ item.title }}
                 </p>
@@ -49,13 +49,13 @@
                 <ItemAction :item="item" />
             </div>
 
-            <div class="my-4 mx-8">
+            <div class="my-4 mx-4 lg:mx-8">
                 <p class="text-xl py-2">About this Episode</p>
                 <div class="leading-relaxed" v-html="item.summary">
                 </div> 
             </div>
 
-            <div class="leading-relaxed my-4 mx-8">
+            <div class="leading-relaxed my-4 mx-4 lg:mx-8">
                 <p class="text-xl py-2">Transcript</p>
                 <p>
                     Let automated speech-to-text technology transcribe this episode so you can
@@ -94,7 +94,7 @@
                 </div>
             </div>
 
-            <div class="my-4 mx-8">
+            <div class="my-4 mx-4 lg:mx-8">
                 <span class="font-black">Disclaimer</span>: 
                 The podcast and artwork embedded on this page are from the Podcast 
                 <a :href="item.creator.base_url" 
@@ -106,8 +106,8 @@
             </div>
         </div><!--detail section -->
 
-        <div class="lg:w-1/3 my-4 md:ml-8">
-            <div class="md:w-4/5 px-6 pt-4 pb-8 border rounded md:mx-auto">
+        <div class="lg:w-1/3 md:ml-4">
+            <div class="md:w-4/5 px-4 pt-4 pb-8 lg:border lg:rounded md:mx-auto">
                 <p class="font-medium mb-4">Other Shows</p>
                 <RelatedItem 
                     class="border-b last:border-b-0"

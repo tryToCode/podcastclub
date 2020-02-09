@@ -62,7 +62,7 @@
                 <a class="border-b-2 cursor-pointer" 
                     @click="sendMail">
                     know
-                </a>. 
+                </a>.
             </p>
         </div>
     </div>
@@ -107,7 +107,7 @@ export default {
     methods: {
         sendMail() {
             if (process.browser)
-                window.location.href= 'mailto:tu295t.dy@gmail.com'
+                window.location.href= 'mailto:hello@podcastclub.net'
         }
     }
 }
