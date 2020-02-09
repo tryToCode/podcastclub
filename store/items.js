@@ -37,29 +37,26 @@ export const actions = {
      *  navbar click and reload
      * 
      */
-    async loadItems({commit, getters, dispatch}) {
+    loadItems({commit, getters, dispatch}) {
         dispatch('loading/startLoading', null, { root: true })
-        try {
-            const start = Date.now();
-            const items = await axios.get(getters.urlGetter)
-            const s = (Date.now() - start) / 1000
-            commit('SET_ITEMS', items.data.results)
-            commit('SET_ITEMS_COUNT', items.data.count)
-            commit('SET_TIME_SPENT', s)
-        }
-        catch(e) {
-            if (e.response) {
+        return axios.get(getters.urlGetter)
+        .then((response) => {
+            commit('SET_ITEMS', response.data.results)
+            commit('SET_ITEMS_COUNT', response.data.count)
+        })
+        .catch((error) => {
+            if (error.response) {
                 /*
                  * The request was made and the server responded with a
                  * status code that falls out of the range of 2xx
                  */
-                if (e.response.status === 404 
-                    && e.response.data.detail === 'Invalid page.') {
+                if (error.response.status === 404 
+                    && error.response.data.detail === 'Invalid page.') {
                     commit('SET_ITEMS', [])
                     commit('SET_ITEMS_COUNT', 0)
                     commit('SET_TIME_SPENT', 0)
                 }
-            } else if (e.request) {
+            } else if (error.request) {
                 /*
                  * The request was made but no response was received, `error.request`
                  * is an instance of XMLHttpRequest in the browser and an instance
@@ -71,21 +68,16 @@ export const actions = {
                 )
             } else {
                 // Something happened in setting up the request and triggered an Error
-                console.log('Error', e.message);
+                console.log('Error', error.message);
             }
-        }
-        finally {
-            dispatch("loading/stopLoading", null, { root: true })
-        }
+        })
+        .finally(() => dispatch("loading/stopLoading", null, { root: true }))
     },
 
-    async updateLikes({state}, itemId) {
-        try {
-            const data = {upVote: true}
-            axios.patch(`${process.env.baseItemUrl}/${itemId}/`, data)
-        }
-        catch (e) {
-            console.log(e)
-        }
+    updateLikes({state}, itemId) {
+        axios.patch(`${process.env.baseItemUrl}/${itemId}/`, {
+            upVote: true
+        })
+        .catch(error => console.log(error))
     }
 }

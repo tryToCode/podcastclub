@@ -30,22 +30,20 @@ export const getters = {
 }
 
 export const actions = {
-    async loadDocItems({commit, dispatch}) {
+    loadDocItems({commit, dispatch}) {
         dispatch('loading/startLoading', null, { root: true })
-        try {
-            const items = await axios.get(process.env.baseItemUrl)
-            commit('SET_ITEMS', items.data.results)
-            commit('SET_ITEMS_COUNT', items.data.count)
-        }
-        catch (error) {
-            if (error.request)
-                dispatch("error/onError", 
-                    { statusCode: 500, message: 'Server unavailable' }, 
-                    { root: true }
-                )
-        }
-        finally {
-            dispatch("loading/stopLoading", null, { root: true })
-        }
+        return axios.get(process.env.baseItemUrl)
+                .then((response) => {
+                    commit('SET_ITEMS', response.data.results)
+                    commit('SET_ITEMS_COUNT', response.data.count)
+                })
+                .catch((error) => {
+                    if (error.request)
+                        dispatch("error/onError", 
+                            { statusCode: 500, message: 'Server unavailable' }, 
+                            { root: true }
+                        )
+                })
+                .finally(() => dispatch("loading/stopLoading", null, { root: true }))
     }
 }

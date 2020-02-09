@@ -32,22 +32,17 @@ export const getters = {
 }
 
 export const actions = {
-    async loadPodcasts({commit, dispatch}) {
+    loadPodcasts({commit, dispatch}) {
         dispatch('loading/startLoading', null, { root: true })
-        try {
-            const podcasts = await axios
-                .get(process.env.basePodcastUrl)
-            commit('SET_PODCASTS', podcasts.data.results)
-        } 
-        catch(error) {
-            if (error.request)
-                dispatch("error/onError", 
-                    { statusCode: 500, message: 'Server unavailable' }, 
-                    { root: true }
-                )
-        }
-        finally {
-            dispatch("loading/stopLoading", null, { root: true })
-        }
+        return axios.get(process.env.basePodcastUrl)
+                .then(response => commit('SET_PODCASTS', response.data.results))
+                .catch((error) => {
+                    if (error.request)
+                        dispatch("error/onError", 
+                            { statusCode: 500, message: 'Server unavailable' }, 
+                            { root: true }
+                    )    
+                })
+                .finally(() => dispatch("loading/stopLoading", null, { root: true }))
     }
 }

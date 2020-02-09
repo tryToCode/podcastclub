@@ -183,13 +183,10 @@ export default {
         store.dispatch('loading/startLoading', null, { root: true })
         try {
             const item = await axios.get(`${process.env.baseItemUrl}/${params.id}/`)
-            console.log(item.data)
             let relatedItemsUrl = new URL(process.env.relatedItemsUrl)
             relatedItemsUrl.searchParams.set('category', item.data.creator.category.split('.')[1])
-            console.log('related items url: ' + relatedItemsUrl.toString())
             relatedItemsUrl.searchParams.set('exclude', params.id)
             const relatedItems = await axios.get(relatedItemsUrl.toString())
-            console.log(relatedItems.data.results)
             return { 
                 item: item.data,
                 relatedItems: relatedItems.data.results

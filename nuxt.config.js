@@ -8,6 +8,7 @@ export default {
         basePodcastUrl: 'http://localhost:8000/api/podcasts',
         relatedItemsUrl: 'http://localhost:8000/api/relatedItems',
         loginUrl: 'http://localhost:8000/auth/login/',
+        logoutUrl: 'http://localhost:8000/auth/logout/',
         verifyTokenUrl: 'http://localhost:8000/auth/login/token_post/'
     },
     /*

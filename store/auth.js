@@ -31,8 +31,15 @@ export const mutations = {
     },
 
     SET_TOKEN(state, token) {
+        session.defaults.headers.Authorization = `token ${token}`
         state.isAuthenticated = true
         state.token = token
+    },
+
+    REMOVE_TOKEN(state) {
+        delete session.defaults.headers.Authorization
+        state.isAuthenticated = false
+        state.token = null
     }
 }
 
@@ -40,26 +47,21 @@ export const actions = {
     login({ commit }, { email }) {
         return session.post(process.env.loginUrl, {
             email: email
-        })
-        .then(({ data }) => commit('SET_MESSAGE', data))
-        .catch((e) => commit('SET_ERROR', e))
+            })
+            .then(({ data }) => commit('SET_MESSAGE', data))
+            .catch((error) => commit('SET_ERROR', error))
     },
 
     logout({ commit }) {
-        return auth.logout()
-            .then(() => commit(LOGOUT))
-            .finally(() => commit(REMOVE_TOKEN))
+        return session.post(process.env.logoutUrl, {})
+            .then(({ data }) => commit('SET_MESSAGE', data))
+            .catch(error => commit('SET_ERROR', error))
+            .finally(() => commit('REMOVE_TOKEN'))
     },
 
-    verifyToken({ commit }, { token }) {
-        let axiosConfig = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'token ' + token
-            }
-        }
-        return session.post(process.env.verifyTokenUrl, {}, axiosConfig)
-            .then(() => commit('SET_TOKEN', token))
-            .catch((e) => commit('SET_ERROR', e))
+    verifyToken({ commit }) {
+        return session.post(process.env.verifyTokenUrl)
+            .then(({ data }) => commit('SET_MESSAGE', data))
+            .catch((error) => commit('SET_ERROR', error))
     }
 }

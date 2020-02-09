@@ -21,7 +21,7 @@
 <script>
 export default {
     props: {
-        tilte: {
+        title: {
             type: String,
             required: true
         },
@@ -32,7 +32,7 @@ export default {
         },
 
         jsonData: {
-            type: Object,
+            type: Array,
             required: true
         }
     }
