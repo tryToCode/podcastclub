@@ -160,7 +160,8 @@ export default {
 
     computed: {
         ...mapState({
-            loading: state => state.loading.loading
+            loading: state => state.loading.loading,
+            loggedIn: state => state.auth.loggedIn
         }),
 
         calcPrice() {

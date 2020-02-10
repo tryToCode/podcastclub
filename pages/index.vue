@@ -1,10 +1,10 @@
 <template>
     <div>
       <div class="bg-gray-600">
-        <div class="px-4 py-20 md:py-6">
-          <div class="md:max-w-6xl md:mx-auto">
-            <div class="md:flex md:flex-wrap">
-              <div class="md:order-last md:w-1/2 overflow-hidden">
+        <div class="px-4 lg:px-8 py-20 md:py-6">
+          <div class="md:container lg:px-8 md:mx-auto">
+            <div class="md:flex">
+              <div class="md:order-last md:w-1/2">
                 <IntroIcon />   
               </div>
               <div class="md:w-1/2 text-center md:text-left md:py-16">
@@ -29,8 +29,8 @@
       </div><!--hero-->
 
       <div class="bg-gray-300">
-        <div class="px-4 py-20 md:py-6">
-          <div class="md:max-w-6xl md:mx-auto block md:flex md:justify-between md:py-16">
+        <div class="px-4 lg:px-8 py-20 md:py-6">
+          <div class="container lg:px-8 md:mx-auto block md:flex md:justify-between md:py-16">
             <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
               <div class="bg-white rounded-lg overflow-hidden shadow relative">
                 <svg class="flex w-16 h-16 items-center mx-auto mt-8 fill-current text-red-400" viewBox="0 0 24 24">
@@ -100,8 +100,8 @@
       </div>
 
       <div class="bg-white">
-        <div class="px-4 py-20 md:py-6">
-          <div class="flex flex-col md:flex-row mx-auto px-4 justify-between md:py-16">
+        <div class="px-4 lg:px-8 py-20 md:py-6">
+          <div class="flex flex-col md:flex-row mx-auto px-4 lg:px-8 justify-between md:py-16">
             <div class="md:w-1/2 items-center m-4 font-medium">
               Subscribe to our mailing list and get notified by daily updated shows.
             </div>

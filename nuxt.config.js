@@ -43,7 +43,8 @@ export default {
      */
     plugins: [
         { src: '~/plugins/jsonFormatter.js', mode: 'client' },
-        { src: '~/plugins/localStorage.js', mode: 'client' }
+        { src: '~/plugins/localStorage.js', mode: 'client' },
+        { src: '~/plugins/genAvatar.js', mode: 'client' }
     ],
     /*
      ** Nuxt.js dev-modules
