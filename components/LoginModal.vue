@@ -38,7 +38,7 @@
                         </div>
                         
                         <div class="w-full sm:w-1/3 sm:pl-2">
-                            <button class="w-full bg-orange-500 hover:bg-orange-600 font-bold
+                            <button class="w-full gradient hover:bg-orange-600 font-bold
                                 text-white py-2 px-4 rounded"
                                 @click="requestToken" 
                                 type="button">

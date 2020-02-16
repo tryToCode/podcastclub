@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gradient">
     <LoginModal
       v-show="isModalVisible"
       @close="closeModal"/>
@@ -62,4 +62,7 @@ html {
   margin: 0;
 }
 
+.gradient {
+    background-image: linear-gradient(90deg, #CBBACC 0%, #2580B3 100%);
+}
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col px-4 lg:px-8 py-2 my-4 md:my-0 lg:w-4/5" :key="rerender">
+  <div class="flex flex-col px-4 py-2 my-4 md:my-0 lg:w-10/12" 
+    :key="rerender">
     <BaseInput
         class="my-2"
         @inputChange="filterChangeHandle" />
