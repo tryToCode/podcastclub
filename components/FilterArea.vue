@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col px-4 py-2 my-4 md:my-0 lg:w-10/12" 
+  <div class="flex flex-col px-4 py-2 my-4 md:my-0 lg:ml-8" 
     :key="rerender">
     <BaseInput
         class="my-2"
