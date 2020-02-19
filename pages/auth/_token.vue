@@ -17,7 +17,7 @@ export default {
             token: this.$route.params.token
         })
         .then(() => 
-            this.$router.push({ path: `/account/${this.item.id}` })
+            this.$router.push({ path: '/account' })
         )
     },
 

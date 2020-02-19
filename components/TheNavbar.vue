@@ -55,10 +55,8 @@
                         <div v-else>
                             <base-drop-down />
                         </div>
-                        
                     </li>
                 </ul> <!--navbar right -->
-        
             </div> <!--navbar right div closed -->
         </div>
         
@@ -116,8 +114,10 @@ export default {
         if (localStorage.getItem('apiUrl')) {
             let isAuthenticated = null
             JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
-                if (key === 'isAuthenticated')
+                if (key === 'isAuthenticated') {
                     isAuthenticated = value
+                    return
+                }
             })
             this.isAuthenticated = isAuthenticated
         }
