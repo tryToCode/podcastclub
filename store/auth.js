@@ -9,12 +9,11 @@ const session = axios.create({
 })
 
 export const state = () => ({
-    user: {},
+    email: '',
     token: String,
     isAuthenticated: false,
     message: String,
-    error: String,
-    redirectPage: String
+    error: String
 })
 
 export const mutations = {
@@ -26,8 +25,8 @@ export const mutations = {
         state.error = error
     },
 
-    SET_USER(state, user) {
-        state.user = user
+    SET_EMAIL(state, email) {
+        state.email = email
     },
 
     SET_TOKEN(state, token) {
@@ -46,9 +45,12 @@ export const mutations = {
 export const actions = {
     login({ commit }, { email }) {
         return session.post(process.env.loginUrl, {
-            email: email
+                email: email
             })
-            .then(({ data }) => commit('SET_MESSAGE', data))
+            .then(({ data }) => {
+                commit('SET_MESSAGE', data)
+                commit('SET_EMAIL', email)
+            })
             .catch((error) => commit('SET_ERROR', error))
     },
 
@@ -59,7 +61,8 @@ export const actions = {
             .finally(() => commit('REMOVE_TOKEN'))
     },
 
-    verifyToken({ commit }) {
+    verifyToken({ commit }, { token }) {
+        commit('SET_TOKEN', token)
         return session.post(process.env.verifyTokenUrl)
             .then(({ data }) => commit('SET_MESSAGE', data))
             .catch((error) => commit('SET_ERROR', error))
