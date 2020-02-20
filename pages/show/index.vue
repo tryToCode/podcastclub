@@ -1,6 +1,22 @@
 <template>
-    <div class="bg-gray-100 py-12 lg:py-24">
-        <div class="container max-w-5xl mx-8 flex flex-col 
+    <div class="bg-gray-100 py-16 lg:py-20">
+        <nav class="bg-white border-b">
+            <ol class="container max-w-5xl px-4 lg:px-0 md:mx-8 md:mx-auto 
+                flex items-center py-3 text-sm">
+                <li>
+                    <nuxt-link to="/" class="text-gray-600 hover:underline">
+                        Podcast Club
+                    </nuxt-link>
+                </li>
+                <li><span class="mx-2">/</span></li>
+                <li>
+                    <nuxt-link to="/show" class="font-medium">
+                        Show
+                    </nuxt-link>
+                </li>
+            </ol>
+        </nav>
+        <div class="container max-w-5xl mx-8 my-2 flex flex-col 
             lg:flex-row mx-auto justify-between">
             <div class="lg:w-2/3 py-4">
                 <ItemArea />

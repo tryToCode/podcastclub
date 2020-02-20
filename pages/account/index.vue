@@ -1,5 +1,5 @@
 <template>
-  <div class="py-20">
+  <div class="py-16 lg:py-20">
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 py-20">
+  <div class="bg-gray-100 py-16 lg:py-20">
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>
@@ -12,6 +12,12 @@
     <nav class="bg-white border-b">
         <ol class="container max-w-5xl px-4 lg:px-0 md:mx-8 md:mx-auto 
             flex items-center py-3 text-sm">
+            <li>
+                <nuxt-link to="/" class="text-gray-600 hover:underline">
+                    Podcast Club
+                </nuxt-link>
+            </li>
+            <li><span class="mx-2">/</span></li>
             <li>
                 <nuxt-link to="/show" class="text-gray-600 hover:underline">
                     Show

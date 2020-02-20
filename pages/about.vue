@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="py-16 lg:py-24">
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>
@@ -38,7 +38,7 @@
                 with the 
                 <a class="border-b-2" 
                     href="https://www.django-rest-framework.org/">
-                    Django Rest API
+                    Django Rest Framework
                 </a>.  
             </p>
         </div>
