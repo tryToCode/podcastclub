@@ -85,10 +85,10 @@
             <footer class="flex flex-col justify-center px-4">
                 <p class="mb-2 text-xs text-gray-600">
                     After login, you agree to accept 
-                    <nuxt-link to="/" class="text-black hover:text-gray-600">
+                    <nuxt-link to="/terms_of_service" class="text-black hover:text-gray-600">
                         Terms of Service
                     </nuxt-link> and 
-                    <nuxt-link to="/" class="text-black hover:text-gray-600">
+                    <nuxt-link to="/privacy" class="text-black hover:text-gray-600">
                         Privacy Policies
                     </nuxt-link>.
                     <br/>

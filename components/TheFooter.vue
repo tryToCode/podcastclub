@@ -17,6 +17,14 @@
                 href="https://github.com/tryToCode/podcastclub">
                 Contribute/Fork
             </a>
+            <span>•</span>
+            <nuxt-link class="text-sm text-black px-2"
+                to="/privacy">Privacy Polices
+            </nuxt-link>
+            <span>•</span>
+            <nuxt-link class="text-sm text-black px-2"
+                to="/terms_of_service">Terms of Service
+            </nuxt-link>
         </div>
         
     </div>
