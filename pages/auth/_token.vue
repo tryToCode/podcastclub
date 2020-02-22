@@ -13,7 +13,7 @@
 import { mapState } from 'vuex'
 export default {
     mounted() {
-        this.$store.dispatch('auth/verifyToken', {
+        this.$store.dispatch('localAuth/verifyToken', {
             token: this.$route.params.token
         })
         .then(() => 

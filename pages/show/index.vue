@@ -52,7 +52,7 @@ export default {
     },
 
     mounted() {
-        this.resetRoute();
+        this.resetRoute()
     },
 
     components: {
@@ -69,48 +69,48 @@ export default {
     watch: {
         loadItemUrl: {
             handler(val, oldVal) {
-                this.resetRoute();
-                this.$store.dispatch("items/loadItems");
+                this.resetRoute()
+                this.$store.dispatch("items/loadItems")
             }
         }
     },
 
     methods: {
         resetRoute() {
-            const url = new URL(this.loadItemUrl);
-            let urlKey = ["search", "category", "date", "pageSize", "page"];
-            let query = Object.assign({}, this.$route.query);
+            const url = new URL(this.loadItemUrl)
+            let urlKey = ["search", "category", "date", "pageSize", "page"]
+            let query = Object.assign({}, this.$route.query)
             for (var keyValue of url.searchParams.entries()) {
-                const [key, value] = keyValue;
-                let obj = {};
-                obj[key] = value;
-                query = Object.assign({}, query, obj);
-                urlKey = urlKey.filter(e => e !== key);
+                const [key, value] = keyValue
+                let obj = {}
+                obj[key] = value
+                query = Object.assign({}, query, obj)
+                urlKey = urlKey.filter(e => e !== key)
             }
-            this.$router.replace({ query: query });
-            urlKey.forEach(e => this.deleteQuery(e));
+            this.$router.replace({ query: query })
+            urlKey.forEach(e => this.deleteQuery(e))
         },
 
         deleteQuery(filterSection) {
-            let query = Object.assign({}, this.$route.query);
+            let query = Object.assign({}, this.$route.query)
             switch (filterSection) {
                 case "search":
-                delete query.search;
-                break;
+                    delete query.search
+                    break
                 case "category":
-                delete query.category;
-                break;
+                    delete query.category
+                    break
                 case "date":
-                delete query.date;
-                break;
+                    delete query.date
+                    break
                 case "page":
-                delete query.page;
-                break;
+                    delete query.page
+                    break
                 case "pageSize":
-                delete query.pageSize;
-                break;
+                    delete query.pageSize
+                    break
             }
-            this.$router.replace({ query });
+            this.$router.replace({ query })
         }
     }
 }

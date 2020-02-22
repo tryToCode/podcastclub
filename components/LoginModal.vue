@@ -63,6 +63,7 @@
                         <button
                             class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold 
                             py-2 px-3 focus:outline-none focus:shadow-outline rounded"
+                            @click="fbLogin"
                             type="button">
                             Login with Facebook
                         </button>
@@ -71,6 +72,7 @@
                         <button
                             class="w-full bg-red-700 hover:bg-red-800 text-white font-bold 
                             py-2 px-4 focus:outline-none focus:shadow-outline rounded"
+                            @click="googleLogin"
                             type="button">
                             Login with Google
                         </button>
@@ -142,7 +144,7 @@ export default {
                 this.error = 'Please provide valid email.'
                 return 
             }
-            this.$store.dispatch('auth/login', {
+            this.$store.dispatch('localAuth/login', {
                 email: this.loginEmail
             })
         },
@@ -150,6 +152,26 @@ export default {
         sendMail() {
             if (process.browser)
                 window.location.href= 'mailto:hello@podcastclub.net'
+        },
+
+        async googleLogin() {
+            this.$auth.loginWith('google')
+            .then(() => {
+                
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+        },
+
+        async fbLogin() {
+            this.$auth.loginWith('facebook')
+            .then(() => {
+
+            })
+            .catch((e) => {
+
+            })
         }
     }
 }

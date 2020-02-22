@@ -36,7 +36,6 @@ export default {
      ** Global CSS
      */
     css: [
-        'plyr/dist/plyr.css'
     ],
     /*
      ** Plugins to load before mounting the App
@@ -58,7 +57,25 @@ export default {
     /*
      ** Nuxt.js modules
      */
-    modules: [],
+    modules: [
+        '@nuxtjs/auth',
+        '@nuxtjs/axios',
+    ],
+
+    auth: {
+        strategies: {
+            local: false,
+            facebook: {
+                client_id: '207477890441285',
+                userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',
+                scope: ['public_profile', 'email', 'user_birthday']
+            },
+            google: {
+                client_id:
+                '593867821565-00d0sqag9sln4k9rsic3k0iff0mkmcbg.apps.googleusercontent.com'
+            }
+        }
+    },
     /*
      ** Build configuration
      */
