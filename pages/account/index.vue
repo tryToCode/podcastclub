@@ -8,9 +8,20 @@
     <div class="bg-white w-full">
         <div class="container max-w-5xl mx-8 mx-auto flex flex-col justify-between py-8">
             <div class="flex my-4">
-                <v-gravatar class="h-24 object-cover rounded-lg" 
+                
+                <img v-if="this.$auth.user" 
+                    class="h-24 object-cover rounded-lg" 
+                    :src="this.$auth.user.picture" 
+                    :alt="this.$auth.user.name">
+                <span v-else>
+                    <v-gravatar class="h-24 object-cover rounded-lg" 
                     :email="email" />
-                <span>
+                </span>
+                <span v-if="this.$auth.user"
+                    class="ml-4 font-medium">
+                    {{ this.$auth.user.name }}
+                </span>
+                <span v-else>
                     {{ displayName }}
                 </span>
             </div>

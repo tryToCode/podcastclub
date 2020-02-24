@@ -11,7 +11,7 @@ const session = axios.create({
 export const state = () => ({
     email: '',
     token: String,
-    isAuthenticated: false,
+    loggedInWithMail: false,
     message: String,
     error: String
 })
@@ -31,13 +31,13 @@ export const mutations = {
 
     SET_TOKEN(state, token) {
         session.defaults.headers.Authorization = `token ${token}`
-        state.isAuthenticated = true
+        state.loggedInWithMail = true
         state.token = token
     },
 
     REMOVE_TOKEN(state) {
         delete session.defaults.headers.Authorization
-        state.isAuthenticated = false
+        state.loggedInWithMail = false
         state.token = null
     }
 }

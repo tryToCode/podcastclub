@@ -45,7 +45,7 @@
                         </nuxt-link>
                     </li>
                     <li class="mr-3">
-                        <button v-if="!loggedIn || !isAuthenticated"
+                        <button v-if="!loggedInWithMail && !this.$auth.loggedIn && !loggedIn"
                             @click="login"
                             class="mx-auto lg:mx-0 hover:underline
                                 font-bold rounded mt-4 lg:mt-0 py-2 px-4"
@@ -75,7 +75,7 @@ export default {
         return {
             isOpen: false,
             windowTop: 0,
-            isAuthenticated: false,
+            loggedInWithMail: false
         }
     },
 
@@ -85,7 +85,7 @@ export default {
 
     computed: {
         ...mapState({
-            loggedIn: state => state.auth.isAuthenticated
+            loggedIn: state => state.localAuth.loggedInWithMail
         }),
 
         bgNav: function() {
@@ -104,6 +104,10 @@ export default {
             return this.windowTop > 10 
                 ? 'gradient text-white' 
                 : 'bg-white text-gray-800 opacity-75'
+        },
+
+        isLoggedIn() {
+            return !this.loggedInWithMail && !this.$auth.loggedIn && !this.loggedIn
         }
     },
 
@@ -112,14 +116,16 @@ export default {
             window.addEventListener("scroll", this.onScroll)
             
         if (localStorage.getItem('apiUrl')) {
-            let isAuthenticated = null
+            let loggedInWithMail = null
+            let loggedInWithSocial = null
             JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
-                if (key === 'isAuthenticated') {
-                    isAuthenticated = value
+                console.log('key: ' + key)
+                if (key === 'loggedInWithMail') {
+                    loggedInWithMail = value
                     return
                 }
             })
-            this.isAuthenticated = isAuthenticated
+            this.loggedInWithMail = loggedInWithMail
         }
     },
 
@@ -132,7 +138,7 @@ export default {
         reload() {
             if (process.browser) {
                 window.location.reload(true)
-                localStorage.clear()
+                //localStorage.clear()
             }
         },
 

@@ -3,7 +3,15 @@
         <button class="flex items-center outline-none focus:outline-none" 
             @click="isOpen = !isOpen" 
             @keydown.escape="isOpen = false">
-            <v-gravatar class="w-8 h-8 rounded-full" :email="email" />
+
+            <img v-if="this.$auth.user" class="w-8 h-8 rounded-full" 
+            :src="this.$auth.user.picture" 
+            :alt="this.$auth.user.name">
+            <span v-else>
+                <v-gravatar class="w-8 h-8 rounded-full" 
+                :email="email" />
+            </span>
+            
             <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
                 <path d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 
                 1.4-1.4l3.3 3.29 3.3-3.3z">
@@ -105,7 +113,6 @@ export default {
     methods: {
         logout() {
             this.email = ''
-            this.isAuthenticated = false
             this.$store.dispatch('auth/logout')
             this.$router.push('/')
         },
