@@ -44,7 +44,8 @@ export default {
         { src: '~/plugins/jsonFormatter.js', mode: 'client' },
         { src: '~/plugins/localStorage.js', mode: 'client' },
         { src: '~/plugins/genAvatar.js', mode: 'client' },
-        { src: '~/plugins/paypal.js', mode: 'client' }
+        { src: '~/plugins/paypal.js', mode: 'client' },
+        { src: '~/plugins/socialSharing.js', mode: 'client' }
     ],
     /*
      ** Nuxt.js dev-modules

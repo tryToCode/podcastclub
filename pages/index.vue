@@ -106,8 +106,8 @@
                 IT
               </h3>
               <p class="text-gray-600 mb-8 md:text-xl">
-                Looking for next suitable javascript framework to get your project faster done, or 
-                just curious about what is going on around Django eco system, or need more guidlines 
+                Looking for next suitable javascript framework to get your project done even faster, 
+                or just curious about what is going on around Django eco system, or need more guidlines 
                 for your fullstack career, we have all topices covered for you.
                 <br /><br />
               </p>
@@ -337,8 +337,8 @@
               </h3>
               <p class="text-gray-600 mb-8 md:text-xl">
                 No one is ever over educated in terms of finance, be it in personal life or for your next
-                job applications. learn from others personal stories and find your own way that get you 
-                going in your life.
+                job application. learn from others personal life stories and find your own way that get you 
+                going in life.
                 <br /><br />
               </p>
             </div>
@@ -463,9 +463,8 @@
 
           <div class="container mx-auto m-8 max-w-4xl md:text-2xl">
             Prefer all in old school, or you just want to read the whole story on your
-            couch at saturday afternoon, our free transcribe service have you covered. 
-
-            Using industry advanced Technology for transcripting audio files into old plain text 
+            couch at saturday afternoon, our free transcribe service help you out. 
+            Using industry advanced Technology for transcripting audio data into old plain text 
             file for an better understanding.
           </div>
           
@@ -528,10 +527,9 @@
             <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
           </div>
           
-          <div class="items-center m-4 font-medium text-center">
+          <div class="items-center m-4 font-medium text-center md:text-xl">
               Subscribe to our mailing list and get notified by daily updated shows.
           </div>
-
           <div class="flex flex-col sm:flex-row justify-center my-12 sm:my-4">
             
             <form class="w-full max-w-sm">
@@ -542,26 +540,22 @@
                         aria-label="Full name">
                     <div class="flex items-center justify-center">
                       <button class="mx-auto lg:mx-0 hover:underline gradient 
-                        text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">
+                        text-white font-bold rounded-full my-6 py-4 px-8">
                         Subscribe
                       </button>
                     </div>
                 </div>
             </form>
-
           </div>
           
         </div>
       </section>
-
     </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import LoginModal from "@/components/LoginModal.vue"
-import IntroIcon from '@/components/Icon/IntroductionIcon.vue'
-import ITIcon from '@/components/Icon/ITIcon.vue'
 
 export default {
   middleware: "error",
@@ -577,11 +571,6 @@ export default {
         }
       ]
     }
-  },
-
-  components: {
-    IntroIcon,
-    ITIcon
   }
 }
 </script>

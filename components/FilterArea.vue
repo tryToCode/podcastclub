@@ -36,7 +36,7 @@
     </div>
 
     <div class="flex w-full items-center mt-6">
-        <button v-show="catSelected !== 'All' || dateSelected !== 'All Time'" 
+        <button v-if="catSelected !== 'All' || dateSelected !== 'All Time'" 
             class="w-full bg-red-500 text-white font-bold px-4 py-2 rounded hover:bg-red-600"
             @click="reset">
             Reset Filter
@@ -51,7 +51,7 @@ import BaseFilter from './Base/BaseFilter.vue'
 import BaseLabel from './Base/BaseLabel.vue'
 
 export default {
-    name: 'filter-area-v4',
+    name: 'filter-area',
 
     data() {
         return {
