@@ -19,8 +19,8 @@
             </svg>
         </button>
 
-        <ul class="absolute font-normal bg-white shadow overflow-hidden rounded w-48 
-            border mt-2 py-1 right-0 z-20 transform origin-top-right"
+        <ul class="absolute font-normal bg-white shadow overflow-hidden rounded w-40
+            border mt-5 py-1 right-0 z-20 transform origin-top-right"
             :class="{ 'hidden': !isOpen }">
             <li>
                 <nuxt-link class="flex items-center px-3 py-3 hover:bg-gray-200"

@@ -117,7 +117,6 @@ export default {
             
         if (localStorage.getItem('apiUrl')) {
             let loggedInWithMail = null
-            let loggedInWithSocial = null
             JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
                 if (key === 'loggedInWithMail') {
                     loggedInWithMail = value

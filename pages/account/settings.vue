@@ -27,8 +27,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { PulseLoader } from '@saeris/vue-spinners'
 export default {
-    name: 'settings'
+    name: 'settings',
+
+    computed: {
+        ...mapState({
+            loading: state => state.loading.loading
+        })
+    }
 }
 </script>

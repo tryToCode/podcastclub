@@ -10,11 +10,11 @@
         </span>
     </a>
 
-    <a class="group md:mr-2 flex items-center justify-center px-1"
+    <!-- <a class="group md:mr-2 flex items-center justify-center px-1"
         :href="item.item_url">
         <CommentIcon class="group-hover:text-red-500" />
         <span class="group-hover:text-red-500">Comments</span>
-    </a>
+    </a> -->
 
     <a class="group md:mr-2 flex items-center justify-center px-1"
         :href="item.item_url">
@@ -94,11 +94,11 @@
         </div>
     </div>
 
-    <a class="group md:mr-2 flex items-center justify-center px-1"
+    <!-- <a class="group md:mr-2 flex items-center justify-center px-1"
         :href="item.item_url">
         <viewIcon class="group-hover:text-red-500" />
         <span class="group-hover:text-red-500">Views</span>
-    </a>
+    </a> -->
   </div>
 </template>
 
