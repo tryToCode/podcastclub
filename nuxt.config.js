@@ -1,9 +1,10 @@
 export default {
     mode: 'universal',
     /*
-     **podcast api endpoint
+     **podcast backend api endpoint
      */
     env: {
+        URL: 'http://localhost:8000',
         baseItemUrl: 'http://localhost:8000/api/rssItems',
         basePodcastUrl: 'http://localhost:8000/api/podcasts',
         relatedItemsUrl: 'http://localhost:8000/api/relatedItems',
@@ -41,6 +42,7 @@ export default {
      ** Plugins to load before mounting the App
      */
     plugins: [
+        '~/plugins/axios.js',
         { src: '~/plugins/jsonFormatter.js', mode: 'client' },
         { src: '~/plugins/localStorage.js', mode: 'client' },
         { src: '~/plugins/genAvatar.js', mode: 'client' },
@@ -63,9 +65,22 @@ export default {
         '@nuxtjs/axios',
     ],
 
+    /*
+    ** Axios module configuration
+    ** See https://axios.nuxtjs.org/options
+    */
+    axios: {
+        baseURL: 'http://localhost:8000'
+    },
+
     auth: {
         strategies: {
-            local: false,
+            local: {
+                endpoints: {
+                  login: { url: 'http://localhost:8000/auth/login/token_post/', method: 'post' },
+                  logout: { url: process.env.logout, method: 'post' }
+                },
+            },
             facebook: {
                 client_id: '207477890441285',
                 userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',

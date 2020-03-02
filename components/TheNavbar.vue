@@ -45,7 +45,7 @@
                         </nuxt-link>
                     </li>
                     <li class="mr-3">
-                        <button v-if="!loggedInWithMail && !this.$auth.loggedIn && !loggedIn"
+                        <button v-if="!this.$auth.loggedIn"
                             @click="login"
                             class="mx-auto lg:mx-0 hover:underline
                                 font-bold rounded mt-4 lg:mt-0 py-2 px-4"
@@ -65,7 +65,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import BaseDropDown from './Base/BaseDropDown.vue'
 
 export default {
@@ -75,7 +74,6 @@ export default {
         return {
             isOpen: false,
             windowTop: 0,
-            loggedInWithMail: false
         }
     },
 
@@ -84,10 +82,6 @@ export default {
     },
 
     computed: {
-        ...mapState({
-            loggedIn: state => state.localAuth.loggedInWithMail
-        }),
-
         bgNav: function() {
             return this.windowTop > 10 
                 ? 'bg-white shadow' 
@@ -104,27 +98,12 @@ export default {
             return this.windowTop > 10 
                 ? 'gradient text-white' 
                 : 'bg-white text-gray-800 opacity-75'
-        },
-
-        isLoggedIn() {
-            return !this.loggedInWithMail && !this.$auth.loggedIn && !this.loggedIn
         }
     },
 
     mounted() {
         if (process.browser)
             window.addEventListener("scroll", this.onScroll)
-            
-        if (localStorage.getItem('apiUrl')) {
-            let loggedInWithMail = null
-            JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
-                if (key === 'loggedInWithMail') {
-                    loggedInWithMail = value
-                    return
-                }
-            })
-            this.loggedInWithMail = loggedInWithMail
-        }
     },
 
     beforeDestroy() {
@@ -134,10 +113,8 @@ export default {
 
     methods: {
         reload() {
-            if (process.browser) {
+            if (process.browser)
                 window.location.reload(true)
-                //localStorage.clear()
-            }
         },
 
         login() {

@@ -125,7 +125,7 @@ export default {
 
     computed: {
         ...mapState({
-            message: state => state.auth.message
+            message: state => state.token.message
         })
     },
 
@@ -144,7 +144,7 @@ export default {
                 this.error = 'Please provide valid email.'
                 return 
             }
-            this.$store.dispatch('localAuth/login', {
+            this.$store.dispatch('token/requestToken', {
                 email: this.loginEmail
             })
         },

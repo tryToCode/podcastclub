@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
     podcasts: []
 })
@@ -34,7 +32,7 @@ export const getters = {
 export const actions = {
     loadPodcasts({commit, dispatch}) {
         dispatch('loading/startLoading', null, { root: true })
-        return axios.get(process.env.basePodcastUrl)
+        return this.$axios.get(process.env.basePodcastUrl)
                 .then(response => commit('SET_PODCASTS', response.data.results))
                 .catch((error) => {
                     if (error.request)

@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
     items: [],
     itemsCount: Number
@@ -32,7 +30,7 @@ export const getters = {
 export const actions = {
     loadDocItems({commit, dispatch}) {
         dispatch('loading/startLoading', null, { root: true })
-        return axios.get(process.env.baseItemUrl)
+        return this.$axios.get(process.env.baseItemUrl)
                 .then((response) => {
                     commit('SET_ITEMS', response.data.results)
                     commit('SET_ITEMS_COUNT', response.data.count)

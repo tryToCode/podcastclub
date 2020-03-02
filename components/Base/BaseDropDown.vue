@@ -4,12 +4,12 @@
             @click="isOpen = !isOpen" 
             @keydown.escape="isOpen = false">
 
-            <img v-if="this.$auth.user" class="w-8 h-8 rounded-full" 
-            :src="this.$auth.user.picture" 
-            :alt="this.$auth.user.name">
+            <img v-if="this.$auth.user.picture" class="w-8 h-8 rounded-full" 
+                :src="this.$auth.user.picture" 
+                :alt="this.$auth.user.name">
             <span v-else>
                 <v-gravatar class="w-8 h-8 rounded-full" 
-                :email="email" />
+                :email="this.$auth.user.email" />
             </span>
             
             <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
@@ -93,16 +93,6 @@ export default {
     mounted() {
         if (process.browser)
             window.addEventListener('click', this.closeDropDown)
-        if (localStorage.getItem('apiUrl')) {
-            let email = null
-            JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
-                if (key === 'email') {
-                    email = value
-                    return
-                }
-            })
-            this.email = email
-        }
     },
 
     beforeDestroy() {
@@ -112,9 +102,13 @@ export default {
 
     methods: {
         logout() {
-            this.email = ''
-            this.$store.dispatch('auth/logout')
-            this.$router.push('/')
+            if (this.$auth.loggedIn)
+                this.$auth.logout()
+            else {
+                this.email = ''
+                this.$store.dispatch('token/logout')
+                this.$router.push('/')
+            } 
         },
 
         profile() {

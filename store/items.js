@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
     items: [],
     itemsCount: Number,
@@ -39,7 +37,7 @@ export const actions = {
      */
     loadItems({commit, getters, dispatch}) {
         dispatch('loading/startLoading', null, { root: true })
-        return axios.get(getters.urlGetter)
+        return this.$axios.get(getters.urlGetter)
         .then((response) => {
             commit('SET_ITEMS', response.data.results)
             commit('SET_ITEMS_COUNT', response.data.count)
@@ -75,7 +73,7 @@ export const actions = {
     },
 
     updateLikes({state}, itemId) {
-        axios.patch(`${process.env.baseItemUrl}/${itemId}/`, {
+        this.$axios.patch(`${process.env.baseItemUrl}/${itemId}/`, {
             upVote: true
         })
         .catch(error => console.log(error))

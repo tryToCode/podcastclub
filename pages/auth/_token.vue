@@ -12,19 +12,25 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+    data() {
+        return {
+        }
+    },
+
     mounted() {
-        this.$store.dispatch('localAuth/verifyToken', {
-            token: this.$route.params.token
-        })
-        .then(() => 
+        this.$axios.setHeader('Authorization', 'token ' + this.$route.params.token)
+        this.$axios.post(process.env.verifyTokenUrl)
+        .then(( resp ) => {
+            this.$auth.setToken('local', 'token ' + this.$route.params.token)
+            this.$auth.setUser(resp.data)
             this.$router.push({ path: '/account' })
-        )
+        })
     },
 
     computed: {
         ...mapState({
-            message: state => state.auth.message,
-            error: state => state.auth.error
+            message: state => state.token.message,
+            error: state => state.token.error
         })
     }
 }

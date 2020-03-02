@@ -8,7 +8,8 @@
             <span class="text-gray-500 text-base group-hover:text-red-500">Add</span>
         </div>
         
-        <div class="flex flex-col pl-2 pr-4 lg:pr-8 py-2 mt-2">
+        <div class="flex flex-col pl-2 pr-4 lg:pr-8 py-2 mt-2"
+            :class="{'lg:px-8 px-4': !this.$auth.loggedIn}">
             <div class="leading-tight">
                 <nuxt-link
                     :to="'/show/' + item.id"
