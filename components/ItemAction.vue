@@ -22,7 +22,8 @@
         <span class="group-hover:text-red-500">Link</span>
     </a>
 
-    <a class="group md:mr-2 flex items-center justify-center px-1 cursor-pointer">
+    <a class="group md:mr-2 flex items-center justify-center px-1 cursor-pointer"
+        @click="downloadRss">
         <RssIcon class="group-hover:text-red-500" />
         <span class="group-hover:text-red-500">RSS</span>
     </a>
@@ -94,11 +95,11 @@
         </div>
     </div>
 
-    <!-- <a class="group md:mr-2 flex items-center justify-center px-1"
+    <a class="hidden group md:mr-2 md:flex md:items-center md:justify-center px-1"
         :href="item.item_url">
         <viewIcon class="group-hover:text-red-500" />
         <span class="group-hover:text-red-500">Views</span>
-    </a> -->
+    </a>
   </div>
 </template>
 
@@ -110,6 +111,7 @@ import ShareIcon from './Icon/ShareIcon.vue'
 import ThumbIcon from './Icon/ThumbIcon.vue'
 import CommentIcon from './Icon/CommentIcon.vue'
 import ViewIcon from './Icon/ViewIcon.vue'
+import { Feed } from "feed"
 
 export default {
     name: 'item-action',
@@ -144,12 +146,41 @@ export default {
             this.$store.dispatch('items/updateLikes', this.item.id)
         },
 
-        generateRss() {
+        genRss() {
+            const feed = new Feed({
+                title: this.item.creator.name,
+                description: this.item.creator.description,
+                id: this.item.creator.id,
+                link: this.item.creator.base_url,
+                language: "en", // optional, used only in RSS 2.0
+                image: this.item.creator.image_url,
+                updated: new Date(this.item.creator.last_modified), // optional, default = today
+                generator: "awesome", // optional, default = 'Feed for Node.js'
+                feedLinks: {
+                    json: this.item.creator.rss_link
+                }
+            })
 
+            feed.addItem({
+                title: this.item.title,
+                id: this.item.id,
+                link: this.item.item_url,
+                description: this.item.description,
+                content: this.item.summary,
+            })
+            const category = this.item.creator.category
+            feed.addCategory(category.split('.')[1])
+
+            return feed.rss2()
         },
 
-        share() {
-
+        downloadRss() {
+            const url = window.URL.createObjectURL(new Blob([this.genRss()]))
+            const link = document.createElement('a')
+            link.href = url
+            link.setAttribute('download', 'rss.xml')
+            document.body.appendChild(link)
+            link.click()
         },
 
         showDropDown() {
