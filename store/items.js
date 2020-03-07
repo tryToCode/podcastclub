@@ -77,5 +77,12 @@ export const actions = {
             upVote: true
         })
         .catch(error => console.log(error))
+    },
+
+    increaseViews({state}, itemId) {
+        this.$axios.patch(`${process.env.baseItemUrl}/${itemId}/`, {
+            increaseViews: true
+        })
+        .catch(error => console.log(error))
     }
 }

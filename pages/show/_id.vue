@@ -116,7 +116,7 @@
 
         <div class="lg:w-1/3">
             <div class="lg:ml-8 lg:mr-3 px-4 pt-4 pb-8 md:mx-auto bg-white">
-                <p class="font-medium mb-4">Other Shows</p>
+                <p class="font-medium mb-4">Other Shows of {{ category }} </p>
                 <RelatedItem 
                     class="border-b last:border-b-0"
                     v-for="item in relatedItems"
@@ -164,6 +164,10 @@ export default {
         }
     },
 
+    mounted() {
+
+    },
+
     components: {
         AudioPlayer,
         PulseLoader,
@@ -181,6 +185,10 @@ export default {
         calcPrice() {
             const price =  Math.ceil(this.item.duration / 15) * 0.02
             return Math.round( price * 100 + Number.EPSILON ) / 100
+        },
+
+        category() {
+            return this.item.creator.category.split('.')[1]
         }
     },
 
