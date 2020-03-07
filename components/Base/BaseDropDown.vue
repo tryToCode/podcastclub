@@ -60,7 +60,7 @@
                 </nuxt-link>
             </li>
             <li>
-                <a class="flex items-center px-3 py-3 hover:bg-gray-200"
+                <a class="flex items-center px-3 py-3 hover:bg-gray-200 cursor-pointer"
                     @click="logout">
                     <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24" 
                     class="text-gray-600">
@@ -85,7 +85,6 @@ export default {
 
     data() {
         return {
-            email: '',
             isOpen: false
         }
     },
@@ -102,13 +101,7 @@ export default {
 
     methods: {
         logout() {
-            if (this.$auth.loggedIn)
-                this.$auth.logout()
-            else {
-                this.email = ''
-                this.$store.dispatch('token/logout')
-                this.$router.push('/')
-            } 
+            this.$auth.logout()
         },
 
         profile() {

@@ -8,9 +8,9 @@
   "author": "tryToCode",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
+    "dev": "node --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js",
+    "build": "node --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js build",
+    "start": "node --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js start",
     "generate": "nuxt generate",
     "heroku-postbuild": "npm run build",
     "test:e2e": "node test/e2e/nightwatch.js",

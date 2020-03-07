@@ -4,12 +4,10 @@ export default {
      **podcast backend api endpoint
      */
     env: {
-        URL: 'http://localhost:8000',
         baseItemUrl: 'http://localhost:8000/api/rssItems',
         basePodcastUrl: 'http://localhost:8000/api/podcasts',
         relatedItemsUrl: 'http://localhost:8000/api/relatedItems',
-        loginUrl: 'http://localhost:8000/auth/login/',
-        logoutUrl: 'http://localhost:8000/auth/logout/',
+        requestTokenUrl: 'http://localhost:8000/auth/login/',
         verifyTokenUrl: 'http://localhost:8000/auth/login/token_post/'
     },
     /*
@@ -65,20 +63,12 @@ export default {
         '@nuxtjs/axios',
     ],
 
-    /*
-    ** Axios module configuration
-    ** See https://axios.nuxtjs.org/options
-    */
-    axios: {
-        baseURL: 'http://localhost:8000'
-    },
-
     auth: {
         strategies: {
             local: {
                 endpoints: {
                   login: { url: 'http://localhost:8000/auth/login/token_post/', method: 'post' },
-                  logout: { url: process.env.logout, method: 'post' }
+                  logout: { url: 'http://localhost:8000/auth/logout/', method: 'post' }
                 },
             },
             facebook: {

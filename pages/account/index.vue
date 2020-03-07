@@ -9,13 +9,13 @@
         <div class="container max-w-5xl mx-8 mx-auto flex flex-col justify-between py-8">
             <div class="flex my-4">
                 
-                <img v-if="this.$auth.user" 
+                <img v-if="this.$auth.user.picture" 
                     class="h-24 object-cover rounded-lg" 
                     :src="this.$auth.user.picture" 
                     :alt="this.$auth.user.name">
                 <span v-else>
                     <v-gravatar class="h-24 object-cover rounded-lg" 
-                    :email="email" />
+                    :email="this.$auth.user.email" />
                 </span>
                 <span v-if="this.$auth.user"
                     class="ml-4 font-medium">
