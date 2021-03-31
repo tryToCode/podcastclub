@@ -1,10 +1,11 @@
 <template>
     <div class="flex overflow-hidden border-b">
-        <div v-if="this.$auth.loggedIn || loggedIn || loggedInWithMail" 
+        <div v-if="this.$auth.loggedIn" 
             class="flex flex-col justify-center pl-2 pr-1 text-center 
-            hover:text-gray-500 cursor-pointer group"
+                hover:text-gray-500 cursor-pointer group"
             @click="add(item.id)">
-            <AddIcon class="my-1 group-hover:text-red-500" />
+            <AddIcon class="my-1 group-hover:text-red-500"
+                :width="22" :height="22" />
             <span class="text-gray-500 text-base group-hover:text-red-500">Add</span>
         </div>
         
@@ -57,7 +58,6 @@
 </template>
     
 <script>
-import { mapState } from 'vuex'
 import ClockIcon from './Icon/ClockIcon.vue'
 import UserIcon from './Icon/UserIcon.vue'
 import GroupIcon from './Icon/GroupIcon.vue'
@@ -65,25 +65,6 @@ import AddIcon from './Icon/AddIcon.vue'
 
 export default {
     name: 'podcast-item',
-
-    data() {
-        return {
-            loggedInWithMail: false
-        }
-    },
-
-    mounted() {
-        if (localStorage.getItem('apiUrl')) {
-            let loggedInWithMail = null
-            JSON.parse(localStorage.getItem('apiUrl'), (key, value) => {
-                if (key === 'loggedInWithMail') {
-                    loggedInWithMail = value
-                    return
-                }
-            })
-            this.loggedInWithMail = loggedInWithMail
-        }
-    },
 
     props: {
         item: {
@@ -97,12 +78,6 @@ export default {
         UserIcon,
         GroupIcon,
         AddIcon
-    },
-
-    computed: {
-        ...mapState({
-            loggedIn: state => state.localAuth.loggedInWithMail
-        })
     },
 
     methods: {

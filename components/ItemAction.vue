@@ -1,6 +1,12 @@
 <template>
   <div class="flex my-2 border-t pt-3 items-center justify-between">
     <div class="flex items-center">
+        <a class="group md:mr-2 flex items-center justify-center px-1 cursor-pointer" 
+            v-if="this.$auth.loggedIn">
+            <AddIcon class="group-hover:text-red-500" />
+            <span class="group-hover:text-red-500">Add</span>
+        </a>
+
         <a class="group md:mr-2 flex items-center justify-center px-1 cursor-pointer"
             @click="upVote">
             <ThumbIcon class="group-hover:text-red-500" />
@@ -117,6 +123,7 @@ import ShareIcon from './Icon/ShareIcon.vue'
 import ThumbIcon from './Icon/ThumbIcon.vue'
 import CommentIcon from './Icon/CommentIcon.vue'
 import ViewIcon from './Icon/ViewIcon.vue'
+import AddIcon from './Icon/AddIcon.vue'
 import { Feed } from "feed"
 
 export default {
@@ -149,7 +156,8 @@ export default {
         ShareIcon,
         ThumbIcon,
         CommentIcon,
-        ViewIcon
+        ViewIcon,
+        AddIcon
     },
 
     methods: {

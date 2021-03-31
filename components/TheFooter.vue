@@ -26,6 +26,5 @@
                 to="/terms_of_service">Terms of Service
             </nuxt-link>
         </div>
-        
     </div>
 </template>
