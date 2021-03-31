@@ -9,4 +9,7 @@ _Nuxt.js doesn't supercharge these components._
 Credits
 
 https://css-tricks.com/creating-a-reusable-pagination-component-in-vue/
-Pagination Component 
+Pagination Component
+
+https://github.com/muhammederdem/mini-player
+Audio player Component

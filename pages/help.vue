@@ -1,56 +1,71 @@
 <template>
-  <div class="max-w-5xl flex flex-col mx-auto justify-center">
-      <BasePageNav />
+  <div class="py-16 lg:py-24">
+      <div class="max-w-4xl flex flex-col p-4 mx-auto">
+        <div class="m-4 bg-white rounded p-4">
+          <h1 class="text-xl font-medium">Search</h1>
+          <p class="py-1">
+              The following internal items are used to match the input search query:
+          </p>
+          <BaseCheckedBox v-for="t in searchInputType"
+            :key="t"
+            :label="t" />
+          <p class="py-1">
+            Check out 
+            <nuxt-link 
+              class="border-b-2" 
+              to="/about">
+              here
+            </nuxt-link> to see available Podcasts.
+          </p>
+        </div>
 
-      <div class="m-4">
-          <h1 class="text-xl">Search</h1>
+        <div class="m-4 bg-white rounded p-4">
+          <h1 class="text-xl font-medium">Filter</h1>
           <p class="py-1">
-              The following internal items are used to match the input search query.
-          </p>
-          <ul class="list-disc list-inside">
-            <li>RSS Item title</li>
-            <li>Item description</li>
-            <li>Podcast</li>
-            <li>Podcast original URL</li>
-            </ul>
-          <p class="py-1">
-              Check out 
-              <nuxt-link 
-                class="border-b-2" 
-                to="/about">
-                here
-              </nuxt-link> to see available Podcasts.
-          </p>
-      </div>
-      <div class="m-4">
-          <h1 class="text-xl">Filter</h1>
-          <p class="py-1 font-bold">
               Possible Filter Result: No Items Found
           </p>
-          <p>
+          <div>
             Items are filtered by the given filter input which may include 
-            <ul class="list-disc list-inside py-1">
-                <li>Category of Item</li>
-                <li>Published date of Item</li>
-                <li>The page number, the <span class="font-bold">default page number</span> is 1</li>
-            </ul>
+            <BaseCheckedBox v-for="t in filterType"
+              :key="t"
+              :label="t" />
+            The <span class="font-bold">default page number</span> is 1
             The page number (Pagination number at the bottom) could cause the result "No Items Found".
-          </p>
-          <p class="py-1 font-bold">Solution</p>
+          </div>
+          <p class="mt-4 mb-2 font-bold">Solution</p>
           <p>
             Make sure the filter "Category" or "Date" is executed by querying with 
             the default page number <span class="font-bold">1</span>.
           </p>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
-import BasePageNav from '@/components/Base/BasePageNav.vue'
+import BaseCheckedBox from '@/components/Base/BaseCheckedBox.vue'
 
 export default {
   components: {
-    BasePageNav
-  }  
+    BaseCheckedBox,
+  },
+
+  computed: {
+    searchInputType() {
+      return [
+        'RSS Item title', 
+        'Item description', 
+        'Podcast', 
+        'Podcast original URL']
+    },
+
+    filterType() {
+      return [
+        'Category of Item',
+        'Published date of Item',
+        'The page number'
+      ]
+    }
+  }
 }
 </script>

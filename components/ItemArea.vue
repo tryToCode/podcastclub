@@ -1,13 +1,12 @@
 <template>
-  <div>
+  <div class="bg-white rounded">
     <div v-if="loading"
         class="flex flex-col justify-center items-center h-screen">
         <pulse-loader color="#fc8181"></pulse-loader>
     </div>
 
     <div v-else 
-        class="max-w-5xl bg-gray-100 flex flex-col mx-auto 
-        justify-center">
+        class="flex flex-col mx-auto justify-center">
         <div v-if="itemsCount === 0">
             <NoItems
                 :baseUrl="loadItemUrl"
@@ -26,9 +25,14 @@
                 v-for="item in items"
                 :key="item.id"
                 :item="item" />
-            <Pagination
+            <div class="md:flex md:justify-between md:px-8">
+                <Pagination
                 :currentPage="Number(currentPage)"
                 :pageCount="pageCount" />
+
+                <ItemPerPageFilter />
+            </div>
+            
         </div>
     </div>
   </div>
@@ -38,6 +42,7 @@
 import { mapState, mapGetters } from 'vuex'
 import PodcastItem from './PodcastItem.vue'
 import Pagination from './Pagination.vue'
+import ItemPerPageFilter from './ItemPerPageFilter.vue'
 import NoItems from './NoItems.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 
@@ -52,7 +57,8 @@ export default {
         PodcastItem,
         Pagination,
         NoItems,
-        PulseLoader
+        PulseLoader,
+        ItemPerPageFilter
     },
 
     computed: {

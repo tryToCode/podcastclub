@@ -4,7 +4,7 @@ export default ({store}) => {
   createPersistedState({
       key: 'apiUrl',
       paths: [
-        'apiUrl'
+        'apiUrl', 'auth', 'localAuth'
       ]
   })(store)
 }

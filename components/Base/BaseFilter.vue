@@ -1,9 +1,6 @@
 <template>
-    <div class="relative mx-2 md:mx-0">
-        <select class="block appearance-none bg-gray-200 
-                border border-gray-200 text-gray-700 py-1 
-                px-1 pr-6 md:pr-6 rounded leading-tight focus:outline-none 
-                focus:bg-white focus:border-gray-500" 
+    <div class="">
+        <select class="form-select block w-full" 
             :id="id"
             @change="onFilterChange($event)"
             v-model="modelName">
@@ -13,13 +10,10 @@
                 {{ t.value }}
             </option>
         </select>
-        <DownArrowIcon />
     </div>
 </template>
 
 <script>
-import DownArrowIcon from '@/components/Icon/DownArrowIcon.vue'
-
 export default {
     name: 'base-filter',
 
@@ -49,10 +43,6 @@ export default {
             type: Array,
             required: true
         }
-    },
-
-    components: {
-        DownArrowIcon
     },
 
     mounted() {

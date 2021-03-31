@@ -1,17 +1,44 @@
 <template>
-  <div>
+  <div class="gradient">
+    <LoginModal
+      v-show="isModalVisible"
+      @close="closeModal"/>
+    <TheNavbar 
+      @login="showModal" />
     <nuxt />
     <TheFooter />
   </div>
 </template>
 
 <script>
+import TheNavbar from "@/components/TheNavbar.vue"
 import TheFooter from '@/components/TheFooter.vue'
+import LoginModal from '@/components/LoginModal.vue'
 
 export default {
+  name: 'default-layout',
+
+  data() {
+    return {
+      isModalVisible: false
+    }
+  },
+
   components: {
+    TheNavbar,
     TheFooter,
-  }  
+    LoginModal
+  },
+
+  methods: {
+    showModal() {
+        this.isModalVisible = true
+    },
+
+    closeModal() {
+        this.isModalVisible = false
+    }
+  }
 }
 </script>
 
@@ -35,4 +62,7 @@ html {
   margin: 0;
 }
 
+.gradient {
+    background-image: linear-gradient(90deg, #CBBACC 0%, #2580B3 100%);
+}
 </style>

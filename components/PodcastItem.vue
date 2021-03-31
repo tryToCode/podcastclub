@@ -1,65 +1,70 @@
 <template>
-    <div class="flex overflow-hidden pb-2">
-        <div class="flex flex-col justify-center pl-2 pr-1 text-center 
-            hover:text-gray-500 cursor-pointer"
-            @click="upVote(item.id)">
-            <UpArrowIcon />
-            <span class="text-gray-500 text-sm">{{this.likes}}</span>
+    <div class="flex overflow-hidden border-b">
+        <div v-if="this.$auth.loggedIn" 
+            class="flex flex-col justify-center pl-2 pr-1 text-center 
+                hover:text-gray-500 cursor-pointer group"
+            @click="add(item.id)">
+            <AddIcon class="my-1 group-hover:text-red-500"
+                :width="22" :height="22" />
+            <span class="text-gray-500 text-base group-hover:text-red-500">Add</span>
         </div>
-        <div>
-            <div class="pb-1">
-                <a v-if="item.description.length !== 0"
-                    class="font-medium text-base"
-                    :href="item.item_url"
-                    :content="item.description"
-                    v-tippy="{ placement : 'top', arrow: true, size: 'large' }">
-                {{item.title}}
-                </a>
-                <a v-else
-                    class="font-medium text-base"
-                    :href="item.item_url">
-                {{item.title}}
-                </a>
-                <span class="hidden md:inline text-gray-500 text-sm">
-                    ({{item.item_url}})
+        
+        <div class="flex flex-col pl-2 pr-4 lg:pr-8 py-2 mt-2"
+            :class="{'lg:px-8 px-4': !this.$auth.loggedIn}">
+            <div class="leading-tight">
+                <nuxt-link
+                    :to="'/show/' + item.id"
+                    class="font-semibold">
+                {{ item.title }}
+                </nuxt-link>
+                <br />
+                <span v-if="item.item_url !== null" 
+                    class="hidden md:inline text-gray-500 text-sm">
+                    ({{ item.item_url }})
                 </span>
             </div>
-            <div class="text-sm font-semibold text-gray-500">
-                <a class="pr-1"
+            <div class="md:flex text-sm text-gray-500 mt-3 items-center">
+                <a class="md:flex pr-1 group"
                     :href="'https://' + item.creator.base_url">
-                {{item.creator.name}}
-                </a>
-                <span class="text-gray-500">|</span>
-                <span class="px-1">
-                {{item.creator.category.split('.')[1]}}
-                </span>
-                <span class="text-gray-500">|</span>
-                <span class="px-1">
-                {{$moment(item.pub_date).fromNow()}}
-                </span>
-                <div v-if="item.episode_number !== null"
-                    class="hidden md:inline">
-                    <span class="text-gray-500">|</span>
-                    <span class="px-1">
-                        #{{item.episode_number}}
+                    <span class="hidden md:inline-block">
+                        <UserIcon class="group-hover:text-red-500" />
                     </span>
-                </div>
+                    <span class="group-hover:text-red-500">
+                        {{ item.creator.name }}
+                    </span>
+                </a>
+                <span class="text-gray-500 md:hidden">|</span>
+                <span class="md:flex px-1 group">
+                    <span class="hidden md:inline-block">
+                        <GroupIcon class="group-hover:text-red-500" />
+                    </span>
+                    <span class="group-hover:text-red-500">
+                        {{ item.creator.category.split('.')[1] }}
+                    </span> 
+                </span>
+                <span class="text-gray-500 md:hidden    ">|</span>
+                <span class="md:flex px-1 group">
+                    <span class="hidden md:inline-block">
+                        <ClockIcon class="group-hover:text-red-500" />
+                    </span>
+                    <span class="group-hover:text-red-500">
+                        {{ $moment(item.pub_date).fromNow() }}
+                    </span> 
+                </span>
             </div>
+
         </div>
     </div>
 </template>
     
 <script>
-import UpArrowIcon from './Icon/UpArrowIcon.vue'
+import ClockIcon from './Icon/ClockIcon.vue'
+import UserIcon from './Icon/UserIcon.vue'
+import GroupIcon from './Icon/GroupIcon.vue'
+import AddIcon from './Icon/AddIcon.vue'
 
 export default {
     name: 'podcast-item',
-
-    data() {
-        return {
-            likes: this.item.likes
-        }
-    },
 
     props: {
         item: {
@@ -69,13 +74,15 @@ export default {
     },
 
     components: {
-        UpArrowIcon
+        ClockIcon,
+        UserIcon,
+        GroupIcon,
+        AddIcon
     },
 
     methods: {
-        upVote(itemId) {
-            this.likes += 1
-            this.$store.dispatch('items/updateLikes', itemId)
+        add() {
+
         }
     }
 }

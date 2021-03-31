@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col border-2 p-4 m-4">
+  <div class="flex flex-col m-4 bg-white rounded p-4">
     <h1 class="text-xl font-bold m-2">{{ title }}</h1>
     <div>
         <span class="font-bold border-2 text-green-400 px-2 
@@ -21,7 +21,7 @@
 <script>
 export default {
     props: {
-        tilte: {
+        title: {
             type: String,
             required: true
         },
@@ -32,7 +32,7 @@ export default {
         },
 
         jsonData: {
-            type: Object,
+            type: Array,
             required: true
         }
     }

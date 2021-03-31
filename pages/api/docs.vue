@@ -1,14 +1,12 @@
 <template>
-    <div class="max-w-5xl flex flex-col mx-auto justify-center overflow-hidden">
-        <BasePageNav />
-        
+    <div class="py-16 lg:py-24">
         <div v-if="loading"
             class="flex flex-col justify-center items-center h-screen">
             <pulse-loader color="#fc8181"></pulse-loader>
         </div>
 
-        <div v-else>
-            <div class="m-2">
+        <div class="max-w-4xl flex flex-col mx-auto justify-center overflow-hidden">
+            <div class="m-4 bg-white rounded p-4">
                 <h1 class="text-xl font-medium m-2">Intro</h1>
                 <p class="text-base m-2">
                     Podcast Club consumes data from the 
@@ -29,7 +27,7 @@
                     http://fathomless-beyond-28426.herokuapp.com
                 </p>
             </div>
-            <div class="flex flex-col m-2">
+            <div class="flex flex-col m-4 bg-white rounded p-4">
                 <h1 class="text-xl font-medium m-2">Resources</h1>
                 <p>
                     <span class="text-green-400 m-2">api/rssItems</span>
@@ -40,7 +38,7 @@
                     <span class="">{{podcastsCount}} podcasts</span>
                 </p>
             </div>
-            <div class="flex flex-col m-2">
+            <div class="flex flex-col m-4 bg-white rounded p-4">
                 <h1 class="text-xl font-medium m-2">Routes</h1>
                 <p>
                     <span class="py-1 m-2 uppercase">get</span>
@@ -75,13 +73,12 @@
                 title="Single Podcast"
                 baseUrl="http://fathomless-beyond-28426.herokuapp.com/api/podcasts/:id"
                 :jsonData="podcast" />
-        </div> <!--v-else-->
+        </div>
     </div>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import BasePageNav from '@/components/Base/BasePageNav.vue'
 import BaseDocSection from '@/components/Base/BaseDocSection.vue'
 import { PulseLoader } from '@saeris/vue-spinners'
 
@@ -99,7 +96,6 @@ export default {
     },
 
     components: {
-        BasePageNav,
         PulseLoader,
         BaseDocSection
     },
