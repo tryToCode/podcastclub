@@ -90,3 +90,6 @@ sw.*
 *.swp
 
 test/e2e/reports
+
+# debug
+.vscode
