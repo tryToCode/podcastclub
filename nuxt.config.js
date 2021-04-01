@@ -1,5 +1,4 @@
 export default {
-    mode: 'universal',
     /*
      **podcast backend api endpoint
      */
